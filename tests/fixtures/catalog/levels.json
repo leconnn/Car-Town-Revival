@@ -1,0 +1,82 @@
+[
+ {
+  "level": 1,
+  "xp": 0,
+  "coin_bonus": 0,
+  "max_workers": 2,
+  "fuel_tank": 5,
+  "title": "L1"
+ },
+ {
+  "level": 2,
+  "xp": 43,
+  "coin_bonus": 500,
+  "max_workers": 2,
+  "fuel_tank": 5,
+  "title": "L2"
+ },
+ {
+  "level": 3,
+  "xp": 90,
+  "coin_bonus": 750,
+  "max_workers": 3,
+  "fuel_tank": 5,
+  "title": "L3"
+ },
+ {
+  "level": 4,
+  "xp": 200,
+  "coin_bonus": 1000,
+  "max_workers": 3,
+  "fuel_tank": 5,
+  "title": "L4"
+ },
+ {
+  "level": 5,
+  "xp": 500,
+  "coin_bonus": 1250,
+  "max_workers": 3,
+  "fuel_tank": 5,
+  "title": "L5"
+ },
+ {
+  "level": 6,
+  "xp": 900,
+  "coin_bonus": 1500,
+  "max_workers": 4,
+  "fuel_tank": 5,
+  "title": "L6"
+ },
+ {
+  "level": 7,
+  "xp": 1320,
+  "coin_bonus": 1750,
+  "max_workers": 4,
+  "fuel_tank": 5,
+  "title": "L7"
+ },
+ {
+  "level": 8,
+  "xp": 1820,
+  "coin_bonus": 2000,
+  "max_workers": 4,
+  "fuel_tank": 5,
+  "title": "L8"
+ },
+ {
+  "level": 9,
+  "xp": 2400,
+  "coin_bonus": 2250,
+  "max_workers": 4,
+  "fuel_tank": 5,
+  "title": "L9"
+ },
+ {
+  "level": 10,
+  "xp": 3100,
+  "coin_bonus": 2500,
+  "max_workers": 4,
+  "fuel_tank": 5,
+  "title": "L10"
+ }
+]

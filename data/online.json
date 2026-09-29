@@ -1,0 +1,5 @@
+{
+  "_about": "Supabase project for online mode. The anon key is public by design. Never put the service_role key here.",
+  "url": "",
+  "anon_key": ""
+}

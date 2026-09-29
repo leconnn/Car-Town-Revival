@@ -1,0 +1,13 @@
+{
+ "resell_fraction": 0.1,
+ "upgrade_score_per_stage": 20,
+ "upgrade_max_stage": 5,
+ "upgrade_min_price": 25,
+ "upgrade_stage1_multiplier": 0.01,
+ "upgrade_stage2_multiplier": 0.02,
+ "upgrade_stage3_multiplier": 0.05,
+ "upgrade_stage4_multiplier": 0.07,
+ "upgrade_stage5_multiplier": 0.1,
+ "upgrade_coins_to_blue_conversion": 0.001,
+ "raw": {}
+}

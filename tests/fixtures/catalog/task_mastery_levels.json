@@ -1,0 +1,14 @@
+[
+ {
+  "level": 2,
+  "coin_bonus": 500,
+  "blue_bonus": 0,
+  "xp_bonus": 0
+ },
+ {
+  "level": 3,
+  "coin_bonus": 1000,
+  "blue_bonus": 1,
+  "xp_bonus": 0
+ }
+]

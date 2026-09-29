@@ -1,0 +1,93 @@
+class_name GoldenScenarios
+extends RefCounted
+## Scripted play sessions used to keep the two copies of the rules in sync.
+##
+## Each scenario is a list of actions. Running it on GameLogic produces a
+## transcript (every result and the save after each step) that is stored in
+## tests/fixtures/golden/. The TypeScript server rules replay the same
+## transcripts and must produce identical results.
+##
+## Regenerate after an intended rule change:
+##   godot --headless --path . res://scenes/dev/make_golden.tscn
+
+const DIR := "res://tests/fixtures/golden"
+const T0 := TestEnv.NOW
+
+## name -> [[action, args, now], ...]. Bay uid 1 is the starting lift and
+## car uid 2 is the starter car in the test catalog.
+static func all() -> Dictionary:
+	return {
+		"garage_and_cars": [
+			["buy_car", [1, 2, false], T0],
+			["buy_car", [2, 3, false], T0],
+			["buy_car", [5, 4, true], T0],
+			["paint_car", [2, 0x3366aa, false], T0 + 10],
+			["install_part", [2, 12, false], T0 + 20],
+			["install_part", [2, 13, false], T0 + 20],
+			["install_part", [2, 100, true], T0 + 20],
+			["upgrade_car", [2, 1], T0 + 30],
+			["upgrade_car", [2, 3], T0 + 30],
+			["upgrade_car", [2, 7], T0 + 30],
+			["set_ride_height", [2, 3, false], T0 + 40],
+			["set_plate", [2, "rusty 1", false], T0 + 40],
+			["set_plate", [2, "b@d", false], T0 + 40],
+			["buy_item", [900, 9, 9, 0, false], T0 + 50],
+			["buy_item", [900, 9, 9, 0, false], T0 + 50],
+			["move_item", [4, 8, 9, 1], T0 + 60],
+			["store_item", [4], T0 + 60],
+			["place_stored_item", [900, 9, 0, 0], T0 + 60],
+			["set_surface", [293, false], T0 + 70],
+			["expand_land", [false], T0 + 80],
+			["move_car", [2, 6, 6, 1], T0 + 90],
+			["store_car", [2], T0 + 90],
+			["sell_car", [2], T0 + 100],
+		],
+		"jobs_and_customers": [
+			["tick", [], T0],
+			["put_car_on_bay", [2, 1], T0],
+			["start_job", [1, 4], T0],
+			["collect_job", [1], T0 + 100],
+			["collect_job", [1], T0 + 300],
+			["start_job", [1, 4], T0 + 300],
+			["collect_job", [1], T0 + 600],
+			["start_job", [1, 4], T0 + 600],
+			["finish_job_now", [1], T0 + 700],
+			["start_job", [1, 4], T0 + 700],
+			["stop_job", [1], T0 + 710],
+			["stop_job", [1], T0 + 710],
+			["take_car_off_bay", [2], T0 + 700],
+			["start_car_task", [2, 4], T0 + 700],
+			["start_car_task", [2, 3], T0 + 700],
+			["sell_car", [2], T0 + 710],
+			["collect_car_task", [2], T0 + 800],
+			["collect_car_task", [2], T0 + 1000],
+			["start_car_task", [2, 3], T0 + 1000],
+			["finish_car_task_now", [2], T0 + 1100],
+			["start_car_task", [2, 3], T0 + 1100],
+			["stop_car_task", [2], T0 + 1110],
+			["tick", [], T0 + 3600],
+			["accept_customer", [4, 1], T0 + 3600],
+			["start_job", [1, 13], T0 + 3600],
+			["start_job", [1, 4], T0 + 3600],
+			["collect_job", [1], T0 + 5400],
+			["dismiss_customer", [5], T0 + 5400],
+			["tick", [], T0 + 86400 * 2],
+			["visit_location", [9], T0 + 86400 * 2],
+			["visit_location", [14], T0 + 86400 * 2],
+			["open_gps", [], T0 + 86400 * 2],
+			["set_tutorial", [3, false], T0 + 86400 * 2],
+			["rename", ["New Name"], T0 + 86400 * 2],
+		],
+	}
+
+
+## Runs a scenario from a new game (with missions on) and returns the transcript.
+static func run(steps: Array) -> Dictionary:
+	var logic := TestEnv.logic(-1, true)
+	var start := logic.save.duplicate(true)
+	var out: Array = []
+	for step: Array in steps:
+		var r := BackendImpl.run_on(logic, step[0], step[1], step[2])
+		out.append({"action": step[0], "args": step[1], "now": step[2],
+			"result": r.to_dict(), "save": logic.save.duplicate(true)})
+	return {"start": start, "steps": out}

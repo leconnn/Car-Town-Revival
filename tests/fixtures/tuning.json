@@ -1,0 +1,86 @@
+{
+ "_about": "Our own balance and rules for the remake. Applied on top of the original catalog. Change numbers here, not in code.",
+ "start": {
+  "coins": 10000,
+  "blue": 5,
+  "land_id": 1,
+  "car_id": 1,
+  "car_color_index": 0,
+  "floor_item_id": 292,
+  "wall_item_id": 2,
+  "items": [
+   {
+    "item_id": 156,
+    "x": 0,
+    "y": 0,
+    "rot": 0
+   }
+  ]
+ },
+ "economy": {
+  "blue_per_level_up": 1,
+  "resell_fraction": 0.1,
+  "item_resell_fraction": 0.5
+ },
+ "dealer": {
+  "min_price": 100,
+  "include_retired_cars": false,
+  "require_art": true
+ },
+ "garage": {
+  "max_land_id": 2,
+  "car_size": [
+   4,
+   3
+  ]
+ },
+ "jobs": {
+  "coin_multiplier": 1.0,
+  "xp_multiplier": 1.0,
+  "start_cost_multiplier": 1.0,
+  "finish_now_min_blue": 1,
+  "finish_now_blue_per_hour": 1
+ },
+ "car_tasks": {
+  "enabled": [3]
+ },
+ "customers": {
+  "interval_minutes": 2,
+  "max_waiting": 3,
+  "max_job_minutes": 5
+ },
+ "parts": {
+  "paint_part_id": 694,
+  "ride_height_part_id": 10,
+  "vanity_plate_part_id": 40,
+  "max_ride_height": 4,
+  "plate_max_length": 7
+ },
+ "missions": {
+  "v1_events": [
+   "BOUGHT_ITEM_ID",
+   "BOUGHT_ITEM_CATEGORY",
+   "BOUGHT_CAR_ID",
+   "PAINTED_CAR",
+   "INSTALLED_CAR_UPGRADE_TYPE",
+   "INSTALLED_CAR_PART_CATEGORY",
+   "STARTED_WORKBAY_TASK_ID",
+   "COLLECTED_WORKBAY_TASK_ID",
+   "WENT_TO_LOCATION",
+   "LAND_EXPANDED",
+   "DECORATE_GARAGE",
+   "OPEN_GPS",
+   "COMPLETED_DAILY_MISSION"
+  ],
+  "daily_count": 3
+ },
+ "town": {
+  "v1_locations": [
+   9
+  ]
+ },
+ "features": {
+  "racing": false,
+  "fuel": false
+ }
+}

@@ -1,0 +1,18 @@
+[
+ {
+  "id": 9,
+  "name": "Diner",
+  "type": 1,
+  "min_level": 1,
+  "sort": 0,
+  "raw": {}
+ },
+ {
+  "id": 14,
+  "name": "Racetrack",
+  "type": 0,
+  "min_level": 1,
+  "sort": 0,
+  "raw": {}
+ }
+]

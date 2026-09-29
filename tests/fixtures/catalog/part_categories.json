@@ -1,0 +1,20 @@
+[
+ {
+  "id": 1,
+  "name": "Wheels",
+  "universal": true,
+  "score": 0
+ },
+ {
+  "id": 10,
+  "name": "Neon",
+  "universal": false,
+  "score": 0
+ },
+ {
+  "id": 14,
+  "name": "Paint",
+  "universal": false,
+  "score": 0
+ }
+]

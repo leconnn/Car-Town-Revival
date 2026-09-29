@@ -1,0 +1,48 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Car Town Revival"
+config/description="Unofficial fan remake of Car Town. Free, never monetized."
+config/version="0.1.0"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="CarTownRevival"
+run/main_scene="res://scenes/main_menu.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[autoload]
+
+GameData="*res://scripts/autoload/game_data.gd"
+Backend="*res://scripts/autoload/backend.gd"
+Sound="*res://scripts/autoload/sound.gd"
+Lan="*res://scripts/autoload/lan.gd"
+Online="*res://scripts/autoload/online.gd"
+FlashUi="*res://scripts/ui/flash/flash_ui.gd"
+
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
+
+[gui]
+
+theme/custom="res://scenes/ui/theme.tres"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

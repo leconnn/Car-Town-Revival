@@ -42,3 +42,14 @@ Thumbs.db
 desktop.ini
 .DS_Store
 .vscode/
+
+# --- Test reports ---
+reports/
+
+# Server copy of the original game data (generated before deploy)
+supabase/functions/_shared/catalog/
+
+# --- Python / Node caches ---
+__pycache__/
+*.pyc
+node_modules/

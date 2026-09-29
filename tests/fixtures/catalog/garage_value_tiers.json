@@ -1,0 +1,16 @@
+[
+ {
+  "tier": 1,
+  "min_value": 0,
+  "name": "T1",
+  "xp": 0,
+  "blue": 0
+ },
+ {
+  "tier": 2,
+  "min_value": 75000,
+  "name": "T2",
+  "xp": 0,
+  "blue": 0
+ }
+]

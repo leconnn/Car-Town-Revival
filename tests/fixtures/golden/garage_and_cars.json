@@ -1,0 +1,2905 @@
+{
+ "start": {
+  "save_version": 2,
+  "created_at": 1000000,
+  "updated_at": 1000000,
+  "player": {
+   "name": "Tester",
+   "coins": 10000,
+   "blue": 5,
+   "xp": 0,
+   "level": 1
+  },
+  "next_uid": 3,
+  "rng": 1000000,
+  "garage": {
+   "land_id": 1,
+   "floor_item_id": 292,
+   "wall_item_id": 2,
+   "items": [
+    {
+     "uid": 1,
+     "item_id": 156,
+     "x": 0,
+     "y": 0,
+     "rot": 0
+    }
+   ],
+   "wall_items": []
+  },
+  "cars": [
+   {
+    "uid": 2,
+    "car_id": 1,
+    "color_id": 1,
+    "paint": 16711680,
+    "parts": {
+     "1": 11
+    },
+    "upgrades": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "ride_height": 0,
+    "plate": "",
+    "placed": true,
+    "x": 4,
+    "y": 0,
+    "rot": 0,
+    "bay_uid": 0
+   }
+  ],
+  "storage": {},
+  "jobs": {},
+  "car_tasks": {},
+  "job_mastery": {},
+  "customers": [],
+  "next_customer_at": 1000000,
+  "missions": {
+   "progress": {},
+   "completed": [],
+   "daily": {}
+  },
+  "tutorial": {
+   "step": 0,
+   "done": false
+  },
+  "visited_locations": [],
+  "stats": {}
+ },
+ "steps": [
+  {
+   "action": "buy_car",
+   "args": [
+    1,
+    2,
+    false
+   ],
+   "now": 1000000,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "uid": 3,
+     "placed": true
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000000,
+    "player": {
+     "name": "Tester",
+     "coins": 6000,
+     "blue": 5,
+     "xp": 10,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1
+    }
+   }
+  },
+  {
+   "action": "buy_car",
+   "args": [
+    2,
+    3,
+    false
+   ],
+   "now": 1000000,
+   "result": {
+    "ok": false,
+    "error": "Requires level 5.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000000,
+    "player": {
+     "name": "Tester",
+     "coins": 6000,
+     "blue": 5,
+     "xp": 10,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1
+    }
+   }
+  },
+  {
+   "action": "buy_car",
+   "args": [
+    5,
+    4,
+    true
+   ],
+   "now": 1000000,
+   "result": {
+    "ok": false,
+    "error": "Not enough blue coins.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000000,
+    "player": {
+     "name": "Tester",
+     "coins": 6000,
+     "blue": 5,
+     "xp": 10,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1
+    }
+   }
+  },
+  {
+   "action": "paint_car",
+   "args": [
+    2,
+    3368618,
+    false
+   ],
+   "now": 1000010,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": [
+     {
+      "kind": "mission_complete",
+      "mission_id": 7,
+      "title": "Mission 7",
+      "text": "",
+      "coins": 10,
+      "blue": 0,
+      "xp": 1,
+      "reward": {}
+     }
+    ]
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000010,
+    "player": {
+     "name": "Tester",
+     "coins": 5510,
+     "blue": 5,
+     "xp": 11,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "install_part",
+   "args": [
+    2,
+    12,
+    false
+   ],
+   "now": 1000020,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000020,
+    "player": {
+     "name": "Tester",
+     "coins": 5210,
+     "blue": 5,
+     "xp": 13,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "install_part",
+   "args": [
+    2,
+    13,
+    false
+   ],
+   "now": 1000020,
+   "result": {
+    "ok": false,
+    "error": "Requires level 10.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000020,
+    "player": {
+     "name": "Tester",
+     "coins": 5210,
+     "blue": 5,
+     "xp": 13,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "install_part",
+   "args": [
+    2,
+    100,
+    true
+   ],
+   "now": 1000020,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000020,
+    "player": {
+     "name": "Tester",
+     "coins": 5210,
+     "blue": 3,
+     "xp": 15,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "upgrade_car",
+   "args": [
+    2,
+    1
+   ],
+   "now": 1000030,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "track": 1,
+     "stage": 1
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000030,
+    "player": {
+     "name": "Tester",
+     "coins": 5170,
+     "blue": 3,
+     "xp": 15,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "upgrade_car",
+   "args": [
+    2,
+    3
+   ],
+   "now": 1000030,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "track": 3,
+     "stage": 1
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000030,
+    "player": {
+     "name": "Tester",
+     "coins": 5130,
+     "blue": 3,
+     "xp": 15,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "upgrade_car",
+   "args": [
+    2,
+    7
+   ],
+   "now": 1000030,
+   "result": {
+    "ok": false,
+    "error": "Unknown upgrade.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000030,
+    "player": {
+     "name": "Tester",
+     "coins": 5130,
+     "blue": 3,
+     "xp": 15,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "set_ride_height",
+   "args": [
+    2,
+    3,
+    false
+   ],
+   "now": 1000040,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000040,
+    "player": {
+     "name": "Tester",
+     "coins": 5030,
+     "blue": 3,
+     "xp": 15,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "set_plate",
+   "args": [
+    2,
+    "rusty 1",
+    false
+   ],
+   "now": 1000040,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000040,
+    "player": {
+     "name": "Tester",
+     "coins": 4930,
+     "blue": 3,
+     "xp": 15,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "set_plate",
+   "args": [
+    2,
+    "b@d",
+    false
+   ],
+   "now": 1000040,
+   "result": {
+    "ok": false,
+    "error": "Plates use up to 7 letters and numbers.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000040,
+    "player": {
+     "name": "Tester",
+     "coins": 4930,
+     "blue": 3,
+     "xp": 15,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "buy_item",
+   "args": [
+    900,
+    9,
+    9,
+    0,
+    false
+   ],
+   "now": 1000050,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "uid": 4
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000050,
+    "player": {
+     "name": "Tester",
+     "coins": 4830,
+     "blue": 3,
+     "xp": 16,
+     "level": 1
+    },
+    "next_uid": 5,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      },
+      {
+       "uid": 4,
+       "item_id": 900,
+       "x": 9,
+       "y": 9,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "buy_item",
+   "args": [
+    900,
+    9,
+    9,
+    0,
+    false
+   ],
+   "now": 1000050,
+   "result": {
+    "ok": false,
+    "error": "There's no room there.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000050,
+    "player": {
+     "name": "Tester",
+     "coins": 4830,
+     "blue": 3,
+     "xp": 16,
+     "level": 1
+    },
+    "next_uid": 5,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      },
+      {
+       "uid": 4,
+       "item_id": 900,
+       "x": 9,
+       "y": 9,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "move_item",
+   "args": [
+    4,
+    8,
+    9,
+    1
+   ],
+   "now": 1000060,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000060,
+    "player": {
+     "name": "Tester",
+     "coins": 4830,
+     "blue": 3,
+     "xp": 16,
+     "level": 1
+    },
+    "next_uid": 5,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      },
+      {
+       "uid": 4,
+       "item_id": 900,
+       "x": 8,
+       "y": 9,
+       "rot": 1
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "store_item",
+   "args": [
+    4
+   ],
+   "now": 1000060,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000060,
+    "player": {
+     "name": "Tester",
+     "coins": 4830,
+     "blue": 3,
+     "xp": 16,
+     "level": 1
+    },
+    "next_uid": 5,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {
+     "900": 1
+    },
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "place_stored_item",
+   "args": [
+    900,
+    9,
+    0,
+    0
+   ],
+   "now": 1000060,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "uid": 5
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000060,
+    "player": {
+     "name": "Tester",
+     "coins": 4830,
+     "blue": 3,
+     "xp": 16,
+     "level": 1
+    },
+    "next_uid": 6,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      },
+      {
+       "uid": 5,
+       "item_id": 900,
+       "x": 9,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "set_surface",
+   "args": [
+    293,
+    false
+   ],
+   "now": 1000070,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000070,
+    "player": {
+     "name": "Tester",
+     "coins": 4330,
+     "blue": 3,
+     "xp": 16,
+     "level": 1
+    },
+    "next_uid": 6,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 293,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      },
+      {
+       "uid": 5,
+       "item_id": 900,
+       "x": 9,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "expand_land",
+   "args": [
+    false
+   ],
+   "now": 1000080,
+   "result": {
+    "ok": false,
+    "error": "Requires level 4.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000070,
+    "player": {
+     "name": "Tester",
+     "coins": 4330,
+     "blue": 3,
+     "xp": 16,
+     "level": 1
+    },
+    "next_uid": 6,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 293,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      },
+      {
+       "uid": 5,
+       "item_id": 900,
+       "x": 9,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "move_car",
+   "args": [
+    2,
+    6,
+    6,
+    1
+   ],
+   "now": 1000090,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000090,
+    "player": {
+     "name": "Tester",
+     "coins": 4330,
+     "blue": 3,
+     "xp": 16,
+     "level": 1
+    },
+    "next_uid": 6,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 293,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      },
+      {
+       "uid": 5,
+       "item_id": 900,
+       "x": 9,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 6,
+      "y": 6,
+      "rot": 1,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "store_car",
+   "args": [
+    2
+   ],
+   "now": 1000090,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000090,
+    "player": {
+     "name": "Tester",
+     "coins": 4330,
+     "blue": 3,
+     "xp": 16,
+     "level": 1
+    },
+    "next_uid": 6,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 293,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      },
+      {
+       "uid": 5,
+       "item_id": 900,
+       "x": 9,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": false,
+      "x": 6,
+      "y": 6,
+      "rot": 1,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "sell_car",
+   "args": [
+    2
+   ],
+   "now": 1000100,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "coins": 400
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 2,
+    "created_at": 1000000,
+    "updated_at": 1000100,
+    "player": {
+     "name": "Tester",
+     "coins": 4730,
+     "blue": 3,
+     "xp": 16,
+     "level": 1
+    },
+    "next_uid": 6,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 293,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      },
+      {
+       "uid": 5,
+       "item_id": 900,
+       "x": 9,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  }
+ ]
+}
