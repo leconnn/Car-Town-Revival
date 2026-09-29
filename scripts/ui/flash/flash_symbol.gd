@@ -30,8 +30,10 @@ func goto(target: Variant) -> void:
 
 ## Plays the timeline in a loop, like a MovieClip left to play. The SWF asks
 ## for 140 fps, but browsers ran Flash at about 60.
-func play(fps: float = 60.0) -> void:
+## With [param loop] false it stops on the last frame (a timeline ending in stop()).
+func play(fps: float = 60.0, loop: bool = true) -> void:
 	_fps = fps
+	_loop = loop
 	_elapsed = 0.0
 	_playing = frame_count > 1
 	set_process(_playing)
@@ -45,6 +47,7 @@ func stop() -> void:
 var _fps := 60.0
 var _elapsed := 0.0
 var _playing := false
+var _loop := true
 
 
 func _ready() -> void:
@@ -62,6 +65,10 @@ func _process(delta: float) -> void:
 		return
 	var n := int(_elapsed / step)
 	_elapsed -= n * step
+	if not _loop and frame + n >= frame_count - 1:
+		goto(frame_count - 1)
+		stop()
+		return
 	goto((frame + n) % frame_count)
 
 

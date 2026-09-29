@@ -86,6 +86,21 @@ func set_style(style: String, font_size: int = 0) -> void:
 		label.label_settings.font_size = font_size
 
 
+## Wraps the text in the field's box and shrinks the font until it fits
+## (for text longer than the original's).
+func fit_to_box(min_size: int = 12) -> void:
+	var b := box()
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.size = Vector2(b.size.x - GUTTER * 2, 0)
+	var s := label.label_settings.font_size
+	while s > min_size:
+		label.size = Vector2(b.size.x - GUTTER * 2, 0)
+		if label.get_minimum_size().y <= b.size.y - GUTTER * 2:
+			break
+		s -= 2
+		label.label_settings.font_size = s
+
+
 func set_color(c: Color) -> void:
 	label.label_settings.font_color = c
 

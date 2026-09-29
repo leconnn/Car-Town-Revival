@@ -7,6 +7,8 @@ const PATH := "user://settings.cfg"
 static var fullscreen := false
 static var music_volume := 0.7
 static var sfx_volume := 0.8
+## Missions the player has opened (so their "NEW GOAL!" flag stops showing).
+static var missions_seen: Array = []
 
 
 static func load_and_apply() -> void:
@@ -15,6 +17,7 @@ static func load_and_apply() -> void:
 		fullscreen = cfg.get_value("display", "fullscreen", false)
 		music_volume = cfg.get_value("audio", "music", 0.7)
 		sfx_volume = cfg.get_value("audio", "sfx", 0.8)
+		missions_seen = cfg.get_value("missions", "seen", [])
 	apply()
 
 
@@ -23,6 +26,7 @@ static func save() -> void:
 	cfg.set_value("display", "fullscreen", fullscreen)
 	cfg.set_value("audio", "music", music_volume)
 	cfg.set_value("audio", "sfx", sfx_volume)
+	cfg.set_value("missions", "seen", missions_seen)
 	cfg.save(PATH)
 
 

@@ -35,6 +35,10 @@ static func attach(game_node: Node) -> void:
 	var t: Dictionary = Backend.state().get("tutorial", {})
 	if t.get("done", false) or int(t.get("step", 0)) >= STEPS_DONE:
 		return
+	# Testing aid: `-- no_tutorial` finishes it straight away.
+	if OS.get_cmdline_user_args().has("no_tutorial"):
+		Backend.set_tutorial(STEPS_DONE, true)
+		return
 	var tut := Tutorial.new()
 	tut.game = game_node
 	game_node.add_tutorial(tut)

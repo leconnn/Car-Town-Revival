@@ -70,13 +70,10 @@ func _build_left() -> void:
 	if _gv_meter != null:
 		_gv_meter.position = Vector2(0, 87 + HUD_Y)
 		left.add_child(_gv_meter)
+	# CarTownControls puts the MissionDock at (40, 220).
 	_mission_dock = Node2D.new()
 	_mission_dock.position = Vector2(40, 220 + HUD_Y)
 	left.add_child(_mission_dock)
-	var missions := FlashButton.of("LongTermMissionsIcon")
-	if missions != null:
-		missions.pressed.connect(func() -> void: action.emit("missions"))
-		_mission_dock.add_child(missions)
 
 
 ## The coloured XP arc is revealed by a pie-shaped mask, like the original.
@@ -280,6 +277,67 @@ func set_location(label: String, home: bool) -> void:
 		_loc_tabs.visible = home
 
 
+var _dock_key := ""
+
+
+## MissionDock.updateIcons: today's daily mission gets its own icon; every
+## other mission shares the clipboard (GroupedMissionIcon). A mission you
+## haven't opened yet flags its icon with a bouncing "NEW GOAL!".
+func _refresh_mission_dock() -> void:
+	if _mission_dock == null:
+		return
+	var ids := Backend.query().active_missions(Backend.now())
+	var key := str(ids) + str(Settings.missions_seen.size())
+	if key == _dock_key:
+		return
+	_dock_key = key
+	for c in _mission_dock.get_children():
+		c.queue_free()
+	var y := 32.0
+	var others: Array[int] = []
+	for mid: int in ids:
+		if GameData.catalog.missions[mid].get("category", "") == "daily":
+			var tex := GameData.mission_picture(mid)
+			var sprite := Sprite2D.new()
+			sprite.texture = tex
+			sprite.position = Vector2(3, 3)
+			var icon := FlashButton.wrap_node(sprite, Rect2(-33, -33, 66, 66))
+			icon.set_base_scale(1.0, 1.12)
+			icon.position.y = y
+			icon.pressed.connect(func() -> void: action.emit("missions:%d" % mid))
+			_mission_dock.add_child(icon)
+			if not Settings.missions_seen.has(mid):
+				_new_goal(y)
+			y += 66
+		else:
+			others.append(mid)
+	if not others.is_empty():
+		var grouped := FlashButton.of("LongTermMissionsIcon")
+		if grouped != null:
+			grouped.set_base_scale(1.0, 1.12)
+			grouped.position.y = y
+			grouped.pressed.connect(func() -> void: action.emit("missions"))
+			_mission_dock.add_child(grouped)
+			if others.any(func(m: int) -> bool: return not Settings.missions_seen.has(m)):
+				_new_goal(y)
+
+
+## MissionIcon.bounce: the flag swings in from the right and settles.
+func _new_goal(y: float) -> void:
+	var flag := FlashUi.make("MissionNewGoalGraphic")
+	if flag == null:
+		return
+	flag.styled_text("fldLabel", "NEW GOAL!", "sansD01")
+	flag.position = Vector2(68, y - 5)
+	flag.modulate.a = 0.0
+	_mission_dock.add_child(flag)
+	var tw := flag.create_tween()
+	tw.tween_property(flag, "modulate:a", 1.0, 0.5)
+	tw.parallel().tween_property(flag, "position:x", 38.0, 0.8).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	for step: Array in [[58.0, 0.6], [38.0, 0.6], [48.0, 0.4], [38.0, 0.4], [41.0, 0.2], [38.0, 0.2]]:
+		tw.tween_property(flag, "position:x", step[0], step[1]).set_trans(Tween.TRANS_CUBIC)
+
+
 ## The missions dock only appears once the tutorial is over.
 func set_mission_dock_visible(on: bool) -> void:
 	_missions_allowed = on
@@ -293,6 +351,7 @@ func refresh() -> void:
 	var s := Backend.state()
 	if s.is_empty():
 		return
+	_refresh_mission_dock()
 	var p: Dictionary = s["player"]
 	var cat := GameData.catalog
 	if _gauge != null:

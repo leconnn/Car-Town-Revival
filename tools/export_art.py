@@ -455,9 +455,21 @@ def export_audio(ids: set[str] | None, limit: int | None) -> None:
     print(f"  audio: 2 music loops, {count} sound effects")
 
 
+def export_missions(ids: set[str] | None, limit: int | None) -> None:
+    """Mission, step and reward pictures (already PNGs in the revival files)."""
+    src = ROOT / "alt" / "static" / "missions"
+    dest = OUT / "missions"
+    dest.mkdir(parents=True, exist_ok=True)
+    count = 0
+    for p in sorted(src.glob("*.png")):
+        shutil.copyfile(p, dest / p.name)
+        count += 1
+    print(f"  missions: {count} pictures")
+
+
 GROUPS = {
     "items": export_items, "cars": export_cars, "wheels": export_wheels,
-    "main": export_main, "town": export_town, "audio": export_audio,
+    "main": export_main, "town": export_town, "missions": export_missions, "audio": export_audio,
 }
 
 

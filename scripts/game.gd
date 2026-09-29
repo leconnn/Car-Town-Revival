@@ -11,7 +11,7 @@ var location_view: LocationView
 var camera: Camera2D
 var hud: ShellHud
 var toasts: Toasts
-var notices: NoticePopup
+var notices: RewardPopups
 var edit_mode := false
 
 var _ui: CanvasLayer
@@ -49,7 +49,7 @@ func _ready() -> void:
 	_ui.add_child(_panel_host)
 	toasts = Toasts.new()
 	_ui.add_child(toasts)
-	notices = NoticePopup.new()
+	notices = RewardPopups.new()
 	_ui.add_child(notices)
 	Backend.notice.connect(notices.push)
 	Backend.action_failed.connect(func(msg: String) -> void: toasts.show_message(msg, true))
@@ -137,6 +137,9 @@ func _on_hud_action(name: String) -> void:
 	if tutorial_filter.is_valid() and not TUTORIAL_FREE_ACTIONS.has(name):
 		Sound.play("ActionDeniedSound")
 		return
+	if name.begins_with("missions:"):
+		_open_missions(int(name.trim_prefix("missions:")))
+		return
 	cancel_placement()
 	match name:
 		"dealer": open_screen(BuyCarScreen.new())
@@ -144,7 +147,7 @@ func _on_hud_action(name: String) -> void:
 		"edit": set_edit_mode(not edit_mode)
 		"cars": open_panel(CarsPanel.new(self), true)
 		"town": _open_gps()
-		"missions": open_panel(MissionsPanel.new(), true)
+		"missions": _open_missions(-1)
 		"menu": open_panel(MenuPanel.new())
 		"players": open_panel(PlayersPanel.new(self), true)
 		"docks", "glovebox": toasts.show_message("That arrives in a later update.")
@@ -295,6 +298,11 @@ func _car_task_clicked(car_uid: int) -> void:
 			return
 		w.close()
 		toasts.show_message("+%s coins  +%d XP" % [Format.number(r.data["coins"]), r.data["xp"]]))
+
+
+func _open_missions(mission_id: int) -> void:
+	var popup := MissionsPopup.open(get_tree(), mission_id)
+	popup.viewed.connect(hud.refresh)
 
 
 ## The GPS: pick a place in town, or drive home.
@@ -660,6 +668,15 @@ func _dev_open() -> void:
 				_edit_tray._tray.select(1)
 			"customize":
 				open_screen(CustomizeScreen.create(s["cars"][0]["uid"]))
+			"levelup":
+				notices.push({"kind": "level_up", "level": 5, "coins": 250, "blue": 1})
+			"mission_done":
+				var mid: int = Backend.query().active_missions(Backend.now())[0]
+				var m: Dictionary = GameData.catalog.missions[mid]
+				notices.push({"kind": "mission_complete", "mission_id": mid, "title": m["title"],
+					"text": m["complete_text"], "coins": m["coins"], "blue": m["blue"], "xp": m["xp"], "reward": {}})
+			"mastery":
+				notices.push({"kind": "mastery", "job_id": 4, "level": 2, "coins": 100, "blue": 0})
 			"gps":
 				_open_gps()
 			var o when o.begins_with("location_"):

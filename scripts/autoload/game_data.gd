@@ -69,6 +69,19 @@ func main_texture(class_name_: String) -> Texture2D:
 	return tex if tex != null else texture("main/%s.jpg" % class_name_)
 
 
+## A mission's picture. The revival files only have one daily mission
+## picture (the gold box with a clock), so dailies without their own use it.
+func mission_picture(mission_id: int) -> Texture2D:
+	var m: Dictionary = catalog.missions.get(mission_id, {})
+	var tex := texture("missions/mission_%d.png" % m.get("icon_id", 0))
+	if tex == null and m.get("category", "") == "daily":
+		tex = texture("missions/mission_%d.png" % DAILY_MISSION_PICTURE)
+	return tex
+
+
+const DAILY_MISSION_PICTURE := 131025
+
+
 func car_name(car_id: int) -> String:
 	var c: Dictionary = catalog.car(car_id)
 	if c.is_empty():
