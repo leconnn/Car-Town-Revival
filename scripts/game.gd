@@ -6,6 +6,8 @@ const ZOOM_MIN := 0.35
 const ZOOM_MAX := 1.6
 
 var garage: GarageView
+## A place in town while you're visiting one (else hidden).
+var location_view: LocationView
 var camera: Camera2D
 var hud: ShellHud
 var toasts: Toasts
@@ -27,6 +29,9 @@ func _ready() -> void:
 	garage = GarageView.new()
 	add_child(garage)
 	garage.object_clicked.connect(_on_object_clicked)
+	location_view = LocationView.new()
+	location_view.visible = false
+	add_child(location_view)
 	camera = Camera2D.new()
 	# Framed like the original: the garage's front half and the crossroads.
 	camera.position = garage.center_screen_position() + Vector2(0, 90)
@@ -57,6 +62,9 @@ func _ready() -> void:
 	_dev_open.call_deferred()
 	DevShot.maybe_capture(self)
 
+
+## The asphalt around a town location's lot.
+const LOCATION_FILL := Color8(0xA1, 0x9C, 0x96)
 
 ## A popup opened ("customer", "car_options") with its content node.
 signal popup_opened(kind: String, content: Node)
@@ -135,7 +143,7 @@ func _on_hud_action(name: String) -> void:
 		"shop": set_edit_mode(true)
 		"edit": set_edit_mode(not edit_mode)
 		"cars": open_panel(CarsPanel.new(self), true)
-		"town": open_panel(TownPanel.new())
+		"town": _open_gps()
 		"missions": open_panel(MissionsPanel.new(), true)
 		"menu": open_panel(MenuPanel.new())
 		"players": open_panel(PlayersPanel.new(self), true)
@@ -287,6 +295,65 @@ func _car_task_clicked(car_uid: int) -> void:
 			return
 		w.close()
 		toasts.show_message("+%s coins  +%d XP" % [Format.number(r.data["coins"]), r.data["xp"]]))
+
+
+## The GPS: pick a place in town, or drive home.
+func _open_gps() -> void:
+	Backend.open_gps()
+	var gps := GpsPopup.create(location_view.visible)
+	var popup := FlashPopup.open(get_tree(), gps, true, false, GpsPopup.FRAME_SIZE)
+	gps.location_chosen.connect(func(loc_id: int) -> void:
+		popup.close()
+		var r: GameResult = await Backend.visit_location(loc_id)
+		if r.ok:
+			show_location(loc_id))
+	gps.home_pressed.connect(func() -> void:
+		popup.close()
+		leave_location())
+	gps.buy_cars_pressed.connect(func() -> void:
+		popup.close()
+		open_screen(BuyCarScreen.new()))
+
+
+## Drives to a place in town (TownRacingEvent.VISIT_TOWN_LOCATION).
+func show_location(loc_id: int) -> void:
+	cancel_placement()
+	close_panel()
+	set_edit_mode(false)
+	location_view.show_location(loc_id)
+	location_view.visible = true
+	garage.visible = false
+	garage.interactive = false
+	hud.set_location(GameData.catalog.locations[loc_id]["name"], false)
+	# The original showed town at its 0.4 zoom step, the place's point of
+	# interest a little above the middle; the view stays on the scene.
+	var area := location_view.bounds()
+	var vp := get_viewport().get_visible_rect().size
+	var z := maxf(0.4, maxf(vp.x / maxf(1.0, area.size.x), vp.y / maxf(1.0, area.size.y)))
+	camera.zoom = Vector2(z, z)
+	camera.limit_left = int(area.position.x)
+	camera.limit_top = int(area.position.y)
+	camera.limit_right = int(area.end.x)
+	camera.limit_bottom = int(area.end.y)
+	camera.position = location_view.to_global(location_view.focus_point() + Vector2(0, 250))
+	RenderingServer.set_default_clear_color(LOCATION_FILL)
+
+
+## Back to the garage (the GPS's My Garage button).
+func leave_location() -> void:
+	if not location_view.visible:
+		return
+	location_view.visible = false
+	garage.visible = true
+	garage.interactive = true
+	hud.set_location("My Garage", true)
+	camera.limit_left = -10000000
+	camera.limit_top = -10000000
+	camera.limit_right = 10000000
+	camera.limit_bottom = 10000000
+	camera.position = garage.center_screen_position() + Vector2(0, 90)
+	camera.zoom = Vector2(1.0, 1.0)
+	RenderingServer.set_default_clear_color(GarageView.TOWN_FILL)
 
 
 func _free_bay() -> int:
@@ -593,6 +660,11 @@ func _dev_open() -> void:
 				_edit_tray._tray.select(1)
 			"customize":
 				open_screen(CustomizeScreen.create(s["cars"][0]["uid"]))
+			"gps":
+				_open_gps()
+			var o when o.begins_with("location_"):
+				await Backend.visit_location(int(o.trim_prefix("location_")))
+				show_location(int(o.trim_prefix("location_")))
 			var o when o.begins_with("customize_"):
 				# customize_<tab>[_click]: a tab, optionally clicking its first tile.
 				var screen := CustomizeScreen.create(s["cars"][0]["uid"])

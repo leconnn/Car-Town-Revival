@@ -61,7 +61,8 @@
     "daily_count": 3
   },
   "town": {
-    "v1_locations": [9, 7, 6, 8, 17, 4, 1]
+    "v1_locations": [9, 7, 6, 8],
+    "coming_later": [17, 4, 1]
   },
   "features": {
     "racing": false,

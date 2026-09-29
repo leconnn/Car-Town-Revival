@@ -292,16 +292,144 @@ def export_town(ids: set[str] | None, limit: int | None) -> None:
     """GPS map location icons and the town location backgrounds."""
     static = ROOT / "alt" / "static"
     icons = Batch("town_icons", 300)
+    fields: dict[str, dict] = {}
     for p in sorted((static / "gps" / "locationicons").glob("*.swf")):
-        icons.add(f"icon_{p.stem}", p.read_bytes(), OUT / "town" / f"icon_{p.stem}")
-    envs = Batch("town_envs", 1200)
-    for p in sorted((static / "townracing").glob("environment_*.swf")):
-        envs.add(p.stem, p.read_bytes(), OUT / "town" / p.stem)
+        key = f"icon_{p.stem}"
+        swf_bytes, fields[key] = strip_icon_text(p)
+        icons.add(key, swf_bytes, OUT / "town" / key)
     manifest: dict = {}
-    for key, fr in {**icons.run(), **envs.run()}.items():
+    for key, fr in icons.run().items():
         if fr:
-            manifest[key] = fr[0]
+            manifest[key] = {**fr[0], **fields.get(key, {})}
+    for p in sorted((static / "townracing").glob("environment_*.swf")):
+        env = export_town_environment(p)
+        if env:
+            manifest[p.stem] = env
     write_manifest("town", manifest)
+
+
+def strip_icon_text(swf: Path) -> tuple[bytes, dict]:
+    """GPS icons carry fldTitle/fldSubtitle text fields that the game filled
+    in (GPSLocationButton); some still hold a placeholder. Remove them before
+    rendering and return where they were: {"title": [x0, y0, x1, y1, size]}."""
+    work = STAGE / "town_icon_text" / swf.stem
+    shutil.rmtree(work, ignore_errors=True)
+    work.mkdir(parents=True)
+    xml_path = work / "icon.xml"
+    subprocess.run(["java", "-jar", str(FFDEC), "-swf2xml", str(swf), str(xml_path)],
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+    if not xml_path.is_file():
+        return swf.read_bytes(), {}
+    tree = ET.parse(xml_path)
+    tags = tree.getroot().find("tags")
+    texts = {t.get("characterID"): t for t in tags if t.get("type") == "DefineEditTextTag"}
+    out: dict = {}
+    for pl in [t for t in tags if t.get("type", "").startswith("PlaceObject")]:
+        name = pl.get("name") or ""
+        if name not in ("fldTitle", "fldSubtitle"):
+            continue
+        text = texts.get(pl.get("characterId"))
+        m = pl.find("matrix")
+        if text is not None:
+            b = text.find("bounds")
+            tx = int(m.get("translateX", 0)) / 20 if m is not None else 0
+            ty = int(m.get("translateY", 0)) / 20 if m is not None else 0
+            out["title" if name == "fldTitle" else "subtitle"] = [
+                tx + int(b.get("Xmin")) / 20, ty + int(b.get("Ymin")) / 20,
+                tx + int(b.get("Xmax")) / 20, ty + int(b.get("Ymax")) / 20,
+                int(text.get("fontHeight", 360)) / 20,
+            ]
+        tags.remove(pl)
+    if not out:
+        shutil.rmtree(work, ignore_errors=True)
+        return swf.read_bytes(), {}
+    tree.write(work / "stripped.xml", encoding="utf-8", xml_declaration=True)
+    subprocess.run(["java", "-jar", str(FFDEC), "-xml2swf", str(work / "stripped.xml"), str(work / "stripped.swf")],
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+    data = (work / "stripped.swf").read_bytes() if (work / "stripped.swf").is_file() else swf.read_bytes()
+    shutil.rmtree(work, ignore_errors=True)
+    return data, out
+
+
+# Town locations (AbstractTownLocation): "bg" is the ground and building,
+# "fg" what's drawn over parked cars; the rest are invisible parking markers.
+ENV_HALF = 2500
+# Each marker symbol sets carRotation in its own frame script.
+MARKER_ROTATION = {"ParkingSpotHoriz": 0, "ParkingMarker": 1, "CarMarkerHorizLeft": 2, "CarMarkerUp": 3}
+
+
+def export_town_environment(swf: Path) -> dict:
+    """Renders an environment's bg, fg (and movie) layers separately at full
+    size and lists its parking markers:
+    {"bg": {file, o, pos}, "fg": {...}, "markers": {name: [x, y, car rotation]}}."""
+    work = STAGE / "town_env" / swf.stem
+    shutil.rmtree(work, ignore_errors=True)
+    work.mkdir(parents=True)
+    xml_path = work / "env.xml"
+    subprocess.run(["java", "-jar", str(FFDEC), "-swf2xml", str(swf), str(xml_path)],
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+    if not xml_path.is_file():
+        return {}
+    tree = ET.parse(xml_path)
+    tags = tree.getroot().find("tags")
+    classes: dict[str, str] = {}
+    for t in tags:
+        if t.get("type") == "SymbolClassTag":
+            ids = [e.text for e in t.find("tags") or []]
+            names = [e.text for e in t.find("names") or []]
+            for cid, name in zip(ids, names):
+                classes[cid] = name.split(".")[-1].rsplit("_", 1)[0]
+    places = [t for t in tags if t.get("type", "").startswith("PlaceObject")]
+    result: dict = {"markers": {}}
+    for pl in places:
+        name = pl.get("name") or ""
+        m = pl.find("matrix")
+        tx = int(m.get("translateX", 0)) / 20 if m is not None else 0
+        ty = int(m.get("translateY", 0)) / 20 if m is not None else 0
+        rot = MARKER_ROTATION.get(classes.get(pl.get("characterId", ""), ""), 0)
+        if name.startswith("row"):
+            result["markers"][name] = [tx, ty, rot]
+    # "movie" is the drive-in's screen, drawn over the night-time shade.
+    for layer in ("bg", "fg", "movie"):
+        # Keep only this layer on the stage, moved to the stage's top-left
+        # corner so all 4500 x 3915 px of it fit; render, crop.
+        pos = [0.0, 0.0]
+        for pl in places:
+            m = pl.find("matrix")
+            if pl.get("name") == layer and m is not None:
+                pos = [int(m.get("translateX", 0)) / 20, int(m.get("translateY", 0)) / 20]
+                m.set("translateX", str(-ENV_HALF * 20))
+                m.set("translateY", str(-ENV_HALF * 20))
+                m.set("nTranslateBits", "17")
+        for pl in places:
+            if pl.get("name") != layer and pl in list(tags):
+                tags.remove(pl)
+        for pl in places:
+            if pl.get("name") == layer and pl not in list(tags):
+                tags.insert(len(tags) - 2, pl)
+        one = work / f"{layer}.xml"
+        tree.write(one, encoding="utf-8", xml_declaration=True)
+        raw = work / f"{layer}_raw.swf"
+        subprocess.run(["java", "-jar", str(FFDEC), "-xml2swf", str(one), str(raw)],
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+        if not raw.is_file():
+            continue
+        batch = Batch(f"town_env_{swf.stem}_{layer}", ENV_HALF)
+        batch.add(layer, raw.read_bytes(), OUT / "town" / f"{swf.stem}_{layer}")
+        fr = batch.run().get(layer, [])
+        if fr and fr[0]["file"]:
+            # "o" relative to the layer's own origin; "pos" is where the
+            # layer sat in the environment (the markers use those coordinates).
+            info = fr[0]
+            info["o"] = [info["o"][0] - ENV_HALF, info["o"][1] - ENV_HALF]
+            info["pos"] = pos
+            result[layer] = info
+        # Put everything back for the next layer.
+        for pl in places:
+            if pl not in list(tags):
+                tags.insert(len(tags) - 2, pl)
+    shutil.rmtree(work, ignore_errors=True)
+    return result if "bg" in result else {}
 
 
 def export_audio(ids: set[str] | None, limit: int | None) -> None:

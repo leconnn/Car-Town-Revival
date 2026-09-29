@@ -11,6 +11,8 @@ var load_error: String = ""
 var car_art: Dictionary = {}
 var item_art: Dictionary = {}
 var wheel_art: Dictionary = {}
+## GPS icons and town location layers (tools/export_art.py "town").
+var town_art: Dictionary = {}
 
 var _texture_cache: Dictionary[String, Texture2D] = {}
 
@@ -24,6 +26,7 @@ func _ready() -> void:
 	car_art = _read_manifest("cars")
 	item_art = _read_manifest("items")
 	wheel_art = _read_manifest("wheels")
+	town_art = _read_manifest("town")
 	# Only cars with a body in every view can be drawn everywhere.
 	for key: String in car_art:
 		var views: Dictionary = car_art[key].get("views", {})

@@ -16,7 +16,7 @@ Build order: **single-player v1 → LAN → online → feature updates**. Each p
 | 1 Garage | Done: isometric garage, items, edit mode, land expansion, floors and walls. *Missing:* wall decorations (posters), extra floors |
 | 2 Cars | Done: Buy Cars and Customize screens rebuilt from the original, rendering from original layers, any-colour paint (the original colour picker), parts, the four upgrade tracks (engine, handling, aerodynamics, weight; 5 stages each), ride height, plates, neon, tint. *Missing:* custom graphics (decals), parts storage |
 | 3 Jobs | Done: work bays, real-time jobs, mastery, customers, levels, sounds, car tasks (Deliver Pizza and the truck routes, started from your own car). *Missing:* animated worker avatars; cars out on a task stay parked with a callout instead of driving into town |
-| 4 Town | Done: GPS map with original icons, location scenes |
+| 4 Town | Done: the original GPS popup (tabs, location buttons, access-denied popup) and the four hangouts (Lou's Diner, Coffee Place, Tony's Pizza, Drive-In) rebuilt as full scenes with cars parked in their marked spots. Racing and the Junk Yard show as locked until their updates |
 | 5 Missions | Done: missions, daily missions, Rusty's tutorial |
 | 6 Release | Windows export works. *Waiting on:* itch.io page, and a decision on publishing before EA replies |
 | 7 LAN | Done: host/join, auto-discovery, version check, guests saved in the host's world, visiting garages |

@@ -24,6 +24,7 @@ var _gv_meter: FlashSymbol
 var _location_label: FlashSymbol
 var _friend_cards: Node2D
 var _mission_dock: Node2D
+var _loc_tabs: Node2D
 
 
 func _ready() -> void:
@@ -169,6 +170,7 @@ func _build_bottom() -> void:
 		nav.add_child(chrome)
 	# Location tabs for your own garage (LocationButtons.setSelfLocation).
 	var tabs := Node2D.new()
+	_loc_tabs = tabs
 	tabs.position.y = 1
 	nav.add_child(tabs)
 	var x := 0.0
@@ -267,6 +269,15 @@ func set_screen_mode(on: bool) -> void:
 
 
 var _missions_allowed := true
+
+
+## The bottom bar's location label and buttons: your garage has Docks,
+## Edit Garage, Buy Cars and Glove Box; a place in town has none of those.
+func set_location(label: String, home: bool) -> void:
+	if _location_label != null:
+		_location_label.text("nameField", label)
+	if _loc_tabs != null:
+		_loc_tabs.visible = home
 
 
 ## The missions dock only appears once the tutorial is over.
