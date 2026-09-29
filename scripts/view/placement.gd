@@ -2,7 +2,8 @@ class_name Placement
 extends Node2D
 ## Placing or moving something in the garage: a see-through ghost and a
 ## footprint that follow the mouse. R rotates, left click confirms,
-## right click or Esc cancels.
+## right click or Esc cancels. With [member hold_on_confirm] the ghost stays
+## where it was dropped (e.g. while a buy box asks) until [method release].
 
 signal confirmed(tile: Vector2i, rot: int)
 signal cancelled
@@ -18,6 +19,8 @@ var _footprint: Polygon2D
 var _kind := ""
 var _entry: Dictionary = {}
 var _tile := Vector2i(-100, -100)
+var hold_on_confirm := false
+var _held := false
 
 
 ## [param kind] is "item" or "car"; [param entry] an item id or car entry.
@@ -68,7 +71,8 @@ func _can_place(tile: Vector2i) -> bool:
 
 
 func _process(_delta: float) -> void:
-	_update(false)
+	if not _held:
+		_update(false)
 
 
 func _update(force: bool) -> void:
@@ -87,6 +91,8 @@ func _update(force: bool) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _held:
+		return
 	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
 		rot = (rot + 1) % 4
 		_rebuild_ghost()
@@ -95,7 +101,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			get_viewport().set_input_as_handled()
 			if _can_place(_tile):
-				_finish()
+				if hold_on_confirm:
+					_held = true
+				else:
+					_finish()
 				confirmed.emit(_tile, rot)
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			get_viewport().set_input_as_handled()
@@ -108,6 +117,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func rotate_once() -> void:
 	rot = (rot + 1) % 4
 	_rebuild_ghost()
+
+
+## Removes a held ghost.
+func release() -> void:
+	_finish()
 
 
 func cancel() -> void:

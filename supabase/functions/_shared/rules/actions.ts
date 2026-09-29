@@ -34,6 +34,7 @@ export const ACTIONS: Record<string, { args: ArgType[]; now: boolean }> = {
   collect_car_task: { args: ["int"], now: true },
   finish_car_task_now: { args: ["int"], now: true },
   stop_car_task: { args: ["int"], now: false },
+  clear_floor: { args: ["bool", "bool", "bool"], now: false },
   accept_customer: { args: ["int", "int"], now: false },
   dismiss_customer: { args: ["int"], now: false },
   tick: { args: [], now: true },

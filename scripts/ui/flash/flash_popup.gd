@@ -23,10 +23,10 @@ var _fixed_size := Vector2.ZERO
 
 
 static func open(tree: SceneTree, node: Node2D, show_close: bool = true, red_frame: bool = false,
-		fixed_size: Vector2 = Vector2.ZERO) -> FlashPopup:
+		fixed_size: Vector2 = Vector2.ZERO, buttons: Array = []) -> FlashPopup:
 	var p := FlashPopup.new()
 	p._fixed_size = fixed_size
-	return _add(p, tree, node, [OFFSET, OFFSET, OFFSET, OFFSET], [], show_close, red_frame, true)
+	return _add(p, tree, node, [OFFSET, OFFSET, OFFSET, OFFSET], buttons, show_close, red_frame, true)
 
 
 ## [param pad] is [top, right, bottom, left] like the original decorator.

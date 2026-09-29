@@ -27,9 +27,12 @@ var _size := Vector2.ZERO
 var _disabled := false
 
 
-static func create(text: String, colors: Array) -> EllipseButton:
+## Panel-frame style by default (24 px, at least 68 wide); popup-frame
+## buttons use 22 px and 78. Two-line labels (like Reset Floor) are drawn
+## tighter and 10 px wider, like the multiline style.
+static func create(text: String, colors: Array, font_size: int = FONT_SIZE, min_width: float = MIN_WIDTH) -> EllipseButton:
 	var b := EllipseButton.new()
-	b._build(text, colors)
+	b._build(text, colors, font_size, min_width)
 	return b
 
 
@@ -43,10 +46,14 @@ func set_disabled(on: bool) -> void:
 	modulate = Color(0.75, 0.75, 0.75) if on else Color.WHITE
 
 
-func _build(text: String, colors: Array) -> void:
-	var label := FlashUi.styled_label(text, "casualA01", FONT_SIZE, Color.WHITE)
+func _build(text: String, colors: Array, font_size: int, min_width: float) -> void:
+	var label := FlashUi.styled_label(text, "casualA01", font_size, Color.WHITE)
+	var multiline := text.contains("\n")
+	if multiline:
+		label.label_settings.line_spacing = -8
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var text_size := label.get_minimum_size()
-	var w := maxf(MIN_WIDTH, text_size.x + 6)
+	var w := maxf(min_width, text_size.x + 6) + (10.0 if multiline else 0.0)
 	_size = Vector2(w, HEIGHT)
 	_body = Node2D.new()
 	add_child(_body)

@@ -82,6 +82,35 @@ func set_installed() -> void:
 			(c as Node2D).modulate.a = 0.2
 
 
+## StoreItem quantity: an open box for items you own, and a green bubble
+## with the count when there's more than one.
+func set_quantity(count: int) -> void:
+	var box := FlashUi.make("UIIconOpenBox")
+	if box != null:
+		box.position = Vector2(32, 0)
+		add_child(box)
+	if count > 1:
+		var bubble := Node2D.new()
+		bubble.position = Vector2(48, 10)
+		var circle := Polygon2D.new()
+		var outline := Line2D.new()
+		var pts := PackedVector2Array()
+		for i in 24:
+			pts.append(Vector2(cos(TAU * i / 24.0), sin(TAU * i / 24.0)) * 10.0)
+		circle.polygon = pts
+		circle.color = Color8(0x75, 0xA1, 0x42)
+		outline.points = pts
+		outline.closed = true
+		outline.width = 2.0
+		outline.default_color = Color8(0x3E, 0x3A, 0x33)
+		bubble.add_child(circle)
+		bubble.add_child(outline)
+		var label := FlashUi.styled_label(str(count), "casualA01", 16, Color.WHITE)
+		label.position = -label.get_minimum_size() / 2.0
+		bubble.add_child(label)
+		add_child(bubble)
+
+
 ## PriceFieldLegacy: a small coin (or blue coin) and the amount in white
 ## Arial Bold with a blue-grey glow, at y 84 under the tile.
 static func price_field(price: int, blue: bool) -> Node2D:

@@ -496,6 +496,31 @@ export class GameLogic {
     return GameResult.success();
   }
 
+  clear_floor(cars: boolean, items: boolean, bays: boolean): GameResult {
+    const stored = { cars: 0, items: 0, bays: 0 };
+    if (cars) {
+      for (const car of this.save.cars) {
+        if (!car.placed || key(car.uid) in this.save.car_tasks) continue;
+        if (car.bay_uid !== 0) {
+          if (key(car.bay_uid) in this.save.jobs) continue;
+          car.bay_uid = 0;
+        }
+        car.placed = false;
+        stored.cars += 1;
+      }
+    }
+    for (const entry of [...this.save.garage.items]) {
+      const isBay = this.isBay(entry.uid);
+      if ((isBay && !bays) || (!isBay && !items)) continue;
+      if (isBay && this.bayBusy(entry.uid)) continue;
+      this.save.garage.items.splice(this.save.garage.items.indexOf(entry), 1);
+      this.storeItemId(entry.item_id);
+      if (isBay) stored.bays += 1;
+      else stored.items += 1;
+    }
+    return GameResult.success(stored);
+  }
+
   place_stored_item(itemId: number, x: number, y: number, rot: number): GameResult {
     const k = key(itemId);
     if ((this.save.storage[k] ?? 0) <= 0) return GameResult.fail("You don't have that item in storage.");

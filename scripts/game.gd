@@ -16,7 +16,8 @@ var _ui: CanvasLayer
 var _panel_host: Control
 var _panel: GamePanel
 var _placement: Placement
-var _edit_bar: Control
+var _edit_tray: EditGarageTray
+var _moving: Dictionary = {}
 var _dragging := false
 var _drag_moved := 0.0
 
@@ -106,7 +107,7 @@ func _on_hud_action(name: String) -> void:
 	cancel_placement()
 	match name:
 		"dealer": open_screen(BuyCarScreen.new())
-		"shop": open_panel(ShopPanel.new(self))
+		"shop": set_edit_mode(true)
 		"edit": set_edit_mode(not edit_mode)
 		"cars": open_panel(CarsPanel.new(self), true)
 		"town": open_panel(TownPanel.new())
@@ -326,16 +327,23 @@ func move_item(item_uid: int) -> void:
 		await Backend.move_item(item_uid, tile.x, tile.y, rot))
 
 
-func _start_placement(kind: String, entry: Dictionary, rot: int, ignore: String, on_confirm: Callable) -> void:
+func _start_placement(kind: String, entry: Dictionary, rot: int, ignore: String, on_confirm: Callable, hold: bool = false) -> void:
 	cancel_placement()
 	close_panel()
-	_placement = Placement.new()
-	garage.add_child(_placement)
-	_placement.start(garage, kind, entry, rot, ignore)
-	_placement.confirmed.connect(func(tile: Vector2i, r: int) -> void:
-		_placement = null
+	var placement := Placement.new()
+	_placement = placement
+	placement.hold_on_confirm = hold
+	garage.add_child(placement)
+	placement.start(garage, kind, entry, rot, ignore)
+	placement.confirmed.connect(func(tile: Vector2i, r: int) -> void:
+		if not hold:
+			_placement = null
+		_moving = {}
 		on_confirm.call(tile, r))
-	_placement.cancelled.connect(func() -> void: _placement = null)
+	placement.cancelled.connect(func() -> void:
+		if _placement == placement:
+			_placement = null
+		_moving = {})
 	toasts.show_message("Click to place  ·  R to rotate  ·  Right-click to cancel")
 
 
@@ -346,28 +354,88 @@ func cancel_placement() -> void:
 
 
 func set_edit_mode(on: bool) -> void:
-	edit_mode = on
-	Sound.music("editLoop" if on else "mainLoop")
-	if _edit_bar != null:
-		_edit_bar.queue_free()
-		_edit_bar = null
-	if on:
-		close_panel()
-		var panel := PanelContainer.new()
-		UiKit.place(panel, Rect2(0.5, 0, 0.5, 0), Rect2(0, 80, 0, 80))
-		panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
-		var row := UiKit.hbox(12)
-		row.add_child(UiKit.label("Edit mode: click something to move, store or sell it.", 18))
-		row.add_child(UiKit.button("Done", func() -> void: set_edit_mode(false)))
-		panel.add_child(row)
-		_ui.add_child(panel)
-		_edit_bar = panel
-
-
-func _edit_object(kind: String, uid: int) -> void:
-	if kind != "item" and kind != "car":
+	if on == edit_mode:
 		return
-	open_panel(EditObjectPanel.new(kind, uid, self), true)
+	edit_mode = on
+	cancel_placement()
+	Sound.music("editLoop" if on else "mainLoop")
+	if _edit_tray != null:
+		_edit_tray.queue_free()
+		_edit_tray = null
+	hud.set_screen_mode(on)
+	garage.show_grid(on)
+	if not on:
+		return
+	close_panel()
+	_edit_tray = EditGarageTray.new()
+	_ui.add_child(_edit_tray)
+	_ui.move_child(_edit_tray, 0)
+	_edit_tray.done.connect(func() -> void: set_edit_mode(false))
+	_edit_tray.place_requested.connect(_on_edit_place)
+	_edit_tray.dropped_on_tray.connect(_on_dropped_on_tray)
+
+
+func _on_edit_place(kind: String, id: int) -> void:
+	match kind:
+		"buy":
+			var it: Dictionary = GameData.catalog.item(id)
+			var blue: bool = not it["can_buy_with_coins"] and it["price"] <= 0
+			_start_placement("item", {"item_id": id}, 0, "", func(tile: Vector2i, rot: int) -> void:
+				var held := _placement
+				_edit_tray.show_buy_confirm(it["name"], it["blue_price"] if blue else it["price"], blue,
+					func() -> void:
+						_release(held)
+						await Backend.buy_item(id, tile.x, tile.y, rot, blue),
+					func() -> void: _release(held)), true)
+		"stored":
+			place_stored_item(id)
+		"car":
+			move_car(id)
+
+
+func _release(p: Placement) -> void:
+	if p != null and is_instance_valid(p):
+		p.release()
+	if _placement == p:
+		_placement = null
+
+
+## In edit mode, clicking something picks it up to move it.
+func _edit_object(kind: String, uid: int) -> void:
+	match kind:
+		"item":
+			_moving = {"kind": "item", "uid": uid}
+			move_item(uid)
+		"car":
+			if Backend.state()["car_tasks"].has(str(uid)):
+				toasts.show_message("This car is out on a job.", true)
+				return
+			_moving = {"kind": "car", "uid": uid}
+			move_car(uid)
+
+
+## Something being moved was dropped on the tray: into storage, or onto the
+## cash register to sell it.
+func _on_dropped_on_tray(sell: bool) -> void:
+	if _placement == null or _moving.is_empty():
+		return
+	var moving := _moving
+	cancel_placement()
+	if not sell:
+		if moving["kind"] == "item":
+			await Backend.store_item(moving["uid"])
+		else:
+			await Backend.store_car(moving["uid"])
+		return
+	if moving["kind"] == "item":
+		var entry := _item_entry(moving["uid"])
+		var it: Dictionary = GameData.catalog.item(entry.get("item_id", 0))
+		ConfirmBox.ask(self, "Sell your %s?" % it.get("name", "item"), func() -> void:
+			await Backend.sell_item(moving["uid"]))
+	else:
+		var car := Backend.query().get_car(moving["uid"])
+		ConfirmBox.ask(self, "Sell your %s?" % GameData.car_name(car.get("car_id", 0)), func() -> void:
+			await Backend.sell_car(moving["uid"]))
 
 
 # --- Camera ---------------------------------------------------------------------------
@@ -484,6 +552,11 @@ func _dev_open() -> void:
 				var screen := BuyCarScreen.new()
 				open_screen(screen)
 				screen.show_car(Backend.query().dealer_car_ids()[-1])
+			"edit":
+				set_edit_mode(true)
+			"edit_storage":
+				set_edit_mode(true)
+				_edit_tray._tray.select(1)
 			"customize":
 				open_screen(CustomizeScreen.create(s["cars"][0]["uid"]))
 			var o when o.begins_with("customize_"):

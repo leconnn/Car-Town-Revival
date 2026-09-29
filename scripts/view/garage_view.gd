@@ -32,6 +32,7 @@ var _overlay_layer: Node2D
 var _pickables: Array[Dictionary] = []
 var _job_bubbles: Dictionary[int, JobStatus] = {}
 var _hover_key := ""
+var _grid_on := false
 
 
 func _ready() -> void:
@@ -76,6 +77,8 @@ func rebuild() -> void:
 	_job_bubbles.clear()
 	_build_town()
 	_build_floor(s["garage"]["floor_item_id"])
+	if _grid_on:
+		_build_grid()
 	_build_walls(s["garage"]["wall_item_id"])
 	_build_objects(s)
 
@@ -115,6 +118,32 @@ func _build_floor(floor_item_id: int) -> void:
 		else:
 			poly.color = Color(0.96, 0.93, 0.87)
 	_floor_layer.add_child(poly)
+
+
+## Edit mode's floor grid (Floor.showGrid): a 1 px line along every tile
+## edge. The original inverted what was under the lines; a dark translucent
+## line reads the same on the default floor.
+func show_grid(on: bool) -> void:
+	_grid_on = on
+	rebuild()
+
+
+func _build_grid() -> void:
+	var grid := Node2D.new()
+	grid.name = "Grid"
+	for i in land_size.y + 1:
+		grid.add_child(_grid_line(Iso.to_screen(0, i), Iso.to_screen(land_size.x, i)))
+	for i in land_size.x + 1:
+		grid.add_child(_grid_line(Iso.to_screen(i, 0), Iso.to_screen(i, land_size.y)))
+	_floor_layer.add_child(grid)
+
+
+static func _grid_line(a: Vector2, b: Vector2) -> Line2D:
+	var l := Line2D.new()
+	l.points = PackedVector2Array([a, b])
+	l.width = 1.0
+	l.default_color = Color(0.1, 0.1, 0.25, 0.35)
+	return l
 
 
 ## Walls are only drawn if the player picked a wall style.

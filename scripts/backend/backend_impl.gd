@@ -39,6 +39,7 @@ const ACTIONS: Dictionary[String, Dictionary] = {
 	"collect_car_task": {"args": [TYPE_INT], "now": true},
 	"finish_car_task_now": {"args": [TYPE_INT], "now": true},
 	"stop_car_task": {"args": [TYPE_INT], "now": false},
+	"clear_floor": {"args": [TYPE_BOOL, TYPE_BOOL, TYPE_BOOL], "now": false},
 	"accept_customer": {"args": [TYPE_INT, TYPE_INT], "now": false},
 	"dismiss_customer": {"args": [TYPE_INT], "now": false},
 	"tick": {"args": [], "now": true},

@@ -589,6 +589,32 @@ func store_item(uid: int) -> GameResult:
 	return GameResult.success()
 
 
+## The original "Reset Floor": puts cars, garage items and/or empty work bays
+## into storage. Busy cars (on a job or out on a car task) and busy bays stay.
+func clear_floor(cars: bool, items: bool, bays: bool) -> GameResult:
+	var stored := {"cars": 0, "items": 0, "bays": 0}
+	if cars:
+		for car: Dictionary in save["cars"]:
+			if not car["placed"] or save["car_tasks"].has(str(car["uid"])):
+				continue
+			if car["bay_uid"] != 0:
+				if save["jobs"].has(str(car["bay_uid"])):
+					continue
+				car["bay_uid"] = 0
+			car["placed"] = false
+			stored["cars"] += 1
+	for entry: Dictionary in save["garage"]["items"].duplicate():
+		var is_bay := _is_bay(entry["uid"])
+		if (is_bay and not bays) or (not is_bay and not items):
+			continue
+		if is_bay and _bay_busy(entry["uid"]):
+			continue
+		save["garage"]["items"].erase(entry)
+		_store_item(entry["item_id"])
+		stored["bays" if is_bay else "items"] += 1
+	return GameResult.success(stored)
+
+
 func place_stored_item(item_id: int, x: int, y: int, rot: int) -> GameResult:
 	var key := str(item_id)
 	if save["storage"].get(key, 0) <= 0:

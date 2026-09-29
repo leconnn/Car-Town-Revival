@@ -10,9 +10,6 @@ signal closed
 
 const PLAY_HEIGHT := BuyCarScreen.PLAY_HEIGHT
 const GLOW := BuyCarScreen.GLOW
-const BUY_TEXT := Color8(0x5B, 0x5B, 0x5B)
-const BUY_NAME := Color8(0x38, 0x78, 0x99)
-const BUY_STROKE := Color8(0x5F, 0x77, 0x91)
 ## Part category ids (CarPartCategory).
 const WHEELS := 1
 const TIRES := 2
@@ -332,7 +329,7 @@ func _picture(t: Dictionary) -> Node2D:
 		_:
 			sym = FlashUi.make("CarPart%d" % t["id"])
 	if sym == null:
-		var label := FlashUi.styled_label(t["name"], "casualA01", 12, BUY_TEXT)
+		var label := FlashUi.styled_label(t["name"], "casualA01", 12, BuyConfirm.TEXT)
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		label.custom_minimum_size = Vector2(72, 0)
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -386,56 +383,18 @@ func _open_paint(t: Dictionary) -> void:
 		_show_buy_box(t))
 
 
-## BuyConfirm: a white rounded box (404 x 93) above the tray at (328, -65)
-## with "Buy <name> for <cost> coins?" and OK / close buttons.
+## BuyConfirm above the tray at (328, -65).
 func _show_buy_box(t: Dictionary) -> void:
 	_close_buy_box()
-	_buy_box = Node2D.new()
-	_buy_box.position = Vector2(328, -65)
-	_tray.add_child(_buy_box)
-	var box := Panel.new()
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color.WHITE
-	style.border_color = BUY_STROKE
-	style.set_border_width_all(3)
-	style.set_corner_radius_all(10)
-	box.add_theme_stylebox_override("panel", style)
-	box.size = Vector2(404, 93)
-	box.mouse_filter = Control.MOUSE_FILTER_STOP
-	_buy_box.add_child(box)
-	var text := RichTextLabel.new()
-	text.bbcode_enabled = true
-	text.fit_content = true
-	text.scroll_active = false
-	text.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	text.add_theme_font_override("normal_font", FlashUi.style_font("casualA01"))
-	text.add_theme_font_size_override("normal_font_size", 20)
-	text.add_theme_color_override("default_color", BUY_TEXT)
-	text.size = Vector2(240, 84)
-	text.text = "Buy [color=#%s]%s[/color] for %s %s?" % [BUY_NAME.to_html(false), t["name"],
-		Format.number(t["price"]), "blue coins" if t["blue"] else "coins"]
-	text.position = Vector2(35, 0)
-	_buy_box.add_child(text)
-	# Centred once it has wrapped (content height is only known after layout).
-	text.finished.connect(func() -> void:
-		text.position.y = (93 - text.get_content_height()) / 2.0, CONNECT_ONE_SHOT)
-	(func() -> void: text.position.y = (93 - text.get_content_height()) / 2.0).call_deferred()
-	var ok := FlashTextButton.create("", FlashTextButton.Kind.GREEN, 34, 32, 18, false, _icon("UISymbolOk"))
-	ok.position = Vector2(280, 31)
-	ok.pressed.connect(_buy.bind(t))
-	_buy_box.add_child(ok)
-	var cancel := FlashPopup.close_button()
-	cancel.position = Vector2(344, 31)
-	cancel.pressed.connect(func() -> void:
+	var box := BuyConfirm.create(t["name"], t["price"], t["blue"])
+	box.position = Vector2(328, -65)
+	box.accepted.connect(_buy.bind(t))
+	box.cancelled.connect(func() -> void:
 		_close_buy_box()
 		_preview = Backend.query().get_car(car_uid).duplicate(true)
 		_refresh_car())
-	_buy_box.add_child(cancel)
-
-
-static func _icon(class_name_: String) -> Node2D:
-	var sym := FlashUi.make(class_name_)
-	return sym if sym != null else Node2D.new()
+	_tray.add_child(box)
+	_buy_box = box
 
 
 func _close_buy_box() -> void:

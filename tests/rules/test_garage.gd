@@ -1,5 +1,28 @@
 extends GdUnitTestSuite
 
+
+func test_clear_floor_stores_what_is_not_busy() -> void:
+	var logic := TestEnv.logic(100000)
+	var bay := TestEnv.first_bay(logic)
+	var car: int = logic.save["cars"][0]["uid"]
+	logic.put_car_on_bay(car, bay)
+	logic.start_job(bay, 4, TestEnv.NOW)
+	var spot := GarageGrid.build(logic.catalog, logic.save).find_free(Vector2i(4, 5))
+	assert_bool(logic.buy_item(156, spot.x, spot.y, 0, false, TestEnv.NOW).ok).is_true()
+	# Only cars: the car on the busy bay stays.
+	var r := logic.clear_floor(true, false, false)
+	assert_int(r.data["cars"]).is_equal(0)
+	# Bays: the busy one stays, the empty one goes to storage.
+	r = logic.clear_floor(false, false, true)
+	assert_int(r.data["bays"]).is_equal(1)
+	assert_int(logic.save["storage"]["156"]).is_equal(1)
+	logic.collect_job(bay, TestEnv.NOW + 5 * 60)
+	r = logic.clear_floor(true, false, true)
+	assert_int(r.data["cars"]).is_equal(1)
+	assert_int(r.data["bays"]).is_equal(1)
+	assert_bool(logic.get_car(car)["placed"]).is_false()
+	assert_int(logic.get_car(car)["bay_uid"]).is_equal(0)
+
 const NOW := TestEnv.NOW
 
 
