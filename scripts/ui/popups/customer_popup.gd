@@ -91,7 +91,7 @@ func _build(customer: Dictionary) -> void:
 		add_child(cost)
 
 	var bubble := TalkBubble.create("I need a\n%s\nplease!" % task_name, 150)
-	bubble.position = Vector2(20 + 75, 75 + 40)
+	bubble.position = Vector2(20, 75)
 	add_child(bubble)
 
 	# Start (red) and Close (gray), centred under the panel like the original.

@@ -67,7 +67,19 @@ static func new_save(cat: Catalog, player_name: String, now: int) -> Dictionary:
 		var colors := cat.colors_for_car(car_id)
 		var color_index: int = start.get("car_color_index", 0)
 		var color_id: int = colors[color_index]["id"] if color_index < colors.size() else 0
-		logic._add_car(car_id, color_id)
+		var car := logic._add_car(car_id, color_id)
+		# Like the original's new garage: the car sits on the first work bay
+		# with a job that's just finished, ready for the tutorial to collect.
+		var job_id: int = start.get("job", {}).get("job_id", 0)
+		var bay := 0
+		for it: Dictionary in s["garage"]["items"]:
+			if bay == 0 and logic._is_bay(it["uid"]):
+				bay = it["uid"]
+		if job_id != 0 and bay != 0 and not cat.job(job_id).is_empty():
+			car["bay_uid"] = bay
+			car["placed"] = true
+			var minutes: int = cat.job(job_id)["minutes"]
+			s["jobs"][str(bay)] = {"job_id": job_id, "started_at": now - minutes * 60, "ends_at": now}
 	return s
 
 

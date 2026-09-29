@@ -83,7 +83,15 @@ export class GameLogic {
       const colors = cat.colorsForCar(carId);
       const colorIndex: number = start.car_color_index ?? 0;
       const colorId = colorIndex < colors.length ? colors[colorIndex].id : 0;
-      logic.addCar(carId, colorId);
+      const car = logic.addCar(carId, colorId);
+      const jobId: number = start.job?.job_id ?? 0;
+      const bay = s.garage.items.find((it: Dict) => logic.isBay(it.uid))?.uid ?? 0;
+      if (jobId !== 0 && bay !== 0 && Object.keys(cat.job(jobId)).length > 0) {
+        car.bay_uid = bay;
+        car.placed = true;
+        const minutes: number = cat.job(jobId).minutes;
+        s.jobs[key(bay)] = { job_id: jobId, started_at: now - minutes * 60, ends_at: now };
+      }
     }
     return s;
   }

@@ -314,6 +314,28 @@ func _placeholder_box(e: Dictionary) -> Node2D:
 # --- Input ----------------------------------------------------------------------------
 
 ## The topmost object under a global point: {"kind", "uid"} or {}.
+## Where a drawn object sits (its node's position in this view), or null.
+func object_anchor(kind: String, uid: int) -> Variant:
+	for p: Dictionary in _pickables:
+		if p["kind"] == kind and p["uid"] == uid and is_instance_valid(p["node"]):
+			return (p["node"] as Node2D).position
+	return null
+
+
+## Uids of the objects of [param kind] that are drawn, in draw order.
+func drawn_uids(kind: String) -> Array[int]:
+	var out: Array[int] = []
+	for p: Dictionary in _pickables:
+		if p["kind"] == kind:
+			out.append(p["uid"])
+	return out
+
+
+## Adds something to the world overlay (e.g. a tutorial arrow).
+func add_overlay(node: Node2D) -> void:
+	_overlay_layer.add_child(node)
+
+
 func pick(global_point: Vector2) -> Dictionary:
 	for i in range(_pickables.size() - 1, -1, -1):
 		var p: Dictionary = _pickables[i]

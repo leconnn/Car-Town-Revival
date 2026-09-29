@@ -1,6 +1,17 @@
 extends GdUnitTestSuite
 
 
+func test_start_job_puts_the_car_on_a_bay_with_a_finished_job() -> void:
+	var cat := TestEnv.catalog()
+	cat.tuning["start"]["job"] = {"job_id": 4}
+	var logic := GameLogic.new(cat, GameLogic.new_save(cat, "Tester", TestEnv.NOW))
+	var bay := TestEnv.first_bay(logic)
+	assert_int(logic.save["cars"][0]["bay_uid"]).is_equal(bay)
+	var r := logic.collect_job(bay, TestEnv.NOW)
+	assert_bool(r.ok).is_true()
+	assert_int(r.data["coins"]).is_equal(40)
+
+
 func test_new_save_uses_tuning_start_values() -> void:
 	var logic := TestEnv.logic()
 	var s := logic.save

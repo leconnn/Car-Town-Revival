@@ -58,9 +58,31 @@ func _ready() -> void:
 	DevShot.maybe_capture(self)
 
 
-func add_tutorial(tut: Control) -> void:
+## A popup opened ("customer", "car_options") with its content node.
+signal popup_opened(kind: String, content: Node)
+## The Customize button was pressed in the car options popup.
+signal customize_opened
+
+## While the tutorial is in its restrictive phase: func(kind, uid) -> bool
+## says whether a click on a garage object may go through.
+var tutorial_filter: Callable
+## HUD buttons that still work during the tutorial (the original's
+## "message generating" controls).
+const TUTORIAL_FREE_ACTIONS := ["zoom_in", "zoom_out", "sound", "music", "fullscreen", "quality"]
+
+
+func add_tutorial(tut: Node) -> void:
 	_ui.add_child(tut)
 	_ui.move_child(tut, _panel_host.get_index())
+
+
+## Glides the camera to [param world_pos] (the tutorial's ScrollMapProcess).
+func focus_camera(world_pos: Vector2, zoom: float = -1.0, seconds: float = 1.0) -> void:
+	var tw := create_tween().set_parallel().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	tw.tween_property(camera, "position", world_pos, seconds)
+	if zoom > 0:
+		tw.tween_property(camera, "zoom", Vector2(zoom, zoom), seconds)
+	await tw.finished
 
 
 # --- Panels ----------------------------------------------------------------------
@@ -104,6 +126,9 @@ func close_panel() -> void:
 
 
 func _on_hud_action(name: String) -> void:
+	if tutorial_filter.is_valid() and not TUTORIAL_FREE_ACTIONS.has(name):
+		Sound.play("ActionDeniedSound")
+		return
 	cancel_placement()
 	match name:
 		"dealer": open_screen(BuyCarScreen.new())
@@ -159,12 +184,18 @@ func _take_picture() -> void:
 
 
 func _on_object_clicked(kind: String, uid: int) -> void:
+	if tutorial_filter.is_valid() and not tutorial_filter.call(kind, uid):
+		return
 	if edit_mode:
 		_edit_object(kind, uid)
 		return
 	match kind:
 		"car":
-			if Backend.state()["car_tasks"].has(str(uid)):
+			var bay_uid: int = Backend.query().get_car(uid).get("bay_uid", 0)
+			if bay_uid != 0 and Backend.state()["jobs"].has(str(bay_uid)):
+				# A car on a busy lift is part of the work bay.
+				await _bay_clicked(bay_uid)
+			elif Backend.state()["car_tasks"].has(str(uid)):
 				await _car_task_clicked(uid)
 			else:
 				_open_car_options(uid)
@@ -191,6 +222,7 @@ func _open_customer(uid: int) -> void:
 		return
 	var content := CustomerPopup.create(cust)
 	var popup := FlashPopup.open(get_tree(), content, true, false, CustomerPopup.POPUP_SIZE)
+	popup_opened.emit("customer", content)
 	content.close_pressed.connect(popup.close)
 	content.start_pressed.connect(func() -> void:
 		popup.close()
@@ -208,8 +240,10 @@ func _open_customer(uid: int) -> void:
 func _open_car_options(car_uid: int) -> void:
 	var content := CarOptionsPopup.create(car_uid)
 	var popup := FlashPopup.open(get_tree(), content, true, false, CarOptionsPopup.POPUP_SIZE)
+	popup_opened.emit("car_options", content)
 	content.customize_pressed.connect(func() -> void:
 		popup.close()
+		customize_opened.emit()
 		open_screen(CustomizeScreen.create(car_uid)))
 	content.sell_pressed.connect(func() -> void:
 		var car := Backend.query().get_car(car_uid)

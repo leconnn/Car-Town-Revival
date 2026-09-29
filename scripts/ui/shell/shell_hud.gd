@@ -263,7 +263,17 @@ func set_screen_mode(on: bool) -> void:
 	if _gv_meter != null:
 		_gv_meter.visible = not on
 	if _mission_dock != null:
-		_mission_dock.visible = not on
+		_mission_dock.visible = not on and _missions_allowed
+
+
+var _missions_allowed := true
+
+
+## The missions dock only appears once the tutorial is over.
+func set_mission_dock_visible(on: bool) -> void:
+	_missions_allowed = on
+	if _mission_dock != null:
+		_mission_dock.visible = on and bottom.visible
 
 
 # --- Values -------------------------------------------------------------------------------
