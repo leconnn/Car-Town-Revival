@@ -1,0 +1,44 @@
+
+# --- EA / copyrighted material (used by the game, never committed) ---
+/alt/
+assets/ea/
+_reference/
+*.swf
+*.as
+Flash.php
+
+# --- Secrets ---
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.pem
+*.key
+butler_creds*
+
+# --- Godot ---
+.godot/
+export_credentials.cfg
+
+# --- Build / export output ---
+build/
+export/
+*.exe
+*.pck
+*.zip
+
+# --- Local saves, test data, logs ---
+saves/
+*.save
+*.log
+
+# --- Supabase local dev ---
+supabase/.temp/
+supabase/.branches/
+
+# --- OS / editor ---
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
