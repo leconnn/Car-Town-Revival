@@ -8,7 +8,7 @@ import {
 import { MissionTracker } from "./missions.ts";
 import { key, posmod, roundi, SimpleRng } from "./util.ts";
 
-export const CURRENT_SAVE_VERSION = 7;
+export const CURRENT_SAVE_VERSION = 8;
 
 export class GameResult {
   ok = true;
@@ -37,6 +37,8 @@ export class GameResult {
 const RE_PLATE = /^[A-Z0-9 ]+$/;
 /** Categories whose parts go into storage when taken off a car (UpdateUserCarCommand). */
 const STORED_PART_CATEGORIES = [1, 2, 4, 5, 6, 10];
+/** WorkerTask.TASKID_ROADTRIP. */
+const ROAD_TRIP_JOB = 34;
 
 export class GameLogic {
   catalog: Catalog;
@@ -993,6 +995,7 @@ export class GameLogic {
     if (car.bay_uid !== 0) return GameResult.fail("Take the car off the work bay first.");
     if (key(carUid) in this.save.car_tasks) return GameResult.fail("This car is already out on a job.");
     if (!this.car_task_ids(carUid).includes(jobId)) return GameResult.fail("This car can't do that job.");
+    if (jobId === ROAD_TRIP_JOB) return GameResult.fail("Pick where the road trip goes.");
     const def = this.catalog.job(jobId);
     if (this.player.level < def.min_level) return GameResult.fail(`Requires level ${def.min_level}.`);
     if (this.busyWorkers() >= this.maxWorkers()) {
@@ -1009,6 +1012,90 @@ export class GameLogic {
     return result;
   }
 
+  road_trip_ids(carUid: number): number[] {
+    const car = this.get_car(carUid);
+    const out: number[] = [];
+    if (!car || !this.car_task_ids(carUid).includes(ROAD_TRIP_JOB)) return out;
+    for (const [id, t] of this.catalog.roadTrips) {
+      const only: number = t.specific_car_id ?? 0;
+      if (only === 0 || only === car.car_id) out.push(id);
+    }
+    out.sort((a, b) => {
+      const sa: number = this.catalog.roadTrips.get(a)!.sort ?? 0;
+      const sb: number = this.catalog.roadTrips.get(b)!.sort ?? 0;
+      return sa !== sb ? sb - sa : a - b;
+    });
+    return out;
+  }
+
+  carSeats(carId: number): number {
+    return Math.max(1, Math.trunc(this.catalog.car(carId).seats ?? 1));
+  }
+
+  roadTripPay(carId: number, tripId: number, passengers: number): Dict {
+    const cls: Dict = this.catalog.carClasses.get(Math.trunc(this.catalog.car(carId).class_id ?? 0)) ?? {};
+    const trip: Dict = this.catalog.roadTrips.get(tripId) ?? {};
+    const perCoins = roundi(Math.trunc(cls.coins_per_passenger ?? 0) * Number(trip.coin_multiplier ?? 1.0));
+    const perXp = roundi(Math.trunc(cls.xp_per_passenger ?? 0) * Number(trip.xp_multiplier ?? 1.0));
+    const full = passengers >= this.carSeats(carId);
+    return { coins: perCoins * passengers + (full ? Math.trunc(cls.fill_up_bonus ?? 0) : 0), xp: perXp * passengers, full, per_coins: perCoins, per_xp: perXp, bonus: Math.trunc(cls.fill_up_bonus ?? 0) };
+  }
+
+  roadTripPassengers(task: Dict, now: number): number {
+    let n = 1;
+    for (const p of task.passengers ?? []) if (Math.trunc(p.at) <= now) n += 1;
+    return n;
+  }
+
+  start_road_trip(carUid: number, tripId: number, now: number): GameResult {
+    const car = this.get_car(carUid);
+    if (!car) return GameResult.fail("Car not found.");
+    if (!car.placed) return GameResult.fail("Put the car in your garage first.");
+    if (car.bay_uid !== 0) return GameResult.fail("Take the car off the work bay first.");
+    if (key(carUid) in this.save.car_tasks) return GameResult.fail("This car is already out on a job.");
+    if (!this.road_trip_ids(carUid).includes(tripId)) return GameResult.fail("This car can't go there.");
+    const def = this.catalog.job(ROAD_TRIP_JOB);
+    if (this.player.level < def.min_level) return GameResult.fail(`Requires level ${def.min_level}.`);
+    if (this.busyWorkers() >= this.maxWorkers()) return GameResult.fail("All your workers are busy. Level up to hire more.");
+    const cost = Math.ceil(def.price * Number(this.catalog.tune("jobs.start_cost_multiplier", 1.0)));
+    if (this.player.coins < cost) return GameResult.fail("Not enough coins.");
+    this.player.coins -= cost;
+    const duration: number = def.minutes * 60;
+    const chance: number = this.catalog.tune("road_trips.passenger_chance_percent", 70);
+    const window = Math.max(1, Math.trunc(duration * Math.trunc(this.catalog.tune("road_trips.join_window_percent", 80)) / 100));
+    const names: string[] = this.catalog.tune("road_trips.passenger_names", ["Friend"]);
+    const passengers: Dict[] = [];
+    for (let i = 0; i < this.carSeats(car.car_id) - 1; i++) {
+      if (this.rng(0, 99) < chance) passengers.push({ at: now + this.rng(0, window), name: String(names[this.rng(0, names.length - 1)]) });
+    }
+    passengers.sort((a, b) => Math.trunc(a.at) - Math.trunc(b.at));
+    const endsAt = now + duration;
+    this.save.car_tasks[key(carUid)] = { job_id: ROAD_TRIP_JOB, started_at: now, ends_at: endsAt, road_trip: tripId, passengers };
+    this.bumpStat("jobs_started");
+    const result = GameResult.success({ ends_at: endsAt });
+    this.emit("STARTED_WORKBAY_TASK_ID", ROAD_TRIP_JOB, now, result);
+    return result;
+  }
+
+  private finishRoadTrip(carUid: number, task: Dict, now: number): GameResult {
+    const car = this.get_car(carUid)!;
+    const trip: number = task.road_trip ?? 0;
+    const aboard = this.roadTripPassengers(task, Math.trunc(task.ends_at));
+    const pay = this.roadTripPay(car.car_id, trip, aboard);
+    const result = GameResult.success({ coins: pay.coins, xp: pay.xp, passengers: aboard, seats: this.carSeats(car.car_id), full: pay.full, road_trip: trip });
+    this.addRewards(pay.coins, 0, pay.xp, result);
+    this.bumpStat("jobs_collected");
+    this.bumpStat("road_trips");
+    const carId: number = car.car_id;
+    this.emit("COLLECTED_WORKBAY_TASK_ID", ROAD_TRIP_JOB, now, result);
+    this.emit("FINISHED_ROAD_TRIP_WITH_CAR_ID", carId, now, result);
+    this.emit("FINISHED_ROAD_TRIP_WITH_ID", trip, now, result);
+    if (pay.full) this.emit("FINISHED_ROAD_TRIP_CAR_FULL_WITH_ROADTRIP_ID", trip, now, result);
+    if (trip === 1) this.emit("FINISHED_BEACH_ROAD_TRIP_WITH_CAR_ID", carId, now, result);
+    if (trip === 2 && pay.full) this.emit("FINISHED_FULL_CAMPING_ROAD_TRIP_WITH_CAR_ID", carId, now, result);
+    return result;
+  }
+
   collect_car_task(carUid: number, now: number): GameResult {
     const k = key(carUid);
     if (!(k in this.save.car_tasks)) return GameResult.fail("This car isn't out on a job.");
@@ -1016,6 +1103,7 @@ export class GameLogic {
     if (now < task.ends_at) return GameResult.fail("The job isn't finished yet.");
     const jobId: number = task.job_id;
     delete this.save.car_tasks[k];
+    if (jobId === ROAD_TRIP_JOB) return this.finishRoadTrip(carUid, task, now);
     const result = this.payJob(jobId);
     this.bumpStat("jobs_collected");
     this.emit("COLLECTED_WORKBAY_TASK_ID", jobId, now, result);

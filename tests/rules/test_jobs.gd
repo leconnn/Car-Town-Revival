@@ -172,8 +172,9 @@ func _car_of_model(logic: GameLogic, car_id: int) -> int:
 
 func test_car_tasks_follow_categories_and_car_ids() -> void:
 	var logic := TestEnv.logic(100000)
-	# Job 3 is for category 1 (car 1, the starter) and specifically car 3.
-	assert_array(logic.car_task_ids(logic.save["cars"][0]["uid"])).contains_exactly([3])
+	# Job 3 is for category 1 (car 1, the starter) and specifically car 3;
+	# job 34 (road trip) for category 1 and car 5.
+	assert_array(logic.car_task_ids(logic.save["cars"][0]["uid"])).contains_exactly([3, 34])
 	assert_array(logic.car_task_ids(_car_of_model(logic, 2))).is_empty()
 	assert_array(logic.car_task_ids(_car_of_model(logic, 3))).contains_exactly([3])
 

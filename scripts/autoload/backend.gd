@@ -207,6 +207,9 @@ func finish_car_task_now(car_uid: int) -> GameResult:
 func stop_car_task(car_uid: int) -> GameResult:
 	return await act("stop_car_task", [car_uid])
 
+func start_road_trip(car_uid: int, trip_id: int) -> GameResult:
+	return await act("start_road_trip", [car_uid, trip_id])
+
 func claim_daily_reward() -> GameResult:
 	return await act("claim_daily_reward", [])
 

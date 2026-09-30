@@ -95,3 +95,12 @@ func test_v6_to_v7_adds_car_collections() -> void:
 	assert_int(out["save_version"]).is_equal(GameLogic.CURRENT_SAVE_VERSION)
 	assert_that(out["collections_done"]).is_equal([])
 	assert_bool(GameLogic.new(TestEnv.catalog(), out).tick(TestEnv.NOW).ok).is_true()
+
+
+func test_v7_to_v8_keeps_car_tasks() -> void:
+	var raw: Variant = JsonUtil.read_file("res://tests/fixtures/saves/v7.json")
+	assert_int(raw["save_version"]).is_equal(7)
+	var out := SaveMigrations.migrate(raw)
+	assert_int(out["save_version"]).is_equal(GameLogic.CURRENT_SAVE_VERSION)
+	assert_that(out["car_tasks"]).is_equal(raw["car_tasks"])
+	assert_bool(GameLogic.new(TestEnv.catalog(), out).tick(TestEnv.NOW).ok).is_true()

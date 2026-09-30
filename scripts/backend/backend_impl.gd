@@ -38,6 +38,7 @@ const ACTIONS: Dictionary[String, Dictionary] = {
 	"collect_car_task": {"args": [TYPE_INT], "now": true},
 	"finish_car_task_now": {"args": [TYPE_INT], "now": true},
 	"stop_car_task": {"args": [TYPE_INT], "now": false},
+	"start_road_trip": {"args": [TYPE_INT, TYPE_INT], "now": true},
 	"claim_daily_reward": {"args": [], "now": true},
 	"start_race": {"args": [TYPE_INT, TYPE_INT, TYPE_INT], "now": true},
 	"finish_race": {"args": [TYPE_INT, TYPE_INT, TYPE_BOOL], "now": true},

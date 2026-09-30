@@ -42,7 +42,8 @@
   },
   "car_tasks": {
     "enabled": [
-      3
+      3,
+      34
     ]
   },
   "customers": {
@@ -130,5 +131,24 @@
   "daily_rewards": {
     "_about": "Prizes the remake can't give yet (tournament items, tokens, car build parts) are paid as coins instead.",
     "fallback_coins": 250
+  },
+  "road_trips": {
+    "_about": "Offline, passengers are townsfolk who hop in during the trip (the original's were friends).",
+    "passenger_chance_percent": 70,
+    "join_window_percent": 80,
+    "passenger_names": [
+      "Dana",
+      "Marco",
+      "Kelly",
+      "Jules",
+      "Sam",
+      "Rita",
+      "Vince",
+      "Nina",
+      "Bea",
+      "Carl",
+      "Dot",
+      "Eddie"
+    ]
   }
 }

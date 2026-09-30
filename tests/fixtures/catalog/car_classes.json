@@ -1,0 +1,11 @@
+[
+ {
+  "id": 101,
+  "name": "Class D",
+  "coins_per_passenger": 255,
+  "xp_per_passenger": 35,
+  "fill_up_bonus": 3000,
+  "join_coins": 250,
+  "join_xp": 5
+ }
+]

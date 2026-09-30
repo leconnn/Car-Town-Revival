@@ -353,6 +353,8 @@ def convert(catalog_xml: str, ctx: Ctx) -> dict[str, object]:
         {
             "id": i(c, "id"),
             "name": ctx.text(c.get("c")),
+            "title": ctx.text(c.get("jt")),
+            "sort": i(c, "so"),
             "specific_car_id": i(c, "sc"),
             "coin_multiplier": f(c, "mm", 1.0),
             "xp_multiplier": f(c, "xm", 1.0),

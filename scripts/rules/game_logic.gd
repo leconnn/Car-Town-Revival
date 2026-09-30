@@ -7,7 +7,7 @@ extends RefCounted
 ## or the UI. Every action takes [param now] (unix seconds) from the caller so
 ## timers can use a trusted clock.
 
-const CURRENT_SAVE_VERSION := 7
+const CURRENT_SAVE_VERSION := 8
 
 var catalog: Catalog
 var save: Dictionary
@@ -1175,6 +1175,8 @@ func start_car_task(car_uid: int, job_id: int, now: int) -> GameResult:
 		return GameResult.fail("This car is already out on a job.")
 	if not car_task_ids(car_uid).has(job_id):
 		return GameResult.fail("This car can't do that job.")
+	if job_id == ROAD_TRIP_JOB:
+		return GameResult.fail("Pick where the road trip goes.")
 	var def: Dictionary = catalog.job(job_id)
 	if _player()["level"] < def["min_level"]:
 		return GameResult.fail("Requires level %d." % def["min_level"])
@@ -1201,9 +1203,127 @@ func collect_car_task(car_uid: int, now: int) -> GameResult:
 		return GameResult.fail("The job isn't finished yet.")
 	var job_id: int = task["job_id"]
 	save["car_tasks"].erase(key)
+	if job_id == ROAD_TRIP_JOB:
+		return _finish_road_trip(car_uid, task, now)
 	var result := _pay_job(job_id)
 	_bump_stat("jobs_collected")
 	_emit("COLLECTED_WORKBAY_TASK_ID", job_id, now, result)
+	return result
+
+
+# --- Road trips -------------------------------------------------------------------------
+# A car task with a destination (views/roadtrip): the car sets off with its
+# driver, others hop in along the way, and it pays per passenger for the
+# car's class, with a bonus if every seat was filled (RoadTripCompletePopup).
+# Offline the passengers are townsfolk; which of them join, and when, is
+# settled when the trip starts.
+
+const ROAD_TRIP_JOB := 34
+
+
+## Destinations this car can go to, sort order first (RoadTripDestinationsPopup).
+func road_trip_ids(car_uid: int) -> Array[int]:
+	var car := get_car(car_uid)
+	var out: Array[int] = []
+	if car.is_empty() or not car_task_ids(car_uid).has(ROAD_TRIP_JOB):
+		return out
+	for id: int in catalog.road_trips:
+		var t: Dictionary = catalog.road_trips[id]
+		var only: int = t.get("specific_car_id", 0)
+		if only == 0 or only == car["car_id"]:
+			out.append(id)
+	out.sort_custom(func(a: int, b: int) -> bool:
+		var sa: int = catalog.road_trips[a].get("sort", 0)
+		var sb: int = catalog.road_trips[b].get("sort", 0)
+		return sa > sb if sa != sb else a < b)
+	return out
+
+
+## Seats in a car (the driver counts as one), at least one.
+func car_seats(car_id: int) -> int:
+	return maxi(1, int(catalog.car(car_id).get("seats", 1)))
+
+
+## What a road trip pays with [param passengers] aboard (the driver counts).
+func road_trip_pay(car_id: int, trip_id: int, passengers: int) -> Dictionary:
+	var cls: Dictionary = catalog.car_classes.get(int(catalog.car(car_id).get("class_id", 0)), {})
+	var trip: Dictionary = catalog.road_trips.get(trip_id, {})
+	var per_coins := int(roundi(int(cls.get("coins_per_passenger", 0)) * float(trip.get("coin_multiplier", 1.0))))
+	var per_xp := int(roundi(int(cls.get("xp_per_passenger", 0)) * float(trip.get("xp_multiplier", 1.0))))
+	var full := passengers >= car_seats(car_id)
+	return {"coins": per_coins * passengers + (int(cls.get("fill_up_bonus", 0)) if full else 0),
+		"xp": per_xp * passengers, "full": full, "per_coins": per_coins, "per_xp": per_xp,
+		"bonus": int(cls.get("fill_up_bonus", 0))}
+
+
+## Passengers aboard at [param now], the driver included.
+func road_trip_passengers(task: Dictionary, now: int) -> int:
+	var n := 1
+	for p: Dictionary in task.get("passengers", []):
+		if int(p["at"]) <= now:
+			n += 1
+	return n
+
+
+func start_road_trip(car_uid: int, trip_id: int, now: int) -> GameResult:
+	var car := get_car(car_uid)
+	if car.is_empty():
+		return GameResult.fail("Car not found.")
+	if not car["placed"]:
+		return GameResult.fail("Put the car in your garage first.")
+	if car["bay_uid"] != 0:
+		return GameResult.fail("Take the car off the work bay first.")
+	if save["car_tasks"].has(str(car_uid)):
+		return GameResult.fail("This car is already out on a job.")
+	if not road_trip_ids(car_uid).has(trip_id):
+		return GameResult.fail("This car can't go there.")
+	var def: Dictionary = catalog.job(ROAD_TRIP_JOB)
+	if _player()["level"] < def["min_level"]:
+		return GameResult.fail("Requires level %d." % def["min_level"])
+	if busy_workers() >= max_workers():
+		return GameResult.fail("All your workers are busy. Level up to hire more.")
+	var cost: int = ceili(def["price"] * float(catalog.tune("jobs.start_cost_multiplier", 1.0)))
+	if _player()["coins"] < cost:
+		return GameResult.fail("Not enough coins.")
+	_player()["coins"] -= cost
+	var duration: int = def["minutes"] * 60
+	var chance: int = catalog.tune("road_trips.passenger_chance_percent", 70)
+	var window: int = maxi(1, duration * int(catalog.tune("road_trips.join_window_percent", 80)) / 100)
+	var names: Array = catalog.tune("road_trips.passenger_names", ["Friend"])
+	var passengers: Array = []
+	for i in car_seats(car["car_id"]) - 1:
+		if _rng(0, 99) < chance:
+			passengers.append({"at": now + _rng(0, window), "name": str(names[_rng(0, names.size() - 1)])})
+	passengers.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return int(a["at"]) < int(b["at"]))
+	var ends_at: int = now + duration
+	save["car_tasks"][str(car_uid)] = {"job_id": ROAD_TRIP_JOB, "started_at": now, "ends_at": ends_at,
+		"road_trip": trip_id, "passengers": passengers}
+	_bump_stat("jobs_started")
+	var result := GameResult.success({"ends_at": ends_at})
+	_emit("STARTED_WORKBAY_TASK_ID", ROAD_TRIP_JOB, now, result)
+	return result
+
+
+func _finish_road_trip(car_uid: int, task: Dictionary, now: int) -> GameResult:
+	var car := get_car(car_uid)
+	var trip: int = task.get("road_trip", 0)
+	var aboard := road_trip_passengers(task, int(task["ends_at"]))
+	var pay := road_trip_pay(car["car_id"], trip, aboard)
+	var result := GameResult.success({"coins": pay["coins"], "xp": pay["xp"], "passengers": aboard,
+		"seats": car_seats(car["car_id"]), "full": pay["full"], "road_trip": trip})
+	add_rewards(pay["coins"], 0, pay["xp"], result)
+	_bump_stat("jobs_collected")
+	_bump_stat("road_trips")
+	var car_id: int = car["car_id"]
+	_emit("COLLECTED_WORKBAY_TASK_ID", ROAD_TRIP_JOB, now, result)
+	_emit("FINISHED_ROAD_TRIP_WITH_CAR_ID", car_id, now, result)
+	_emit("FINISHED_ROAD_TRIP_WITH_ID", trip, now, result)
+	if pay["full"]:
+		_emit("FINISHED_ROAD_TRIP_CAR_FULL_WITH_ROADTRIP_ID", trip, now, result)
+	if trip == 1:
+		_emit("FINISHED_BEACH_ROAD_TRIP_WITH_CAR_ID", car_id, now, result)
+	if trip == 2 and pay["full"]:
+		_emit("FINISHED_FULL_CAMPING_ROAD_TRIP_WITH_CAR_ID", car_id, now, result)
 	return result
 
 

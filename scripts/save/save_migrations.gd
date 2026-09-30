@@ -46,6 +46,8 @@ static func _step(version: int, data: Dictionary) -> Dictionary:
 			return _v5_to_v6(data)
 		6:
 			return _v6_to_v7(data)
+		7:
+			return _v7_to_v8(data)
 		_:
 			return {}
 
@@ -95,4 +97,10 @@ static func _v5_to_v6(data: Dictionary) -> Dictionary:
 ## complete when the save is first loaded are paid on the next car gained.
 static func _v6_to_v7(data: Dictionary) -> Dictionary:
 	data["collections_done"] = []
+	return data
+
+
+## v8 added road trips. They live in "car_tasks" like other car jobs, with
+## a destination and passengers, so there's nothing to change.
+static func _v7_to_v8(data: Dictionary) -> Dictionary:
 	return data

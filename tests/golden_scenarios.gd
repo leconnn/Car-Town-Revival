@@ -96,6 +96,11 @@ static func all() -> Dictionary:
 			["finish_car_task_now", [2], T0 + 1100],
 			["start_car_task", [2, 3], T0 + 1100],
 			["stop_car_task", [2], T0 + 1110],
+			# Road trip: a bare start is refused, then off to the beach and back.
+			["start_car_task", [2, 34], T0 + 1120],
+			["start_road_trip", [2, 6], T0 + 1120],
+			["start_road_trip", [2, 1], T0 + 1120],
+			["collect_car_task", [2], T0 + 1120 + 86400],
 			["tick", [], T0 + 3600],
 			["accept_customer", [4, 1], T0 + 3600],
 			["start_job", [1, 13], T0 + 3600],

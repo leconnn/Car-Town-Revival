@@ -29,6 +29,7 @@ export function migrate(save: Dict): Dict | null {
     else if (v === 4) out = v4ToV5(out);
     else if (v === 5) out = v5ToV6(out);
     else if (v === 6) out = v6ToV7(out);
+    else if (v === 7) out = out; // v8: road trips live in car_tasks
     else return null;
     out.save_version = v + 1;
   }

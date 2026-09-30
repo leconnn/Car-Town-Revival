@@ -120,7 +120,7 @@
   "id": 34,
   "type": 1,
   "name": "Job 34",
-  "price": 10,
+  "price": 250,
   "blue_price": 0,
   "finish_now_blue": 1,
   "minutes": 1440,
@@ -152,8 +152,12 @@
   ],
   "mastery_reward_item_id": 0,
   "sort": 0,
-  "car_categories": [],
-  "car_ids": []
+  "car_categories": [
+   1
+  ],
+  "car_ids": [
+   5
+  ]
  },
  {
   "id": 3,
