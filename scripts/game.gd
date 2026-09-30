@@ -27,6 +27,7 @@ func _ready() -> void:
 	garage = GarageView.new()
 	add_child(garage)
 	garage.object_clicked.connect(_on_object_clicked)
+	garage.rotate_clicked.connect(_rotate_object)
 	location_view = LocationView.new()
 	location_view.visible = false
 	add_child(location_view)
@@ -506,6 +507,22 @@ func _edit_object(kind: String, uid: int) -> void:
 			move_car(uid)
 
 
+## Edit mode's rotate button: turns the object where it stands, if it fits.
+func _rotate_object(kind: String, uid: int) -> void:
+	var r: GameResult
+	if kind == "item":
+		var entry := _item_entry(uid)
+		r = await Backend.move_item(uid, entry["x"], entry["y"], (int(entry["rot"]) + 1) % 4)
+	else:
+		if Backend.state()["car_tasks"].has(str(uid)):
+			toasts.show_message("This car is out on a job.", true)
+			return
+		var car := Backend.query().get_car(uid)
+		r = await Backend.move_car(uid, car["x"], car["y"], (int(car.get("rot", 0)) + 1) % 4)
+	if not r.ok:
+		garage.shake_rotate()
+
+
 ## Something being moved was dropped on the tray: into storage, or onto the
 ## cash register to sell it.
 func _on_dropped_on_tray(sell: bool) -> void:
@@ -666,6 +683,15 @@ func _dev_open() -> void:
 				screen.show_car(Backend.query().dealer_car_ids()[-1])
 			"edit":
 				set_edit_mode(true)
+			"edit_rotate":
+				# Hover the first item so its rotate button shows.
+				set_edit_mode(true)
+				await get_tree().process_frame
+				for it: Dictionary in s["garage"]["items"]:
+					var at: Variant = garage.object_anchor("item", it["uid"])
+					if at != null:
+						garage.set_hover({"kind": "item", "uid": it["uid"]})
+						break
 			"edit_storage":
 				set_edit_mode(true)
 				_edit_tray._tray.select(1)

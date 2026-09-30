@@ -6,6 +6,11 @@ extends Node2D
 
 signal object_clicked(kind: String, uid: int)
 signal empty_tile_clicked(tile: Vector2i)
+## Edit mode: the rotate button over a hovered item or car was clicked.
+signal rotate_clicked(kind: String, uid: int)
+
+## The original BtnRotate at a third of its size (MemberMousingManager).
+const ROTATE_BUTTON_SCALE := 0.32
 
 ## The town around the garage, positioned like the original Floor and
 ## ShowRoomContainer: everything hangs off the backdrop's anchor, which moves
@@ -35,6 +40,7 @@ var _pickables: Array[Dictionary] = []
 var _job_bubbles: Dictionary[int, JobStatus] = {}
 var _hover_key := ""
 var _grid_on := false
+var _rotate_btn: FlashButton
 
 
 func _ready() -> void:
@@ -78,6 +84,8 @@ func rebuild() -> void:
 			c.queue_free()
 	_pickables.clear()
 	_job_bubbles.clear()
+	_rotate_btn = null
+	_hover_key = ""
 	_build_town()
 	_build_floor(s["garage"]["floor_item_id"])
 	if _grid_on:
@@ -126,6 +134,7 @@ func _build_floor(floor_item_id: int) -> void:
 ## Edit mode's floor grid (Floor.showGrid): a 1 px line along every tile
 ## edge. The original inverted what was under the lines; a dark translucent
 ## line reads the same on the default floor.
+## Edit mode: the tile grid, and rotate buttons on hover.
 func show_grid(on: bool) -> void:
 	_grid_on = on
 	rebuild()
@@ -246,7 +255,10 @@ func _build_objects(s: Dictionary) -> void:
 	for e: Dictionary in entries:
 		var node := _make_node(e)
 		_object_layer.add_child(node)
-		_pickables.append({"kind": e["kind"], "uid": e["entry"]["uid"], "node": node})
+		var size: Vector2i = e["size"]
+		_pickables.append({"kind": e["kind"], "uid": e["entry"]["uid"], "node": node,
+			"center": Iso.to_screen(e["h"] + size.x / 2.0, e["v"] + size.y / 2.0),
+			"rotatable": e["kind"] == "item" or (e["kind"] == "car" and e["entry"].get("bay_uid", 0) == 0)})
 	# Job bubbles float above each busy bay.
 	for bay_uid: int in bays:
 		var job: Dictionary = s["jobs"].get(str(bay_uid), {})
@@ -405,6 +417,38 @@ func set_hover(target: Dictionary) -> void:
 			(node as CarView).set_highlight(Color(1, 1, 0.6, 0.25) if on else Color(0, 0, 0, 0))
 		else:
 			node.modulate = Color(1.15, 1.15, 0.9) if on else Color.WHITE
+		if on and _grid_on and p.get("rotatable", false):
+			_show_rotate(p)
+	if target.is_empty() and _rotate_btn != null:
+		_rotate_btn.visible = false
+
+
+## BtnRotate over the hovered object's middle; hidden when you move off.
+func _show_rotate(p: Dictionary) -> void:
+	if _rotate_btn == null:
+		_rotate_btn = FlashButton.of("swcassets.btn.BtnRotate")
+		if _rotate_btn == null:
+			return
+		_rotate_btn.set_base_scale(ROTATE_BUTTON_SCALE, ROTATE_BUTTON_SCALE * 1.1)
+		_overlay_layer.add_child(_rotate_btn)
+	for c: Callable in _rotate_btn.pressed.get_connections().map(func(d: Dictionary) -> Callable: return d["callable"]):
+		_rotate_btn.pressed.disconnect(c)
+	var kind: String = p["kind"]
+	var uid: int = p["uid"]
+	_rotate_btn.pressed.connect(func() -> void: rotate_clicked.emit(kind, uid))
+	_rotate_btn.position = p["center"]
+	_rotate_btn.visible = true
+
+
+## The original shook the rotate button when the turn didn't fit.
+func shake_rotate() -> void:
+	if _rotate_btn == null or not is_instance_valid(_rotate_btn):
+		return
+	var x := _rotate_btn.position.x
+	var tw := create_tween()
+	for i in 3:
+		tw.tween_property(_rotate_btn, "position:x", x - 5, 0.05)
+		tw.tween_property(_rotate_btn, "position:x", x, 0.05)
 
 
 func _unhandled_input(event: InputEvent) -> void:
