@@ -220,3 +220,23 @@ func test_stop_and_finish_car_task_now() -> void:
 	assert_int(logic.car_task_finish_price(car, NOW)).is_equal(1)
 	assert_bool(logic.finish_car_task_now(car, NOW).ok).is_true()
 	assert_int(logic.save["player"]["blue"]).is_equal(blue - 1)
+
+
+func test_full_mastery_earns_the_plaque() -> void:
+	var logic := _logic_with_car_on_bay()
+	var bay := TestEnv.first_bay(logic)
+	var job: Dictionary = logic.catalog.job(4)
+	job["mastery_thresholds"] = [0, 1, 2, 3, 4]
+	job["mastery_reward_item_id"] = 900
+	var t := NOW
+	var last: GameResult
+	for i in 4:
+		assert_bool(logic.start_job(bay, 4, t).ok).is_true()
+		t += 5 * 60
+		last = logic.collect_job(bay, t)
+		assert_bool(last.ok).is_true()
+		if i < 3:
+			assert_bool(logic.save["storage"].has("900")).is_false()
+	assert_int(logic.mastery_level(4)).is_equal(5)
+	assert_int(logic.save["storage"].get("900", 0)).is_equal(1)
+	assert_int(last.notices[-1]["item_id"]).is_equal(900)

@@ -892,8 +892,14 @@ func _pay_job(job_id: int) -> GameResult:
 			if tm["level"] == after:
 				bonus = tm
 		add_rewards(bonus.get("coin_bonus", 0), bonus.get("blue_bonus", 0), bonus.get("xp_bonus", 0), result)
+		# Mastering a job for good earns its plaque (ri5), into storage.
+		var plaque: int = catalog.job(job_id).get("mastery_reward_item_id", 0)
+		if after == catalog.job(job_id).get("mastery_thresholds", []).size() and not catalog.item(plaque).is_empty():
+			save["storage"][str(plaque)] = save["storage"].get(str(plaque), 0) + 1
+		else:
+			plaque = 0
 		result.notices.append({"kind": "mastery", "job_id": job_id, "level": after,
-			"coins": bonus.get("coin_bonus", 0), "blue": bonus.get("blue_bonus", 0)})
+			"coins": bonus.get("coin_bonus", 0), "blue": bonus.get("blue_bonus", 0), "item_id": plaque})
 	return result
 
 

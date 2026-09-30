@@ -753,7 +753,14 @@ export class GameLogic {
       let bonus: Dict = {};
       for (const tm of this.catalog.taskMasteryLevels) if (tm.level === after) bonus = tm;
       this.addRewards(bonus.coin_bonus ?? 0, bonus.blue_bonus ?? 0, bonus.xp_bonus ?? 0, result);
-      result.notices.push({ kind: "mastery", job_id: jobId, level: after, coins: bonus.coin_bonus ?? 0, blue: bonus.blue_bonus ?? 0 });
+      // Mastering a job for good earns its plaque (ri5), into storage.
+      let plaque: number = this.catalog.job(jobId).mastery_reward_item_id ?? 0;
+      if (after === (this.catalog.job(jobId).mastery_thresholds ?? []).length && Object.keys(this.catalog.item(plaque)).length > 0) {
+        this.save.storage[key(plaque)] = (this.save.storage[key(plaque)] ?? 0) + 1;
+      } else {
+        plaque = 0;
+      }
+      result.notices.push({ kind: "mastery", job_id: jobId, level: after, coins: bonus.coin_bonus ?? 0, blue: bonus.blue_bonus ?? 0, item_id: plaque });
     }
     return result;
   }

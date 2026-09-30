@@ -332,6 +332,7 @@ static func _bay_has_car(s: Dictionary, bay_uid: int) -> bool:
 ## A newly arrived customer rolls up the street to its place in the queue.
 func _drive_in(node: Node2D, already: float = 0.0) -> void:
 	var target := node.position
+	node.set_meta("rest", target)
 	var total := CUSTOMER_DRIVE_IN_PLACES * CUSTOMER_SECONDS_PER_PLACE
 	var back := Iso.to_screen(-CUSTOMER_SPACING * CUSTOMER_DRIVE_IN_PLACES, 0) - Iso.to_screen(0, 0)
 	node.position = target + back * (1.0 - already / total)
@@ -398,7 +399,8 @@ func _placeholder_box(e: Dictionary) -> Node2D:
 func object_anchor(kind: String, uid: int) -> Variant:
 	for p: Dictionary in _pickables:
 		if p["kind"] == kind and p["uid"] == uid and is_instance_valid(p["node"]):
-			return (p["node"] as Node2D).position
+			# Where it ends up, for a customer still driving in.
+			return (p["node"] as Node2D).get_meta("rest", (p["node"] as Node2D).position)
 	return null
 
 

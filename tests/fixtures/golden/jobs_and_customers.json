@@ -1006,7 +1006,8 @@
       "job_id": 4,
       "level": 2,
       "coins": 500,
-      "blue": 0
+      "blue": 0,
+      "item_id": 0
      }
     ]
    },
@@ -2263,7 +2264,8 @@
       "job_id": 3,
       "level": 2,
       "coins": 500,
-      "blue": 0
+      "blue": 0,
+      "item_id": 0
      }
     ]
    },
