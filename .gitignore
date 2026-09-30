@@ -30,6 +30,8 @@ export/
 
 # --- Local saves, test data, logs ---
 saves/
+# ...except the hand-made saves the migration tests load.
+!tests/fixtures/saves/
 *.save
 *.log
 
