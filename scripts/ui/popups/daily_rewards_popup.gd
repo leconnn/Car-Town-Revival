@@ -61,7 +61,7 @@ func _build(claimed: Dictionary) -> void:
 			slot.styled_text("dayField", "Day %d" % (streak + i), "casualA01")
 	var added := content.part("addToInventoryContainer") as FlashSymbol
 	if added != null:
-		var text := "%s has been added\n\nto your %s!" % [_reward_text(claimed), ADDED_TO.get(claimed["type"], "inventory")]
+		var text := "%s has been added\nto your %s!" % [_reward_text(claimed), ADDED_TO.get(claimed["type"], "inventory")]
 		added.styled_text("messageField3", text, "casualA01")
 		var images := added.part("images") as FlashSymbol
 		if images != null:
