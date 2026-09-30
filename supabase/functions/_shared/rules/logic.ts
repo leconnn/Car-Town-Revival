@@ -8,7 +8,7 @@ import {
 import { MissionTracker } from "./missions.ts";
 import { key, posmod, roundi, SimpleRng } from "./util.ts";
 
-export const CURRENT_SAVE_VERSION = 4;
+export const CURRENT_SAVE_VERSION = 5;
 
 export class GameResult {
   ok = true;
@@ -60,7 +60,7 @@ export class GameLogic {
       save_version: CURRENT_SAVE_VERSION,
       created_at: now,
       updated_at: now,
-      player: { name: playerName, coins: start.coins ?? 10000, blue: start.blue ?? 0, xp: 0, level: 1 },
+      player: { name: playerName, coins: start.coins ?? 10000, blue: start.blue ?? 0, xp: 0, level: 1, fuel: 0, fuel_at: now },
       next_uid: 1,
       rng: now % SimpleRng.MODULUS,
       garage: {
@@ -82,9 +82,11 @@ export class GameLogic {
       missions: { progress: {}, completed: [], daily: {} },
       tutorial: { step: 0, done: false },
       visited_locations: [],
+      race: {},
       stats: {},
     };
     const logic = new GameLogic(cat, s);
+    s.player.fuel = logic.fuelTank();
     for (const it of start.items ?? []) logic.addItem(it.item_id, it.x, it.y, it.rot);
     const carId: number = start.car_id ?? 0;
     if (Object.keys(cat.car(carId)).length > 0) {
@@ -1042,6 +1044,7 @@ export class GameLogic {
 
   tick(now: number): GameResult {
     const result = GameResult.success();
+    this.refillFuel(now);
     const interval = Math.trunc(this.catalog.tune("customers.interval_minutes", 2)) * 60;
     const maxWaiting: number = this.catalog.tune("customers.max_waiting", 3);
     const pool = this.customerPool();
@@ -1131,6 +1134,199 @@ export class GameLogic {
     const result = GameResult.success();
     this.emit("WENT_TO_LOCATION", locationId, now, result);
     return result;
+  }
+
+  // --- Street racing and fuel -------------------------------------------------------------
+
+  fuelTank(): number {
+    return Math.trunc(this.catalog.levelInfo(this.player.level).fuel_tank ?? 5) + Math.trunc(this.catalog.tune("racing.fuel_tank_bonus", 0));
+  }
+
+  fuelRefillSeconds(): number {
+    return Math.trunc(this.catalog.tune("racing.fuel_refill_seconds", this.catalog.consts.fuel_refill_seconds ?? 560));
+  }
+
+  private refillFuel(now: number): void {
+    const p = this.player;
+    const tank = this.fuelTank();
+    if (!("fuel" in p)) {
+      p.fuel = tank;
+      p.fuel_at = now;
+    }
+    if (p.fuel >= tank) {
+      p.fuel_at = now;
+      return;
+    }
+    const per = this.fuelRefillSeconds();
+    const gained = Math.trunc(Math.max(0, now - p.fuel_at) / per);
+    if (gained > 0) {
+      p.fuel = Math.min(tank, p.fuel + gained);
+      p.fuel_at = p.fuel_at + gained * per;
+    }
+    if (p.fuel >= tank) p.fuel_at = now;
+  }
+
+  fuel(now: number): number {
+    const p = this.player;
+    const tank = this.fuelTank();
+    const have: number = p.fuel ?? tank;
+    if (have >= tank) return have;
+    return Math.min(tank, have + Math.trunc(Math.max(0, now - (p.fuel_at ?? now)) / this.fuelRefillSeconds()));
+  }
+
+  raceLocations(): number[] {
+    const towns = this.town_location_ids();
+    return (this.catalog.tune("racing.locations", []) as number[]).filter((id) => towns.includes(id));
+  }
+
+  bestCarPower(): number {
+    let best = 0;
+    for (const c of this.save.cars) best = Math.max(best, this.carScore(c.uid));
+    return best;
+  }
+
+  raceOpponents(locationId: number, now: number): Dict[] {
+    const out: Dict[] = [];
+    const pool = this.dealer_car_ids();
+    if (pool.length === 0) return out;
+    const best = Math.max(this.bestCarPower(), 100);
+    const span: number[] = this.catalog.tune("racing.opponent_power_range", [0.6, 1.3]);
+    const lo = best * Number(span[0]);
+    const hi = best * Number(span[1]);
+    const count: number = this.catalog.tune("racing.opponents_per_location", 6);
+    let candidates: number[] = [];
+    for (const id of pool) {
+      const power: number = this.catalog.car(id).score ?? 0;
+      if (power >= lo && power <= hi) candidates.push(id);
+    }
+    if (candidates.length < count) {
+      candidates = [...pool];
+      candidates.sort((a, b) => {
+        const da = Math.abs((this.catalog.car(a).score ?? 0) - best);
+        const db = Math.abs((this.catalog.car(b).score ?? 0) - best);
+        return da !== db ? da - db : a - b;
+      });
+      candidates = candidates.slice(0, count * 3);
+    }
+    const names: string[] = this.catalog.tune("racing.opponent_names", ["Racer"]);
+    let state = locationId * 7919 + Math.trunc(now / 3600);
+    for (let i = 0; i < count; i++) {
+      state = SimpleRng.next(state);
+      const carId = candidates[(state >> 8) % candidates.length];
+      const colors = this.catalog.colorsForCar(carId);
+      const colorId: number = colors.length > 0 ? colors[(state >> 12) % colors.length].id : 0;
+      out.push({ index: i, car_id: carId, color_id: colorId, power: Math.trunc(this.catalog.car(carId).score ?? 0), name: String(names[(state >> 4) % names.length]) });
+    }
+    return out;
+  }
+
+  racePrize(power: number): Dict {
+    const c = this.catalog.consts;
+    const minP = Number(c.race_prize_min_power ?? 100);
+    const maxP = Number(c.race_prize_max_power ?? 1350);
+    const t = Math.min(1, Math.max(0, (power - minP) / Math.max(1, maxP - minP)));
+    const lerp = (a: number, b: number) => a + (b - a) * t;
+    return {
+      coins: Math.floor(lerp(Number(c.race_prize_min_coins ?? 50), Number(c.race_prize_max_coins ?? 500))),
+      xp: Math.floor(lerp(Number(c.race_prize_min_xp ?? 2), Number(c.race_prize_max_xp ?? 10))),
+    };
+  }
+
+  start_race(locationId: number, index: number, carUid: number, now: number): GameResult {
+    if (!this.raceLocations().includes(locationId)) return GameResult.fail("There's no racing here.");
+    const car = this.get_car(carUid);
+    if (!car) return GameResult.fail("Car not found.");
+    if (key(carUid) in this.save.car_tasks) return GameResult.fail("This car is out on a job.");
+    const opponents = this.raceOpponents(locationId, now);
+    if (index < 0 || index >= opponents.length) return GameResult.fail("That car has left.");
+    this.refillFuel(now);
+    const p = this.player;
+    if (p.fuel < 1) return GameResult.fail("You're out of fuel.");
+    const full = p.fuel >= this.fuelTank();
+    p.fuel -= 1;
+    if (full) p.fuel_at = now;
+    const opponent = opponents[index];
+    const opponentScore = this.opponentScore(opponent.power);
+    this.save.race = { location_id: locationId, car_uid: carUid, power: this.carScore(carUid), opponent, opponent_score: opponentScore, started_at: now };
+    this.bumpStat("races_started");
+    return GameResult.success({ opponent, opponent_score: opponentScore });
+  }
+
+  private opponentScore(power: number): number {
+    const bonusChance: number = this.catalog.tune("racing.opponent_bonus_chance_percent", 25);
+    let total = 0;
+    let roll = this.rng(0, 99);
+    if (roll < bonusChance) total += Math.floor(power * 2 * (1 - this.rng(0, 49) / 1000));
+    else total += Math.floor(power * (1 - this.rng(50, 600) / 1000));
+    for (let i = 0; i < 3; i++) {
+      roll = this.rng(0, 99);
+      if (roll < bonusChance) {
+        const deg = this.rng(241, 247);
+        total += roundi(2 * power * (244 - Math.abs(244 - deg)) / 244);
+      } else {
+        total += roundi(power * this.rng(150, 240) / 244);
+      }
+    }
+    return total;
+  }
+
+  private rng(lo: number, hi: number): number {
+    const pick = SimpleRng.rangeInt(this.save.rng, lo, hi);
+    this.save.rng = pick[0];
+    return pick[1];
+  }
+
+  finish_race(score: number, perfectShifts: number, redlined: boolean, now: number): GameResult {
+    const race: Dict = this.save.race ?? {};
+    if (Object.keys(race).length === 0) return GameResult.fail("You aren't racing.");
+    this.save.race = {};
+    const power: number = race.power;
+    const nitrous: number = this.catalog.tune("racing.nitrous_per_shift", 50);
+    score = Math.min(8 * power + 3 * nitrous, Math.max(-4 * power, score));
+    perfectShifts = Math.min(3, Math.max(0, perfectShifts));
+    const opponent: Dict = race.opponent;
+    const opponentScore: number = race.opponent_score;
+    const win = score >= opponentScore;
+    const result = GameResult.success({ win, score, opponent_score: opponentScore });
+    const stats = this.save.stats;
+    stats.race_high_score = Math.max(Math.trunc(stats.race_high_score ?? 0), score);
+    const location: number = race.location_id;
+    if (win) {
+      const prize = this.racePrize(opponent.power);
+      this.addRewards(prize.coins, 0, prize.xp, result);
+      result.data.coins = prize.coins;
+      result.data.xp = prize.xp;
+      this.bumpStat("races_won");
+      this.emit("WON_TOWN_RACE", 0, now, result);
+      this.emit("WON_TOWN_RACE_AT_LOCATION", location, now, result);
+      if (!redlined) this.emit("WON_TOWN_RACE_WITHOUT_REDLINING_AT_LOCATION", location, now, result);
+      if (perfectShifts > 0) this.emit("WON_TOWN_RACE_WITH_PERFECT_SHIFTS", perfectShifts, now, result);
+      if (Math.trunc(opponent.power) > power) this.emit("WON_TOWN_RACE_AGAINST_FASTER_OPPONENT", 0, now, result);
+    } else {
+      const xp = Math.trunc(this.catalog.consts.race_start_xp ?? 1);
+      const coins: number = this.catalog.tune("racing.loss_coins", 0);
+      this.addRewards(coins, 0, xp, result);
+      result.data.coins = coins;
+      result.data.xp = xp;
+      this.bumpStat("races_lost");
+    }
+    return result;
+  }
+
+  buy_fuel(consumableId: number, now: number): GameResult {
+    const def = this.catalog.consumable(consumableId);
+    if (Object.keys(def).length === 0 || !(this.catalog.tune("racing.fuel_can_ids", []) as number[]).includes(consumableId)) {
+      return GameResult.fail("That isn't for sale.");
+    }
+    this.refillFuel(now);
+    const p = this.player;
+    const price: number = def.blue_price ?? 0;
+    if (p.blue < price) return GameResult.fail("Not enough blue coins.");
+    p.blue -= price;
+    if ((def.kind ?? 1) === 2) p.fuel = Math.max(p.fuel, this.fuelTank());
+    else p.fuel = p.fuel + Math.trunc(def.amount ?? 1);
+    p.fuel_at = now;
+    return GameResult.success({ fuel: p.fuel });
   }
 
   // --- Tutorial ---------------------------------------------------------------------------

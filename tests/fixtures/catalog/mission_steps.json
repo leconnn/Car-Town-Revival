@@ -31,7 +31,7 @@
  },
  {
   "id": 3,
-  "event": "WON_TOWN_RACE",
+  "event": "WON_PINK_SLIP_RACE_AGAINST_CAR_ID",
   "params": [],
   "count": 1,
   "mission_ids": [

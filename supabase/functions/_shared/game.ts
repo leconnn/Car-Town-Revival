@@ -26,10 +26,17 @@ export function migrate(save: Dict): Dict | null {
     if (v === 1) out = v1ToV2(out);
     else if (v === 2) out = v2ToV3(out);
     else if (v === 3) out = v3ToV4(out);
+    else if (v === 4) out = v4ToV5(out);
     else return null;
     out.save_version = v + 1;
   }
   return out;
+}
+
+/** v5 added street racing (fuel is filled in by the rules on first load). */
+function v4ToV5(save: Dict): Dict {
+  save.race = {};
+  return save;
 }
 
 /** v4 made floors and walls tile by tile (floor_tiles, wall segments). */

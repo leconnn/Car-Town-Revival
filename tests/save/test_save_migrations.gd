@@ -65,3 +65,14 @@ func test_v3_to_v4_makes_floor_and_walls_tile_by_tile() -> void:
 	assert_bool(out["garage"].has("wall_item_id")).is_false()
 	assert_int(out["garage"]["walls"].size()).is_greater(0)
 	assert_bool(logic.tick(TestEnv.NOW).ok).is_true()
+
+
+func test_v4_to_v5_adds_racing_and_a_full_tank() -> void:
+	var raw: Variant = JsonUtil.read_file("res://tests/fixtures/saves/v4.json")
+	assert_int(raw["save_version"]).is_equal(4)
+	var out := SaveMigrations.migrate(raw)
+	assert_that(out["race"]).is_equal({})
+	var logic := GameLogic.new(TestEnv.catalog(), out)
+	assert_int(logic.fuel(TestEnv.NOW)).is_equal(logic.fuel_tank())
+	assert_bool(logic.tick(TestEnv.NOW).ok).is_true()
+	assert_int(out["player"]["fuel"]).is_equal(logic.fuel_tank())

@@ -6,7 +6,7 @@ const NOW := TestEnv.NOW
 func test_unsupported_missions_are_hidden() -> void:
 	var logic := TestEnv.logic(-1, true)
 	var ids := logic.active_missions(NOW)
-	# Mission 3 needs racing (not in v1); mission 2 needs mission 1 first.
+	# Mission 3 needs pink-slip races (not built yet); mission 2 needs mission 1 first.
 	assert_array(ids).contains([1, 6])
 	assert_array(ids).not_contains([2, 3])
 	# 8 duplicates tutorial mission 6 on the other track; 9 was retired.

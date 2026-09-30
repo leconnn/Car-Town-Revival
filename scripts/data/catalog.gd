@@ -9,7 +9,7 @@ extends RefCounted
 const REQUIRED_FILES: Array[String] = [
 	"consts", "cars", "car_colors", "parts", "part_categories", "items",
 	"lands", "levels", "garage_value_tiers", "jobs", "task_mastery_levels",
-	"missions", "mission_steps", "locations",
+	"missions", "mission_steps", "locations", "consumables",
 ]
 
 var consts: Dictionary = {}
@@ -27,6 +27,8 @@ var task_mastery_levels: Array[Dictionary] = []
 var missions: Dictionary[int, Dictionary] = {}
 var mission_steps: Dictionary[int, Dictionary] = {}
 var locations: Dictionary[int, Dictionary] = {}
+## Fuel cans and refills (kind 1: gallons, kind 2: a full tank).
+var consumables: Dictionary[int, Dictionary] = {}
 ## Mission id -> its step definitions, in id order.
 var steps_by_mission: Dictionary[int, Array] = {}
 ## Car id -> {category id -> stock part id}.
@@ -106,9 +108,15 @@ func _index(raw: Dictionary) -> void:
 			steps_by_mission[mid].append(s)
 	for loc: Dictionary in raw["locations"]:
 		locations[loc["id"]] = loc
+	for c: Dictionary in raw["consumables"]:
+		consumables[c["id"]] = c
 
 
 # --- Lookups ---------------------------------------------------------------
+
+func consumable(id: int) -> Dictionary:
+	return consumables.get(id, {})
+
 
 func car(car_id: int) -> Dictionary:
 	return cars.get(car_id, {})

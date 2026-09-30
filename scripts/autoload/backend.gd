@@ -207,6 +207,15 @@ func finish_car_task_now(car_uid: int) -> GameResult:
 func stop_car_task(car_uid: int) -> GameResult:
 	return await act("stop_car_task", [car_uid])
 
+func start_race(location_id: int, opponent_index: int, car_uid: int) -> GameResult:
+	return await act("start_race", [location_id, opponent_index, car_uid])
+
+func finish_race(score: int, perfect_shifts: int, redlined: bool) -> GameResult:
+	return await act("finish_race", [score, perfect_shifts, redlined])
+
+func buy_fuel(consumable_id: int) -> GameResult:
+	return await act("buy_fuel", [consumable_id])
+
 func clear_floor(cars: bool, items: bool, bays: bool, walls: bool, floors: bool) -> GameResult:
 	return await act("clear_floor", [cars, items, bays, walls, floors])
 

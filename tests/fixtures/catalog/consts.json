@@ -9,5 +9,13 @@
  "upgrade_stage4_multiplier": 0.07,
  "upgrade_stage5_multiplier": 0.1,
  "upgrade_coins_to_blue_conversion": 0.001,
- "raw": {}
+ "raw": {},
+ "race_prize_min_coins": 50,
+ "race_prize_max_coins": 500,
+ "race_prize_min_power": 100,
+ "race_prize_max_power": 1350,
+ "race_prize_min_xp": 2,
+ "race_prize_max_xp": 10,
+ "fuel_refill_seconds": 560,
+ "race_start_xp": 1
 }

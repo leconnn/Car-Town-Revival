@@ -142,6 +142,15 @@ def convert_consts(e: ET.Element) -> dict:
         "rwm": "race_win_coins",
         "rwx": "race_win_xp",
         "rsx": "race_start_xp",
+        # Street race prizes: coins and XP scale with the opponent's power
+        # (TownRacingHelper.getPrizeObject).
+        "rlmim": "race_prize_min_coins",
+        "rlmam": "race_prize_max_coins",
+        "rlmip": "race_prize_min_power",
+        "rlmap": "race_prize_max_power",
+        "rlmix": "race_prize_min_xp",
+        "rlmax": "race_prize_max_xp",
+        "ert": "fuel_refill_seconds",
     }
     out: dict = {"raw": dict(e.attrib)}
     for k, name in known.items():

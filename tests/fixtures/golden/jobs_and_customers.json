@@ -1,6 +1,6 @@
 {
  "start": {
-  "save_version": 4,
+  "save_version": 5,
   "created_at": 1000000,
   "updated_at": 1000000,
   "player": {
@@ -8,7 +8,9 @@
    "coins": 10000,
    "blue": 5,
    "xp": 0,
-   "level": 1
+   "level": 1,
+   "fuel": 10,
+   "fuel_at": 1000000
   },
   "next_uid": 3,
   "rng": 1000000,
@@ -69,6 +71,7 @@
    "done": false
   },
   "visited_locations": [],
+  "race": {},
   "stats": {}
  },
  "steps": [
@@ -85,7 +88,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -93,7 +96,9 @@
      "coins": 10000,
      "blue": 5,
      "xp": 0,
-     "level": 1
+     "level": 1,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -171,6 +176,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {}
    }
   },
@@ -188,7 +194,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -196,7 +202,9 @@
      "coins": 10000,
      "blue": 5,
      "xp": 0,
-     "level": 1
+     "level": 1,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -274,6 +282,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {}
    }
   },
@@ -304,7 +313,7 @@
     ]
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -312,7 +321,9 @@
      "coins": 10090,
      "blue": 6,
      "xp": 10,
-     "level": 1
+     "level": 1,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -398,6 +409,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 1
     }
@@ -416,7 +428,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -424,7 +436,9 @@
      "coins": 10090,
      "blue": 6,
      "xp": 10,
-     "level": 1
+     "level": 1,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -510,6 +524,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 1
     }
@@ -531,7 +546,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000300,
     "player": {
@@ -539,7 +554,9 @@
      "coins": 10130,
      "blue": 6,
      "xp": 20,
-     "level": 1
+     "level": 1,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -625,6 +642,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 1,
      "jobs_collected": 1
@@ -647,7 +665,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000300,
     "player": {
@@ -655,7 +673,9 @@
      "coins": 10120,
      "blue": 6,
      "xp": 20,
-     "level": 1
+     "level": 1,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -747,6 +767,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 2,
      "jobs_collected": 1
@@ -787,7 +808,7 @@
     ]
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000600,
     "player": {
@@ -795,7 +816,9 @@
      "coins": 10760,
      "blue": 7,
      "xp": 55,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -879,6 +902,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 2,
      "jobs_collected": 2
@@ -901,7 +925,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000600,
     "player": {
@@ -909,7 +933,9 @@
      "coins": 10750,
      "blue": 7,
      "xp": 55,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -999,6 +1025,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 3,
      "jobs_collected": 2
@@ -1030,7 +1057,7 @@
     ]
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1038,7 +1065,9 @@
      "coins": 11290,
      "blue": 6,
      "xp": 65,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -1122,6 +1151,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 3,
      "jobs_collected": 3
@@ -1144,7 +1174,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1152,7 +1182,9 @@
      "coins": 11280,
      "blue": 6,
      "xp": 65,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -1242,6 +1274,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1261,7 +1294,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000710,
     "player": {
@@ -1269,7 +1302,9 @@
      "coins": 11280,
      "blue": 6,
      "xp": 65,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -1353,6 +1388,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1372,7 +1408,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000710,
     "player": {
@@ -1380,7 +1416,9 @@
      "coins": 11280,
      "blue": 6,
      "xp": 65,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -1464,6 +1502,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1485,7 +1524,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1493,7 +1532,9 @@
      "coins": 11280,
      "blue": 6,
      "xp": 65,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -1577,6 +1618,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1597,7 +1639,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1605,7 +1647,9 @@
      "coins": 11280,
      "blue": 6,
      "xp": 65,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -1689,6 +1733,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1711,7 +1756,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1719,7 +1764,9 @@
      "coins": 11275,
      "blue": 6,
      "xp": 65,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -1809,6 +1856,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 3
@@ -1828,7 +1876,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1836,7 +1884,9 @@
      "coins": 11275,
      "blue": 6,
      "xp": 65,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -1926,6 +1976,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 3
@@ -1945,7 +1996,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1953,7 +2004,9 @@
      "coins": 11275,
      "blue": 6,
      "xp": 65,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -2043,6 +2096,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 3
@@ -2065,7 +2119,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1001000,
     "player": {
@@ -2073,7 +2127,9 @@
      "coins": 11315,
      "blue": 6,
      "xp": 75,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -2158,6 +2214,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 4
@@ -2180,7 +2237,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1001000,
     "player": {
@@ -2188,7 +2245,9 @@
      "coins": 11310,
      "blue": 6,
      "xp": 75,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -2279,6 +2338,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 6,
      "jobs_collected": 4
@@ -2310,7 +2370,7 @@
     ]
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1001100,
     "player": {
@@ -2318,7 +2378,9 @@
      "coins": 11850,
      "blue": 5,
      "xp": 85,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -2403,6 +2465,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 6,
      "jobs_collected": 5
@@ -2425,7 +2488,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1001100,
     "player": {
@@ -2433,7 +2496,9 @@
      "coins": 11845,
      "blue": 5,
      "xp": 85,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -2524,6 +2589,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5
@@ -2543,7 +2609,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1001110,
     "player": {
@@ -2551,7 +2617,9 @@
      "coins": 11845,
      "blue": 5,
      "xp": 85,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1000000
     },
     "next_uid": 4,
     "rng": 1068826399,
@@ -2636,6 +2704,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5
@@ -2655,7 +2724,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -2663,7 +2732,9 @@
      "coins": 11845,
      "blue": 5,
      "xp": 85,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1003600
     },
     "next_uid": 6,
     "rng": 126012081,
@@ -2764,6 +2835,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5
@@ -2784,7 +2856,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -2792,7 +2864,9 @@
      "coins": 11845,
      "blue": 5,
      "xp": 85,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1003600
     },
     "next_uid": 6,
     "rng": 126012081,
@@ -2893,6 +2967,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5,
@@ -2914,7 +2989,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -2922,7 +2997,9 @@
      "coins": 11845,
      "blue": 5,
      "xp": 85,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1003600
     },
     "next_uid": 6,
     "rng": 126012081,
@@ -3023,6 +3100,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5,
@@ -3046,7 +3124,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -3054,7 +3132,9 @@
      "coins": 11835,
      "blue": 5,
      "xp": 85,
-     "level": 2
+     "level": 2,
+     "fuel": 10,
+     "fuel_at": 1003600
     },
     "next_uid": 6,
     "rng": 126012081,
@@ -3161,6 +3241,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 5,
@@ -3192,7 +3273,7 @@
     ]
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
@@ -3200,7 +3281,9 @@
      "coins": 12625,
      "blue": 6,
      "xp": 97,
-     "level": 3
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1003600
     },
     "next_uid": 6,
     "rng": 126012081,
@@ -3293,6 +3376,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -3313,7 +3397,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
@@ -3321,7 +3405,9 @@
      "coins": 12625,
      "blue": 6,
      "xp": 97,
-     "level": 3
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1003600
     },
     "next_uid": 6,
     "rng": 126012081,
@@ -3406,6 +3492,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -3429,7 +3516,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
@@ -3437,7 +3524,9 @@
      "coins": 12615,
      "blue": 6,
      "xp": 97,
-     "level": 3
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1003600
     },
     "next_uid": 6,
     "rng": 2087826199,
@@ -3530,6 +3619,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 6,
@@ -3553,7 +3643,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1005700,
     "player": {
@@ -3561,7 +3651,9 @@
      "coins": 12655,
      "blue": 6,
      "xp": 109,
-     "level": 3
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1003600
     },
     "next_uid": 6,
     "rng": 2087826199,
@@ -3646,6 +3738,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -3676,7 +3769,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1086400,
     "player": {
@@ -3684,7 +3777,9 @@
      "coins": 12655,
      "blue": 6,
      "xp": 109,
-     "level": 3
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1003600
     },
     "next_uid": 6,
     "rng": 2087826199,
@@ -3769,6 +3864,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -3789,7 +3885,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -3797,7 +3893,9 @@
      "coins": 12655,
      "blue": 6,
      "xp": 109,
-     "level": 3
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1172800
     },
     "next_uid": 8,
     "rng": 1297555177,
@@ -3896,6 +3994,7 @@
      "done": false
     },
     "visited_locations": [],
+    "race": {},
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -3927,7 +4026,7 @@
     ]
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -3935,7 +4034,9 @@
      "coins": 12755,
      "blue": 6,
      "xp": 119,
-     "level": 3
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1172800
     },
     "next_uid": 8,
     "rng": 1297555177,
@@ -4038,6 +4139,7 @@
     "visited_locations": [
      9
     ],
+    "race": {},
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -4058,7 +4160,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4066,7 +4168,9 @@
      "coins": 12755,
      "blue": 6,
      "xp": 119,
-     "level": 3
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1172800
     },
     "next_uid": 8,
     "rng": 1297555177,
@@ -4169,6 +4273,7 @@
     "visited_locations": [
      9
     ],
+    "race": {},
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -4187,7 +4292,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4195,7 +4300,9 @@
      "coins": 12755,
      "blue": 6,
      "xp": 119,
-     "level": 3
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1172800
     },
     "next_uid": 8,
     "rng": 1297555177,
@@ -4298,6 +4405,7 @@
     "visited_locations": [
      9
     ],
+    "race": {},
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -4319,7 +4427,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4327,7 +4435,9 @@
      "coins": 12755,
      "blue": 6,
      "xp": 119,
-     "level": 3
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1172800
     },
     "next_uid": 8,
     "rng": 1297555177,
@@ -4430,6 +4540,7 @@
     "visited_locations": [
      9
     ],
+    "race": {},
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -4450,7 +4561,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 4,
+    "save_version": 5,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4458,7 +4569,9 @@
      "coins": 12755,
      "blue": 6,
      "xp": 119,
-     "level": 3
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1172800
     },
     "next_uid": 8,
     "rng": 1297555177,
@@ -4561,6 +4674,7 @@
     "visited_locations": [
      9
     ],
+    "race": {},
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,

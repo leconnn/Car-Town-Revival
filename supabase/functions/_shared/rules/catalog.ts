@@ -9,7 +9,7 @@ export const DEFAULT_PAINT = 0xcc2222;
 export const REQUIRED_FILES = [
   "consts", "cars", "car_colors", "parts", "part_categories", "items",
   "lands", "levels", "garage_value_tiers", "jobs", "task_mastery_levels",
-  "missions", "mission_steps", "locations",
+  "missions", "mission_steps", "locations", "consumables",
 ];
 
 export class Catalog {
@@ -28,6 +28,7 @@ export class Catalog {
   missions = new Map<number, Dict>();
   missionSteps = new Map<number, Dict>();
   locations = new Map<number, Dict>();
+  consumables = new Map<number, Dict>();
   stepsByMission = new Map<number, Dict[]>();
   stockParts = new Map<number, Map<number, number>>();
   /** Car ids with exported art. Empty means unknown (no filtering). */
@@ -63,7 +64,12 @@ export class Catalog {
       }
     }
     for (const loc of raw.locations) c.locations.set(loc.id, loc);
+    for (const x of raw.consumables ?? []) c.consumables.set(x.id, x);
     return c;
+  }
+
+  consumable(id: number): Dict {
+    return this.consumables.get(id) ?? {};
   }
 
   car(id: number): Dict { return this.cars.get(id) ?? {}; }

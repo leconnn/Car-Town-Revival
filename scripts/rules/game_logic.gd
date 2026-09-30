@@ -7,7 +7,7 @@ extends RefCounted
 ## or the UI. Every action takes [param now] (unix seconds) from the caller so
 ## timers can use a trusted clock.
 
-const CURRENT_SAVE_VERSION := 4
+const CURRENT_SAVE_VERSION := 5
 
 var catalog: Catalog
 var save: Dictionary
@@ -38,6 +38,8 @@ static func new_save(cat: Catalog, player_name: String, now: int) -> Dictionary:
 			"blue": start.get("blue", 0),
 			"xp": 0,
 			"level": 1,
+			"fuel": 0,
+			"fuel_at": now,
 		},
 		"next_uid": 1,
 		"rng": now % SimpleRng.MODULUS,
@@ -60,9 +62,11 @@ static func new_save(cat: Catalog, player_name: String, now: int) -> Dictionary:
 		"missions": {"progress": {}, "completed": [], "daily": {}},
 		"tutorial": {"step": 0, "done": false},
 		"visited_locations": [],
+		"race": {},
 		"stats": {},
 	}
 	var logic := GameLogic.new(cat, s)
+	s["player"]["fuel"] = logic.fuel_tank()
 	for it: Dictionary in start.get("items", []):
 		logic._add_item(it["item_id"], it["x"], it["y"], it["rot"])
 	var car_id: int = start.get("car_id", 0)
@@ -1231,6 +1235,7 @@ func finish_car_task_now(car_uid: int, now: int) -> GameResult:
 ## Spawns customer cars that arrived since the last check.
 func tick(now: int) -> GameResult:
 	var result := GameResult.success()
+	_refill_fuel(now)
 	var interval: int = int(catalog.tune("customers.interval_minutes", 2)) * 60
 	var max_waiting: int = catalog.tune("customers.max_waiting", 3)
 	var pool := _customer_pool()
@@ -1338,6 +1343,244 @@ func visit_location(location_id: int, now: int) -> GameResult:
 	var result := GameResult.success()
 	_emit("WENT_TO_LOCATION", location_id, now, result)
 	return result
+
+
+# --- Street racing and fuel -------------------------------------------------------------
+# The original's Street Challenge (TownRacing*): pick a car parked at a
+# hangout, race it with one of yours, and the shift gauge scores each gear.
+# The race itself runs in the client (AbstractRaceRules); the rules pick
+# the opponent's score, spend fuel, check the reported score and pay out.
+
+## Fuel tank for the player's level (Levels: 5 to 15) plus our bonus.
+func fuel_tank() -> int:
+	return int(catalog.level_info(_player()["level"]).get("fuel_tank", 5)) + int(catalog.tune("racing.fuel_tank_bonus", 0))
+
+
+func fuel_refill_seconds() -> int:
+	return int(catalog.tune("racing.fuel_refill_seconds", catalog.consts.get("fuel_refill_seconds", 560)))
+
+
+## Brings fuel up to date: a gallon per refill period since "fuel_at", up to
+## the tank (bought fuel can go over it).
+func _refill_fuel(now: int) -> void:
+	var p := _player()
+	var tank := fuel_tank()
+	if not p.has("fuel"):
+		p["fuel"] = tank
+		p["fuel_at"] = now
+	if p["fuel"] >= tank:
+		p["fuel_at"] = now
+		return
+	var per := fuel_refill_seconds()
+	var gained: int = maxi(0, now - int(p["fuel_at"])) / per
+	if gained > 0:
+		p["fuel"] = mini(tank, int(p["fuel"]) + gained)
+		p["fuel_at"] = int(p["fuel_at"]) + gained * per
+	if p["fuel"] >= tank:
+		p["fuel_at"] = now
+
+
+## Fuel right now, counting refills since the save last changed.
+func fuel(now: int) -> int:
+	var p := _player()
+	var tank := fuel_tank()
+	var have: int = p.get("fuel", tank)
+	if have >= tank:
+		return have
+	return mini(tank, have + maxi(0, now - int(p.get("fuel_at", now))) / fuel_refill_seconds())
+
+
+func race_locations() -> Array[int]:
+	var result: Array[int] = []
+	for id: int in catalog.tune("racing.locations", []):
+		if town_location_ids().has(id):
+			result.append(id)
+	return result
+
+
+## Power of the player's best car (0 with no cars).
+func best_car_power() -> int:
+	var best := 0
+	for c: Dictionary in save["cars"]:
+		best = maxi(best, car_score(c["uid"]))
+	return best
+
+
+## The cars waiting to race at a hangout this hour (GetCarsInLocation, which
+## found other players' cars near the power of yours): dealer cars around
+## the power of the player's best car, the same for the whole hour.
+func race_opponents(location_id: int, now: int) -> Array[Dictionary]:
+	var out: Array[Dictionary] = []
+	var pool := dealer_car_ids()
+	if pool.is_empty():
+		return out
+	var best := maxi(best_car_power(), 100)
+	var span: Array = catalog.tune("racing.opponent_power_range", [0.6, 1.3])
+	var lo: float = best * float(span[0])
+	var hi: float = best * float(span[1])
+	var count: int = catalog.tune("racing.opponents_per_location", 6)
+	var candidates: Array[int] = []
+	for id: int in pool:
+		var power: int = catalog.car(id).get("score", 0)
+		if power >= lo and power <= hi:
+			candidates.append(id)
+	if candidates.size() < count:
+		# Too few in range: the nearest in power instead.
+		candidates = pool.duplicate()
+		candidates.sort_custom(func(a: int, b: int) -> bool:
+			var da := absi(int(catalog.car(a).get("score", 0)) - best)
+			var db := absi(int(catalog.car(b).get("score", 0)) - best)
+			return da < db if da != db else a < b)
+		candidates = candidates.slice(0, count * 3)
+	var names: Array = catalog.tune("racing.opponent_names", ["Racer"])
+	var state := location_id * 7919 + now / 3600
+	for i in count:
+		state = SimpleRng.next(state)
+		var car_id: int = candidates[(state >> 8) % candidates.size()]
+		var colors := catalog.colors_for_car(car_id)
+		var color_id: int = colors[(state >> 12) % colors.size()]["id"] if not colors.is_empty() else 0
+		out.append({"index": i, "car_id": car_id, "color_id": color_id,
+			"power": int(catalog.car(car_id).get("score", 0)), "name": str(names[(state >> 4) % names.size()])})
+	return out
+
+
+## Coins and XP for beating a car of [param power]
+## (TownRacingHelper.getPrizeObject: straight line between the catalog's
+## minimum and maximum, by power).
+func race_prize(power: int) -> Dictionary:
+	var c := catalog.consts
+	var min_p: float = c.get("race_prize_min_power", 100)
+	var max_p: float = c.get("race_prize_max_power", 1350)
+	var t := clampf((power - min_p) / maxf(1.0, max_p - min_p), 0.0, 1.0)
+	return {
+		"coins": floori(lerpf(c.get("race_prize_min_coins", 50), c.get("race_prize_max_coins", 500), t)),
+		"xp": floori(lerpf(c.get("race_prize_min_xp", 2), c.get("race_prize_max_xp", 10), t)),
+	}
+
+
+## Takes a gallon and lines up a race against opponent [param index] at
+## [param location_id] with car [param car_uid]. Returns the opponent's
+## score, which the client animates against.
+func start_race(location_id: int, index: int, car_uid: int, now: int) -> GameResult:
+	if not race_locations().has(location_id):
+		return GameResult.fail("There's no racing here.")
+	var car := get_car(car_uid)
+	if car.is_empty():
+		return GameResult.fail("Car not found.")
+	if save["car_tasks"].has(str(car_uid)):
+		return GameResult.fail("This car is out on a job.")
+	var opponents := race_opponents(location_id, now)
+	if index < 0 or index >= opponents.size():
+		return GameResult.fail("That car has left.")
+	_refill_fuel(now)
+	var p := _player()
+	if p["fuel"] < 1:
+		return GameResult.fail("You're out of fuel.")
+	var full: bool = p["fuel"] >= fuel_tank()
+	p["fuel"] -= 1
+	if full:
+		p["fuel_at"] = now
+	var opponent: Dictionary = opponents[index]
+	var opponent_score := _opponent_score(opponent["power"])
+	save["race"] = {"location_id": location_id, "car_uid": car_uid, "power": car_score(car_uid),
+		"opponent": opponent, "opponent_score": opponent_score, "started_at": now}
+	_bump_stat("races_started")
+	return GameResult.success({"opponent": opponent, "opponent_score": opponent_score})
+
+
+## An opponent's race, shift by shift, within the client's ranges
+## (TownRacingHelper.get*ScoreRange): a quick or slow launch, then three
+## shifts that are each either near the redline (bonus) or earlier.
+func _opponent_score(power: int) -> int:
+	var bonus_chance: int = catalog.tune("racing.opponent_bonus_chance_percent", 25)
+	var total := 0
+	# Launch: reaction time after the green light, in ms past 1500.
+	var roll := _rng(0, 99)
+	if roll < bonus_chance:
+		total += floori(power * 2 * (1.0 - _rng(0, 49) / 1000.0))
+	else:
+		total += floori(power * (1.0 - _rng(50, 600) / 1000.0))
+	# Three shifts: needle angle when shifting (the redline is at 244).
+	for i in 3:
+		roll = _rng(0, 99)
+		if roll < bonus_chance:
+			var deg := _rng(241, 247)
+			total += roundi(2.0 * power * (244 - absi(244 - deg)) / 244.0)
+		else:
+			total += roundi(power * _rng(150, 240) / 244.0)
+	return total
+
+
+func _rng(lo: int, hi: int) -> int:
+	var pick := SimpleRng.range_int(save["rng"], lo, hi)
+	save["rng"] = pick[0]
+	return pick[1]
+
+
+## The client's result for the pending race: its score (checked against
+## what the car could possibly score), perfect shifts and whether it
+## redlined. Pays the prize for a win (RaceLocationEnd) and records wins for
+## missions (TownRacingPageMediator.onResultsClosed).
+func finish_race(score: int, perfect_shifts: int, redlined: bool, now: int) -> GameResult:
+	var race: Dictionary = save.get("race", {})
+	if race.is_empty():
+		return GameResult.fail("You aren't racing.")
+	save["race"] = {}
+	var power: int = race["power"]
+	# Launch and three shifts at most double the car's power each, plus
+	# nitrous on each shift; a foul costs the car's power.
+	var nitrous: int = catalog.tune("racing.nitrous_per_shift", 50)
+	score = clampi(score, -4 * power, 8 * power + 3 * nitrous)
+	perfect_shifts = clampi(perfect_shifts, 0, 3)
+	var opponent: Dictionary = race["opponent"]
+	var opponent_score: int = race["opponent_score"]
+	var win := score >= opponent_score
+	var result := GameResult.success({"win": win, "score": score, "opponent_score": opponent_score})
+	var stats: Dictionary = save["stats"]
+	stats["race_high_score"] = maxi(int(stats.get("race_high_score", 0)), score)
+	var location: int = race["location_id"]
+	if win:
+		var prize := race_prize(opponent["power"])
+		add_rewards(prize["coins"], 0, prize["xp"], result)
+		result.data["coins"] = prize["coins"]
+		result.data["xp"] = prize["xp"]
+		_bump_stat("races_won")
+		_emit("WON_TOWN_RACE", 0, now, result)
+		_emit("WON_TOWN_RACE_AT_LOCATION", location, now, result)
+		if not redlined:
+			_emit("WON_TOWN_RACE_WITHOUT_REDLINING_AT_LOCATION", location, now, result)
+		if perfect_shifts > 0:
+			_emit("WON_TOWN_RACE_WITH_PERFECT_SHIFTS", perfect_shifts, now, result)
+		if int(opponent["power"]) > power:
+			_emit("WON_TOWN_RACE_AGAINST_FASTER_OPPONENT", 0, now, result)
+	else:
+		var xp: int = int(catalog.consts.get("race_start_xp", 1))
+		var coins: int = catalog.tune("racing.loss_coins", 0)
+		add_rewards(coins, 0, xp, result)
+		result.data["coins"] = coins
+		result.data["xp"] = xp
+		_bump_stat("races_lost")
+	return result
+
+
+## Buys a fuel can or a refill with blue coins (BuyFuelStore): cans add
+## gallons (over the tank is fine), a refill fills it.
+func buy_fuel(consumable_id: int, now: int) -> GameResult:
+	var def := catalog.consumable(consumable_id)
+	if def.is_empty() or not catalog.tune("racing.fuel_can_ids", []).has(consumable_id):
+		return GameResult.fail("That isn't for sale.")
+	_refill_fuel(now)
+	var p := _player()
+	var price: int = def.get("blue_price", 0)
+	if p["blue"] < price:
+		return GameResult.fail("Not enough blue coins.")
+	p["blue"] -= price
+	if def.get("kind", 1) == 2:
+		p["fuel"] = maxi(int(p["fuel"]), fuel_tank())
+	else:
+		p["fuel"] = int(p["fuel"]) + int(def.get("amount", 1))
+	p["fuel_at"] = now
+	return GameResult.success({"fuel": p["fuel"]})
 
 
 # --- Tutorial ---------------------------------------------------------------------------

@@ -40,6 +40,8 @@ static func _step(version: int, data: Dictionary) -> Dictionary:
 			return _v2_to_v3(data)
 		3:
 			return _v3_to_v4(data)
+		4:
+			return _v4_to_v5(data)
 		_:
 			return {}
 
@@ -69,4 +71,11 @@ static func _v3_to_v4(data: Dictionary) -> Dictionary:
 	garage["floor_tiles"] = {}
 	if not garage.has("walls"):
 		garage["walls"] = []
+	return data
+
+
+## v5 added street racing: fuel (a full tank on the first load, filled in by
+## the rules, which know the tank size) and the race being run.
+static func _v4_to_v5(data: Dictionary) -> Dictionary:
+	data["race"] = {}
 	return data
