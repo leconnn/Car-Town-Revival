@@ -7,7 +7,7 @@ extends RefCounted
 ## or the UI. Every action takes [param now] (unix seconds) from the caller so
 ## timers can use a trusted clock.
 
-const CURRENT_SAVE_VERSION := 6
+const CURRENT_SAVE_VERSION := 7
 
 var catalog: Catalog
 var save: Dictionary
@@ -64,6 +64,7 @@ static func new_save(cat: Catalog, player_name: String, now: int) -> Dictionary:
 		"visited_locations": [],
 		"race": {},
 		"daily_reward": {"last_day": -1, "streak": 0},
+		"collections_done": [],
 		"stats": {},
 	}
 	var logic := GameLogic.new(cat, s)
@@ -219,6 +220,7 @@ func _complete_mission(mid: int, now: int, result: GameResult) -> void:
 	missions.mark_done(save, mid)
 	add_rewards(m["coins"], m["blue"], m["xp"], result)
 	var reward := _give_reward(m["reward_type"], m["reward_id"])
+	_check_collections(result)
 	result.notices.append({
 		"kind": "mission_complete", "mission_id": mid, "title": m["title"],
 		"text": m["complete_text"], "coins": m["coins"], "blue": m["blue"],
@@ -317,6 +319,7 @@ func buy_car(car_id: int, color_id: int, use_blue: bool, now: int) -> GameResult
 	add_rewards(0, 0, def.get("xp", 0), result)
 	_bump_stat("cars_bought")
 	_emit("BOUGHT_CAR_ID", car_id, now, result)
+	_check_collections(result)
 	return result
 
 
@@ -1346,6 +1349,39 @@ func visit_location(location_id: int, now: int) -> GameResult:
 	return result
 
 
+# --- Car collections --------------------------------------------------------------------
+# Own every car in a set (the original's collections, in the Glove Box) and
+# it pays coins, XP, the set's plaque and sometimes a prize, once.
+
+## How many of a collection's cars you own: [owned, total].
+func collection_progress(collection_id: int) -> Array[int]:
+	var ids: Array = catalog.car_collections.get(collection_id, {}).get("car_ids", [])
+	var owned := 0
+	for id: int in ids:
+		if save["cars"].any(func(c: Dictionary) -> bool: return c["car_id"] == id):
+			owned += 1
+	return [owned, ids.size()]
+
+
+## Pays every collection that just became complete.
+func _check_collections(result: GameResult) -> void:
+	for id: int in catalog.car_collections:
+		if save["collections_done"].has(id):
+			continue
+		var progress := collection_progress(id)
+		if progress[1] == 0 or progress[0] < progress[1]:
+			continue
+		var c: Dictionary = catalog.car_collections[id]
+		save["collections_done"].append(id)
+		add_rewards(c["coins"], 0, c["xp"], result)
+		var plaque: int = c.get("plaque_item_id", 0)
+		if plaque > 0 and not catalog.item(plaque).is_empty():
+			_store_item(plaque)
+		var prize := _give_reward(c.get("reward_type", ""), c.get("reward_id", 0))
+		result.notices.append({"kind": "collection_complete", "collection_id": id, "name": c["name"],
+			"coins": c["coins"], "xp": c["xp"], "plaque_id": plaque, "prize": prize})
+
+
 # --- Daily rewards ----------------------------------------------------------------------
 # Log in on consecutive days for a prize each day (DailyRewardsPopup): the
 # streak walks through the catalog's list, day by day, and starts again
@@ -1400,6 +1436,7 @@ func claim_daily_reward(now: int) -> GameResult:
 				_daily_fallback(result)
 		_:
 			_daily_fallback(result)
+	_check_collections(result)
 	return result
 
 

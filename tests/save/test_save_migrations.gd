@@ -86,3 +86,12 @@ func test_v5_to_v6_adds_the_daily_reward() -> void:
 	assert_int(out["daily_reward"]["last_day"]).is_equal(-1)
 	var logic := GameLogic.new(TestEnv.catalog(), out)
 	assert_bool(logic.daily_reward_status(TestEnv.NOW)["available"]).is_true()
+
+
+func test_v6_to_v7_adds_car_collections() -> void:
+	var raw: Variant = JsonUtil.read_file("res://tests/fixtures/saves/v6.json")
+	assert_int(raw["save_version"]).is_equal(6)
+	var out := SaveMigrations.migrate(raw)
+	assert_int(out["save_version"]).is_equal(GameLogic.CURRENT_SAVE_VERSION)
+	assert_that(out["collections_done"]).is_equal([])
+	assert_bool(GameLogic.new(TestEnv.catalog(), out).tick(TestEnv.NOW).ok).is_true()

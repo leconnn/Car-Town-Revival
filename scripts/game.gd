@@ -143,7 +143,8 @@ func _on_hud_action(name: String) -> void:
 		"missions": _open_missions(-1)
 		"fuel": FuelStorePopup.open(get_tree())
 		"menu": MenuPopup.open(get_tree())
-		"docks", "glovebox": toasts.show_message("That arrives in a later update.")
+		"glovebox": CollectionPopups.open_list(get_tree())
+		"docks": toasts.show_message("That arrives in a later update.")
 		"zoom_in": _zoom_step(1)
 		"zoom_out": _zoom_step(-1)
 		"fullscreen":
@@ -742,6 +743,9 @@ func _dev_open() -> void:
 		match a.trim_prefix("open="):
 			"bay": _open_work_bay(bay)
 			"credits": MenuPopup.open_credits(get_tree())
+			"collections": CollectionPopups.open_list(get_tree())
+			"collection_done":
+				notices.push({"kind": "collection_complete", "collection_id": 1, "name": "90s Tuner Cars", "coins": 4500, "xp": 450, "plaque_id": 622})
 			"daily", "daily3":
 				var due := a.ends_with("daily3")
 				if due:

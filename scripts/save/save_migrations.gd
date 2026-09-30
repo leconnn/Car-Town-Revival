@@ -44,6 +44,8 @@ static func _step(version: int, data: Dictionary) -> Dictionary:
 			return _v4_to_v5(data)
 		5:
 			return _v5_to_v6(data)
+		6:
+			return _v6_to_v7(data)
 		_:
 			return {}
 
@@ -86,4 +88,11 @@ static func _v4_to_v5(data: Dictionary) -> Dictionary:
 ## v6 added the daily login reward (last day claimed and the streak).
 static func _v5_to_v6(data: Dictionary) -> Dictionary:
 	data["daily_reward"] = {"last_day": -1, "streak": 0}
+	return data
+
+
+## v7 added car collections: which sets have been paid out. Sets already
+## complete when the save is first loaded are paid on the next car gained.
+static func _v6_to_v7(data: Dictionary) -> Dictionary:
+	data["collections_done"] = []
 	return data

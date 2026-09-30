@@ -1,0 +1,15 @@
+[
+ {
+  "id": 1,
+  "name": "Test Pair",
+  "coins": 4500,
+  "xp": 450,
+  "plaque_item_id": 900,
+  "reward_type": "",
+  "reward_id": 0,
+  "car_ids": [
+   1,
+   5
+  ]
+ }
+]

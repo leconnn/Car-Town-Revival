@@ -34,6 +34,7 @@ func test_buy_car_needs_money_level_and_dealer() -> void:
 
 func test_buy_car_with_blue_coins() -> void:
 	var logic := TestEnv.logic()
+	logic.catalog.car_collections.clear() # a completed set would pay out on top
 	logic.save["player"]["blue"] = 20
 	assert_bool(logic.buy_car(5, 4, true, NOW).ok).is_true()
 	assert_int(logic.save["player"]["blue"]).is_equal(10)

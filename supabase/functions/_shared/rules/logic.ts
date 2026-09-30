@@ -8,7 +8,7 @@ import {
 import { MissionTracker } from "./missions.ts";
 import { key, posmod, roundi, SimpleRng } from "./util.ts";
 
-export const CURRENT_SAVE_VERSION = 6;
+export const CURRENT_SAVE_VERSION = 7;
 
 export class GameResult {
   ok = true;
@@ -84,6 +84,7 @@ export class GameLogic {
       visited_locations: [],
       race: {},
       daily_reward: { last_day: -1, streak: 0 },
+      collections_done: [],
       stats: {},
     };
     const logic = new GameLogic(cat, s);
@@ -209,6 +210,7 @@ export class GameLogic {
     this.missions.markDone(this.save, mid);
     this.addRewards(m.coins, m.blue, m.xp, result);
     const reward = this.giveReward(m.reward_type, m.reward_id);
+    this.checkCollections(result);
     result.notices.push({
       kind: "mission_complete", mission_id: mid, title: m.title, text: m.complete_text,
       coins: m.coins, blue: m.blue, xp: m.xp, reward,
@@ -299,6 +301,7 @@ export class GameLogic {
     this.addRewards(0, 0, def.xp ?? 0, result);
     this.bumpStat("cars_bought");
     this.emit("BOUGHT_CAR_ID", carId, now, result);
+    this.checkCollections(result);
     return result;
   }
 
@@ -1137,6 +1140,29 @@ export class GameLogic {
     return result;
   }
 
+  // --- Car collections --------------------------------------------------------------------
+
+  collection_progress(collectionId: number): number[] {
+    const ids: number[] = this.catalog.carCollections.get(collectionId)?.car_ids ?? [];
+    let owned = 0;
+    for (const id of ids) if (this.save.cars.some((c: Dict) => c.car_id === id)) owned += 1;
+    return [owned, ids.length];
+  }
+
+  private checkCollections(result: GameResult): void {
+    for (const [id, c] of this.catalog.carCollections) {
+      if (this.save.collections_done.includes(id)) continue;
+      const progress = this.collection_progress(id);
+      if (progress[1] === 0 || progress[0] < progress[1]) continue;
+      this.save.collections_done.push(id);
+      this.addRewards(c.coins, 0, c.xp, result);
+      const plaque: number = c.plaque_item_id ?? 0;
+      if (plaque > 0 && Object.keys(this.catalog.item(plaque)).length > 0) this.storeItemId(plaque);
+      const prize = this.giveReward(c.reward_type ?? "", c.reward_id ?? 0);
+      result.notices.push({ kind: "collection_complete", collection_id: id, name: c.name, coins: c.coins, xp: c.xp, plaque_id: plaque, prize });
+    }
+  }
+
   // --- Daily rewards ----------------------------------------------------------------------
 
   private dayNumber(now: number): number {
@@ -1186,6 +1212,7 @@ export class GameLogic {
       default:
         this.dailyFallback(result);
     }
+    this.checkCollections(result);
     return result;
   }
 

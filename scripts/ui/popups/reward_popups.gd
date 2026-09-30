@@ -17,7 +17,7 @@ var _showing := false
 
 
 func push(n: Dictionary) -> void:
-	if not n.get("kind", "") in ["level_up", "mission_complete", "mastery"]:
+	if not n.get("kind", "") in ["level_up", "mission_complete", "mastery", "collection_complete"]:
 		return
 	_queue.append(n)
 	if not _showing:
@@ -38,6 +38,8 @@ func _next() -> void:
 			popup = _mission_complete(n)
 		"mastery":
 			popup = _mastery(n)
+		"collection_complete":
+			popup = CollectionPopups.open_complete(get_tree(), n)
 	if popup == null:
 		_next()
 		return

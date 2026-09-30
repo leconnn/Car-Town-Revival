@@ -1,6 +1,6 @@
 {
  "start": {
-  "save_version": 6,
+  "save_version": 7,
   "created_at": 1000000,
   "updated_at": 1000000,
   "player": {
@@ -76,6 +76,7 @@
    "last_day": -1,
    "streak": 0
   },
+  "collections_done": [],
   "stats": {}
  },
  "steps": [
@@ -92,7 +93,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -185,6 +186,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {}
    }
   },
@@ -202,7 +204,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -295,6 +297,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {}
    }
   },
@@ -325,7 +328,7 @@
     ]
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -426,6 +429,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 1
     }
@@ -444,7 +448,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -545,6 +549,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 1
     }
@@ -566,7 +571,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000300,
     "player": {
@@ -667,6 +672,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 1,
      "jobs_collected": 1
@@ -689,7 +695,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000300,
     "player": {
@@ -796,6 +802,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 2,
      "jobs_collected": 1
@@ -836,7 +843,7 @@
     ]
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000600,
     "player": {
@@ -935,6 +942,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 2,
      "jobs_collected": 2
@@ -957,7 +965,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000600,
     "player": {
@@ -1062,6 +1070,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 3,
      "jobs_collected": 2
@@ -1093,7 +1102,7 @@
     ]
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1192,6 +1201,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 3,
      "jobs_collected": 3
@@ -1214,7 +1224,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1319,6 +1329,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1338,7 +1349,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000710,
     "player": {
@@ -1437,6 +1448,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1456,7 +1468,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000710,
     "player": {
@@ -1555,6 +1567,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1576,7 +1589,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1675,6 +1688,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1695,7 +1709,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1794,6 +1808,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1816,7 +1831,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1921,6 +1936,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 3
@@ -1940,7 +1956,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -2045,6 +2061,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 3
@@ -2064,7 +2081,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -2169,6 +2186,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 3
@@ -2191,7 +2209,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1001000,
     "player": {
@@ -2291,6 +2309,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 4
@@ -2313,7 +2332,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1001000,
     "player": {
@@ -2419,6 +2438,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 6,
      "jobs_collected": 4
@@ -2450,7 +2470,7 @@
     ]
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1001100,
     "player": {
@@ -2550,6 +2570,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 6,
      "jobs_collected": 5
@@ -2572,7 +2593,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1001100,
     "player": {
@@ -2678,6 +2699,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5
@@ -2697,7 +2719,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1001110,
     "player": {
@@ -2797,6 +2819,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5
@@ -2816,7 +2839,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -2932,6 +2955,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5
@@ -2952,7 +2976,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -3068,6 +3092,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5,
@@ -3089,7 +3114,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -3205,6 +3230,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5,
@@ -3228,7 +3254,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -3350,6 +3376,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 5,
@@ -3381,7 +3408,7 @@
     ]
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
@@ -3489,6 +3516,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -3509,7 +3537,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
@@ -3609,6 +3637,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -3632,7 +3661,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
@@ -3740,6 +3769,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 6,
@@ -3763,7 +3793,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1005700,
     "player": {
@@ -3863,6 +3893,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -3893,7 +3924,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1086400,
     "player": {
@@ -3993,6 +4024,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -4013,7 +4045,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4127,6 +4159,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -4158,7 +4191,7 @@
     ]
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4276,6 +4309,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -4296,7 +4330,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4414,6 +4448,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -4432,7 +4467,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4550,6 +4585,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -4571,7 +4607,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4689,6 +4725,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -4709,7 +4746,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 6,
+    "save_version": 7,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4827,6 +4864,7 @@
      "last_day": -1,
      "streak": 0
     },
+    "collections_done": [],
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
