@@ -15,6 +15,8 @@ var wheel_art: Dictionary = {}
 var town_art: Dictionary = {}
 ## UI art the original loaded at runtime from static/ui ("static_ui").
 var static_ui_art: Dictionary = {}
+## The original loading screen's logo and background ("title").
+var title_art: Dictionary = {}
 
 var _texture_cache: Dictionary[String, Texture2D] = {}
 
@@ -30,6 +32,7 @@ func _ready() -> void:
 	wheel_art = _read_manifest("wheels")
 	town_art = _read_manifest("town")
 	static_ui_art = _read_manifest("static_ui")
+	title_art = _read_manifest("title")
 	# Only cars with a body in every view can be drawn everywhere.
 	for key: String in car_art:
 		var views: Dictionary = car_art[key].get("views", {})

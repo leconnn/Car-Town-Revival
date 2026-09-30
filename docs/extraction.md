@@ -43,6 +43,9 @@ Groups:
 | `items` | `data/6/items/it_<id>.swf` (one frame per rotation), `_th` thumbnails, `.jpg` floor textures | `art/items/`, `art/item_thumbs/`, `art/floors/`, `art/items.json` |
 | `cars` | `data/6/cars/<id>/{front,rear,angle}/*.zip` layers, `coords.xml`, thumbnails | `art/cars/<id>/<view>/<layer>.png`, `art/car_thumbs/`, `art/cars.json` |
 | `town` | `static/gps/locationicons/`, `static/townracing/environment_*` | `art/town/`, `art/town.json` |
+| `missions` | Mission, step and reward pictures (already PNGs in the revival files) | `art/missions/` |
+| `static_ui` | UI loaded at runtime from `static/ui/` (the work bay's Service Menu sign) | `art/static_ui/`, `art/static_ui.json` |
+| `title` | `preloader.swf`: the Car Town logo (vector, drawn at 3x) and the sunburst background, for the title screen | `art/title/`, `art/title.json` |
 | `audio` | `music/*.mp3` and the sounds inside `CarTownMain.swf` | `audio/music/`, `audio/sfx/` |
 
 How it works: each SWF is rendered by FFDec around its origin, then cropped. Before rendering, the script widens the SWF's stage so nothing is clipped and removes its background colour. The manifests record where the SWF origin sits in each PNG (`"o": [x, y]`), so the game can place sprites exactly like the original did.

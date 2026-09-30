@@ -49,7 +49,7 @@ static func _add(p: FlashPopup, tree: SceneTree, node: Node2D, pad: Array, butto
 func _build(pad: Array, buttons: Array, show_close: bool, red_frame: bool, legacy: bool) -> void:
 	var cover := ColorRect.new()
 	cover.color = Color(0, 0, 0, COVER_ALPHA)
-	UiKit.place(cover, Rect2(0, 0, 1, 1))
+	cover.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	cover.mouse_filter = Control.MOUSE_FILTER_STOP
 	add_child(cover)
 	_stage = StageUi.new()

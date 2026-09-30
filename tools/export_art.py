@@ -441,6 +441,38 @@ def export_static_ui(ids: set[str] | None, limit: int | None) -> None:
     write_manifest("static_ui", {k: fr[0] for k, fr in batch.run().items() if fr})
 
 
+def export_title(ids: set[str] | None, limit: int | None) -> None:
+    """The original loading screen's art (preloader.swf) for the title
+    screen: the Car Town logo (vector, drawn at 3x) and the yellow sunburst
+    background."""
+    swf = ROOT / "alt" / "preloader.swf"
+    stage = STAGE / "title"
+    shutil.rmtree(stage, ignore_errors=True)
+    sprites = {"23": "logo"}
+    subprocess.run(["java", "-jar", str(FFDEC), "-zoom", "3", "-selectid", ",".join(sprites),
+                    "-export", "sprite", str(stage / "sprites"), str(swf)],
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+    subprocess.run(["java", "-jar", str(FFDEC), "-selectid", "1", "-export", "image", str(stage / "images"), str(swf)],
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+    out = OUT / "title"
+    out.mkdir(parents=True, exist_ok=True)
+    manifest: dict = {}
+    for sid, name in sprites.items():
+        src = stage / "sprites" / f"DefineSprite_{sid}" / "1.png"
+        if not src.is_file():
+            continue
+        img = Image.open(src).convert("RGBA")
+        img = img.crop(img.getchannel("A").getbbox())
+        img.save(out / f"{name}.png", optimize=True)
+        manifest[name] = {"file": f"title/{name}.png", "scale": 3}
+    bg = next(iter((stage / "images").glob("1.*")), None)
+    if bg is not None:
+        Image.open(bg).convert("RGB").save(out / "bg.png", optimize=True)
+        manifest["bg"] = {"file": "title/bg.png", "scale": 1}
+    shutil.rmtree(stage, ignore_errors=True)
+    write_manifest("title", manifest)
+
+
 def export_audio(ids: set[str] | None, limit: int | None) -> None:
     """Music loops and the sound effects embedded in CarTownMain.swf."""
     audio = ROOT / "assets" / "ea" / "audio"
@@ -478,7 +510,7 @@ def export_missions(ids: set[str] | None, limit: int | None) -> None:
 
 GROUPS = {
     "items": export_items, "cars": export_cars, "wheels": export_wheels,
-    "main": export_main, "town": export_town, "missions": export_missions, "static_ui": export_static_ui, "audio": export_audio,
+    "main": export_main, "town": export_town, "missions": export_missions, "static_ui": export_static_ui, "title": export_title, "audio": export_audio,
 }
 
 
