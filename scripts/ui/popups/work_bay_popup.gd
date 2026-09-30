@@ -62,7 +62,10 @@ func _build() -> void:
 
 ## Work bay jobs in the catalog's sort order (WorkBayOptions.compareSortOrder).
 static func _job_ids() -> Array[int]:
-	var ids := Backend.query().available_job_ids()
+	# This client has no icon for a few late jobs (46, 50, 55), so it could
+	# never have shown them: AbstractTaskSprite looks up "UITaskIcon<id>".
+	var ids := Backend.query().available_job_ids().filter(func(id: int) -> bool:
+		return FlashUi.has_class("UITaskIcon%d" % id))
 	ids.sort_custom(func(a: int, b: int) -> bool:
 		var ja: Dictionary = GameData.catalog.job(a)
 		var jb: Dictionary = GameData.catalog.job(b)
