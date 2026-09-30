@@ -732,6 +732,14 @@ func _dev_open() -> void:
 		match a.trim_prefix("open="):
 			"bay": _open_work_bay(bay)
 			"credits": MenuPopup.open_credits(get_tree())
+			"race_hit":
+				await Backend.visit_location(9)
+				show_location(9)
+				await get_tree().process_frame
+				await get_tree().process_frame
+				for i in location_view._opponents.size():
+					var v: Node2D = location_view._opponents[i]["view"]
+					print("opponent %d at %s hit=%d" % [i, v.global_position, location_view._opponent_at(v.global_position + Vector2(0, -20))])
 			"race_info", "race_pick", "race_win", "race_lose":
 				var racer := Backend.query().race_opponents(9, Backend.now())[0]
 				var what: String = a.trim_prefix("open=race_")

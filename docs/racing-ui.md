@@ -1,5 +1,7 @@
 # Street racing: UI plan
 
+**Status: built** (see `scripts/ui/race/`, `scripts/ui/popups/race_popups.gd`, `fuel_store_popup.gd`, the fuel gauge in `shell_hud.gd`). Still open: nitrous and the animated how-to-play demo. The notes below are how the original worked.
+
 The rules are done and tested (`scripts/rules/game_logic.gd`, "Street racing and fuel"; the TypeScript copy matches). This is what's left to build on screen, and how the original did it. Original classes are in `_reference/CarTownMain/scripts/scripts/com/ciegames/cartown/` (decompiled, local only).
 
 ## Rules API (already in `Backend`)

@@ -9,6 +9,8 @@ static var music_volume := 0.7
 static var sfx_volume := 0.8
 ## Missions the player has opened (so their "NEW GOAL!" flag stops showing).
 static var missions_seen: Array = []
+## The first-race instructions have been shown.
+static var race_howto_seen := false
 
 
 static func load_and_apply() -> void:
@@ -18,6 +20,7 @@ static func load_and_apply() -> void:
 		music_volume = cfg.get_value("audio", "music", 0.7)
 		sfx_volume = cfg.get_value("audio", "sfx", 0.8)
 		missions_seen = cfg.get_value("missions", "seen", [])
+		race_howto_seen = cfg.get_value("racing", "howto_seen", false)
 	apply()
 
 
@@ -27,6 +30,7 @@ static func save() -> void:
 	cfg.set_value("audio", "music", music_volume)
 	cfg.set_value("audio", "sfx", sfx_volume)
 	cfg.set_value("missions", "seen", missions_seen)
+	cfg.set_value("racing", "howto_seen", race_howto_seen)
 	cfg.save(PATH)
 
 

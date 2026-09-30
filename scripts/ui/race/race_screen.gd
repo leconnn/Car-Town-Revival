@@ -92,6 +92,27 @@ func _ready() -> void:
 	_shift.finished.connect(_end_race)
 	_opponent_parts = RaceRules.split_opponent_score(opponent_score, RandomNumberGenerator.new())
 	_build_panel()
+	if not Settings.race_howto_seen:
+		Settings.race_howto_seen = true
+		Settings.save()
+		_show_how_to_play()
+
+
+## The first-race instructions (TownRacingHowToPlayDemo, minus the animation).
+func _show_how_to_play() -> void:
+	var steps := "1. Press Start and wait for the lights.
+2. Click on GREEN to launch!
+3. Click again as the needle reaches the green mark to shift. Too late and you redline!
+4. Three shifts, then the highest score wins."
+	var label := FlashUi.styled_label(steps, "casualA01", 22, GenericPopup.TEXT_COLOR)
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.size = Vector2(440, 0)
+	label.custom_minimum_size = Vector2(440, 0)
+	var holder := Node2D.new()
+	holder.add_child(label)
+	var ok := FrameButton.with_text("Got it!", FrameButton.GREEN)
+	var p := GenericPopup.custom(get_tree(), "How to play", holder, Vector2(440, label.get_minimum_size().y), [ok])
+	ok.pressed.connect(p.close)
 
 
 func _car_view(entry: Dictionary) -> CarView:
