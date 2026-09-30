@@ -25,12 +25,16 @@ var _location_label: FlashSymbol
 var _friend_cards: Node2D
 var _mission_dock: Node2D
 var _loc_tabs: Node2D
+var _fuel: FlashSymbol
+var _fuel_clip: Polygon2D
+var _fuel_tick := 0.0
 
 
 func _ready() -> void:
 	super()
 	_build_left()
 	_build_right()
+	_build_fuel_gauge()
 	_build_bottom()
 	Backend.state_changed.connect(refresh)
 	Lan.players_changed.connect(refresh)
@@ -155,6 +159,91 @@ func _build_right() -> void:
 	menu.position = Vector2(670 - 120 + 7, HUD_Y + 58)
 	menu.pressed.connect(func() -> void: action.emit("menu"))
 	right.add_child(menu)
+
+
+## The fuel gauge (views/hud/energyfuel/EnergyFuelHUDGauge): a dial with
+## the tank filled to the fuel you have, "More in: m:ss" until it's full, and
+## a Get Fuel button when you're empty. Clicking it opens the fuel store.
+const FUEL_LOWEST_ANGLE := -210.0
+const FUEL_HIGHEST_ANGLE := 32.0
+const FUEL_FILL_RADIUS := 100.0
+const FUEL_SCALE := 0.85
+
+
+func _build_fuel_gauge() -> void:
+	var gfx := FlashUi.make("UIEnergyFuelGaugeGfx")
+	if gfx == null:
+		return
+	gfx.styled_text("getFuelButton/fld", "Get Fuel", "casualA01")
+	var bar := gfx.part("energyBar") as Node2D
+	var needle := gfx.part("needle") as Node2D
+	if bar != null and needle != null:
+		# The coloured dial is revealed up to the fuel level by a pie mask
+		# centred on the needle.
+		_fuel_clip = Polygon2D.new()
+		_fuel_clip.clip_children = CanvasItem.CLIP_CHILDREN_ONLY
+		_fuel_clip.position = needle.position
+		var parent := bar.get_parent()
+		var index := bar.get_index()
+		parent.remove_child(bar)
+		bar.position -= _fuel_clip.position
+		_fuel_clip.add_child(bar)
+		parent.add_child(_fuel_clip)
+		parent.move_child(_fuel_clip, index)
+	var button := FlashButton.wrap_node(gfx)
+	button.set_base_scale(FUEL_SCALE, FUEL_SCALE * 1.05)
+	button.position = Vector2(380, -21 + HUD_Y)
+	button.pressed.connect(func() -> void: action.emit("fuel"))
+	right.add_child(button)
+	_fuel = gfx
+	_refresh_fuel()
+
+
+## Fills the dial and labels to the fuel you have right now.
+func _refresh_fuel() -> void:
+	if _fuel == null or Backend.state().is_empty():
+		return
+	var q := Backend.query()
+	var now := Backend.now()
+	var have := q.fuel(now)
+	var tank := q.fuel_tank()
+	var t := clampf(float(have) / maxf(1.0, tank), 0.0, 1.0)
+	var angle := lerpf(FUEL_LOWEST_ANGLE, FUEL_HIGHEST_ANGLE, t)
+	var needle := _fuel.part("needle") as Node2D
+	if needle != null:
+		needle.rotation_degrees = angle - FUEL_LOWEST_ANGLE
+	if _fuel_clip != null:
+		var pts := PackedVector2Array([Vector2.ZERO])
+		var a := angle
+		while a > FUEL_LOWEST_ANGLE:
+			pts.append(Vector2(cos(deg_to_rad(a)), sin(deg_to_rad(a))) * FUEL_FILL_RADIUS)
+			a -= 4.0
+		pts.append(Vector2(cos(deg_to_rad(FUEL_LOWEST_ANGLE)), sin(deg_to_rad(FUEL_LOWEST_ANGLE))) * FUEL_FILL_RADIUS)
+		if pts.size() < 3:
+			pts = PackedVector2Array([Vector2.ZERO, Vector2.ZERO, Vector2.ZERO])
+		_fuel_clip.polygon = pts
+	_fuel.styled_text("fuelAmountText", str(have), "casualA01", 22)
+	var status := "Full"
+	if have < tank:
+		var per := q.fuel_refill_seconds()
+		var left_s := per - ((now - int(Backend.state()["player"].get("fuel_at", now))) % per)
+		status = "More in: %d:%02d" % [left_s / 60, left_s % 60]
+	_fuel.styled_text("statusText", status, "sansA02")
+	var empty := have < 1
+	for part: String in ["getFuelButton", "fuelIconIlluminated"]:
+		var p := _fuel.part(part) as CanvasItem
+		if p != null:
+			p.visible = empty
+	var normal := _fuel.part("fuelIconNormal") as CanvasItem
+	if normal != null:
+		normal.visible = not empty
+
+
+func _process(delta: float) -> void:
+	_fuel_tick += delta
+	if _fuel_tick >= 1.0:
+		_fuel_tick = 0.0
+		_refresh_fuel()
 
 
 # --- Bottom bar: chrome, location tabs, GPS, label, friends ------------------------------
@@ -389,4 +478,5 @@ func refresh() -> void:
 		_balance.text("pointsField", Format.number(p["blue"]))
 	if _gv_meter != null:
 		_gv_meter.text("tierField", str(Backend.query().garage_value_tier()))
+	_refresh_fuel()
 	_refresh_friends(s)

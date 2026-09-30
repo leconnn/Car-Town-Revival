@@ -23,8 +23,16 @@ const PLACES: Dictionary[int, Dictionary] = {
 const SPOT_OFFSETS: Array[Vector2] = [Vector2(-35, -15), Vector2(35, -19), Vector2(36, 3), Vector2(-35, 13)]
 const NIGHT_SHADE := Color(0, 0, 0, 0.4)
 
+## Clicked one of the cars waiting to race (the nearest spots to the place's
+## point of interest hold the opponents).
+signal opponent_clicked(opponent: Dictionary)
+
 var location_id := 0
 var _bg: Sprite2D
+## The racing cars: {"opponent", "view"}.
+var _opponents: Array[Dictionary] = []
+var _press := Vector2(-1, -1)
+var _hover := -1
 
 
 static func has_scene(loc_id: int) -> bool:
@@ -34,6 +42,8 @@ static func has_scene(loc_id: int) -> bool:
 func show_location(loc_id: int) -> void:
 	for c in get_children():
 		c.queue_free()
+	_opponents.clear()
+	_hover = -1
 	location_id = loc_id
 	var place: Dictionary = PLACES.get(loc_id, {})
 	var env: Dictionary = GameData.town_art.get(place.get("env", ""), {})
@@ -106,13 +116,20 @@ func _park_cars(place: Dictionary, markers: Dictionary) -> void:
 		return
 	# The same cars for an hour at a time, different at each place.
 	var state := location_id * 7919 + Backend.now() / 3600
+	var racers: Array[Dictionary] = []
+	if Backend.query().race_locations().has(location_id):
+		racers = Backend.query().race_opponents(location_id, Backend.now())
 	var parked: Array[Dictionary] = []
 	for i in mini(place["cars"], spots.size()):
 		state = SimpleRng.next(state)
 		var car_id: int = ids[(state >> 8) % ids.size()]
 		var colors := GameData.catalog.colors_for_car(car_id)
 		var color_id: int = colors[(state >> 12) % colors.size()]["id"] if not colors.is_empty() else 0
-		parked.append({"spot": spots[i], "car": CarView.stock_entry(car_id, color_id)})
+		if i < racers.size():
+			car_id = racers[i]["car_id"]
+			color_id = racers[i]["color_id"]
+		parked.append({"spot": spots[i], "car": CarView.stock_entry(car_id, color_id),
+			"opponent": racers[i] if i < racers.size() else {}})
 	# Back to front, so nearer cars draw over farther ones.
 	parked.sort_custom(func(x: Dictionary, y: Dictionary) -> bool: return x["spot"]["pos"].y < y["spot"]["pos"].y)
 	for p: Dictionary in parked:
@@ -121,3 +138,47 @@ func _park_cars(place: Dictionary, markers: Dictionary) -> void:
 		view.setup(p["car"], vm[0], vm[1])
 		view.position = p["spot"]["pos"]
 		add_child(view)
+		if not p["opponent"].is_empty():
+			_opponents.append({"opponent": p["opponent"], "view": view})
+
+
+# --- Clicking the racing cars ------------------------------------------------------------
+
+func _opponent_at(global_point: Vector2) -> int:
+	# Nearer cars are drawn later, so look from the front.
+	for i in range(_opponents.size() - 1, -1, -1):
+		if _node_hit(_opponents[i]["view"], global_point):
+			return i
+	return -1
+
+
+static func _node_hit(node: Node, global_point: Vector2) -> bool:
+	if node is Sprite2D:
+		var sp := node as Sprite2D
+		return sp.texture != null and sp.is_pixel_opaque(sp.to_local(global_point))
+	for child in node.get_children():
+		if _node_hit(child, global_point):
+			return true
+	return false
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not visible or _opponents.is_empty():
+		return
+	if event is InputEventMouseMotion:
+		var i := _opponent_at(get_global_mouse_position())
+		if i != _hover:
+			if _hover >= 0 and _hover < _opponents.size():
+				(_opponents[_hover]["view"] as CarView).set_highlight(Color(0, 0, 0, 0))
+			_hover = i
+			if i >= 0:
+				(_opponents[i]["view"] as CarView).set_highlight(Color(1, 1, 0.6, 0.25))
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			_press = event.position
+		elif _press.x >= 0 and event.position.distance_to(_press) < 6.0:
+			var i := _opponent_at(get_global_mouse_position())
+			_press = Vector2(-1, -1)
+			if i >= 0:
+				get_viewport().set_input_as_handled()
+				opponent_clicked.emit(_opponents[i]["opponent"])

@@ -30,6 +30,7 @@ func _ready() -> void:
 	garage.rotate_clicked.connect(_rotate_object)
 	location_view = LocationView.new()
 	location_view.visible = false
+	location_view.opponent_clicked.connect(_on_opponent_clicked)
 	add_child(location_view)
 	camera = Camera2D.new()
 	# Framed like the original: the garage's front half and the crossroads.
@@ -130,6 +131,7 @@ func _on_hud_action(name: String) -> void:
 		"edit": set_edit_mode(not edit_mode)
 		"town": _open_gps()
 		"missions": _open_missions(-1)
+		"fuel": FuelStorePopup.open(get_tree())
 		"menu": MenuPopup.open(get_tree())
 		"docks", "glovebox": toasts.show_message("That arrives in a later update.")
 		"zoom_in": _zoom_step(1)
@@ -293,6 +295,38 @@ func _open_gps() -> void:
 	gps.buy_cars_pressed.connect(func() -> void:
 		popup.close()
 		open_screen(BuyCarScreen.new()))
+
+
+## A car waiting to race was clicked: its info, then which of your cars.
+func _on_opponent_clicked(opponent: Dictionary) -> void:
+	if tutorial_filter.is_valid():
+		return
+	RacePopups.open_car_info(get_tree(), opponent, func() -> void:
+		if Backend.state()["cars"].is_empty():
+			toasts.show_message("You need a car to race! Try Buy Cars.", true)
+			return
+		if Backend.query().fuel(Backend.now()) < 1:
+			FuelStorePopup.open_out_of_fuel(get_tree())
+			return
+		RacePopups.open_pick_car(get_tree(), opponent, func(car_uid: int) -> void: _start_race(opponent, car_uid)))
+
+
+func _start_race(opponent: Dictionary, car_uid: int, loc: int = -1) -> void:
+	if loc < 0:
+		loc = location_view.location_id
+	var r: GameResult = await Backend.start_race(loc, opponent["index"], car_uid)
+	if not r.ok:
+		toasts.show_message(r.error, true)
+		return
+	var screen := RaceScreen.create(loc, Backend.query().get_car(car_uid), opponent, r.data["opponent_score"])
+	open_screen(screen)
+	screen.race_over.connect(func(score: int, perfect: int, redlined: bool) -> void:
+		var done: GameResult = await Backend.finish_race(score, perfect, redlined)
+		var data := done.data.duplicate()
+		data["fouled"] = score < 0 and perfect == 0 and score == -Backend.query().car_score(car_uid)
+		screen.queue_free()
+		if done.ok:
+			RacePopups.open_result(get_tree(), opponent, data, func() -> void: pass))
 
 
 ## Drives to a place in town (TownRacingEvent.VISIT_TOWN_LOCATION).
@@ -698,6 +732,27 @@ func _dev_open() -> void:
 		match a.trim_prefix("open="):
 			"bay": _open_work_bay(bay)
 			"credits": MenuPopup.open_credits(get_tree())
+			"race_info", "race_pick", "race_win", "race_lose":
+				var racer := Backend.query().race_opponents(9, Backend.now())[0]
+				var what: String = a.trim_prefix("open=race_")
+				if what == "info":
+					RacePopups.open_car_info(get_tree(), racer, func() -> void: pass)
+				elif what == "pick":
+					RacePopups.open_pick_car(get_tree(), racer, func(_u: int) -> void: pass)
+				else:
+					RacePopups.open_result(get_tree(), racer, {"win": what == "win", "score": 812, "opponent_score": 531 if what == "win" else 901,
+						"coins": 50 if what == "win" else 0, "xp": 2 if what == "win" else 1}, func() -> void: pass)
+			"race", "race_auto":
+				var racer2 := Backend.query().race_opponents(9, Backend.now())[0]
+				await _start_race(racer2, s["cars"][0]["uid"], 9)
+				if a.ends_with("auto"):
+					(_screen as RaceScreen).autoplay()
+			"fuelstore": FuelStorePopup.open(get_tree())
+			"nofuel": FuelStorePopup.open_out_of_fuel(get_tree())
+			"lowfuel":
+				# Empty the tank to see the gauge's Get Fuel state.
+				Backend.state()["player"]["fuel"] = 0
+				Backend.state_changed.emit()
 			"place_wall", "place_poster", "place_tile":
 				# A ghost following a mouse parked over a tile edge.
 				set_edit_mode(true)
