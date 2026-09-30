@@ -595,10 +595,9 @@ const ACTION_SOUNDS: Dictionary[String, String] = {
 }
 
 
-func _on_action_done(action: String, result: GameResult) -> void:
-	if action == "tick" and result.data.get("arrived", 0) > 0:
-		Sound.play("CarHornSound03")
-	elif ACTION_SOUNDS.has(action):
+func _on_action_done(action: String, _result: GameResult) -> void:
+	# New customers honk when they pull up (GarageView), not on arrival.
+	if ACTION_SOUNDS.has(action):
 		Sound.play(ACTION_SOUNDS[action])
 
 
@@ -662,6 +661,10 @@ func _dev_open() -> void:
 		match a.trim_prefix("open="):
 			"bay": _open_work_bay(bay)
 			"credits": MenuPopup.open_credits(get_tree())
+			"drive_in":
+				# Pretend every waiting customer just arrived.
+				garage._seen_customers = {}
+				garage.rebuild()
 			"collect": _bay_clicked(bay)
 			"sell": _ask_sell_car(s["cars"][0]["uid"], func() -> void: pass)
 			"bay_job":

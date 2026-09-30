@@ -21,6 +21,13 @@ const BG_ANCHOR_X := -1500.0
 ## Waiting customers park on the street along the garage's front-left side.
 const CUSTOMER_STREET_OFFSET := 3
 const CUSTOMER_SPACING := 5
+## A new customer drives in from this many places up the street, one place
+## a second (CustomerCarsQueue: 10 car widths back, TIME_PER_POSITION 1).
+const CUSTOMER_DRIVE_IN_PLACES := 10
+const CUSTOMER_SECONDS_PER_PLACE := 1.0
+## Waiting customers honk now and then (every 10 to 12 seconds).
+const HONK_MIN := 10.0
+const HONK_MAX := 12.0
 
 var land_size := Vector2i(10, 10)
 ## When false, clicks are ignored (e.g. while a panel handles placement).
@@ -41,6 +48,11 @@ var _job_bubbles: Dictionary[int, JobStatus] = {}
 var _hover_key := ""
 var _grid_on := false
 var _rotate_btn: FlashButton
+## Customers already drawn; anyone new drives in. Null until the first build.
+var _seen_customers: Variant = null
+## uid -> msec a customer started driving in, so rebuilds don't cut it short.
+var _arrivals: Dictionary[int, int] = {}
+var _honk_timer: Timer
 
 
 func _ready() -> void:
@@ -52,6 +64,10 @@ func _ready() -> void:
 	_effects_layer = Node2D.new()
 	for layer in [_floor_layer, _wall_layer, _object_layer, _town_front_layer, _overlay_layer, _effects_layer]:
 		add_child(layer)
+	_honk_timer = Timer.new()
+	_honk_timer.one_shot = true
+	_honk_timer.timeout.connect(_random_honk)
+	add_child(_honk_timer)
 	Backend.state_changed.connect(rebuild)
 	rebuild()
 
@@ -252,13 +268,29 @@ func _build_objects(s: Dictionary) -> void:
 		entries.append(_on_bay_entry("bay", job_car, bays[bay_uid], car_size))
 	entries.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		return _depth(a) < _depth(b))
+	var seen: Dictionary = {}
 	for e: Dictionary in entries:
 		var node := _make_node(e)
 		_object_layer.add_child(node)
+		if e["kind"] == "customer" and e["entry"].get("bay_uid", 0) == 0:
+			seen[e["entry"]["uid"]] = true
+			var cuid: int = e["entry"]["uid"]
+			if _seen_customers != null and not (_seen_customers as Dictionary).has(cuid):
+				_arrivals[cuid] = Time.get_ticks_msec()
+			if _arrivals.has(cuid):
+				var gone := (Time.get_ticks_msec() - _arrivals[cuid]) / 1000.0
+				if gone < CUSTOMER_DRIVE_IN_PLACES * CUSTOMER_SECONDS_PER_PLACE:
+					_drive_in(node, gone)
+				else:
+					_arrivals.erase(cuid)
 		var size: Vector2i = e["size"]
 		_pickables.append({"kind": e["kind"], "uid": e["entry"]["uid"], "node": node,
 			"center": Iso.to_screen(e["h"] + size.x / 2.0, e["v"] + size.y / 2.0),
 			"rotatable": e["kind"] == "item" or (e["kind"] == "car" and e["entry"].get("bay_uid", 0) == 0)})
+	if visiting.is_empty():
+		_seen_customers = seen
+		if not seen.is_empty() and _honk_timer.is_stopped():
+			_honk_timer.start(randf_range(HONK_MIN, HONK_MAX))
 	# Job bubbles float above each busy bay.
 	for bay_uid: int in bays:
 		var job: Dictionary = s["jobs"].get(str(bay_uid), {})
@@ -295,6 +327,23 @@ static func _bay_has_car(s: Dictionary, bay_uid: int) -> bool:
 			if c.get("bay_uid", 0) == bay_uid:
 				return true
 	return false
+
+
+## A newly arrived customer rolls up the street to its place in the queue.
+func _drive_in(node: Node2D, already: float = 0.0) -> void:
+	var target := node.position
+	var total := CUSTOMER_DRIVE_IN_PLACES * CUSTOMER_SECONDS_PER_PLACE
+	var back := Iso.to_screen(-CUSTOMER_SPACING * CUSTOMER_DRIVE_IN_PLACES, 0) - Iso.to_screen(0, 0)
+	node.position = target + back * (1.0 - already / total)
+	var tw := node.create_tween()
+	tw.tween_property(node, "position", target, total - already)
+	tw.tween_callback(func() -> void: Sound.play("CarHornSound03"))
+
+
+func _random_honk() -> void:
+	if visiting.is_empty() and visible and drawn_uids("customer").size() > 0:
+		Sound.play("CarHornSound03")
+	_honk_timer.start(randf_range(HONK_MIN, HONK_MAX))
 
 
 func _on_bay_entry(kind: String, entry: Dictionary, bay: Dictionary, car_size: Array) -> Dictionary:
