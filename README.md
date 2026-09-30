@@ -8,14 +8,16 @@ An unofficial fan remake of **Car Town**, the 2010 Facebook game by Cie Games, a
 
 Early development, Windows first. See [docs/ROADMAP.md](docs/ROADMAP.md) for the plan and [docs/systems-inventory.md](docs/systems-inventory.md) for everything the original game had.
 
-Playable so far:
-- Your garage: decorate it, expand it, change floors and walls
-- The car dealer with the original cars, paint colours and parts
-- Customizing cars: paint, wheels, tires, body kits, wings, hoods, neon, tint, performance upgrades, ride height and plates
-- Work bay jobs on your cars and customers' cars, with real-time timers, mastery and levels
-- Missions and daily missions, and a short tutorial
-- The town map
-- LAN play: host a world or join one on your network, and visit other players' garages
+Playable so far, with the original UI rebuilt screen by screen:
+- Your garage: decorate it in Edit Garage, expand it, change floors and walls
+- Buy Cars with the original cars, colours and parts
+- Customize: any paint colour, wheels, tires, body kits, wings, hoods, neon, tint, the four performance upgrades, ride height and plates
+- Work bay jobs from the Service Menu, customers who drive up to your garage, car tasks, real-time timers, mastery and levels
+- Missions and daily missions, and Roxy's tutorial
+- The GPS and four places in town: Lou's Diner, the Coffee Place, Tony's Pizza and the Drive-In
+- LAN play: host a world or join one on your network, and visit other players' garages from the friend list
+
+Releases go on itch.io, free: see [docs/release.md](docs/release.md).
 
 ## Building
 
@@ -33,7 +35,7 @@ Tests use [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4): run `tools/ru
 | `scripts/rules/` | The game rules (`GameLogic`): prices, jobs, missions, levels. No UI or files. |
 | `scripts/backend/`, `scripts/autoload/backend.gd` | The single interface every game action goes through, with single-player, LAN and (later) online implementations |
 | `scripts/view/` | Garage, car and item rendering |
-| `scripts/ui/` | HUD and panels |
+| `scripts/ui/` | The HUD, popups and screens, rebuilt from the original's UI symbols (`scripts/ui/flash/`) |
 | `data/tuning.json` | Our balance changes on top of the original numbers |
 | `tools/` | Scripts that convert the original files |
 | `tests/` | Unit tests with a small invented catalog |
