@@ -1,6 +1,6 @@
 {
  "start": {
-  "save_version": 5,
+  "save_version": 6,
   "created_at": 1000000,
   "updated_at": 1000000,
   "player": {
@@ -72,6 +72,10 @@
   },
   "visited_locations": [],
   "race": {},
+  "daily_reward": {
+   "last_day": -1,
+   "streak": 0
+  },
   "stats": {}
  },
  "steps": [
@@ -93,7 +97,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -195,6 +199,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1
     }
@@ -215,7 +223,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -317,6 +325,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1
     }
@@ -337,7 +349,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -439,6 +451,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1
     }
@@ -470,7 +486,7 @@
     ]
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000010,
     "player": {
@@ -574,6 +590,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -597,7 +617,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -701,6 +721,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -722,7 +746,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -826,6 +850,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -849,7 +877,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -954,6 +982,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -977,7 +1009,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000021,
     "player": {
@@ -1084,6 +1116,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1107,7 +1143,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000022,
     "player": {
@@ -1212,6 +1248,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1232,7 +1272,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000023,
     "player": {
@@ -1338,6 +1378,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1361,7 +1405,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -1467,6 +1511,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1490,7 +1538,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -1596,6 +1644,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1616,7 +1668,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -1722,6 +1774,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1743,7 +1799,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -1849,6 +1905,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1870,7 +1930,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -1976,6 +2036,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1997,7 +2061,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -2103,6 +2167,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2128,7 +2196,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000050,
     "player": {
@@ -2241,6 +2309,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2264,7 +2336,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000050,
     "player": {
@@ -2377,6 +2449,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2399,7 +2475,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -2512,6 +2588,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2531,7 +2611,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -2639,6 +2719,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2663,7 +2747,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -2776,6 +2860,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2801,7 +2889,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -2916,6 +3004,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2939,7 +3031,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3054,6 +3146,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3079,7 +3175,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3202,6 +3298,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3227,7 +3327,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3357,6 +3457,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3382,7 +3486,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3520,6 +3624,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3543,7 +3651,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3681,6 +3789,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3706,7 +3818,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3851,6 +3963,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3876,7 +3992,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -4028,6 +4144,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4047,7 +4167,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000071,
     "player": {
@@ -4187,6 +4307,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4211,7 +4335,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000072,
     "player": {
@@ -4357,6 +4481,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4386,7 +4514,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000073,
     "player": {
@@ -4504,6 +4632,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4534,7 +4666,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000074,
     "player": {
@@ -4665,6 +4797,10 @@
      "opponent_score": 531,
      "started_at": 1000074
     },
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -4693,7 +4829,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000075,
     "player": {
@@ -4811,6 +4947,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -4844,7 +4984,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000076,
     "player": {
@@ -4975,6 +5115,10 @@
      "opponent_score": 556,
      "started_at": 1000076
     },
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5005,7 +5149,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000077,
     "player": {
@@ -5123,6 +5267,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5148,7 +5296,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000077,
     "player": {
@@ -5266,6 +5414,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5291,7 +5443,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000077,
     "player": {
@@ -5409,6 +5561,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5434,7 +5590,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000078,
     "player": {
@@ -5552,6 +5708,757 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1,
+     "races_started": 2,
+     "race_high_score": 1270,
+     "races_won": 1,
+     "races_lost": 1
+    }
+   }
+  },
+  {
+   "action": "claim_daily_reward",
+   "args": [],
+   "now": 1000079,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "streak": 1,
+     "day": 1,
+     "type": "Point",
+     "id": 0,
+     "amount": 1
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 6,
+    "created_at": 1000000,
+    "updated_at": 1000079,
+    "player": {
+     "name": "Tester",
+     "coins": 4725,
+     "blue": 2,
+     "xp": 25,
+     "level": 1,
+     "fuel": 11,
+     "fuel_at": 1000078
+    },
+    "next_uid": 12,
+    "rng": 1838660464,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      },
+      {
+       "uid": 5,
+       "item_id": 900,
+       "x": 9,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {
+     "950": 1,
+     "1": 2,
+     "2": 2,
+     "293": 1
+    },
+    "part_storage": {
+     "100": 1
+    },
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": 11,
+     "streak": 1
+    },
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1,
+     "races_started": 2,
+     "race_high_score": 1270,
+     "races_won": 1,
+     "races_lost": 1
+    }
+   }
+  },
+  {
+   "action": "claim_daily_reward",
+   "args": [],
+   "now": 1000080,
+   "result": {
+    "ok": false,
+    "error": "You've already collected today's prize.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 6,
+    "created_at": 1000000,
+    "updated_at": 1000079,
+    "player": {
+     "name": "Tester",
+     "coins": 4725,
+     "blue": 2,
+     "xp": 25,
+     "level": 1,
+     "fuel": 11,
+     "fuel_at": 1000078
+    },
+    "next_uid": 12,
+    "rng": 1838660464,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      },
+      {
+       "uid": 5,
+       "item_id": 900,
+       "x": 9,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {
+     "950": 1,
+     "1": 2,
+     "2": 2,
+     "293": 1
+    },
+    "part_storage": {
+     "100": 1
+    },
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": 11,
+     "streak": 1
+    },
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1,
+     "races_started": 2,
+     "race_high_score": 1270,
+     "races_won": 1,
+     "races_lost": 1
+    }
+   }
+  },
+  {
+   "action": "claim_daily_reward",
+   "args": [],
+   "now": 1086479,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "streak": 2,
+     "day": 2,
+     "type": "Coins",
+     "id": 1,
+     "amount": 250
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 6,
+    "created_at": 1000000,
+    "updated_at": 1086479,
+    "player": {
+     "name": "Tester",
+     "coins": 4975,
+     "blue": 2,
+     "xp": 25,
+     "level": 1,
+     "fuel": 11,
+     "fuel_at": 1000078
+    },
+    "next_uid": 12,
+    "rng": 1838660464,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      },
+      {
+       "uid": 5,
+       "item_id": 900,
+       "x": 9,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {
+     "950": 1,
+     "1": 2,
+     "2": 2,
+     "293": 1
+    },
+    "part_storage": {
+     "100": 1
+    },
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": 12,
+     "streak": 2
+    },
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1,
+     "races_started": 2,
+     "race_high_score": 1270,
+     "races_won": 1,
+     "races_lost": 1
+    }
+   }
+  },
+  {
+   "action": "claim_daily_reward",
+   "args": [],
+   "now": 1172879,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "streak": 3,
+     "day": 3,
+     "type": "XP",
+     "id": 0,
+     "amount": 20
+    },
+    "notices": [
+     {
+      "kind": "level_up",
+      "level": 2,
+      "title": "L2",
+      "coins": 500,
+      "blue": 1
+     }
+    ]
+   },
+   "save": {
+    "save_version": 6,
+    "created_at": 1000000,
+    "updated_at": 1172879,
+    "player": {
+     "name": "Tester",
+     "coins": 5475,
+     "blue": 3,
+     "xp": 45,
+     "level": 2,
+     "fuel": 11,
+     "fuel_at": 1000078
+    },
+    "next_uid": 12,
+    "rng": 1838660464,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      },
+      {
+       "uid": 5,
+       "item_id": 900,
+       "x": 9,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {
+     "950": 1,
+     "1": 2,
+     "2": 2,
+     "293": 1
+    },
+    "part_storage": {
+     "100": 1
+    },
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": 13,
+     "streak": 3
+    },
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1,
+     "races_started": 2,
+     "race_high_score": 1270,
+     "races_won": 1,
+     "races_lost": 1
+    }
+   }
+  },
+  {
+   "action": "claim_daily_reward",
+   "args": [],
+   "now": 1432000,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "streak": 1,
+     "day": 1,
+     "type": "Point",
+     "id": 0,
+     "amount": 1
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 6,
+    "created_at": 1000000,
+    "updated_at": 1432000,
+    "player": {
+     "name": "Tester",
+     "coins": 5475,
+     "blue": 4,
+     "xp": 45,
+     "level": 2,
+     "fuel": 11,
+     "fuel_at": 1000078
+    },
+    "next_uid": 12,
+    "rng": 1838660464,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      },
+      {
+       "uid": 5,
+       "item_id": 900,
+       "x": 9,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12
+      },
+      "upgrades": [
+       1,
+       0,
+       1,
+       0
+      ],
+      "ride_height": 3,
+      "plate": "RUSTY 1",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {
+     "950": 1,
+     "1": 2,
+     "2": 2,
+     "293": 1
+    },
+    "part_storage": {
+     "100": 1
+    },
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": 16,
+     "streak": 1
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5575,15 +6482,15 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
-    "updated_at": 1000078,
+    "updated_at": 1432000,
     "player": {
      "name": "Tester",
-     "coins": 4725,
-     "blue": 1,
-     "xp": 25,
-     "level": 1,
+     "coins": 5475,
+     "blue": 4,
+     "xp": 45,
+     "level": 2,
      "fuel": 11,
      "fuel_at": 1000078
     },
@@ -5693,6 +6600,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": 16,
+     "streak": 1
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5719,15 +6630,15 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000090,
     "player": {
      "name": "Tester",
-     "coins": 4725,
-     "blue": 1,
-     "xp": 25,
-     "level": 1,
+     "coins": 5475,
+     "blue": 4,
+     "xp": 45,
+     "level": 2,
      "fuel": 11,
      "fuel_at": 1000078
     },
@@ -5837,6 +6748,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": 16,
+     "streak": 1
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5860,15 +6775,15 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000090,
     "player": {
      "name": "Tester",
-     "coins": 4725,
-     "blue": 1,
-     "xp": 25,
-     "level": 1,
+     "coins": 5475,
+     "blue": 4,
+     "xp": 45,
+     "level": 2,
      "fuel": 11,
      "fuel_at": 1000078
     },
@@ -5978,6 +6893,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": 16,
+     "streak": 1
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6003,15 +6922,15 @@
     "notices": []
    },
    "save": {
-    "save_version": 5,
+    "save_version": 6,
     "created_at": 1000000,
     "updated_at": 1000100,
     "player": {
      "name": "Tester",
-     "coins": 5125,
-     "blue": 1,
-     "xp": 25,
-     "level": 1,
+     "coins": 5875,
+     "blue": 4,
+     "xp": 45,
+     "level": 2,
      "fuel": 11,
      "fuel_at": 1000078
     },
@@ -6099,6 +7018,10 @@
     },
     "visited_locations": [],
     "race": {},
+    "daily_reward": {
+     "last_day": 16,
+     "streak": 1
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,

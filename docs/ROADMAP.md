@@ -116,7 +116,7 @@ Build order: **single-player v1 → LAN → online → feature updates**. Each p
    - Mechanics: start lights, shift timing per gear, perfect shifts, nitrous, fouls, and scoring that uses the car's performance rating.
    - Fuel: level-based tank, timed refill (lighter than the original), and 1 fuel per race. Race rewards come with a daily race limit.
    - This unlocks about 16 more missions.
-2. Daily rewards, car collections (data-driven, cheap)
+2. ~~Daily rewards~~ (done: a prize per day of the login streak, both rule copies, the original popup), car collections (data-driven, cheap)
 3. Road trips (NPC passengers offline, real passengers LAN/online)
 4. Glove box: mail, gifting, stats
 5. Avatar shop

@@ -124,6 +124,8 @@ static func open_result(tree: SceneTree, opponent: Dictionary, result: Dictionar
 	var gfx := FlashUi.make("TownRacingYouWinDialogGraphics" if won else "TownRacingYouLoseDialogGraphics")
 	if gfx == null:
 		return null
+	if not won:
+		_erase_lose_caption(gfx)
 	var mine: String = Backend.state()["player"]["name"]
 	gfx.styled_text("fldTitle", "You Win!" if won else "You Lose!", "casualA01")
 	gfx.styled_text("yourNameField", mine, "casualA01")
@@ -143,3 +145,15 @@ static func open_result(tree: SceneTree, opponent: Dictionary, result: Dictionar
 	ok.pressed.connect(popup.close)
 	popup.closed.connect(on_close)
 	return popup
+
+
+## The lose graphic's background has a leftover "Car Number:" caption baked
+## into its top edge (white, above the panel), which the game never used.
+static func _erase_lose_caption(gfx: FlashSymbol) -> void:
+	for c in gfx.get_children():
+		if c is Sprite2D and (c as Sprite2D).texture != null and (c as Sprite2D).texture.resource_path.ends_with("trlose_26_0_0.png"):
+			var img := (c as Sprite2D).texture.get_image()
+			img.convert(Image.FORMAT_RGBA8)
+			img.fill_rect(Rect2i(360, 0, 90, 14), Color(0, 0, 0, 0))
+			(c as Sprite2D).texture = ImageTexture.create_from_image(img)
+			return

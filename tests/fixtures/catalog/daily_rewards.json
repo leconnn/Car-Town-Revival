@@ -1,0 +1,44 @@
+[
+ {
+  "day": 1,
+  "type": "Point",
+  "id": 0,
+  "amount": 1
+ },
+ {
+  "day": 2,
+  "type": "Coins",
+  "id": 1,
+  "amount": 250
+ },
+ {
+  "day": 3,
+  "type": "XP",
+  "id": 0,
+  "amount": 20
+ },
+ {
+  "day": 4,
+  "type": "Item",
+  "id": 900,
+  "amount": 1
+ },
+ {
+  "day": 5,
+  "type": "Car",
+  "id": 1,
+  "amount": 1
+ },
+ {
+  "day": 6,
+  "type": "Petrol",
+  "id": 0,
+  "amount": 3
+ },
+ {
+  "day": 7,
+  "type": "TournamentItem",
+  "id": 2,
+  "amount": 1
+ }
+]

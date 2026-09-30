@@ -148,5 +148,9 @@
       5,
       6
     ]
+  },
+  "daily_rewards": {
+    "_about": "Prizes the remake can't give yet (tournament items, tokens, car build parts) are paid as coins instead.",
+    "fallback_coins": 250
   }
 }

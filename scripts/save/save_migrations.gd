@@ -42,6 +42,8 @@ static func _step(version: int, data: Dictionary) -> Dictionary:
 			return _v3_to_v4(data)
 		4:
 			return _v4_to_v5(data)
+		5:
+			return _v5_to_v6(data)
 		_:
 			return {}
 
@@ -78,4 +80,10 @@ static func _v3_to_v4(data: Dictionary) -> Dictionary:
 ## the rules, which know the tank size) and the race being run.
 static func _v4_to_v5(data: Dictionary) -> Dictionary:
 	data["race"] = {}
+	return data
+
+
+## v6 added the daily login reward (last day claimed and the streak).
+static func _v5_to_v6(data: Dictionary) -> Dictionary:
+	data["daily_reward"] = {"last_day": -1, "streak": 0}
 	return data

@@ -18,7 +18,9 @@ func _ready() -> void:
 		["start_job", [1, 4], t0 + 7200], ["collect_job", [1], t0 + 7600], ["open_gps", [], t0 + 7600],
 		["visit_location", [9], t0 + 7600],
 		["start_race", [9, 0, 3], t0 + 7700], ["finish_race", [700, 1, false], t0 + 7730],
-		["start_race", [7, 2, 3], t0 + 7800], ["finish_race", [100, 0, true], t0 + 7830], ["buy_fuel", [4], t0 + 7900], ["expand_land", [false], t0 + 86400 * 3], ["tick", [], t0 + 86400 * 3],
+		["start_race", [7, 2, 3], t0 + 7800], ["finish_race", [100, 0, true], t0 + 7830], ["buy_fuel", [4], t0 + 7900],
+		["claim_daily_reward", [], t0 + 8000], ["claim_daily_reward", [], t0 + 8001], ["claim_daily_reward", [], t0 + 86400 * 4 + 8000],
+		["claim_daily_reward", [], t0 + 86400 * 5 + 8000], ["expand_land", [false], t0 + 86400 * 3], ["tick", [], t0 + 86400 * 3],
 	]
 	var logic := GameLogic.new(GameData.catalog, GameLogic.new_save(GameData.catalog, "Real", t0))
 	var start := logic.save.duplicate(true)

@@ -27,10 +27,17 @@ export function migrate(save: Dict): Dict | null {
     else if (v === 2) out = v2ToV3(out);
     else if (v === 3) out = v3ToV4(out);
     else if (v === 4) out = v4ToV5(out);
+    else if (v === 5) out = v5ToV6(out);
     else return null;
     out.save_version = v + 1;
   }
   return out;
+}
+
+/** v6 added the daily login reward. */
+function v5ToV6(save: Dict): Dict {
+  save.daily_reward = { last_day: -1, streak: 0 };
+  return save;
 }
 
 /** v5 added street racing (fuel is filled in by the rules on first load). */

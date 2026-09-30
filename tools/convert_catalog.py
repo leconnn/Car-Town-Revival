@@ -428,7 +428,12 @@ def convert(catalog_xml: str, ctx: Ctx) -> dict[str, object]:
         for c in sec["ccls"]
     ]
 
-    out["daily_rewards"] = [dict(c.attrib) for c in sec["dr"]]
+    # One prize per day of the login streak (DailyRewardsDataSet); the
+    # streak runs through them in order and starts over after the last.
+    out["daily_rewards"] = [
+        {"day": i(c, "d"), "type": c.get("t", ""), "id": i(c, "id"), "amount": i(c, "q")}
+        for c in sorted(sec["dr"], key=lambda x: int(x.get("d", "0")))
+    ]
 
     out["avatar_items"] = [
         {"id": i(c, "id"), "type": i(c, "t"), "group_id": i(c, "gid"), "name": ctx.text(c.get("n")), **shop_fields(c), "raw": dict(c.attrib)}

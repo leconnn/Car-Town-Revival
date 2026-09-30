@@ -76,3 +76,13 @@ func test_v4_to_v5_adds_racing_and_a_full_tank() -> void:
 	assert_int(logic.fuel(TestEnv.NOW)).is_equal(logic.fuel_tank())
 	assert_bool(logic.tick(TestEnv.NOW).ok).is_true()
 	assert_int(out["player"]["fuel"]).is_equal(logic.fuel_tank())
+
+
+func test_v5_to_v6_adds_the_daily_reward() -> void:
+	var raw: Variant = JsonUtil.read_file("res://tests/fixtures/saves/v5.json")
+	assert_int(raw["save_version"]).is_equal(5)
+	var out := SaveMigrations.migrate(raw)
+	assert_int(out["save_version"]).is_equal(GameLogic.CURRENT_SAVE_VERSION)
+	assert_int(out["daily_reward"]["last_day"]).is_equal(-1)
+	var logic := GameLogic.new(TestEnv.catalog(), out)
+	assert_bool(logic.daily_reward_status(TestEnv.NOW)["available"]).is_true()

@@ -46,6 +46,7 @@ static func attach(game_node: Node) -> void:
 
 func _ready() -> void:
 	super()
+	add_to_group("tutorial")
 	_guide = GuidePopup.new()
 	center.add_child(_guide)
 	_name = Backend.state()["player"]["name"]

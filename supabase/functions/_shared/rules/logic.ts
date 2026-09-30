@@ -8,7 +8,7 @@ import {
 import { MissionTracker } from "./missions.ts";
 import { key, posmod, roundi, SimpleRng } from "./util.ts";
 
-export const CURRENT_SAVE_VERSION = 5;
+export const CURRENT_SAVE_VERSION = 6;
 
 export class GameResult {
   ok = true;
@@ -83,6 +83,7 @@ export class GameLogic {
       tutorial: { step: 0, done: false },
       visited_locations: [],
       race: {},
+      daily_reward: { last_day: -1, streak: 0 },
       stats: {},
     };
     const logic = new GameLogic(cat, s);
@@ -1134,6 +1135,65 @@ export class GameLogic {
     const result = GameResult.success();
     this.emit("WENT_TO_LOCATION", locationId, now, result);
     return result;
+  }
+
+  // --- Daily rewards ----------------------------------------------------------------------
+
+  private dayNumber(now: number): number {
+    return Math.trunc(now / 86400);
+  }
+
+  daily_reward_status(now: number): Dict {
+    const list = this.catalog.dailyRewards;
+    if (list.length === 0) return { available: false };
+    const d = this.save.daily_reward;
+    const today = this.dayNumber(now);
+    let streak: number = d.last_day !== today - 1 ? 1 : Math.trunc(d.streak) + 1;
+    if (d.last_day === today) streak = Math.trunc(d.streak);
+    const index = (streak - 1) % list.length;
+    return { available: d.last_day !== today, streak, day: index + 1, reward: list[index], next_reward: list[(index + 1) % list.length] };
+  }
+
+  claim_daily_reward(now: number): GameResult {
+    const status = this.daily_reward_status(now);
+    if (!status.available) return GameResult.fail("You've already collected today's prize.");
+    const reward: Dict = status.reward;
+    const d = this.save.daily_reward;
+    d.last_day = this.dayNumber(now);
+    d.streak = status.streak;
+    const result = GameResult.success({ streak: status.streak, day: status.day, type: reward.type, id: reward.id, amount: reward.amount });
+    const amount: number = reward.amount;
+    switch (reward.type) {
+      case "Point":
+        this.addRewards(0, amount, 0, result);
+        break;
+      case "Coins":
+        this.addRewards(amount, 0, 0, result);
+        break;
+      case "XP":
+        this.addRewards(0, 0, amount, result);
+        break;
+      case "Petrol":
+        this.refillFuel(now);
+        this.player.fuel = Math.trunc(this.player.fuel) + amount;
+        break;
+      case "Item":
+      case "Car": {
+        const given = this.giveReward(reward.type, reward.id);
+        if (Object.keys(given).length === 0) this.dailyFallback(result);
+        break;
+      }
+      default:
+        this.dailyFallback(result);
+    }
+    return result;
+  }
+
+  private dailyFallback(result: GameResult): void {
+    const coins: number = this.catalog.tune("daily_rewards.fallback_coins", 250);
+    this.addRewards(coins, 0, 0, result);
+    result.data.type = "Coins";
+    result.data.amount = coins;
   }
 
   // --- Street racing and fuel -------------------------------------------------------------

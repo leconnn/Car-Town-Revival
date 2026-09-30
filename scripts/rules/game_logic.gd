@@ -7,7 +7,7 @@ extends RefCounted
 ## or the UI. Every action takes [param now] (unix seconds) from the caller so
 ## timers can use a trusted clock.
 
-const CURRENT_SAVE_VERSION := 5
+const CURRENT_SAVE_VERSION := 6
 
 var catalog: Catalog
 var save: Dictionary
@@ -63,6 +63,7 @@ static func new_save(cat: Catalog, player_name: String, now: int) -> Dictionary:
 		"tutorial": {"step": 0, "done": false},
 		"visited_locations": [],
 		"race": {},
+		"daily_reward": {"last_day": -1, "streak": 0},
 		"stats": {},
 	}
 	var logic := GameLogic.new(cat, s)
@@ -1343,6 +1344,71 @@ func visit_location(location_id: int, now: int) -> GameResult:
 	var result := GameResult.success()
 	_emit("WENT_TO_LOCATION", location_id, now, result)
 	return result
+
+
+# --- Daily rewards ----------------------------------------------------------------------
+# Log in on consecutive days for a prize each day (DailyRewardsPopup): the
+# streak walks through the catalog's list, day by day, and starts again
+# after the last. Miss a day and the streak restarts at day 1.
+
+func _day_number(now: int) -> int:
+	return now / 86400
+
+
+## What claiming would do today: {available, streak, day, reward, next_reward}.
+## [param streak] is the day of the list you'd be on; [param next_reward]
+## what tomorrow holds.
+func daily_reward_status(now: int) -> Dictionary:
+	var list := catalog.daily_rewards
+	if list.is_empty():
+		return {"available": false}
+	var d: Dictionary = save["daily_reward"]
+	var today := _day_number(now)
+	var streak: int = 1 if d["last_day"] != today - 1 else int(d["streak"]) + 1
+	if d["last_day"] == today:
+		streak = int(d["streak"])
+	var index := (streak - 1) % list.size()
+	return {"available": d["last_day"] != today, "streak": streak, "day": index + 1,
+		"reward": list[index], "next_reward": list[(index + 1) % list.size()]}
+
+
+## Takes today's prize. Returns {streak, day, type, id, amount} of what was given.
+func claim_daily_reward(now: int) -> GameResult:
+	var status := daily_reward_status(now)
+	if not status.get("available", false):
+		return GameResult.fail("You've already collected today's prize.")
+	var reward: Dictionary = status["reward"]
+	var d: Dictionary = save["daily_reward"]
+	d["last_day"] = _day_number(now)
+	d["streak"] = status["streak"]
+	var result := GameResult.success({"streak": status["streak"], "day": status["day"],
+		"type": reward["type"], "id": reward["id"], "amount": reward["amount"]})
+	var amount: int = reward["amount"]
+	match reward["type"]:
+		"Point":
+			add_rewards(0, amount, 0, result)
+		"Coins":
+			add_rewards(amount, 0, 0, result)
+		"XP":
+			add_rewards(0, 0, amount, result)
+		"Petrol":
+			_refill_fuel(now)
+			_player()["fuel"] = int(_player()["fuel"]) + amount
+		"Item", "Car":
+			var given := _give_reward(reward["type"], reward["id"])
+			if given.is_empty():
+				_daily_fallback(result)
+		_:
+			_daily_fallback(result)
+	return result
+
+
+## Prizes this version can't give are paid in coins.
+func _daily_fallback(result: GameResult) -> void:
+	var coins: int = catalog.tune("daily_rewards.fallback_coins", 250)
+	add_rewards(coins, 0, 0, result)
+	result.data["type"] = "Coins"
+	result.data["amount"] = coins
 
 
 # --- Street racing and fuel -------------------------------------------------------------

@@ -62,6 +62,12 @@ static func all() -> Dictionary:
 			["finish_race", [10, 0, false], T0 + 77],
 			["start_race", [14, 0, 2], T0 + 78],
 			["buy_fuel", [3], T0 + 78],
+			# Daily rewards: a streak over three days, a repeat, then a gap.
+			["claim_daily_reward", [], T0 + 79],
+			["claim_daily_reward", [], T0 + 80],
+			["claim_daily_reward", [], T0 + 86400 + 79],
+			["claim_daily_reward", [], T0 + 2 * 86400 + 79],
+			["claim_daily_reward", [], T0 + 5 * 86400],
 			["expand_land", [false], T0 + 80],
 			["move_car", [2, 6, 6, 1], T0 + 90],
 			["store_car", [2], T0 + 90],

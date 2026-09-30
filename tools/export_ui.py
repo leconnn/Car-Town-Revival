@@ -51,7 +51,7 @@ FFDEC = ROOT / "_reference" / "tools" / "ffdec" / "ffdec-cli.jar"
 STAGE = ROOT / "_reference" / "ui_stage"
 OUT = ROOT / "assets" / "ea" / "ui"
 HALF = 900  # px each side of the origin
-MAX_FRAMES = 40
+MAX_FRAMES = 100
 # Classes that aren't UI (handled by other exporters or not needed).
 SKIP_PREFIXES = ("swcassets.bmd.", "swcassets.sound.", "swcassets.tire.", "swcassets.car.")
 
@@ -73,6 +73,7 @@ LIBS: dict[str, str] = {
     "trlose": "static/townracing/town_racing_you_lose_dialog.swf",
     "trbuyfuel": "static/townracing/town_racing_buy_fuel_dialog.swf",
     "trfuelask": "static/townracing/town_racing_ask_for_fuel.swf",
+    "dailyrewards": "static/gamepopups/DailyRewardsPopupV2.swf",
     "trbottom": "static/townracing/racing_view_bottom_panel.swf",
     "clearfloor": "static/gamepopups/ClearGarageFloorPopup.swf",
     "newui": "static/gamepopups/NewUIPopup.swf",

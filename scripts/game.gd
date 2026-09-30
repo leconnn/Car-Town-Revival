@@ -56,6 +56,9 @@ func _ready() -> void:
 	Backend.action_failed.connect(func(_m: String) -> void: Sound.play("ActionDeniedSound"))
 	Sound.music("mainLoop")
 	Tutorial.attach(self)
+	var dev_args := OS.get_cmdline_user_args()
+	if not (dev_args.has("no_daily") or dev_args.has("no_tutorial") or dev_args.has("tutorial_autoplay")):
+		_offer_daily_reward.call_deferred()
 	_dev_open.call_deferred()
 	DevShot.maybe_capture(self)
 
@@ -74,6 +77,13 @@ var tutorial_filter: Callable
 ## HUD buttons that still work during the tutorial (the original's
 ## "message generating" controls).
 const TUTORIAL_FREE_ACTIONS := ["zoom_in", "zoom_out", "sound", "music", "fullscreen", "quality"]
+
+
+## The daily bonus, once the tutorial is out of the way.
+func _offer_daily_reward() -> void:
+	while tutorial_filter.is_valid() or get_tree().get_first_node_in_group("tutorial") != null:
+		await get_tree().create_timer(2.0).timeout
+	await DailyRewardsPopup.open_if_due(get_tree())
 
 
 func add_tutorial(tut: Node) -> void:
@@ -732,6 +742,12 @@ func _dev_open() -> void:
 		match a.trim_prefix("open="):
 			"bay": _open_work_bay(bay)
 			"credits": MenuPopup.open_credits(get_tree())
+			"daily", "daily3":
+				var due := a.ends_with("daily3")
+				if due:
+					# Pretend it's the third day of a streak.
+					Backend.state()["daily_reward"] = {"last_day": Backend.now() / 86400 - 1, "streak": 2}
+				DailyRewardsPopup.open_if_due(get_tree())
 			"race_hit":
 				await Backend.visit_location(9)
 				show_location(9)
