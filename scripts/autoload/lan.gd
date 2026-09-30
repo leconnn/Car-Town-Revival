@@ -23,7 +23,7 @@ enum Role { NONE, HOST, GUEST }
 var role := Role.NONE
 ## Discovered hosts: "ip:port" -> {"world", "host", "version", "players", "ip", "port", "seen"}
 var found_hosts: Dictionary[String, Dictionary] = {}
-## Everyone in the session: [{"id", "name", "level", "online"}]
+## Everyone in the session: [{"id", "name", "level", "gv", "online", "host"}]
 var players: Array[Dictionary] = []
 var world_name := ""
 
@@ -123,11 +123,12 @@ func host_act(player_id: String, action: String, args: Array) -> GameResult:
 		return GameResult.fail("Unknown player.")
 	var logic: GameLogic = _logics[player_id]
 	var level_before: int = logic.save["player"]["level"]
+	var gv_before := logic.garage_value()
 	var result := BackendImpl.run_on(logic, action, args, int(Time.get_unix_time_from_system()))
 	if result.ok and (action != "tick" or result.data.get("arrived", 0) > 0):
 		_world["updated_at"] = int(Time.get_unix_time_from_system())
 		_save_world()
-	if logic.save["player"]["level"] != level_before:
+	if logic.save["player"]["level"] != level_before or logic.garage_value() != gv_before:
 		_refresh_players()
 	return result
 
@@ -231,7 +232,9 @@ func _refresh_players() -> void:
 		online[pid] = true
 	for pid: String in _world.get("players", {}):
 		var p: Dictionary = _world["players"][pid]["player"]
-		list.append({"id": pid, "name": p["name"], "level": p["level"], "online": online.has(pid), "host": pid == _host_id})
+		var gv: int = _logics[pid].garage_value() if _logics.has(pid) else 0
+		list.append({"id": pid, "name": p["name"], "level": p["level"], "gv": gv,
+			"online": online.has(pid), "host": pid == _host_id})
 	players = list
 	players_changed.emit()
 	if role == Role.HOST and not _peer_players.is_empty():

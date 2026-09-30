@@ -174,7 +174,7 @@ func _make_tile(i: int) -> Node2D:
 	var blue_only: bool = not c["can_buy_with_coins"]
 	var price: int = c["blue_price"] if blue_only else c["price"]
 	var thumb := CarView.new()
-	thumb.setup(CarPreviewBox.stock_entry(id, _first_color(id)), CarView.VIEW_ANGLE, false)
+	thumb.setup(CarView.stock_entry(id, _first_color(id)), CarView.VIEW_ANGLE, false)
 	thumb.scale = Vector2(THUMB_SCALE, THUMB_SCALE)
 	thumb.position = Vector2(0, 150 * THUMB_SCALE - 6)
 	# BuyCarItem turns StoreItem's red "can't afford" background off.
@@ -202,7 +202,7 @@ func show_car(car_id: int, color_id: int = -1) -> void:
 	var p: Dictionary = Backend.state()["player"]
 
 	var view := CarView.new()
-	view.setup(CarPreviewBox.stock_entry(car_id, _color_id), CarView.VIEW_ANGLE, false)
+	view.setup(CarView.stock_entry(car_id, _color_id), CarView.VIEW_ANGLE, false)
 	view.position = Vector2(200, 390)
 	_details.add_child(view)
 

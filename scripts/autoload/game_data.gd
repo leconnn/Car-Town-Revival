@@ -13,6 +13,8 @@ var item_art: Dictionary = {}
 var wheel_art: Dictionary = {}
 ## GPS icons and town location layers (tools/export_art.py "town").
 var town_art: Dictionary = {}
+## UI art the original loaded at runtime from static/ui ("static_ui").
+var static_ui_art: Dictionary = {}
 
 var _texture_cache: Dictionary[String, Texture2D] = {}
 
@@ -27,6 +29,7 @@ func _ready() -> void:
 	item_art = _read_manifest("items")
 	wheel_art = _read_manifest("wheels")
 	town_art = _read_manifest("town")
+	static_ui_art = _read_manifest("static_ui")
 	# Only cars with a body in every view can be drawn everywhere.
 	for key: String in car_art:
 		var views: Dictionary = car_art[key].get("views", {})

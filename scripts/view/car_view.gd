@@ -58,6 +58,17 @@ var _paint := Color.RED
 var _materials: Array[ShaderMaterial] = []
 
 
+## A factory car as the dealer shows it: stock parts, no upgrades.
+static func stock_entry(car_id: int, color_id: int) -> Dictionary:
+	var entry := {"car_id": car_id, "color_id": color_id, "parts": {}, "ride_height": 0}
+	var defaults: Dictionary = GameData.catalog.car(car_id).get("defaults", {})
+	for key: String in defaults:
+		var p: Dictionary = GameData.catalog.part(defaults[key])
+		if not p.is_empty():
+			entry["parts"][str(p["category_id"])] = p["id"]
+	return entry
+
+
 ## Builds the drawing. [param car_entry] is a save car (or customer) entry.
 func setup(car_entry: Dictionary, view_name: String, mirror: bool) -> void:
 	car = car_entry

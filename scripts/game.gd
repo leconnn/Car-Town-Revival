@@ -15,8 +15,6 @@ var notices: RewardPopups
 var edit_mode := false
 
 var _ui: CanvasLayer
-var _panel_host: Control
-var _panel: GamePanel
 var _placement: Placement
 var _edit_tray: EditGarageTray
 var _moving: Dictionary = {}
@@ -43,10 +41,6 @@ func _ready() -> void:
 	hud = ShellHud.new()
 	hud.action.connect(_on_hud_action)
 	_ui.add_child(hud)
-	_panel_host = Control.new()
-	UiKit.place(_panel_host, Rect2(0, 0, 1, 1))
-	_panel_host.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_ui.add_child(_panel_host)
 	toasts = Toasts.new()
 	_ui.add_child(toasts)
 	notices = RewardPopups.new()
@@ -54,6 +48,7 @@ func _ready() -> void:
 	Backend.notice.connect(notices.push)
 	Backend.action_failed.connect(func(msg: String) -> void: toasts.show_message(msg, true))
 	Backend.session_ended.connect(_on_session_ended)
+	Lan.garage_received.connect(_on_garage_received)
 	Backend.action_done.connect(_on_action_done)
 	Backend.notice.connect(_on_notice_sound)
 	Backend.action_failed.connect(func(_m: String) -> void: Sound.play("ActionDeniedSound"))
@@ -81,7 +76,7 @@ const TUTORIAL_FREE_ACTIONS := ["zoom_in", "zoom_out", "sound", "music", "fullsc
 
 func add_tutorial(tut: Node) -> void:
 	_ui.add_child(tut)
-	_ui.move_child(tut, _panel_host.get_index())
+	_ui.move_child(tut, toasts.get_index())
 
 
 ## Glides the camera to [param world_pos] (the tutorial's ScrollMapProcess).
@@ -93,20 +88,7 @@ func focus_camera(world_pos: Vector2, zoom: float = -1.0, seconds: float = 1.0) 
 	await tw.finished
 
 
-# --- Panels ----------------------------------------------------------------------
-
-func open_panel(panel: GamePanel, side: bool = false) -> void:
-	close_panel()
-	_panel = panel
-	if side:
-		UiKit.place(panel, Rect2(1, 0, 1, 1), Rect2(-580, 80, -12, -84))
-	else:
-		UiKit.place(panel, Rect2(0, 0, 1, 1), Rect2(110, 80, -110, -84))
-	_panel_host.add_child(panel)
-	panel.closed.connect(func() -> void:
-		if _panel == panel:
-			_panel = null)
-
+# --- Screens ---------------------------------------------------------------------
 
 ## Full-screen views like Buy Cars: drawn under the HUD, which shrinks to the
 ## gauge and balance while one is open.
@@ -114,7 +96,6 @@ var _screen: Node
 
 
 func open_screen(screen: Node) -> void:
-	close_panel()
 	if _screen != null and is_instance_valid(_screen):
 		_screen.queue_free()
 	_screen = screen
@@ -127,12 +108,6 @@ func open_screen(screen: Node) -> void:
 			hud.set_screen_mode(false))
 
 
-func close_panel() -> void:
-	if _panel != null and is_instance_valid(_panel):
-		_panel.queue_free()
-	_panel = null
-
-
 func _on_hud_action(name: String) -> void:
 	if tutorial_filter.is_valid() and not TUTORIAL_FREE_ACTIONS.has(name):
 		Sound.play("ActionDeniedSound")
@@ -140,16 +115,21 @@ func _on_hud_action(name: String) -> void:
 	if name.begins_with("missions:"):
 		_open_missions(int(name.trim_prefix("missions:")))
 		return
+	if name.begins_with("visit:"):
+		Lan.request_garage(name.trim_prefix("visit:"))
+		return
 	cancel_placement()
+	# Shopping and decorating happen at home.
+	if name in ["dealer", "shop", "edit"] and is_away():
+		leave_location()
+		go_home()
 	match name:
 		"dealer": open_screen(BuyCarScreen.new())
 		"shop": set_edit_mode(true)
 		"edit": set_edit_mode(not edit_mode)
-		"cars": open_panel(CarsPanel.new(self), true)
 		"town": _open_gps()
 		"missions": _open_missions(-1)
-		"menu": open_panel(MenuPanel.new())
-		"players": open_panel(PlayersPanel.new(self), true)
+		"menu": MenuPopup.open(get_tree())
 		"docks", "glovebox": toasts.show_message("That arrives in a later update.")
 		"zoom_in": _zoom_step(1)
 		"zoom_out": _zoom_step(-1)
@@ -257,14 +237,7 @@ func _open_car_options(car_uid: int) -> void:
 		customize_opened.emit()
 		open_screen(CustomizeScreen.create(car_uid)))
 	content.sell_pressed.connect(func() -> void:
-		var car := Backend.query().get_car(car_uid)
-		var refund: int = floori(GameData.catalog.car(car["car_id"])["price"] * float(GameData.catalog.tune("economy.resell_fraction", 0.1)))
-		ConfirmBox.ask(self, "Sell your %s for %s coins?" % [GameData.car_name(car["car_id"]), Format.number(refund)],
-			func() -> void:
-				var r: GameResult = await Backend.sell_car(car_uid)
-				if r.ok:
-					popup.close()
-					toasts.show_message("Sold for %s coins." % Format.number(r.data["coins"]))))
+		_ask_sell_car(car_uid, func() -> void: popup.close()))
 	content.start_task.connect(func(job_id: int) -> void:
 		var r: GameResult = await Backend.start_car_task(car_uid, job_id)
 		if r.ok:
@@ -280,9 +253,8 @@ func _car_task_clicked(car_uid: int) -> void:
 	if task.is_empty():
 		return
 	if Backend.now() >= task["ends_at"]:
-		var r: GameResult = await Backend.collect_car_task(car_uid)
-		if r.ok:
-			toasts.show_message("+%s coins  +%d XP" % [Format.number(r.data["coins"]), r.data["xp"]])
+		var at: Variant = garage.callout_position(car_uid)
+		_show_collected(at, await Backend.collect_car_task(car_uid))
 		return
 	var w := WorkPopup.open_car(get_tree(), car_uid)
 	if w == null:
@@ -291,13 +263,11 @@ func _car_task_clicked(car_uid: int) -> void:
 		w.close()
 		await Backend.stop_car_task(car_uid))
 	w.finish_pressed.connect(func() -> void:
+		var at: Variant = garage.callout_position(car_uid)
 		var r: GameResult = await Backend.finish_car_task_now(car_uid)
-		if not r.ok:
-			toasts.show_message(r.error, true)
-			Sound.play("ActionDeniedSound")
-			return
-		w.close()
-		toasts.show_message("+%s coins  +%d XP" % [Format.number(r.data["coins"]), r.data["xp"]]))
+		if r.ok:
+			w.close()
+			_show_collected(at, r))
 
 
 func _open_missions(mission_id: int) -> void:
@@ -308,7 +278,7 @@ func _open_missions(mission_id: int) -> void:
 ## The GPS: pick a place in town, or drive home.
 func _open_gps() -> void:
 	Backend.open_gps()
-	var gps := GpsPopup.create(location_view.visible)
+	var gps := GpsPopup.create(is_away())
 	var popup := FlashPopup.open(get_tree(), gps, true, false, GpsPopup.FRAME_SIZE)
 	gps.location_chosen.connect(func(loc_id: int) -> void:
 		popup.close()
@@ -317,7 +287,8 @@ func _open_gps() -> void:
 			show_location(loc_id))
 	gps.home_pressed.connect(func() -> void:
 		popup.close()
-		leave_location())
+		leave_location()
+		go_home())
 	gps.buy_cars_pressed.connect(func() -> void:
 		popup.close()
 		open_screen(BuyCarScreen.new()))
@@ -325,8 +296,8 @@ func _open_gps() -> void:
 
 ## Drives to a place in town (TownRacingEvent.VISIT_TOWN_LOCATION).
 func show_location(loc_id: int) -> void:
+	go_home()
 	cancel_placement()
-	close_panel()
 	set_edit_mode(false)
 	location_view.show_location(loc_id)
 	location_view.visible = true
@@ -375,14 +346,24 @@ func _free_bay() -> int:
 func _bay_clicked(bay_uid: int) -> void:
 	var job: Dictionary = Backend.state()["jobs"].get(str(bay_uid), {})
 	if not job.is_empty() and Backend.now() >= job["ends_at"]:
-		var r: GameResult = await Backend.collect_job(bay_uid)
-		if r.ok:
-			toasts.show_message("+%s coins  +%d XP" % [Format.number(r.data["coins"]), r.data["xp"]])
+		var at: Variant = garage.callout_position(bay_uid)
+		_show_collected(at, await Backend.collect_job(bay_uid))
 		return
 	if not job.is_empty():
 		_open_work(bay_uid)
 		return
-	open_panel(BayPanel.new(bay_uid, self), true)
+	_open_work_bay(bay_uid)
+
+
+## The work bay menu on an empty lift: pick a job to start.
+func _open_work_bay(bay_uid: int) -> void:
+	var content := WorkBayPopup.create(bay_uid)
+	var popup := FlashPopup.open(get_tree(), content, true, false, WorkBayPopup.POPUP_SIZE)
+	popup_opened.emit("work_bay", content)
+	content.start_task.connect(func(job_id: int) -> void:
+		var r: GameResult = await Backend.start_job(bay_uid, job_id)
+		if r.ok:
+			popup.close())
 
 
 ## The Work in Progress popup for a busy bay.
@@ -394,13 +375,17 @@ func _open_work(bay_uid: int) -> void:
 		w.close()
 		await Backend.stop_job(bay_uid))
 	w.finish_pressed.connect(func() -> void:
+		var at: Variant = garage.callout_position(bay_uid)
 		var r: GameResult = await Backend.finish_job_now(bay_uid)
-		if not r.ok:
-			toasts.show_message(r.error, true)
-			Sound.play("ActionDeniedSound")
-			return
-		w.close()
-		toasts.show_message("+%s coins  +%d XP" % [Format.number(r.data["coins"]), r.data["xp"]]))
+		if r.ok:
+			w.close()
+			_show_collected(at, r))
+
+
+## What a collected job paid, floating up from where its callout was.
+func _show_collected(at: Variant, r: GameResult) -> void:
+	if r.ok and at != null:
+		CollectMoney.spawn(garage.effects_layer(), at, r.data.get("coins", 0), r.data.get("xp", 0))
 
 
 func _item_entry(uid: int) -> Dictionary:
@@ -438,7 +423,6 @@ func move_item(item_uid: int) -> void:
 
 func _start_placement(kind: String, entry: Dictionary, rot: int, ignore: String, on_confirm: Callable, hold: bool = false) -> void:
 	cancel_placement()
-	close_panel()
 	var placement := Placement.new()
 	_placement = placement
 	placement.hold_on_confirm = hold
@@ -475,7 +459,6 @@ func set_edit_mode(on: bool) -> void:
 	garage.show_grid(on)
 	if not on:
 		return
-	close_panel()
 	_edit_tray = EditGarageTray.new()
 	_ui.add_child(_edit_tray)
 	_ui.move_child(_edit_tray, 0)
@@ -539,12 +522,22 @@ func _on_dropped_on_tray(sell: bool) -> void:
 	if moving["kind"] == "item":
 		var entry := _item_entry(moving["uid"])
 		var it: Dictionary = GameData.catalog.item(entry.get("item_id", 0))
-		ConfirmBox.ask(self, "Sell your %s?" % it.get("name", "item"), func() -> void:
-			await Backend.sell_item(moving["uid"]))
+		var refund: int = floori(it.get("price", 0) * float(GameData.catalog.tune("economy.item_resell_fraction", 0.5)))
+		GenericPopup.ask(get_tree(), "Sell Item", "Sell your %s for %s coins?" % [it.get("name", "item"), Format.number(refund)],
+			"Sell", func() -> void: await Backend.sell_item(moving["uid"]))
 	else:
-		var car := Backend.query().get_car(moving["uid"])
-		ConfirmBox.ask(self, "Sell your %s?" % GameData.car_name(car.get("car_id", 0)), func() -> void:
-			await Backend.sell_car(moving["uid"]))
+		_ask_sell_car(moving["uid"], func() -> void: pass)
+
+
+## "Sell your car for N coins?"; [param after] runs once it's sold.
+func _ask_sell_car(car_uid: int, after: Callable) -> void:
+	var car := Backend.query().get_car(car_uid)
+	var refund: int = floori(GameData.catalog.car(car["car_id"])["price"] * float(GameData.catalog.tune("economy.resell_fraction", 0.1)))
+	GenericPopup.ask(get_tree(), "Sell Car", "Sell your %s for %s coins?" % [GameData.car_name(car["car_id"]), Format.number(refund)],
+		"Sell", func() -> void:
+			var r: GameResult = await Backend.sell_car(car_uid)
+			if r.ok:
+				after.call())
 
 
 # --- Camera ---------------------------------------------------------------------------
@@ -608,32 +601,34 @@ func _on_session_ended(reason: String) -> void:
 
 # --- Visiting (LAN) ---------------------------------------------------------------
 
-var _visit_bar: Control
+## True while in town or in someone else's garage.
+func is_away() -> bool:
+	return location_view.visible or not garage.visiting.is_empty()
 
 
+func _on_garage_received(_player_id: String, player_state: Dictionary) -> void:
+	if player_state.is_empty():
+		toasts.show_message("Couldn't load that garage.", true)
+		return
+	visit_garage(player_state)
+
+
+## Looks around a friend's garage (the friend list); the GPS brings you home.
 func visit_garage(player_state: Dictionary) -> void:
-	close_panel()
+	cancel_placement()
+	set_edit_mode(false)
+	leave_location()
 	garage.visit(player_state)
-	hud.visible = false
-	if _visit_bar != null:
-		_visit_bar.queue_free()
-	var panel := PanelContainer.new()
-	UiKit.place(panel, Rect2(0.5, 0, 0.5, 0), Rect2(0, 12, 0, 12))
-	panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	var row := UiKit.hbox(14)
-	row.add_child(UiKit.label("Visiting %s's garage (level %d)" % [player_state["player"]["name"], player_state["player"]["level"]], 20))
-	row.add_child(UiKit.button("Back to my garage", go_home))
-	panel.add_child(row)
-	_ui.add_child(panel)
-	_visit_bar = panel
+	hud.set_location("%s's Garage" % player_state["player"]["name"], false)
+	camera.position = garage.center_screen_position() + Vector2(0, 90)
 
 
 func go_home() -> void:
+	if garage.visiting.is_empty():
+		return
 	garage.go_home()
-	hud.visible = true
-	if _visit_bar != null:
-		_visit_bar.queue_free()
-		_visit_bar = null
+	hud.set_location("My Garage", true)
+	camera.position = garage.center_screen_position() + Vector2(0, 90)
 
 
 ## Testing aid: `-- open=<panel>` opens a panel on start (see DevShot).
@@ -648,8 +643,16 @@ func _dev_open() -> void:
 				bay = it["uid"]
 				break
 		match a.trim_prefix("open="):
-			"car": open_panel(CarPanel.new(s["cars"][0]["uid"], self), true)
-			"bay": open_panel(BayPanel.new(bay, self), true)
+			"bay": _open_work_bay(bay)
+			"credits": MenuPopup.open_credits(get_tree())
+			"collect": _bay_clicked(bay)
+			"sell": _ask_sell_car(s["cars"][0]["uid"], func() -> void: pass)
+			"bay_job":
+				# The starter job collected and the car moved off: a new job
+				# on the empty lift gets its own car.
+				await Backend.collect_job(bay)
+				await Backend.take_car_off_bay(s["cars"][0]["uid"])
+				await Backend.start_job(bay, 4)
 			"job":
 				await Backend.put_car_on_bay(s["cars"][0]["uid"], bay)
 				await Backend.start_job(bay, 13)

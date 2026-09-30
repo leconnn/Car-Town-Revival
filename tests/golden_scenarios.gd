@@ -71,6 +71,9 @@ static func all() -> Dictionary:
 			["start_job", [1, 4], T0 + 3600],
 			["collect_job", [1], T0 + 5400],
 			["dismiss_customer", [5], T0 + 5400],
+			# An empty lift: the job gets a random car.
+			["start_job", [1, 4], T0 + 5400],
+			["collect_job", [1], T0 + 5700],
 			["clear_floor", [true, true, false], T0 + 86400],
 			["tick", [], T0 + 86400 * 2],
 			["visit_location", [9], T0 + 86400 * 2],

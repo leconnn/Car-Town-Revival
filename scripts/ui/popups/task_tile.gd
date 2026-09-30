@@ -21,6 +21,7 @@ var job_id: int
 var _gfx: FlashSymbol
 var _progress: FlashProgress
 var _job_state: Dictionary = {}
+var _button: FlashTextButton
 
 
 ## [param job_state] is the running task on this car ({} if none).
@@ -30,6 +31,28 @@ static func create(id: int, job_state: Dictionary = {}, disabled: bool = false) 
 	t._job_state = job_state
 	t._build(disabled)
 	return t
+
+
+## setAsLocked: the gains make way for "Unlocks at Level N" and a padlock.
+func set_locked(min_level: int) -> void:
+	if _gfx == null:
+		return
+	for part: String in GAIN_FIELDS + ["freeField", "roadTripGainsSprite", "fldClickToCancel"]:
+		var p := _gfx.part(part) as CanvasItem
+		if p != null:
+			p.visible = false
+	_gfx.styled_text("fldUnlocksAt", "Unlocks at", "sansA02")
+	_gfx.styled_text("fldUnlocksLevel", "Level %d" % min_level, "sansA02")
+	for part: String in ["fldUnlocksAt", "fldUnlocksLevel"]:
+		var p := _gfx.part(part) as CanvasItem
+		if p != null:
+			p.visible = true
+	var lock := FlashUi.make("UIIconLock")
+	if lock != null:
+		lock.position = Vector2(59, 131)
+		_gfx.add_child(lock)
+	if _button != null:
+		_button.visible = false
 
 
 func _build(disabled: bool) -> void:
@@ -68,6 +91,7 @@ func _build(disabled: bool) -> void:
 	button.position = Vector2(int((size.x - button.size().x) / 2.0), size.y - button.size().y / 2.0 - 45)
 	button.pressed.connect(func() -> void: (stop_pressed if running else start_pressed).emit())
 	add_child(button)
+	_button = button
 	if running:
 		# toggleTextFields(false): the gains make way for the progress bar.
 		for part: String in GAIN_FIELDS + ["lineSprite"]:

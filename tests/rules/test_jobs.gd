@@ -9,10 +9,17 @@ func _logic_with_car_on_bay() -> GameLogic:
 	return logic
 
 
-func test_start_job_needs_a_car_on_the_bay() -> void:
+func test_job_on_an_empty_bay_gets_a_random_car() -> void:
 	var logic := TestEnv.logic(10000)
 	var bay := TestEnv.first_bay(logic)
-	assert_str(logic.start_job(bay, 4, NOW).error).is_equal("Put a car on the work bay first.")
+	var r := logic.start_job(bay, 4, NOW)
+	assert_bool(r.ok).is_true()
+	var job: Dictionary = logic.save["jobs"][str(bay)]
+	assert_bool(logic.dealer_car_ids().has(job["car_id"])).is_true()
+	# A car already on the lift is the one worked on.
+	var logic2 := _logic_with_car_on_bay()
+	assert_bool(logic2.start_job(bay, 4, NOW).ok).is_true()
+	assert_bool(logic2.save["jobs"][str(bay)].has("car_id")).is_false()
 
 
 func test_start_and_collect_job() -> void:

@@ -33,6 +33,7 @@ func _ready() -> void:
 	_build_right()
 	_build_bottom()
 	Backend.state_changed.connect(refresh)
+	Lan.players_changed.connect(refresh)
 	refresh()
 
 
@@ -236,13 +237,22 @@ func _build_friend_list(nav: Node2D) -> void:
 	_friend_cards = tab.part("userHolder") as Node2D
 
 
-## Neighbours by garage value, 82 px apart (GarageFriendListSprite).
+## Neighbours by garage value, 82 px apart (GarageFriendListSprite). On
+## LAN they're the players in the world; clicking one visits their garage.
 func _refresh_friends(s: Dictionary) -> void:
 	if _friend_cards == null:
 		return
 	for c in _friend_cards.get_children():
 		c.queue_free()
-	var people: Array = [[s["player"]["name"], Backend.query().garage_value()], ["Rusty", RUSTY_GARAGE_VALUE]]
+	# [name, garage value, player id to visit or ""]
+	var people: Array = []
+	if Lan.players.is_empty():
+		people = [[s["player"]["name"], Backend.query().garage_value(), ""], ["Rusty", RUSTY_GARAGE_VALUE, ""]]
+	else:
+		var me := PlayerIdentity.get_id()
+		for p: Dictionary in Lan.players:
+			var gv: int = Backend.query().garage_value() if p["id"] == me else p.get("gv", 0)
+			people.append([p["name"], gv, "" if p["id"] == me else p["id"]])
 	people.sort_custom(func(a: Array, b: Array) -> bool: return a[1] > b[1])
 	for i in people.size():
 		var card := FlashUi.make("FriendListSpriteGarageValueGfx")
@@ -250,8 +260,15 @@ func _refresh_friends(s: Dictionary) -> void:
 			return
 		card.text("nameField", people[i][0])
 		card.text("gvFld", "$" + Format.abbreviated(people[i][1]))
-		card.position.x = i * 82 + 7
-		_friend_cards.add_child(card)
+		var slot: Node2D = card
+		var pid: String = people[i][2]
+		if pid != "":
+			var btn := FlashButton.wrap_node(card)
+			btn.set_base_scale(1.0, 1.05)
+			btn.pressed.connect(func() -> void: action.emit("visit:" + pid))
+			slot = btn
+		slot.position.x = i * 82 + 7
+		_friend_cards.add_child(slot)
 
 
 ## Full-screen screens (Buy Cars, Customize) keep only the level gauge and

@@ -794,15 +794,13 @@ func available_job_ids() -> Array[int]:
 func start_job(bay_uid: int, job_id: int, now: int) -> GameResult:
 	if not _is_bay(bay_uid):
 		return GameResult.fail("That isn't a work bay.")
-	if bay_occupant(bay_uid).is_empty():
-		return GameResult.fail("Put a car on the work bay first.")
 	if save["jobs"].has(str(bay_uid)):
 		return GameResult.fail("That work bay is already busy.")
 	var def: Dictionary = catalog.job(job_id)
 	if def.is_empty() or not available_job_ids().has(job_id):
 		return GameResult.fail("Unknown job.")
 	var occ := bay_occupant(bay_uid)
-	if occ["kind"] == "customer" and occ["entry"].get("job_id", 0) not in [0, job_id]:
+	if occ.get("kind", "") == "customer" and occ["entry"].get("job_id", 0) not in [0, job_id]:
 		return GameResult.fail("This customer wants a %s." % catalog.job(occ["entry"]["job_id"]).get("name", "different job"))
 	if _player()["level"] < def["min_level"]:
 		return GameResult.fail("Requires level %d." % def["min_level"])
@@ -812,11 +810,30 @@ func start_job(bay_uid: int, job_id: int, now: int) -> GameResult:
 	if _player()["coins"] < cost:
 		return GameResult.fail("Not enough coins.")
 	_player()["coins"] -= cost
-	save["jobs"][str(bay_uid)] = {"job_id": job_id, "started_at": now, "ends_at": now + def["minutes"] * 60}
+	var job_state := {"job_id": job_id, "started_at": now, "ends_at": now + def["minutes"] * 60}
+	if occ.is_empty():
+		_add_job_car(job_state)
+	save["jobs"][str(bay_uid)] = job_state
 	_bump_stat("jobs_started")
 	var result := GameResult.success({"ends_at": now + def["minutes"] * 60})
 	_emit("STARTED_WORKBAY_TASK_ID", job_id, now, result)
 	return result
+
+
+## A job started on an empty lift gets a random factory car to work on
+## (WorkBayFloorObj.createRandomCar), drawn from the customers' pool.
+func _add_job_car(job_state: Dictionary) -> void:
+	var pool := _customer_pool()
+	if pool.is_empty():
+		return
+	var pick := SimpleRng.range_int(save["rng"], 0, pool.size() - 1)
+	save["rng"] = pick[0]
+	var car_id: int = pool[pick[1]]
+	var colors := catalog.colors_for_car(car_id)
+	var color_pick := SimpleRng.range_int(save["rng"], 0, maxi(0, colors.size() - 1))
+	save["rng"] = color_pick[0]
+	job_state["car_id"] = car_id
+	job_state["color_id"] = colors[color_pick[1]]["id"] if not colors.is_empty() else 0
 
 
 func mastery_level(job_id: int) -> int:

@@ -112,7 +112,7 @@ func _park_cars(place: Dictionary, markers: Dictionary) -> void:
 		var car_id: int = ids[(state >> 8) % ids.size()]
 		var colors := GameData.catalog.colors_for_car(car_id)
 		var color_id: int = colors[(state >> 12) % colors.size()]["id"] if not colors.is_empty() else 0
-		parked.append({"spot": spots[i], "car": CarPreviewBox.stock_entry(car_id, color_id)})
+		parked.append({"spot": spots[i], "car": CarView.stock_entry(car_id, color_id)})
 	# Back to front, so nearer cars draw over farther ones.
 	parked.sort_custom(func(x: Dictionary, y: Dictionary) -> bool: return x["spot"]["pos"].y < y["spot"]["pos"].y)
 	for p: Dictionary in parked:

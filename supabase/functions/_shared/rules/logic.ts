@@ -665,9 +665,23 @@ export class GameLogic {
     return result;
   }
 
+  /** A job started on an empty lift gets a random factory car to work on
+   * (WorkBayFloorObj.createRandomCar), drawn from the customers' pool. */
+  private addJobCar(jobState: Dict): void {
+    const pool = this.customerPool();
+    if (pool.length === 0) return;
+    const pick = SimpleRng.rangeInt(this.save.rng, 0, pool.length - 1);
+    this.save.rng = pick[0];
+    const carId = pool[pick[1]];
+    const colors = this.catalog.colorsForCar(carId);
+    const colorPick = SimpleRng.rangeInt(this.save.rng, 0, Math.max(0, colors.length - 1));
+    this.save.rng = colorPick[0];
+    jobState.car_id = carId;
+    jobState.color_id = colors.length > 0 ? colors[colorPick[1]].id : 0;
+  }
+
   start_job(bayUid: number, jobId: number, now: number): GameResult {
     if (!this.isBay(bayUid)) return GameResult.fail("That isn't a work bay.");
-    if (Object.keys(this.bayOccupant(bayUid)).length === 0) return GameResult.fail("Put a car on the work bay first.");
     if (key(bayUid) in this.save.jobs) return GameResult.fail("That work bay is already busy.");
     const def = this.catalog.job(jobId);
     if (Object.keys(def).length === 0 || !this.available_job_ids().includes(jobId)) return GameResult.fail("Unknown job.");
@@ -682,7 +696,9 @@ export class GameLogic {
     const cost = Math.ceil(def.price * Number(this.catalog.tune("jobs.start_cost_multiplier", 1.0)));
     if (this.player.coins < cost) return GameResult.fail("Not enough coins.");
     this.player.coins -= cost;
-    this.save.jobs[key(bayUid)] = { job_id: jobId, started_at: now, ends_at: now + def.minutes * 60 };
+    const jobState: Dict = { job_id: jobId, started_at: now, ends_at: now + def.minutes * 60 };
+    if (Object.keys(occ).length === 0) this.addJobCar(jobState);
+    this.save.jobs[key(bayUid)] = jobState;
     this.bumpStat("jobs_started");
     const result = GameResult.success({ ends_at: now + def.minutes * 60 });
     this.emit("STARTED_WORKBAY_TASK_ID", jobId, now, result);

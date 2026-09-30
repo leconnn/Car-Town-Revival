@@ -432,6 +432,15 @@ def export_town_environment(swf: Path) -> dict:
     return result if "bg" in result else {}
 
 
+def export_static_ui(ids: set[str] | None, limit: int | None) -> None:
+    """UI art the game loaded at runtime from static/ui (the work bay menu's
+    service icon)."""
+    batch = Batch("static_ui", 300)
+    for p in pick_ids(sorted((ROOT / "alt" / "static" / "ui").glob("*.swf")), None, limit):
+        batch.add(p.stem, p.read_bytes(), OUT / "static_ui" / p.stem)
+    write_manifest("static_ui", {k: fr[0] for k, fr in batch.run().items() if fr})
+
+
 def export_audio(ids: set[str] | None, limit: int | None) -> None:
     """Music loops and the sound effects embedded in CarTownMain.swf."""
     audio = ROOT / "assets" / "ea" / "audio"
@@ -469,7 +478,7 @@ def export_missions(ids: set[str] | None, limit: int | None) -> None:
 
 GROUPS = {
     "items": export_items, "cars": export_cars, "wheels": export_wheels,
-    "main": export_main, "town": export_town, "missions": export_missions, "audio": export_audio,
+    "main": export_main, "town": export_town, "missions": export_missions, "static_ui": export_static_ui, "audio": export_audio,
 }
 
 

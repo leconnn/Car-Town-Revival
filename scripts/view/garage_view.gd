@@ -28,6 +28,8 @@ var _wall_layer: Node2D
 var _object_layer: Node2D
 var _town_front_layer: Node2D
 var _overlay_layer: Node2D
+## Short-lived effects (collected money) that outlive rebuilds.
+var _effects_layer: Node2D
 ## Drawn objects for hit testing, in draw order: {"kind", "uid", "node"}.
 var _pickables: Array[Dictionary] = []
 var _job_bubbles: Dictionary[int, JobStatus] = {}
@@ -41,7 +43,8 @@ func _ready() -> void:
 	_object_layer = Node2D.new()
 	_town_front_layer = Node2D.new()
 	_overlay_layer = Node2D.new()
-	for layer in [_floor_layer, _wall_layer, _object_layer, _town_front_layer, _overlay_layer]:
+	_effects_layer = Node2D.new()
+	for layer in [_floor_layer, _wall_layer, _object_layer, _town_front_layer, _overlay_layer, _effects_layer]:
 		add_child(layer)
 	Backend.state_changed.connect(rebuild)
 	rebuild()
@@ -230,6 +233,14 @@ func _build_objects(s: Dictionary) -> void:
 			entries.append({"kind": "customer", "entry": cust, "h": h, "v": v,
 				"size": Vector2i(4, 3), "rot": 0})
 			waiting += 1
+	# A job on an empty lift has its own random car to work on.
+	for bay_uid: int in bays:
+		var job: Dictionary = s["jobs"].get(str(bay_uid), {})
+		if job.get("car_id", 0) == 0 or _bay_has_car(s, bay_uid):
+			continue
+		var job_car := CarView.stock_entry(job["car_id"], job.get("color_id", 0))
+		job_car["uid"] = bay_uid
+		entries.append(_on_bay_entry("bay", job_car, bays[bay_uid], car_size))
 	entries.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		return _depth(a) < _depth(b))
 	for e: Dictionary in entries:
@@ -264,6 +275,14 @@ func _build_objects(s: Dictionary) -> void:
 		bubble.pressed.connect(func() -> void: object_clicked.emit("car_task", car_uid))
 		_overlay_layer.add_child(bubble)
 		_job_bubbles[car_uid] = bubble
+
+
+static func _bay_has_car(s: Dictionary, bay_uid: int) -> bool:
+	for list: String in ["cars", "customers"]:
+		for c: Dictionary in s[list]:
+			if c.get("bay_uid", 0) == bay_uid:
+				return true
+	return false
 
 
 func _on_bay_entry(kind: String, entry: Dictionary, bay: Dictionary, car_size: Array) -> Dictionary:
@@ -334,6 +353,16 @@ func drawn_uids(kind: String) -> Array[int]:
 ## Adds something to the world overlay (e.g. a tutorial arrow).
 func add_overlay(node: Node2D) -> void:
 	_overlay_layer.add_child(node)
+
+
+func effects_layer() -> Node2D:
+	return _effects_layer
+
+
+## Where the job callout over a bay or car task sits, or null.
+func callout_position(uid: int) -> Variant:
+	var bubble: JobStatus = _job_bubbles.get(uid)
+	return bubble.position if bubble != null and is_instance_valid(bubble) else null
 
 
 func pick(global_point: Vector2) -> Dictionary:
