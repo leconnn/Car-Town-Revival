@@ -184,6 +184,17 @@ def export_items(ids: set[str] | None, limit: int | None) -> None:
     write_manifest("items", manifest)
 
 
+def export_posters(ids: set[str] | None, limit: int | None) -> None:
+    """Signs and posters as they hang on walls: the flat artwork the game
+    skewed onto the wall (items/flatPosters, WallObj.applyRotation)."""
+    src = SRC / "items" / "flatPosters"
+    all_ids = sorted({p.stem[3:] for p in src.glob("it_*.swf") if p.stem[3:].isdigit()}, key=int)
+    batch = Batch("posters", HALF["items"])
+    for item_id in pick_ids(all_ids, ids, limit):
+        batch.add(f"it_{item_id}", (src / f"it_{item_id}.swf").read_bytes(), OUT / "posters" / item_id)
+    write_manifest("posters", {k[3:]: fr[0] for k, fr in batch.run().items() if fr})
+
+
 def _coords(xml_bytes: bytes) -> dict:
     root = ET.fromstring(xml_bytes)
     views: dict = {"_attrs": dict(root.attrib)}
@@ -509,7 +520,7 @@ def export_missions(ids: set[str] | None, limit: int | None) -> None:
 
 
 GROUPS = {
-    "items": export_items, "cars": export_cars, "wheels": export_wheels,
+    "items": export_items, "posters": export_posters, "cars": export_cars, "wheels": export_wheels,
     "main": export_main, "town": export_town, "missions": export_missions, "static_ui": export_static_ui, "title": export_title, "audio": export_audio,
 }
 

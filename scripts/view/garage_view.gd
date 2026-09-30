@@ -36,7 +36,6 @@ var interactive := true
 var visiting: Dictionary = {}
 
 var _floor_layer: Node2D
-var _wall_layer: Node2D
 var _object_layer: Node2D
 var _town_front_layer: Node2D
 var _overlay_layer: Node2D
@@ -57,12 +56,11 @@ var _honk_timer: Timer
 
 func _ready() -> void:
 	_floor_layer = Node2D.new()
-	_wall_layer = Node2D.new()
 	_object_layer = Node2D.new()
 	_town_front_layer = Node2D.new()
 	_overlay_layer = Node2D.new()
 	_effects_layer = Node2D.new()
-	for layer in [_floor_layer, _wall_layer, _object_layer, _town_front_layer, _overlay_layer, _effects_layer]:
+	for layer in [_floor_layer, _object_layer, _town_front_layer, _overlay_layer, _effects_layer]:
 		add_child(layer)
 	_honk_timer = Timer.new()
 	_honk_timer.one_shot = true
@@ -95,7 +93,7 @@ func rebuild() -> void:
 		return
 	var land: Dictionary = GameData.catalog.land(s["garage"]["land_id"])
 	land_size = Vector2i(land.get("size_x", 10), land.get("size_y", 10))
-	for layer in [_floor_layer, _wall_layer, _object_layer, _town_front_layer, _overlay_layer]:
+	for layer in [_floor_layer, _object_layer, _town_front_layer, _overlay_layer]:
 		for c in layer.get_children():
 			c.queue_free()
 	_pickables.clear()
@@ -104,9 +102,9 @@ func rebuild() -> void:
 	_hover_key = ""
 	_build_town()
 	_build_floor(s["garage"]["floor_item_id"])
+	_build_floor_tiles(s["garage"].get("floor_tiles", {}))
 	if _grid_on:
 		_build_grid()
-	_build_walls(s["garage"]["wall_item_id"])
 	_build_objects(s)
 
 
@@ -147,15 +145,22 @@ func _build_floor(floor_item_id: int) -> void:
 	_floor_layer.add_child(poly)
 
 
-## Edit mode's floor grid (Floor.showGrid): a 1 px line along every tile
-## edge. The original inverted what was under the lines; a dark translucent
-## line reads the same on the default floor.
+## Tiles painted with their own floor (FloorPlanePopulator.populateTile).
+func _build_floor_tiles(tiles: Dictionary) -> void:
+	for key: String in tiles:
+		var xy := key.split(",")
+		_floor_layer.add_child(WallArt.tile_node(tiles[key], int(xy[0]), int(xy[1])))
+
+
 ## Edit mode: the tile grid, and rotate buttons on hover.
 func show_grid(on: bool) -> void:
 	_grid_on = on
 	rebuild()
 
 
+## Edit mode's floor grid (Floor.showGrid): a 1 px line along every tile
+## edge. The original inverted what was under the lines; a dark translucent
+## line reads the same on the default floor.
 func _build_grid() -> void:
 	var grid := Node2D.new()
 	grid.name = "Grid"
@@ -175,26 +180,6 @@ static func _grid_line(a: Vector2, b: Vector2) -> Line2D:
 
 
 ## Walls are only drawn if the player picked a wall style.
-func _build_walls(wall_item_id: int) -> void:
-	var frames: Array = GameData.item_art.get(str(wall_item_id), {}).get("frames", [])
-	if wall_item_id == 0 or frames.size() < 2:
-		return
-	# Frame 0 runs along the h = 0 edge, frame 1 along the v = 0 edge.
-	for v in land_size.y:
-		_wall_layer.add_child(_wall_sprite(frames[0], Iso.to_screen(0, v)))
-	for h in land_size.x:
-		_wall_layer.add_child(_wall_sprite(frames[1], Iso.to_screen(h, 0)))
-
-
-func _wall_sprite(info: Dictionary, pos: Vector2) -> Sprite2D:
-	var s := Sprite2D.new()
-	s.texture = GameData.texture(info["file"])
-	s.centered = false
-	s.offset = -Vector2(info["o"][0], info["o"][1])
-	s.position = pos
-	return s
-
-
 func _town_sprite(tex: Texture2D, pos: Vector2, scale_f: float = 1.0) -> Sprite2D:
 	var s := Sprite2D.new()
 	s.texture = tex
@@ -258,6 +243,12 @@ func _build_objects(s: Dictionary) -> void:
 			entries.append({"kind": "customer", "entry": cust, "h": h, "v": v,
 				"size": Vector2i(4, 3), "rot": 0})
 			waiting += 1
+	# Walls sort like a thin object in the tiles just behind their edge, and
+	# the signs on them right after.
+	for w: Dictionary in s["garage"].get("walls", []):
+		entries.append(_wall_entry("wall", w, GarageGrid.wall_length(GameData.catalog.item(w["item_id"])), 1))
+	for p: Dictionary in s["garage"].get("wall_items", []):
+		entries.append(_wall_entry("wall_item", p, GarageGrid.wall_object_length(GameData.catalog.item(p["item_id"])), 2))
 	# A job on an empty lift has its own random car to work on.
 	for bay_uid: int in bays:
 		var job: Dictionary = s["jobs"].get(str(bay_uid), {})
@@ -360,6 +351,14 @@ func _on_bay_entry(kind: String, entry: Dictionary, bay: Dictionary, car_size: A
 		"depth_of": {"h": item["x"], "v": item["y"], "size": size}, "bias": 1}
 
 
+func _wall_entry(kind: String, entry: Dictionary, length: int, bias: int) -> Dictionary:
+	var vertical: bool = entry["rot"] == GarageGrid.VERTICAL
+	var size := Vector2i(1, length) if vertical else Vector2i(length, 1)
+	var behind := {"h": entry["x"] - 1 if vertical else entry["x"], "v": entry["y"] if vertical else entry["y"] - 1, "size": size}
+	return {"kind": kind, "entry": entry, "h": behind["h"], "v": behind["v"], "size": size,
+		"depth_of": behind, "bias": bias}
+
+
 func _depth(e: Dictionary) -> int:
 	var d: Dictionary = e.get("depth_of", e)
 	var size: Vector2i = d["size"]
@@ -369,6 +368,10 @@ func _depth(e: Dictionary) -> int:
 func _make_node(e: Dictionary) -> Node2D:
 	var entry: Dictionary = e["entry"]
 	var pos := object_position(e["h"], e["v"])
+	if e["kind"] == "wall":
+		return WallArt.wall_node(entry["item_id"], entry["x"], entry["y"], entry["rot"])
+	if e["kind"] == "wall_item":
+		return WallArt.poster_node(entry["item_id"], entry["x"], entry["y"], entry["rot"])
 	if e["kind"] == "item":
 		var iv := ItemView.new()
 		iv.setup(entry["item_id"], entry["rot"])

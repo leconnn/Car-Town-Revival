@@ -213,6 +213,8 @@ func _tiles_for(cats: Array) -> Array[Dictionary]:
 static func _has_art(id: int, it: Dictionary) -> bool:
 	if it["category"] == GarageGrid.CAT_FLOOR_TILE:
 		return GameData.texture("floors/%d.jpg" % id) != null
+	if GarageGrid.is_wall_object(it):
+		return GameData.poster_art.has(str(id))
 	return GameData.item_art.has(str(id))
 
 
@@ -261,13 +263,7 @@ func _on_tile(t: Dictionary) -> void:
 	_close_buy_box()
 	match t["kind"]:
 		"buy":
-			var cat: int = GameData.catalog.item(t["id"]).get("category", 0)
-			if cat == GarageGrid.CAT_FLOOR_TILE or cat == GarageGrid.CAT_WALL:
-				# Floors and walls cover the whole garage: just confirm.
-				show_buy_confirm(t["name"], t["price"], t["blue"], func() -> void:
-					await Backend.set_surface(t["id"], t["blue"]))
-			else:
-				place_requested.emit("buy", t["id"])
+			place_requested.emit("buy", t["id"])
 		"land":
 			show_buy_confirm(t["name"], t["price"], t["blue"], func() -> void:
 				await Backend.expand_land(t["blue"]))
@@ -303,7 +299,7 @@ func _close_buy_box() -> void:
 func _ask_reset_floor() -> void:
 	var content := ResetFloorPopup.create()
 	var popup := FlashPopup.open(get_tree(), content, true, false, ResetFloorPopup.SIZE, content.frame_buttons())
-	content.confirmed.connect(func(cars: bool, items: bool, bays: bool) -> void:
+	content.confirmed.connect(func(cars: bool, items: bool, bays: bool, walls: bool, floors: bool) -> void:
 		popup.close()
-		await Backend.clear_floor(cars, items, bays))
+		await Backend.clear_floor(cars, items, bays, walls, floors))
 	content.cancelled.connect(popup.close)

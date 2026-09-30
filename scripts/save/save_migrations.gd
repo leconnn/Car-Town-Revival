@@ -38,6 +38,8 @@ static func _step(version: int, data: Dictionary) -> Dictionary:
 			return _v1_to_v2(data)
 		2:
 			return _v2_to_v3(data)
+		3:
+			return _v3_to_v4(data)
 		_:
 			return {}
 
@@ -55,4 +57,16 @@ static func _v1_to_v2(data: Dictionary) -> Dictionary:
 ## v3 added parts storage: parts taken off a car, to put back on for free.
 static func _v2_to_v3(data: Dictionary) -> Dictionary:
 	data["part_storage"] = {}
+	return data
+
+
+## v4 made the garage's floor and walls tile by tile, like the original:
+## floor tiles per square and wall segments along tile edges. The old single
+## wall style ("wall_item_id") becomes back walls when the rules first load
+## the save (GameLogic._upgrade_legacy_walls), which needs the land size.
+static func _v3_to_v4(data: Dictionary) -> Dictionary:
+	var garage: Dictionary = data.get("garage", {})
+	garage["floor_tiles"] = {}
+	if not garage.has("walls"):
+		garage["walls"] = []
 	return data

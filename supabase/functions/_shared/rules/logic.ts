@@ -1,11 +1,14 @@
 // Server copy of scripts/rules/game_logic.gd. Same functions, same order,
 // same messages. Change both together; the golden transcripts check it.
 import type { Catalog, Dict } from "./catalog.ts";
-import { CAT_FLOOR_TILE, CAT_WALL, CAT_WORK_BAY, GarageGrid, isFloorObject, rotatedSize } from "./grid.ts";
+import {
+  CAT_FLOOR_TILE, CAT_WORK_BAY, GarageGrid, HORIZONTAL, isFloorObject, isWall, isWallObject,
+  rotatedSize, VERTICAL, wallLength, wallObjectLength,
+} from "./grid.ts";
 import { MissionTracker } from "./missions.ts";
 import { key, posmod, roundi, SimpleRng } from "./util.ts";
 
-export const CURRENT_SAVE_VERSION = 3;
+export const CURRENT_SAVE_VERSION = 4;
 
 export class GameResult {
   ok = true;
@@ -46,6 +49,7 @@ export class GameLogic {
     this.save = save;
     this.missions = new MissionTracker(catalog);
     for (const id of this.dealer_car_ids()) this.dealerIds.add(id);
+    this.upgradeLegacyWalls();
   }
 
   // --- New game -------------------------------------------------------------
@@ -62,8 +66,9 @@ export class GameLogic {
       garage: {
         land_id: start.land_id ?? 1,
         floor_item_id: start.floor_item_id ?? 0,
-        wall_item_id: start.wall_item_id ?? 0,
+        floor_tiles: {},
         items: [],
+        walls: [],
         wall_items: [],
       },
       cars: [],
@@ -171,7 +176,12 @@ export class GameLogic {
   garageValue(): number {
     let total = 0;
     for (const c of this.save.cars) total += this.catalog.car(c.car_id).price ?? 0;
-    for (const it of this.save.garage.items) total += this.catalog.item(it.item_id).price ?? 0;
+    for (const list of ["items", "walls", "wall_items"]) {
+      for (const it of this.save.garage[list] ?? []) total += this.catalog.item(it.item_id).price ?? 0;
+    }
+    for (const k of Object.keys(this.save.garage.floor_tiles ?? {})) {
+      total += this.catalog.item(this.save.garage.floor_tiles[k]).price ?? 0;
+    }
     return total;
   }
 
@@ -494,14 +504,17 @@ export class GameLogic {
 
   buy_item(itemId: number, x: number, y: number, rot: number, useBlue: boolean, now: number): GameResult {
     const def = this.catalog.item(itemId);
-    if (Object.keys(def).length === 0 || !isFloorObject(def)) return GameResult.fail("That item can't be placed on the floor.");
+    const kind = this.placementKind(def);
+    if (kind === "") return GameResult.fail("That item can't be placed in the garage.");
+    if (!(def.purchasable ?? false) && !(def.always_purchasable ?? false)) return GameResult.fail("That item isn't for sale.");
     let err = this.levelOk(def);
     if (err) return GameResult.fail(err);
-    if (!this.itemFits(itemId, x, y, rot)) return GameResult.fail("There's no room there.");
+    err = this.fitError(kind, itemId, x, y, rot);
+    if (err) return GameResult.fail(err);
     err = this.charge(def, useBlue);
     if (err) return GameResult.fail(err);
-    const entry = this.addItem(itemId, x, y, rot);
-    const result = GameResult.success({ uid: entry.uid });
+    const entry = this.place(kind, itemId, x, y, rot);
+    const result = GameResult.success({ uid: entry.uid ?? 0 });
     this.addRewards(0, 0, def.xp ?? 0, result);
     this.emit("BOUGHT_ITEM_ID", itemId, now, result);
     this.emit("BOUGHT_ITEM_CATEGORY", def.category, now, result);
@@ -511,7 +524,16 @@ export class GameLogic {
 
   move_item(uid: number, x: number, y: number, rot: number): GameResult {
     const entry = this.findItem(uid);
-    if (!entry) return GameResult.fail("Item not found.");
+    if (!entry) {
+      const found = this.findWallThing(uid);
+      if (!found) return GameResult.fail("Item not found.");
+      if (!this.wallFits(found.entry.item_id, x, y, rot, uid)) return GameResult.fail("There's no room there.");
+      if (found.list === "walls") this.storePostersOn(uid);
+      found.entry.x = x;
+      found.entry.y = y;
+      found.entry.rot = posmod(rot, 2);
+      return GameResult.success();
+    }
     if (this.bayBusy(uid)) return GameResult.fail("Clear the work bay before moving it.");
     if (!this.itemFits(entry.item_id, x, y, rot, `item:${uid}`)) return GameResult.fail("There's no room there.");
     entry.x = x;
@@ -522,15 +544,36 @@ export class GameLogic {
 
   store_item(uid: number): GameResult {
     const entry = this.findItem(uid);
-    if (!entry) return GameResult.fail("Item not found.");
+    if (!entry) {
+      const found = this.takeWallThing(uid);
+      if (!found) return GameResult.fail("Item not found.");
+      this.storeItemId(found.item_id);
+      return GameResult.success();
+    }
     if (this.bayBusy(uid)) return GameResult.fail("Clear the work bay before storing it.");
     this.save.garage.items.splice(this.save.garage.items.indexOf(entry), 1);
     this.storeItemId(entry.item_id);
     return GameResult.success();
   }
 
-  clear_floor(cars: boolean, items: boolean, bays: boolean): GameResult {
-    const stored = { cars: 0, items: 0, bays: 0 };
+  clear_floor(cars: boolean, items: boolean, bays: boolean, walls: boolean, floors: boolean): GameResult {
+    const stored = { cars: 0, items: 0, bays: 0, walls: 0, floors: 0 };
+    if (walls) {
+      for (const list of ["wall_items", "walls"]) {
+        for (const entry of this.save.garage[list]) {
+          this.storeItemId(entry.item_id);
+          stored.walls += 1;
+        }
+        this.save.garage[list] = [];
+      }
+    }
+    if (floors) {
+      for (const k of Object.keys(this.save.garage.floor_tiles)) {
+        if (this.keepsTile(this.save.garage.floor_tiles[k])) this.storeItemId(this.save.garage.floor_tiles[k]);
+        stored.floors += 1;
+      }
+      this.save.garage.floor_tiles = {};
+    }
     if (cars) {
       for (const car of this.save.cars) {
         if (!car.placed || key(car.uid) in this.save.car_tasks) continue;
@@ -557,18 +600,25 @@ export class GameLogic {
   place_stored_item(itemId: number, x: number, y: number, rot: number): GameResult {
     const k = key(itemId);
     if ((this.save.storage[k] ?? 0) <= 0) return GameResult.fail("You don't have that item in storage.");
-    if (!isFloorObject(this.catalog.item(itemId)) || !this.itemFits(itemId, x, y, rot)) {
-      return GameResult.fail("There's no room there.");
-    }
+    const kind = this.placementKind(this.catalog.item(itemId));
+    if (kind === "") return GameResult.fail("That item can't be placed in the garage.");
+    const err = this.fitError(kind, itemId, x, y, rot);
+    if (err) return GameResult.fail(err);
     this.save.storage[k] -= 1;
     if (this.save.storage[k] === 0) delete this.save.storage[k];
-    const entry = this.addItem(itemId, x, y, rot);
-    return GameResult.success({ uid: entry.uid });
+    const entry = this.place(kind, itemId, x, y, rot);
+    return GameResult.success({ uid: entry.uid ?? 0 });
   }
 
   sell_item(uid: number): GameResult {
     const entry = this.findItem(uid);
-    if (!entry) return GameResult.fail("Item not found.");
+    if (!entry) {
+      const found = this.takeWallThing(uid);
+      if (!found) return GameResult.fail("Item not found.");
+      const wallRefund = Math.floor((this.catalog.item(found.item_id).price ?? 0) * Number(this.catalog.tune("economy.item_resell_fraction", 0.5)));
+      this.player.coins += wallRefund;
+      return GameResult.success({ coins: wallRefund });
+    }
     if (this.bayBusy(uid)) return GameResult.fail("Clear the work bay before selling it.");
     const fraction: number = this.catalog.tune("economy.item_resell_fraction", 0.5);
     const refund = Math.floor((this.catalog.item(entry.item_id).price ?? 0) * fraction);
@@ -588,24 +638,116 @@ export class GameLogic {
     return GameResult.success({ coins: refund });
   }
 
-  set_surface(itemId: number, useBlue: boolean, now: number): GameResult {
+  // --- Walls, posters and floor tiles -------------------------------------------------
+
+  private placementKind(def: Dict): string {
+    if (Object.keys(def).length === 0) return "";
+    if (isFloorObject(def)) return "floor";
+    if (isWall(def)) return "wall";
+    if (isWallObject(def)) return "poster";
+    if ((def.category ?? 0) === CAT_FLOOR_TILE) return "tile";
+    return "";
+  }
+
+  private fitError(kind: string, itemId: number, x: number, y: number, rot: number): string {
+    switch (kind) {
+      case "floor":
+        return this.itemFits(itemId, x, y, rot) ? "" : "There's no room there.";
+      case "wall":
+        return this.wallFits(itemId, x, y, rot) ? "" : "A wall can't go there.";
+      case "poster":
+        return this.wallFits(itemId, x, y, rot) ? "" : "That needs an empty wall to hang on.";
+      case "tile": {
+        const land = this.catalog.land(this.save.garage.land_id);
+        if (x < 0 || y < 0 || x >= land.size_x || y >= land.size_y) return "That's outside your garage.";
+        if (this.floorTile(x, y) === itemId) return "That tile already has that floor.";
+        return "";
+      }
+    }
+    return "That item can't be placed in the garage.";
+  }
+
+  private wallFits(itemId: number, x: number, y: number, rot: number, ignoreUid = 0): boolean {
     const def = this.catalog.item(itemId);
-    const cat: number = def.category ?? 0;
-    if (cat !== CAT_FLOOR_TILE && cat !== CAT_WALL) return GameResult.fail("That isn't a floor or wall style.");
-    const k = cat === CAT_FLOOR_TILE ? "floor_item_id" : "wall_item_id";
-    if (this.save.garage[k] === itemId) return GameResult.fail("Your garage already uses that style.");
-    let err = this.levelOk(def);
-    if (err) return GameResult.fail(err);
-    const land = this.catalog.land(this.save.garage.land_id);
-    const tiles = cat === CAT_FLOOR_TILE ? land.size_x * land.size_y : land.size_x + land.size_y;
-    err = this.charge(def, useBlue, tiles);
-    if (err) return GameResult.fail(err);
-    this.save.garage[k] = itemId;
-    const result = GameResult.success();
-    this.emit("BOUGHT_ITEM_ID", itemId, now, result);
-    this.emit("BOUGHT_ITEM_CATEGORY", cat, now, result);
-    this.emit("DECORATE_GARAGE", 0, now, result);
-    return result;
+    const grid = GarageGrid.build(this.catalog, this.save);
+    const horizontal = posmod(rot, 2) === HORIZONTAL;
+    if (isWall(def)) return grid.canPlaceWall(x, y, wallLength(def), horizontal, ignoreUid);
+    return grid.canPlacePoster(x, y, wallObjectLength(def), horizontal, ignoreUid);
+  }
+
+  private place(kind: string, itemId: number, x: number, y: number, rot: number): Dict {
+    switch (kind) {
+      case "floor":
+        return this.addItem(itemId, x, y, rot);
+      case "wall":
+      case "poster": {
+        const entry = { uid: this.uid(), item_id: itemId, x, y, rot: posmod(rot, 2) };
+        this.save.garage[kind === "wall" ? "walls" : "wall_items"].push(entry);
+        return entry;
+      }
+      case "tile": {
+        const k = `${x},${y}`;
+        const old: number = this.save.garage.floor_tiles[k] ?? 0;
+        if (old !== 0 && this.keepsTile(old)) this.storeItemId(old);
+        if (itemId === this.save.garage.floor_item_id) delete this.save.garage.floor_tiles[k];
+        else this.save.garage.floor_tiles[k] = itemId;
+        return { x, y };
+      }
+    }
+    return {};
+  }
+
+  floorTile(x: number, y: number): number {
+    return this.save.garage.floor_tiles[`${x},${y}`] ?? this.save.garage.floor_item_id;
+  }
+
+  private keepsTile(itemId: number): boolean {
+    const def = this.catalog.item(itemId);
+    return (def.price ?? 0) > 0 || (def.blue_price ?? 0) > 0;
+  }
+
+  private findWallThing(uid: number): { list: string; entry: Dict } | undefined {
+    for (const list of ["walls", "wall_items"]) {
+      for (const entry of this.save.garage[list]) if (entry.uid === uid) return { list, entry };
+    }
+    return undefined;
+  }
+
+  private takeWallThing(uid: number): Dict | undefined {
+    const found = this.findWallThing(uid);
+    if (!found) return undefined;
+    if (found.list === "walls") this.storePostersOn(uid);
+    const list: Dict[] = this.save.garage[found.list];
+    list.splice(list.indexOf(found.entry), 1);
+    return found.entry;
+  }
+
+  private storePostersOn(wallUid: number): void {
+    const grid = GarageGrid.build(this.catalog, this.save);
+    for (const posterUid of grid.postersOnWall(wallUid)) {
+      const found = this.findWallThing(posterUid);
+      if (found) {
+        const list: Dict[] = this.save.garage.wall_items;
+        list.splice(list.indexOf(found.entry), 1);
+        this.storeItemId(found.entry.item_id);
+      }
+    }
+  }
+
+  /** Old saves' single back-wall style ("wall_item_id") becomes real walls. */
+  private upgradeLegacyWalls(): void {
+    const g: Dict | undefined = this.save.garage;
+    if (!g || !("wall_item_id" in g)) return;
+    const wallId: number = g.wall_item_id;
+    delete g.wall_item_id;
+    g.walls ??= [];
+    g.floor_tiles ??= {};
+    const def = this.catalog.item(wallId);
+    if (wallId === 0 || !isWall(def)) return;
+    const land = this.catalog.land(g.land_id);
+    const step = wallLength(def);
+    for (let v = 0; v < (land.size_y ?? 10); v += step) g.walls.push({ uid: this.uid(), item_id: wallId, x: 0, y: v, rot: VERTICAL });
+    for (let h = 0; h < (land.size_x ?? 10); h += step) g.walls.push({ uid: this.uid(), item_id: wallId, x: h, y: 0, rot: HORIZONTAL });
   }
 
   nextLandId(): number {

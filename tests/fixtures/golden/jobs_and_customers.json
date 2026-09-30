@@ -1,6 +1,6 @@
 {
  "start": {
-  "save_version": 3,
+  "save_version": 4,
   "created_at": 1000000,
   "updated_at": 1000000,
   "player": {
@@ -15,7 +15,7 @@
   "garage": {
    "land_id": 1,
    "floor_item_id": 292,
-   "wall_item_id": 2,
+   "floor_tiles": {},
    "items": [
     {
      "uid": 1,
@@ -25,6 +25,7 @@
      "rot": 0
     }
    ],
+   "walls": [],
    "wall_items": []
   },
   "cars": [
@@ -84,7 +85,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -99,7 +100,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -109,6 +110,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -186,7 +188,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -201,7 +203,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -211,6 +213,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -301,7 +304,7 @@
     ]
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -316,7 +319,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -326,6 +329,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -412,7 +416,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -427,7 +431,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -437,6 +441,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -526,7 +531,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000300,
     "player": {
@@ -541,7 +546,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -551,6 +556,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -641,7 +647,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000300,
     "player": {
@@ -656,7 +662,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -666,6 +672,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -780,7 +787,7 @@
     ]
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000600,
     "player": {
@@ -795,7 +802,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -805,6 +812,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -893,7 +901,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000600,
     "player": {
@@ -908,7 +916,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -918,6 +926,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -1021,7 +1030,7 @@
     ]
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1036,7 +1045,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -1046,6 +1055,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -1134,7 +1144,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1149,7 +1159,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -1159,6 +1169,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -1250,7 +1261,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000710,
     "player": {
@@ -1265,7 +1276,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -1275,6 +1286,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -1360,7 +1372,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000710,
     "player": {
@@ -1375,7 +1387,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -1385,6 +1397,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -1472,7 +1485,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1487,7 +1500,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -1497,6 +1510,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -1583,7 +1597,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1598,7 +1612,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -1608,6 +1622,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -1696,7 +1711,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1711,7 +1726,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -1721,6 +1736,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -1812,7 +1828,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1827,7 +1843,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -1837,6 +1853,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -1928,7 +1945,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1943,7 +1960,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -1953,6 +1970,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -2047,7 +2065,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1001000,
     "player": {
@@ -2062,7 +2080,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -2072,6 +2090,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -2161,7 +2180,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1001000,
     "player": {
@@ -2176,7 +2195,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -2186,6 +2205,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -2290,7 +2310,7 @@
     ]
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1001100,
     "player": {
@@ -2305,7 +2325,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -2315,6 +2335,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -2404,7 +2425,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1001100,
     "player": {
@@ -2419,7 +2440,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -2429,6 +2450,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -2521,7 +2543,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1001110,
     "player": {
@@ -2536,7 +2558,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -2546,6 +2568,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -2632,7 +2655,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -2647,7 +2670,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -2657,6 +2680,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -2760,7 +2784,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -2775,7 +2799,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -2785,6 +2809,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -2889,7 +2914,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -2904,7 +2929,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -2914,6 +2939,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -3020,7 +3046,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -3035,7 +3061,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -3045,6 +3071,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -3165,7 +3192,7 @@
     ]
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
@@ -3180,7 +3207,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -3190,6 +3217,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -3285,7 +3313,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
@@ -3300,7 +3328,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -3310,6 +3338,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -3400,7 +3429,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
@@ -3415,7 +3444,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -3425,6 +3454,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -3523,7 +3553,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1005700,
     "player": {
@@ -3538,7 +3568,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -3548,6 +3578,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -3627,6 +3658,8 @@
    "args": [
     true,
     true,
+    false,
+    false,
     false
    ],
    "now": 1086400,
@@ -3636,12 +3669,14 @@
     "data": {
      "cars": 1,
      "items": 0,
-     "bays": 0
+     "bays": 0,
+     "walls": 0,
+     "floors": 0
     },
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1086400,
     "player": {
@@ -3656,7 +3691,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -3666,6 +3701,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -3753,7 +3789,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -3768,7 +3804,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -3778,6 +3814,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -3890,7 +3927,7 @@
     ]
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -3905,7 +3942,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -3915,6 +3952,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -4020,7 +4058,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4035,7 +4073,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -4045,6 +4083,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -4148,7 +4187,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4163,7 +4202,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -4173,6 +4212,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -4279,7 +4319,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4294,7 +4334,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -4304,6 +4344,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [
@@ -4409,7 +4450,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 3,
+    "save_version": 4,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4424,7 +4465,7 @@
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
-     "wall_item_id": 2,
+     "floor_tiles": {},
      "items": [
       {
        "uid": 1,
@@ -4434,6 +4475,7 @@
        "rot": 0
       }
      ],
+     "walls": [],
      "wall_items": []
     },
     "cars": [

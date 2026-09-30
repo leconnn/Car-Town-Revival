@@ -25,10 +25,19 @@ export function migrate(save: Dict): Dict | null {
     // Same steps, in the same order, as SaveMigrations._step().
     if (v === 1) out = v1ToV2(out);
     else if (v === 2) out = v2ToV3(out);
+    else if (v === 3) out = v3ToV4(out);
     else return null;
     out.save_version = v + 1;
   }
   return out;
+}
+
+/** v4 made floors and walls tile by tile (floor_tiles, wall segments). */
+function v3ToV4(save: Dict): Dict {
+  save.garage ??= {};
+  save.garage.floor_tiles = {};
+  save.garage.walls ??= [];
+  return save;
 }
 
 /** v3 added parts storage: parts taken off a car, to put back on for free. */

@@ -57,7 +57,11 @@ func _run_guest() -> void:
 		_finish(false, "buy failed: %s" % buy.error)
 		return
 	var after: int = Backend.state()["player"]["coins"]
-	if after != coins - GameData.catalog.car(car_id)["price"]:
+	# The world persists between runs, so a level-up or mission may pay out.
+	var bonus := 0
+	for n: Dictionary in buy.notices:
+		bonus += int(n.get("coins", 0))
+	if after != coins - GameData.catalog.car(car_id)["price"] + bonus:
 		_finish(false, "coins %d -> %d" % [coins, after])
 		return
 	var bad: GameResult = await Backend.act("give_me_money", [])

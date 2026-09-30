@@ -174,9 +174,6 @@ func sell_item(item_uid: int) -> GameResult:
 func sell_stored_item(item_id: int) -> GameResult:
 	return await act("sell_stored_item", [item_id])
 
-func set_surface(item_id: int, use_blue: bool) -> GameResult:
-	return await act("set_surface", [item_id, use_blue])
-
 func expand_land(use_blue: bool) -> GameResult:
 	return await act("expand_land", [use_blue])
 
@@ -210,8 +207,8 @@ func finish_car_task_now(car_uid: int) -> GameResult:
 func stop_car_task(car_uid: int) -> GameResult:
 	return await act("stop_car_task", [car_uid])
 
-func clear_floor(cars: bool, items: bool, bays: bool) -> GameResult:
-	return await act("clear_floor", [cars, items, bays])
+func clear_floor(cars: bool, items: bool, bays: bool, walls: bool, floors: bool) -> GameResult:
+	return await act("clear_floor", [cars, items, bays, walls, floors])
 
 func accept_customer(customer_uid: int, bay_uid: int) -> GameResult:
 	return await act("accept_customer", [customer_uid, bay_uid])

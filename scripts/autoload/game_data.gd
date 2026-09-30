@@ -13,6 +13,8 @@ var item_art: Dictionary = {}
 var wheel_art: Dictionary = {}
 ## GPS icons and town location layers (tools/export_art.py "town").
 var town_art: Dictionary = {}
+## Signs and posters as they hang on walls ("posters").
+var poster_art: Dictionary = {}
 ## UI art the original loaded at runtime from static/ui ("static_ui").
 var static_ui_art: Dictionary = {}
 ## The original loading screen's logo and background ("title").
@@ -31,6 +33,7 @@ func _ready() -> void:
 	item_art = _read_manifest("items")
 	wheel_art = _read_manifest("wheels")
 	town_art = _read_manifest("town")
+	poster_art = _read_manifest("posters")
 	static_ui_art = _read_manifest("static_ui")
 	title_art = _read_manifest("title")
 	# Only cars with a body in every view can be drawn everywhere.

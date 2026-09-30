@@ -7,7 +7,7 @@ extends RefCounted
 ## or the UI. Every action takes [param now] (unix seconds) from the caller so
 ## timers can use a trusted clock.
 
-const CURRENT_SAVE_VERSION := 3
+const CURRENT_SAVE_VERSION := 4
 
 var catalog: Catalog
 var save: Dictionary
@@ -21,6 +21,7 @@ func _init(cat: Catalog, save_data: Dictionary) -> void:
 	missions = MissionTracker.new(cat)
 	for id: int in dealer_car_ids():
 		_dealer_ids[id] = true
+	_upgrade_legacy_walls()
 
 
 # --- New game ---------------------------------------------------------------
@@ -43,8 +44,9 @@ static func new_save(cat: Catalog, player_name: String, now: int) -> Dictionary:
 		"garage": {
 			"land_id": start.get("land_id", 1),
 			"floor_item_id": start.get("floor_item_id", 0),
-			"wall_item_id": start.get("wall_item_id", 0),
+			"floor_tiles": {},
 			"items": [],
+			"walls": [],
 			"wall_items": [],
 		},
 		"cars": [],
@@ -176,8 +178,11 @@ func garage_value() -> int:
 	var total := 0
 	for c: Dictionary in save["cars"]:
 		total += catalog.car(c["car_id"]).get("price", 0)
-	for it: Dictionary in save["garage"]["items"]:
-		total += catalog.item(it["item_id"]).get("price", 0)
+	for list: String in ["items", "walls", "wall_items"]:
+		for it: Dictionary in save["garage"].get(list, []):
+			total += catalog.item(it["item_id"]).get("price", 0)
+	for key: String in save["garage"].get("floor_tiles", {}):
+		total += catalog.item(save["garage"]["floor_tiles"][key]).get("price", 0)
 	return total
 
 
@@ -580,7 +585,7 @@ func shop_item_ids() -> Array[int]:
 		if it["price"] <= 0 and it["blue_price"] <= 0:
 			continue
 		var cat: int = it["category"]
-		if GarageGrid.is_floor_object(it) or cat == GarageGrid.CAT_FLOOR_TILE or cat == GarageGrid.CAT_WALL:
+		if GarageGrid.is_floor_object(it) or cat in [GarageGrid.CAT_FLOOR_TILE, GarageGrid.CAT_WALL, GarageGrid.CAT_SIGNAGE]:
 			result.append(id)
 	result.sort_custom(func(a: int, b: int) -> bool:
 		var ia: Dictionary = catalog.items[a]
@@ -589,20 +594,27 @@ func shop_item_ids() -> Array[int]:
 	return result
 
 
+## Buys an item and puts it in the garage: a floor object at tile (x, y), a
+## wall on the edge at (x, y), a poster on the walls there, or a floor tile
+## painted on tile (x, y).
 func buy_item(item_id: int, x: int, y: int, rot: int, use_blue: bool, now: int) -> GameResult:
 	var def: Dictionary = catalog.item(item_id)
-	if def.is_empty() or not GarageGrid.is_floor_object(def):
-		return GameResult.fail("That item can't be placed on the floor.")
+	var kind := _placement_kind(def)
+	if kind == "":
+		return GameResult.fail("That item can't be placed in the garage.")
+	if not (def.get("purchasable", false) or def.get("always_purchasable", false)):
+		return GameResult.fail("That item isn't for sale.")
 	var err := _level_ok(def)
 	if err != "":
 		return GameResult.fail(err)
-	if not _item_fits(item_id, x, y, rot):
-		return GameResult.fail("There's no room there.")
+	err = _fit_error(kind, item_id, x, y, rot)
+	if err != "":
+		return GameResult.fail(err)
 	err = _charge(def, use_blue)
 	if err != "":
 		return GameResult.fail(err)
-	var entry := _add_item(item_id, x, y, rot)
-	var result := GameResult.success({"uid": entry["uid"]})
+	var entry := _place(kind, item_id, x, y, rot)
+	var result := GameResult.success({"uid": entry.get("uid", 0)})
 	add_rewards(0, 0, def.get("xp", 0), result)
 	_emit("BOUGHT_ITEM_ID", item_id, now, result)
 	_emit("BOUGHT_ITEM_CATEGORY", def["category"], now, result)
@@ -614,7 +626,18 @@ func buy_item(item_id: int, x: int, y: int, rot: int, use_blue: bool, now: int) 
 func move_item(uid: int, x: int, y: int, rot: int) -> GameResult:
 	var entry := _find_item(uid)
 	if entry.is_empty():
-		return GameResult.fail("Item not found.")
+		var found := _find_wall_thing(uid)
+		if found.is_empty():
+			return GameResult.fail("Item not found.")
+		var wall_entry: Dictionary = found["entry"]
+		if not _wall_fits(wall_entry["item_id"], x, y, rot, uid):
+			return GameResult.fail("There's no room there.")
+		if found["list"] == "walls":
+			_store_posters_on(uid)
+		wall_entry["x"] = x
+		wall_entry["y"] = y
+		wall_entry["rot"] = posmod(rot, 2)
+		return GameResult.success()
 	if _bay_busy(uid):
 		return GameResult.fail("Clear the work bay before moving it.")
 	if not _item_fits(entry["item_id"], x, y, rot, "item:%d" % uid):
@@ -628,7 +651,11 @@ func move_item(uid: int, x: int, y: int, rot: int) -> GameResult:
 func store_item(uid: int) -> GameResult:
 	var entry := _find_item(uid)
 	if entry.is_empty():
-		return GameResult.fail("Item not found.")
+		var found := _take_wall_thing(uid)
+		if found.is_empty():
+			return GameResult.fail("Item not found.")
+		_store_item(found["item_id"])
+		return GameResult.success()
 	if _bay_busy(uid):
 		return GameResult.fail("Clear the work bay before storing it.")
 	save["garage"]["items"].erase(entry)
@@ -636,10 +663,23 @@ func store_item(uid: int) -> GameResult:
 	return GameResult.success()
 
 
-## The original "Reset Floor": puts cars, garage items and/or empty work bays
-## into storage. Busy cars (on a job or out on a car task) and busy bays stay.
-func clear_floor(cars: bool, items: bool, bays: bool) -> GameResult:
-	var stored := {"cars": 0, "items": 0, "bays": 0}
+## The original "Reset Floor" (ClearGarageFloorCommand): puts cars, garage
+## items, empty work bays, walls (with their posters) and/or floor tiles into
+## storage. Busy cars (on a job or out on a car task) and busy bays stay.
+func clear_floor(cars: bool, items: bool, bays: bool, walls: bool, floors: bool) -> GameResult:
+	var stored := {"cars": 0, "items": 0, "bays": 0, "walls": 0, "floors": 0}
+	if walls:
+		for list: String in ["wall_items", "walls"]:
+			for entry: Dictionary in save["garage"][list]:
+				_store_item(entry["item_id"])
+				stored["walls"] += 1
+			save["garage"][list] = []
+	if floors:
+		for key: String in save["garage"]["floor_tiles"]:
+			if _keeps_tile(save["garage"]["floor_tiles"][key]):
+				_store_item(save["garage"]["floor_tiles"][key])
+			stored["floors"] += 1
+		save["garage"]["floor_tiles"] = {}
 	if cars:
 		for car: Dictionary in save["cars"]:
 			if not car["placed"] or save["car_tasks"].has(str(car["uid"])):
@@ -666,19 +706,28 @@ func place_stored_item(item_id: int, x: int, y: int, rot: int) -> GameResult:
 	var key := str(item_id)
 	if save["storage"].get(key, 0) <= 0:
 		return GameResult.fail("You don't have that item in storage.")
-	if not GarageGrid.is_floor_object(catalog.item(item_id)) or not _item_fits(item_id, x, y, rot):
-		return GameResult.fail("There's no room there.")
+	var kind := _placement_kind(catalog.item(item_id))
+	if kind == "":
+		return GameResult.fail("That item can't be placed in the garage.")
+	var err := _fit_error(kind, item_id, x, y, rot)
+	if err != "":
+		return GameResult.fail(err)
 	save["storage"][key] -= 1
 	if save["storage"][key] == 0:
 		save["storage"].erase(key)
-	var entry := _add_item(item_id, x, y, rot)
-	return GameResult.success({"uid": entry["uid"]})
+	var entry := _place(kind, item_id, x, y, rot)
+	return GameResult.success({"uid": entry.get("uid", 0)})
 
 
 func sell_item(uid: int) -> GameResult:
 	var entry := _find_item(uid)
 	if entry.is_empty():
-		return GameResult.fail("Item not found.")
+		var found := _take_wall_thing(uid)
+		if found.is_empty():
+			return GameResult.fail("Item not found.")
+		var wall_refund: int = floori(catalog.item(found["item_id"]).get("price", 0) * float(catalog.tune("economy.item_resell_fraction", 0.5)))
+		_player()["coins"] += wall_refund
+		return GameResult.success({"coins": wall_refund})
 	if _bay_busy(uid):
 		return GameResult.fail("Clear the work bay before selling it.")
 	var fraction: float = catalog.tune("economy.item_resell_fraction", 0.5)
@@ -701,29 +750,135 @@ func sell_stored_item(item_id: int) -> GameResult:
 	return GameResult.success({"coins": refund})
 
 
-## Floor tiles and wall styles cover the whole garage; price is per tile.
-func set_surface(item_id: int, use_blue: bool, now: int) -> GameResult:
+# --- Walls, posters and floor tiles -------------------------------------------------
+
+## How an item goes in the garage: "floor", "wall", "poster", "tile" or "".
+func _placement_kind(def: Dictionary) -> String:
+	if def.is_empty():
+		return ""
+	if GarageGrid.is_floor_object(def):
+		return "floor"
+	if GarageGrid.is_wall(def):
+		return "wall"
+	if GarageGrid.is_wall_object(def):
+		return "poster"
+	if def.get("category", 0) == GarageGrid.CAT_FLOOR_TILE:
+		return "tile"
+	return ""
+
+
+## "" if [param item_id] can go at (x, y, rot) as [param kind], else why not.
+func _fit_error(kind: String, item_id: int, x: int, y: int, rot: int) -> String:
+	match kind:
+		"floor":
+			return "" if _item_fits(item_id, x, y, rot) else "There's no room there."
+		"wall":
+			return "" if _wall_fits(item_id, x, y, rot) else "A wall can't go there."
+		"poster":
+			return "" if _wall_fits(item_id, x, y, rot) else "That needs an empty wall to hang on."
+		"tile":
+			var land: Dictionary = catalog.land(save["garage"]["land_id"])
+			if x < 0 or y < 0 or x >= land["size_x"] or y >= land["size_y"]:
+				return "That's outside your garage."
+			if floor_tile(x, y) == item_id:
+				return "That tile already has that floor."
+			return ""
+	return "That item can't be placed in the garage."
+
+
+func _wall_fits(item_id: int, x: int, y: int, rot: int, ignore_uid: int = 0) -> bool:
 	var def: Dictionary = catalog.item(item_id)
-	var cat: int = def.get("category", 0)
-	if cat != GarageGrid.CAT_FLOOR_TILE and cat != GarageGrid.CAT_WALL:
-		return GameResult.fail("That isn't a floor or wall style.")
-	var key := "floor_item_id" if cat == GarageGrid.CAT_FLOOR_TILE else "wall_item_id"
-	if save["garage"][key] == item_id:
-		return GameResult.fail("Your garage already uses that style.")
-	var err := _level_ok(def)
-	if err != "":
-		return GameResult.fail(err)
-	var land: Dictionary = catalog.land(save["garage"]["land_id"])
-	var tiles: int = land["size_x"] * land["size_y"] if cat == GarageGrid.CAT_FLOOR_TILE else land["size_x"] + land["size_y"]
-	err = _charge(def, use_blue, tiles)
-	if err != "":
-		return GameResult.fail(err)
-	save["garage"][key] = item_id
-	var result := GameResult.success()
-	_emit("BOUGHT_ITEM_ID", item_id, now, result)
-	_emit("BOUGHT_ITEM_CATEGORY", cat, now, result)
-	_emit("DECORATE_GARAGE", 0, now, result)
-	return result
+	var grid := GarageGrid.build(catalog, save)
+	var horizontal := posmod(rot, 2) == GarageGrid.HORIZONTAL
+	if GarageGrid.is_wall(def):
+		return grid.can_place_wall(x, y, GarageGrid.wall_length(def), horizontal, ignore_uid)
+	return grid.can_place_poster(x, y, GarageGrid.wall_object_length(def), horizontal, ignore_uid)
+
+
+## Puts an already paid-for item in the garage. Returns its entry.
+func _place(kind: String, item_id: int, x: int, y: int, rot: int) -> Dictionary:
+	match kind:
+		"floor":
+			return _add_item(item_id, x, y, rot)
+		"wall", "poster":
+			var entry := {"uid": _uid(), "item_id": item_id, "x": x, "y": y, "rot": posmod(rot, 2)}
+			save["garage"]["walls" if kind == "wall" else "wall_items"].append(entry)
+			return entry
+		"tile":
+			var key := "%d,%d" % [x, y]
+			var old: int = save["garage"]["floor_tiles"].get(key, 0)
+			if old != 0 and _keeps_tile(old):
+				_store_item(old)
+			if item_id == save["garage"]["floor_item_id"]:
+				save["garage"]["floor_tiles"].erase(key)
+			else:
+				save["garage"]["floor_tiles"][key] = item_id
+			return {"x": x, "y": y}
+	return {}
+
+
+## The floor on tile (x, y): its own tile, or the garage's base floor.
+func floor_tile(x: int, y: int) -> int:
+	return save["garage"]["floor_tiles"].get("%d,%d" % [x, y], save["garage"]["floor_item_id"])
+
+
+## Painted-over tiles go back to storage, except free ones.
+func _keeps_tile(item_id: int) -> bool:
+	var def: Dictionary = catalog.item(item_id)
+	return def.get("price", 0) > 0 or def.get("blue_price", 0) > 0
+
+
+## A wall or poster by uid: {"list": "walls"/"wall_items", "entry": {...}}.
+func _find_wall_thing(uid: int) -> Dictionary:
+	for list: String in ["walls", "wall_items"]:
+		for entry: Dictionary in save["garage"][list]:
+			if entry["uid"] == uid:
+				return {"list": list, "entry": entry}
+	return {}
+
+
+## Takes a wall (its posters go to storage) or a poster out of the garage.
+## Returns its entry, or {}.
+func _take_wall_thing(uid: int) -> Dictionary:
+	var found := _find_wall_thing(uid)
+	if found.is_empty():
+		return {}
+	if found["list"] == "walls":
+		_store_posters_on(uid)
+	save["garage"][found["list"]].erase(found["entry"])
+	return found["entry"]
+
+
+func _store_posters_on(wall_uid: int) -> void:
+	var grid := GarageGrid.build(catalog, save)
+	for poster_uid: int in grid.posters_on_wall(wall_uid):
+		var found := _find_wall_thing(poster_uid)
+		if not found.is_empty():
+			save["garage"]["wall_items"].erase(found["entry"])
+			_store_item(found["entry"]["item_id"])
+
+
+## Saves from before wall segments had one wall style along the two back
+## edges ("wall_item_id"); it becomes real walls there.
+func _upgrade_legacy_walls() -> void:
+	var g: Dictionary = save.get("garage", {})
+	if g.is_empty() or not g.has("wall_item_id"):
+		return
+	var wall_id: int = g["wall_item_id"]
+	g.erase("wall_item_id")
+	if not g.has("walls"):
+		g["walls"] = []
+	if not g.has("floor_tiles"):
+		g["floor_tiles"] = {}
+	var def: Dictionary = catalog.item(wall_id)
+	if wall_id == 0 or not GarageGrid.is_wall(def):
+		return
+	var land: Dictionary = catalog.land(g["land_id"])
+	var step := GarageGrid.wall_length(def)
+	for v in range(0, land.get("size_y", 10), step):
+		g["walls"].append({"uid": _uid(), "item_id": wall_id, "x": 0, "y": v, "rot": GarageGrid.VERTICAL})
+	for h in range(0, land.get("size_x", 10), step):
+		g["walls"].append({"uid": _uid(), "item_id": wall_id, "x": h, "y": 0, "rot": GarageGrid.HORIZONTAL})
 
 
 func next_land_id() -> int:

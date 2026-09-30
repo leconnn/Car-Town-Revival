@@ -12,6 +12,8 @@ extends RefCounted
 
 const DIR := "res://tests/fixtures/golden"
 const T0 := TestEnv.NOW
+## Uid of the first wall bought in garage_and_cars (the one the sign hangs on).
+const WALL_UID := 7
 
 ## name -> [[action, args, now], ...]. Bay uid 1 is the starting lift and
 ## car uid 2 is the starter car in the test catalog.
@@ -40,7 +42,18 @@ static func all() -> Dictionary:
 			["move_item", [4, 8, 9, 1], T0 + 60],
 			["store_item", [4], T0 + 60],
 			["place_stored_item", [900, 9, 0, 0], T0 + 60],
-			["set_surface", [293, false], T0 + 70],
+			# Floor tiles, walls and a sign on them (item 950 is two tiles wide).
+			["buy_item", [293, 3, 3, 0, false], T0 + 70],
+			["buy_item", [293, 3, 3, 0, false], T0 + 70],
+			["buy_item", [1, 0, 2, 0, false], T0 + 70],
+			["buy_item", [1, 0, 3, 0, false], T0 + 70],
+			["buy_item", [950, 0, 2, 0, false], T0 + 70],
+			["buy_item", [950, 0, 3, 0, false], T0 + 70],
+			["buy_item", [2, 5, 3, 1, false], T0 + 70],
+			["buy_item", [2, 0, 0, 1, false], T0 + 70],
+			["store_item", [WALL_UID], T0 + 71],
+			["place_stored_item", [1, 0, 3, 0], T0 + 72],
+			["clear_floor", [false, false, false, true, true], T0 + 73],
 			["expand_land", [false], T0 + 80],
 			["move_car", [2, 6, 6, 1], T0 + 90],
 			["store_car", [2], T0 + 90],
@@ -78,7 +91,7 @@ static func all() -> Dictionary:
 			# An empty lift: the job gets a random car.
 			["start_job", [1, 4], T0 + 5400],
 			["collect_job", [1], T0 + 5700],
-			["clear_floor", [true, true, false], T0 + 86400],
+			["clear_floor", [true, true, false, false, false], T0 + 86400],
 			["tick", [], T0 + 86400 * 2],
 			["visit_location", [9], T0 + 86400 * 2],
 			["visit_location", [14], T0 + 86400 * 2],

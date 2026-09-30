@@ -389,11 +389,25 @@ func _show_collected(at: Variant, r: GameResult) -> void:
 		CollectMoney.spawn(garage.effects_layer(), at, r.data.get("coins", 0), r.data.get("xp", 0))
 
 
+## A garage item, wall or sign by uid.
 func _item_entry(uid: int) -> Dictionary:
-	for it: Dictionary in Backend.state()["garage"]["items"]:
-		if it["uid"] == uid:
-			return it
+	for list: String in ["items", "walls", "wall_items"]:
+		for it: Dictionary in Backend.state()["garage"].get(list, []):
+			if it["uid"] == uid:
+				return it
 	return {}
+
+
+## How an item is placed: "item" (on the floor), "wall", "poster" or "tile".
+static func _placement_kind(item_id: int) -> String:
+	var def: Dictionary = GameData.catalog.item(item_id)
+	if GarageGrid.is_wall(def):
+		return "wall"
+	if GarageGrid.is_wall_object(def):
+		return "poster"
+	if def.get("category", 0) == GarageGrid.CAT_FLOOR_TILE:
+		return "tile"
+	return "item"
 
 
 # --- Placement and edit mode ---------------------------------------------------------
@@ -406,8 +420,18 @@ func place_new_item(item_id: int, use_blue: bool) -> void:
 
 
 func place_stored_item(item_id: int) -> void:
-	_start_placement("item", {"item_id": item_id}, 0, "", func(tile: Vector2i, rot: int) -> void:
+	_start_placement(_placement_kind(item_id), {"item_id": item_id}, 0, "", func(tile: Vector2i, rot: int) -> void:
 		await Backend.place_stored_item(item_id, tile.x, tile.y, rot))
+
+
+## Paints floor tiles one click at a time until cancelled: from storage
+## while there are any, then bought (FlooringDragManager.onSwatchRelease).
+func paint_floor(item_id: int, use_blue: bool) -> void:
+	_start_placement("tile", {"item_id": item_id}, 0, "", func(tile: Vector2i, _rot: int) -> void:
+		if Backend.state()["storage"].get(str(item_id), 0) > 0:
+			await Backend.place_stored_item(item_id, tile.x, tile.y, 0)
+		else:
+			await Backend.buy_item(item_id, tile.x, tile.y, 0, use_blue))
 
 
 func move_car(car_uid: int) -> void:
@@ -418,7 +442,9 @@ func move_car(car_uid: int) -> void:
 
 func move_item(item_uid: int) -> void:
 	var entry := _item_entry(item_uid)
-	_start_placement("item", entry, entry["rot"], "item:%d" % item_uid, func(tile: Vector2i, rot: int) -> void:
+	var kind := _placement_kind(entry["item_id"])
+	var ignore := ("item:%d" if kind == "item" else "wall:%d") % item_uid
+	_start_placement(kind, entry, entry["rot"], ignore, func(tile: Vector2i, rot: int) -> void:
 		await Backend.move_item(item_uid, tile.x, tile.y, rot))
 
 
@@ -430,7 +456,8 @@ func _start_placement(kind: String, entry: Dictionary, rot: int, ignore: String,
 	garage.add_child(placement)
 	placement.start(garage, kind, entry, rot, ignore)
 	placement.confirmed.connect(func(tile: Vector2i, r: int) -> void:
-		if not hold:
+		# Floor painting keeps going; everything else is placed once.
+		if not hold and kind != "tile":
 			_placement = null
 		_moving = {}
 		on_confirm.call(tile, r))
@@ -438,7 +465,13 @@ func _start_placement(kind: String, entry: Dictionary, rot: int, ignore: String,
 		if _placement == placement:
 			_placement = null
 		_moving = {})
-	toasts.show_message("Click to place  ·  R to rotate  ·  Right-click to cancel")
+	match kind:
+		"tile":
+			toasts.show_message("Click tiles to paint them  ·  Right-click when you're done")
+		"wall", "poster":
+			toasts.show_message("Click an edge to place  ·  Right-click to cancel")
+		_:
+			toasts.show_message("Click to place  ·  R to rotate  ·  Right-click to cancel")
 
 
 func cancel_placement() -> void:
@@ -473,7 +506,11 @@ func _on_edit_place(kind: String, id: int) -> void:
 		"buy":
 			var it: Dictionary = GameData.catalog.item(id)
 			var blue: bool = not it["can_buy_with_coins"] and it["price"] <= 0
-			_start_placement("item", {"item_id": id}, 0, "", func(tile: Vector2i, rot: int) -> void:
+			var place_kind := _placement_kind(id)
+			if place_kind == "tile":
+				paint_floor(id, blue)
+				return
+			_start_placement(place_kind, {"item_id": id}, 0, "", func(tile: Vector2i, rot: int) -> void:
 				var held := _placement
 				_edit_tray.show_buy_confirm(it["name"], it["blue_price"] if blue else it["price"], blue,
 					func() -> void:
@@ -496,7 +533,7 @@ func _release(p: Placement) -> void:
 ## In edit mode, clicking something picks it up to move it.
 func _edit_object(kind: String, uid: int) -> void:
 	match kind:
-		"item":
+		"item", "wall", "wall_item":
 			_moving = {"kind": "item", "uid": uid}
 			move_item(uid)
 		"car":
@@ -661,6 +698,32 @@ func _dev_open() -> void:
 		match a.trim_prefix("open="):
 			"bay": _open_work_bay(bay)
 			"credits": MenuPopup.open_credits(get_tree())
+			"place_wall", "place_poster", "place_tile":
+				# A ghost following a mouse parked over a tile edge.
+				set_edit_mode(true)
+				var item: int = {"place_wall": 1357, "place_poster": 856, "place_tile": 40}[a.trim_prefix("open=")]
+				if a.ends_with("poster"):
+					for v in 4:
+						await Backend.buy_item(1357, 0, v, GarageGrid.VERTICAL, false)
+				_on_edit_place("buy", item)
+				await get_tree().process_frame
+				var at := Iso.to_screen(0.2, 1.5) if not a.ends_with("tile") else Iso.to_screen(3.5, 3.5)
+				get_viewport().warp_mouse(garage.get_global_transform_with_canvas() * at)
+			"decor", "decor_edit":
+				# Back walls with signs on them, and some painted floor.
+				for v in 8:
+					await Backend.buy_item(1357, 0, v, GarageGrid.VERTICAL, false)
+				for h in 10:
+					await Backend.buy_item(1357, h, 0, GarageGrid.HORIZONTAL, false)
+				await Backend.buy_item(1572, 0, 3, GarageGrid.VERTICAL, false)
+				await Backend.buy_item(856, 0, 0, GarageGrid.VERTICAL, false)
+				await Backend.buy_item(1129, 1, 0, GarageGrid.HORIZONTAL, false)
+				await Backend.buy_item(857, 6, 0, GarageGrid.HORIZONTAL, false)
+				for x in range(1, 9):
+					for y in range(7, 10):
+						await Backend.buy_item(40, x, y, 0, false)
+				if a.ends_with("_edit"):
+					set_edit_mode(true)
 			"drive_in":
 				# Pretend every waiting customer just arrived.
 				garage._seen_customers = {}

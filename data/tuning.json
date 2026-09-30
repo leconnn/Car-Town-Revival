@@ -8,7 +8,6 @@
     "car_color_index": 0,
     "job": {"job_id": 4},
     "floor_item_id": 292,
-    "wall_item_id": 0,
     "items": [
       {"item_id": 156, "x": 1, "y": 1, "rot": 0},
       {"item_id": 156, "x": 5, "y": 1, "rot": 0}

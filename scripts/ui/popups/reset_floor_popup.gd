@@ -2,10 +2,9 @@ class_name ResetFloorPopup
 extends Node2D
 ## The original "Reset This Floor!" popup (ClearGarageFloorConfirmPopup with
 ## ClearGaragePopupContent): checkboxes for what goes into storage, and
-## Close / Reset on the frame. Our garage has one floor style and one wall
-## style for the whole garage, so the Walls and Floor Tiles boxes are left out.
+## Close / Reset on the frame.
 
-signal confirmed(cars: bool, items: bool, bays: bool)
+signal confirmed(cars: bool, items: bool, bays: bool, walls: bool, floors: bool)
 signal cancelled
 
 const SIZE := Vector2(632, 498)
@@ -28,7 +27,7 @@ func frame_buttons() -> Array:
 	close.pressed.connect(func() -> void: cancelled.emit())
 	var reset := FrameButton.with_text("     Reset     ", FrameButton.GREEN)
 	reset.pressed.connect(func() -> void:
-		confirmed.emit(_checked(1), _checked(0), _checked(2)))
+		confirmed.emit(_checked(2), _checked(0), _checked(1), _checked(3), _checked(4)))
 	return [close, reset]
 
 
@@ -43,12 +42,10 @@ func _build() -> void:
 	content.styled_text("garageItemsFld", "Garage Items", "sansD01")
 	content.styled_text("workbayFld", "Workbays", "sansD01")
 	content.styled_text("carsFld", "Cars", "sansD01")
-	for hidden: String in ["wallsFld", "floorTilesFld"]:
-		var p := content.part(hidden) as CanvasItem
-		if p != null:
-			p.visible = false
-	# Garage items, workbays, cars (the original's first three boxes).
-	for i in 3:
+	content.styled_text("wallsFld", "Walls", "sansD01")
+	content.styled_text("floorTilesFld", "Floor Tiles", "sansD01")
+	# Garage items, workbays, cars, walls, floor tiles, top to bottom.
+	for i in 5:
 		var box := FlashUi.make("UICarCityCheckBox")
 		if box == null:
 			continue

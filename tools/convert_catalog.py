@@ -238,6 +238,8 @@ def convert(catalog_xml: str, ctx: Ctx) -> dict[str, object]:
             "size_x": i(c, "x"),
             "size_y": i(c, "y"),
             "color_group": i(c, "cg"),
+            # Walls with p1 = 1 are half height and can't hold posters (StageWall).
+            "half_wall": i(c, "p1") == 1,
         }
         d.update(shop_fields(c))
         items.append(d)

@@ -52,3 +52,16 @@ func test_v2_to_v3_adds_part_storage() -> void:
 	assert_that(out["part_storage"]).is_equal({})
 	var logic := GameLogic.new(TestEnv.catalog(), out)
 	assert_bool(logic.tick(TestEnv.NOW).ok).is_true()
+
+
+func test_v3_to_v4_makes_floor_and_walls_tile_by_tile() -> void:
+	var raw: Variant = JsonUtil.read_file("res://tests/fixtures/saves/v3.json")
+	assert_int(raw["save_version"]).is_equal(3)
+	var out := SaveMigrations.migrate(raw)
+	assert_int(out["save_version"]).is_equal(GameLogic.CURRENT_SAVE_VERSION)
+	assert_that(out["garage"]["floor_tiles"]).is_equal({})
+	# The old wall style turns into back walls once the rules load it.
+	var logic := GameLogic.new(TestEnv.catalog(), out)
+	assert_bool(out["garage"].has("wall_item_id")).is_false()
+	assert_int(out["garage"]["walls"].size()).is_greater(0)
+	assert_bool(logic.tick(TestEnv.NOW).ok).is_true()
