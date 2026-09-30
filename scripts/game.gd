@@ -700,6 +700,15 @@ func _dev_open() -> void:
 				_edit_tray._tray.select(1)
 			"customize":
 				open_screen(CustomizeScreen.create(s["cars"][0]["uid"]))
+			"customize_storage":
+				# Some parts in storage: bought wheels and neon, then taken off.
+				var uid: int = s["cars"][0]["uid"]
+				for pid: int in Backend.query().parts_for_car(s["cars"][0]["car_id"], CustomizeScreen.WHEELS).slice(0, 3):
+					await Backend.install_part(uid, pid, false)
+				await Backend.remove_part(uid, CustomizeScreen.WHEELS)
+				var screen := CustomizeScreen.create(uid)
+				open_screen(screen)
+				screen.select_tab("storage")
 			"levelup":
 				notices.push({"kind": "level_up", "level": 5, "coins": 250, "blue": 1})
 			"mission_done":

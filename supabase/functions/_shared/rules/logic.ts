@@ -5,7 +5,7 @@ import { CAT_FLOOR_TILE, CAT_WALL, CAT_WORK_BAY, GarageGrid, isFloorObject, rota
 import { MissionTracker } from "./missions.ts";
 import { key, posmod, roundi, SimpleRng } from "./util.ts";
 
-export const CURRENT_SAVE_VERSION = 2;
+export const CURRENT_SAVE_VERSION = 3;
 
 export class GameResult {
   ok = true;
@@ -32,6 +32,8 @@ export class GameResult {
 }
 
 const RE_PLATE = /^[A-Z0-9 ]+$/;
+/** Categories whose parts go into storage when taken off a car (UpdateUserCarCommand). */
+const STORED_PART_CATEGORIES = [1, 2, 4, 5, 6, 10];
 
 export class GameLogic {
   catalog: Catalog;
@@ -66,6 +68,7 @@ export class GameLogic {
       },
       cars: [],
       storage: {},
+      part_storage: {},
       jobs: {},
       car_tasks: {},
       job_mastery: {},
@@ -341,24 +344,46 @@ export class GameLogic {
     if ((car.parts[catKey] ?? 0) === partId) return GameResult.fail("That part is already installed.");
     if (!this.parts_for_car(car.car_id, p.category_id).includes(partId)) return GameResult.fail("That part doesn't fit this car.");
     const isStock = this.catalog.stockPart(car.car_id, p.category_id) === partId;
-    if (!isStock) {
+    const fromStorage = !isStock && this.storedParts(partId) > 0;
+    const bought = !isStock && !fromStorage;
+    if (bought) {
       let err = this.levelOk(p);
       if (err) return GameResult.fail(err);
       err = this.charge(p, useBlue);
       if (err) return GameResult.fail(err);
     }
+    this.storePart(car, p.category_id);
+    if (fromStorage) this.takeStoredPart(partId);
     car.parts[catKey] = partId;
-    const result = GameResult.success();
-    if (!isStock) {
+    const result = GameResult.success({ from_storage: fromStorage });
+    if (bought) {
       this.addRewards(0, 0, p.xp ?? 0, result);
       this.emit("INSTALLED_CAR_PART_CATEGORY", p.category_id, now, result);
     }
     return result;
   }
 
+  storedParts(partId: number): number {
+    return this.save.part_storage[key(partId)] ?? 0;
+  }
+
+  /** The part on the car in the category goes into storage, unless it's stock or the category isn't kept. */
+  private storePart(car: Dict, categoryId: number): void {
+    const old: number = car.parts[key(categoryId)] ?? 0;
+    if (old === 0 || !STORED_PART_CATEGORIES.includes(categoryId) || old === this.catalog.stockPart(car.car_id, categoryId)) return;
+    this.save.part_storage[key(old)] = this.storedParts(old) + 1;
+  }
+
+  private takeStoredPart(partId: number): void {
+    const k = key(partId);
+    this.save.part_storage[k] = this.storedParts(partId) - 1;
+    if (this.save.part_storage[k] <= 0) delete this.save.part_storage[k];
+  }
+
   remove_part(uid: number, categoryId: number): GameResult {
     const car = this.get_car(uid);
     if (!car) return GameResult.fail("Car not found.");
+    this.storePart(car, categoryId);
     const stock = this.catalog.stockPart(car.car_id, categoryId);
     if (stock > 0) car.parts[key(categoryId)] = stock;
     else delete car.parts[key(categoryId)];

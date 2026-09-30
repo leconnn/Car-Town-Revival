@@ -7,7 +7,7 @@ extends RefCounted
 ## or the UI. Every action takes [param now] (unix seconds) from the caller so
 ## timers can use a trusted clock.
 
-const CURRENT_SAVE_VERSION := 2
+const CURRENT_SAVE_VERSION := 3
 
 var catalog: Catalog
 var save: Dictionary
@@ -49,6 +49,7 @@ static func new_save(cat: Catalog, player_name: String, now: int) -> Dictionary:
 		},
 		"cars": [],
 		"storage": {},
+		"part_storage": {},
 		"jobs": {},
 		"car_tasks": {},
 		"job_mastery": {},
@@ -370,6 +371,13 @@ func parts_for_car(car_id: int, category_id: int) -> Array[int]:
 	return result
 
 
+## Categories whose parts go into storage when taken off a car (wheels,
+## tires, body kits, wings, hoods, neon; UpdateUserCarCommand).
+const STORED_PART_CATEGORIES: Array[int] = [1, 2, 4, 5, 6, 10]
+
+
+## Puts a part on a car: free if it's the stock part or one you have in
+## storage, else bought. The part it replaces goes into storage.
 func install_part(uid: int, part_id: int, use_blue: bool, now: int) -> GameResult:
 	var car := get_car(uid)
 	var p: Dictionary = catalog.part(part_id)
@@ -381,25 +389,52 @@ func install_part(uid: int, part_id: int, use_blue: bool, now: int) -> GameResul
 	if not parts_for_car(car["car_id"], p["category_id"]).has(part_id):
 		return GameResult.fail("That part doesn't fit this car.")
 	var is_stock: bool = catalog.stock_part(car["car_id"], p["category_id"]) == part_id
-	if not is_stock:
+	var from_storage: bool = not is_stock and stored_parts(part_id) > 0
+	var bought := not is_stock and not from_storage
+	if bought:
 		var err := _level_ok(p)
 		if err != "":
 			return GameResult.fail(err)
 		err = _charge(p, use_blue)
 		if err != "":
 			return GameResult.fail(err)
+	_store_part(car, p["category_id"])
+	if from_storage:
+		_take_stored_part(part_id)
 	car["parts"][cat_key] = part_id
-	var result := GameResult.success()
-	if not is_stock:
+	var result := GameResult.success({"from_storage": from_storage})
+	if bought:
 		add_rewards(0, 0, p.get("xp", 0), result)
 		_emit("INSTALLED_CAR_PART_CATEGORY", p["category_id"], now, result)
 	return result
+
+
+## How many of [param part_id] are in storage.
+func stored_parts(part_id: int) -> int:
+	return save["part_storage"].get(str(part_id), 0)
+
+
+## The part on [param car] in [param category_id] goes into storage, unless
+## it's the stock part (always free) or the category isn't kept.
+func _store_part(car: Dictionary, category_id: int) -> void:
+	var old: int = car["parts"].get(str(category_id), 0)
+	if old == 0 or not STORED_PART_CATEGORIES.has(category_id) or old == catalog.stock_part(car["car_id"], category_id):
+		return
+	save["part_storage"][str(old)] = stored_parts(old) + 1
+
+
+func _take_stored_part(part_id: int) -> void:
+	var key := str(part_id)
+	save["part_storage"][key] = stored_parts(part_id) - 1
+	if save["part_storage"][key] <= 0:
+		save["part_storage"].erase(key)
 
 
 func remove_part(uid: int, category_id: int) -> GameResult:
 	var car := get_car(uid)
 	if car.is_empty():
 		return GameResult.fail("Car not found.")
+	_store_part(car, category_id)
 	var stock := catalog.stock_part(car["car_id"], category_id)
 	if stock > 0:
 		car["parts"][str(category_id)] = stock

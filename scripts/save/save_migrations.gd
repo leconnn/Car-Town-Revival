@@ -36,6 +36,8 @@ static func _step(version: int, data: Dictionary) -> Dictionary:
 	match version:
 		1:
 			return _v1_to_v2(data)
+		2:
+			return _v2_to_v3(data)
 		_:
 			return {}
 
@@ -47,4 +49,10 @@ static func _v1_to_v2(data: Dictionary) -> Dictionary:
 	for car: Dictionary in data.get("cars", []):
 		car["upgrades"] = [int(car.get("upgrade", 0)), 0, 0, 0]
 		car.erase("upgrade")
+	return data
+
+
+## v3 added parts storage: parts taken off a car, to put back on for free.
+static func _v2_to_v3(data: Dictionary) -> Dictionary:
+	data["part_storage"] = {}
 	return data

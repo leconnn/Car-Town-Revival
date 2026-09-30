@@ -25,6 +25,10 @@ static func all() -> Dictionary:
 			["install_part", [2, 12, false], T0 + 20],
 			["install_part", [2, 13, false], T0 + 20],
 			["install_part", [2, 100, true], T0 + 20],
+			# Parts storage: stock back on, then the stored wheels again for free.
+			["install_part", [2, 11, false], T0 + 21],
+			["install_part", [2, 12, false], T0 + 22],
+			["remove_part", [2, 10], T0 + 23],
 			["upgrade_car", [2, 1], T0 + 30],
 			["upgrade_car", [2, 3], T0 + 30],
 			["upgrade_car", [2, 7], T0 + 30],

@@ -1,6 +1,6 @@
 {
  "start": {
-  "save_version": 2,
+  "save_version": 3,
   "created_at": 1000000,
   "updated_at": 1000000,
   "player": {
@@ -52,6 +52,7 @@
    }
   ],
   "storage": {},
+  "part_storage": {},
   "jobs": {},
   "car_tasks": {},
   "job_mastery": {},
@@ -88,7 +89,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -162,6 +163,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -205,7 +207,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -279,6 +281,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -322,7 +325,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -396,6 +399,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -450,7 +454,7 @@
     ]
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000010,
     "player": {
@@ -524,6 +528,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -566,11 +571,13 @@
    "result": {
     "ok": true,
     "error": "",
-    "data": {},
+    "data": {
+     "from_storage": false
+    },
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -644,6 +651,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -690,7 +698,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -764,6 +772,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -806,11 +815,13 @@
    "result": {
     "ok": true,
     "error": "",
-    "data": {},
+    "data": {
+     "from_storage": false
+    },
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -885,6 +896,379 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "install_part",
+   "args": [
+    2,
+    11,
+    false
+   ],
+   "now": 1000021,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "from_storage": false
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 3,
+    "created_at": 1000000,
+    "updated_at": 1000021,
+    "player": {
+     "name": "Tester",
+     "coins": 5210,
+     "blue": 3,
+     "xp": 15,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 11,
+       "10": 100
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {
+     "12": 1
+    },
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "install_part",
+   "args": [
+    2,
+    12,
+    false
+   ],
+   "now": 1000022,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "from_storage": true
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 3,
+    "created_at": 1000000,
+    "updated_at": 1000022,
+    "player": {
+     "name": "Tester",
+     "coins": 5210,
+     "blue": 3,
+     "xp": 15,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12,
+       "10": 100
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {},
+    "customers": [],
+    "next_customer_at": 1000000,
+    "missions": {
+     "progress": {},
+     "completed": [],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       7
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "stats": {
+     "cars_bought": 1,
+     "cars_painted": 1
+    }
+   }
+  },
+  {
+   "action": "remove_part",
+   "args": [
+    2,
+    10
+   ],
+   "now": 1000023,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 3,
+    "created_at": 1000000,
+    "updated_at": 1000023,
+    "player": {
+     "name": "Tester",
+     "coins": 5210,
+     "blue": 3,
+     "xp": 15,
+     "level": 1
+    },
+    "next_uid": 4,
+    "rng": 1000000,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "wall_item_id": 2,
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 3368618,
+      "parts": {
+       "1": 12
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 3,
+      "car_id": 1,
+      "color_id": 2,
+      "paint": 65280,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -933,7 +1317,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -967,8 +1351,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -1008,6 +1391,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -1056,7 +1442,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -1090,8 +1476,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -1131,6 +1516,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -1176,7 +1564,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -1210,8 +1598,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -1251,6 +1638,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -1297,7 +1687,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -1331,8 +1721,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -1372,6 +1761,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -1418,7 +1810,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -1452,8 +1844,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -1493,6 +1884,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -1539,7 +1933,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -1573,8 +1967,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -1614,6 +2007,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -1664,7 +2060,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000050,
     "player": {
@@ -1705,8 +2101,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -1746,6 +2141,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -1794,7 +2192,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000050,
     "player": {
@@ -1835,8 +2233,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -1876,6 +2273,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -1923,7 +2323,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -1964,8 +2364,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -2005,6 +2404,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -2049,7 +2451,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -2083,8 +2485,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -2125,6 +2526,9 @@
     ],
     "storage": {
      "900": 1
+    },
+    "part_storage": {
+     "100": 1
     },
     "jobs": {},
     "car_tasks": {},
@@ -2175,7 +2579,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -2216,8 +2620,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -2257,6 +2660,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -2302,7 +2708,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -2343,8 +2749,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -2384,6 +2789,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -2428,7 +2836,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -2469,8 +2877,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -2510,6 +2917,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -2557,7 +2967,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000090,
     "player": {
@@ -2598,8 +3008,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -2639,6 +3048,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -2683,7 +3095,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000090,
     "player": {
@@ -2724,8 +3136,7 @@
       "color_id": 1,
       "paint": 3368618,
       "parts": {
-       "1": 12,
-       "10": 100
+       "1": 12
       },
       "upgrades": [
        1,
@@ -2765,6 +3176,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -2811,7 +3225,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000100,
     "player": {
@@ -2870,6 +3284,9 @@
      }
     ],
     "storage": {},
+    "part_storage": {
+     "100": 1
+    },
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},

@@ -24,10 +24,17 @@ export function migrate(save: Dict): Dict | null {
   for (let v = version; v < CURRENT_SAVE_VERSION; v++) {
     // Same steps, in the same order, as SaveMigrations._step().
     if (v === 1) out = v1ToV2(out);
+    else if (v === 2) out = v2ToV3(out);
     else return null;
     out.save_version = v + 1;
   }
   return out;
+}
+
+/** v3 added parts storage: parts taken off a car, to put back on for free. */
+function v2ToV3(save: Dict): Dict {
+  save.part_storage = {};
+  return save;
 }
 
 /** v2 added car tasks (jobs your own car goes out on). */

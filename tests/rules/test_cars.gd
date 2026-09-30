@@ -85,6 +85,29 @@ func test_install_part_checks_fit_and_level() -> void:
 	assert_int(logic.save["player"]["coins"]).is_equal(9700)
 
 
+func test_replaced_parts_go_to_storage_and_come_back_free() -> void:
+	var logic := TestEnv.logic(10000)
+	var uid: int = logic.save["cars"][0]["uid"]
+	assert_bool(logic.install_part(uid, 12, false, NOW).ok).is_true() # bought: 300
+	# Back to stock: the bought wheels go to storage; stock ones never do.
+	assert_bool(logic.install_part(uid, 11, false, NOW).ok).is_true()
+	assert_int(logic.stored_parts(12)).is_equal(1)
+	assert_int(logic.stored_parts(11)).is_equal(0)
+	# Putting them back on is free and takes them out of storage.
+	var r := logic.install_part(uid, 12, false, NOW)
+	assert_bool(r.ok).is_true()
+	assert_bool(r.data["from_storage"]).is_true()
+	assert_int(logic.save["player"]["coins"]).is_equal(9700)
+	assert_bool(logic.save["part_storage"].has("12")).is_false()
+	# Taking a part off stores it too.
+	assert_bool(logic.install_part(uid, 100, false, NOW).ok).is_true()
+	assert_bool(logic.remove_part(uid, 10).ok).is_true()
+	assert_int(logic.stored_parts(100)).is_equal(1)
+	# Paint, tint and the like aren't kept.
+	assert_bool(logic.install_part(uid, 694, false, NOW).ok).is_true()
+	assert_int(logic.stored_parts(694)).is_equal(0)
+
+
 func test_universal_part_fits_any_car() -> void:
 	var logic := TestEnv.logic(10000)
 	var uid: int = logic.save["cars"][0]["uid"]

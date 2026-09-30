@@ -41,3 +41,14 @@ func test_rejects_non_save() -> void:
 	var errors: Array[String] = []
 	assert_bool(SaveMigrations.migrate({"hello": 1}, errors).is_empty()).is_true()
 	assert_array(errors).is_not_empty()
+
+
+func test_v2_to_v3_adds_part_storage() -> void:
+	var raw: Variant = JsonUtil.read_file("res://tests/fixtures/saves/v2.json")
+	assert_int(raw["save_version"]).is_equal(2)
+	assert_bool((raw as Dictionary).has("part_storage")).is_false()
+	var out := SaveMigrations.migrate(raw)
+	assert_int(out["save_version"]).is_equal(GameLogic.CURRENT_SAVE_VERSION)
+	assert_that(out["part_storage"]).is_equal({})
+	var logic := GameLogic.new(TestEnv.catalog(), out)
+	assert_bool(logic.tick(TestEnv.NOW).ok).is_true()

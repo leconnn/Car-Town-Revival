@@ -1,6 +1,6 @@
 {
  "start": {
-  "save_version": 2,
+  "save_version": 3,
   "created_at": 1000000,
   "updated_at": 1000000,
   "player": {
@@ -52,6 +52,7 @@
    }
   ],
   "storage": {},
+  "part_storage": {},
   "jobs": {},
   "car_tasks": {},
   "job_mastery": {},
@@ -83,7 +84,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -135,6 +136,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -184,7 +186,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -236,6 +238,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {},
@@ -298,7 +301,7 @@
     ]
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -350,6 +353,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {
      "1": {
       "job_id": 4,
@@ -408,7 +412,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -460,6 +464,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {
      "1": {
       "job_id": 4,
@@ -521,7 +526,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000300,
     "player": {
@@ -573,6 +578,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -635,7 +641,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000300,
     "player": {
@@ -687,6 +693,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {
      "1": {
       "job_id": 4,
@@ -773,7 +780,7 @@
     ]
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000600,
     "player": {
@@ -825,6 +832,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -885,7 +893,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000600,
     "player": {
@@ -937,6 +945,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {
      "1": {
       "job_id": 4,
@@ -1012,7 +1021,7 @@
     ]
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1064,6 +1073,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -1124,7 +1134,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1176,6 +1186,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {
      "1": {
       "job_id": 4,
@@ -1239,7 +1250,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000710,
     "player": {
@@ -1291,6 +1302,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -1348,7 +1360,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000710,
     "player": {
@@ -1400,6 +1412,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -1459,7 +1472,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1511,6 +1524,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -1569,7 +1583,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1621,6 +1635,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -1681,7 +1696,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1733,6 +1748,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {
      "2": {
@@ -1796,7 +1812,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1848,6 +1864,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {
      "2": {
@@ -1911,7 +1928,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1963,6 +1980,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {
      "2": {
@@ -2029,7 +2047,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1001000,
     "player": {
@@ -2081,6 +2099,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -2142,7 +2161,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1001000,
     "player": {
@@ -2194,6 +2213,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {
      "2": {
@@ -2270,7 +2290,7 @@
     ]
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1001100,
     "player": {
@@ -2322,6 +2342,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -2383,7 +2404,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1001100,
     "player": {
@@ -2435,6 +2456,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {
      "2": {
@@ -2499,7 +2521,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1001110,
     "player": {
@@ -2551,6 +2573,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -2609,7 +2632,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -2661,6 +2684,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -2736,7 +2760,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -2788,6 +2812,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -2864,7 +2889,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -2916,6 +2941,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -2994,7 +3020,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -3046,6 +3072,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {
      "1": {
       "job_id": 4,
@@ -3138,7 +3165,7 @@
     ]
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
@@ -3190,6 +3217,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -3257,7 +3285,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
@@ -3309,6 +3337,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -3371,7 +3400,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
@@ -3423,6 +3452,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {
      "1": {
       "job_id": 4,
@@ -3493,7 +3523,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1005700,
     "player": {
@@ -3545,6 +3575,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -3610,7 +3641,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1086400,
     "player": {
@@ -3662,6 +3693,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -3721,7 +3753,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -3773,6 +3805,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -3857,7 +3890,7 @@
     ]
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -3909,6 +3942,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -3986,7 +4020,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4038,6 +4072,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -4113,7 +4148,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4165,6 +4200,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -4243,7 +4279,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4295,6 +4331,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
@@ -4372,7 +4409,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 2,
+    "save_version": 3,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
@@ -4424,6 +4461,7 @@
      }
     ],
     "storage": {},
+    "part_storage": {},
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {

@@ -39,8 +39,12 @@ func _build(item_name: String, price: int, blue: bool) -> void:
 	text.add_theme_font_size_override("normal_font_size", 20)
 	text.add_theme_color_override("default_color", TEXT)
 	text.size = Vector2(240, 84)
-	text.text = "Buy [color=#%s]%s[/color] for %s %s?" % [NAME.to_html(false), item_name,
-		Format.number(price), "blue coins" if blue else "coins"]
+	# A negative price: something you already own, put on for free.
+	if price < 0:
+		text.text = "Put on [color=#%s]%s[/color] from storage?" % [NAME.to_html(false), item_name]
+	else:
+		text.text = "Buy [color=#%s]%s[/color] for %s %s?" % [NAME.to_html(false), item_name,
+			Format.number(price), "blue coins" if blue else "coins"]
 	add_child(text)
 	# Centred once it has wrapped (content height is only known after layout).
 	(func() -> void: text.position = Vector2(35, (SIZE.y - text.get_content_height()) / 2.0)).call_deferred()

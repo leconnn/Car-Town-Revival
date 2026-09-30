@@ -2,9 +2,10 @@ class_name CustomizeScreen
 extends StageUi
 ## The original Customize screen (views/editcar/EditCar + EditCarPanel): the
 ## car on the showroom floor with its make, model, class and performance,
-## and the tray: sub-tabs for paint, wheels, tires, body, performance,
-## suspension, tint and lights, a scroller of parts, and a buy box that
-## previews each part on the car before you pay.
+## and the tray: Shop, with sub-tabs for paint, wheels, tires, body,
+## performance, suspension, tint and lights, and Storage, the parts you've
+## taken off that fit this car. A buy box previews each part on the car
+## before you pay (or put a stored one back on for free).
 
 signal closed
 
@@ -26,6 +27,7 @@ const SUB_TABS: Array[Array] = [
 	["BtnPartBody", "body"], ["BtnPartPerformance", "performance"], ["BtnPartSuspension", "suspension"],
 	["BtnPartTint", "tint"], ["BtnPartLights", "lights"],
 ]
+const STORAGE_SUB_TABS: Array[Array] = [["BtnAllStorageParts", "storage"]]
 const TIRE_LABELS := {0: "Low", 1: "Medium", 2: "Tall", 3: "Monster"}
 const TINT_LABELS := {959: "Full Black", 960: "50% Black", 961: "Full Blue", 962: "Full Red"}
 const NEON_LABELS := {956: "Neon Yellow", 957: "Neon Aqua", 958: "Neon Pink", 2965: "Neon Blue",
@@ -47,6 +49,7 @@ var _tray: TabTray
 var _buy_box: Node2D
 var _picker: PaintPicker
 var _tab := "paint"
+var _storage := false
 var _tiles: Array[Dictionary] = []
 
 
@@ -149,18 +152,9 @@ func _build_tray() -> void:
 	if shop != null:
 		shop.styled_text("fldLabel", "Shop", "casualA01")
 		_tray.add_tab(shop)
-	# Storage (parts you own but took off) isn't in our rules: bought parts
-	# go straight on the car, so only the Shop tab shows.
-	_tray.select(0)
-
-	_sub = TabTray.create_sub(708, 144)
-	_sub.position = Vector2(26, 58)
-	_tray.add_child(_sub)
-	for t: Array in SUB_TABS:
-		var icon := FlashUi.make(t[0])
-		if icon != null:
-			_sub.add_tab(icon)
-	_sub.tab_selected.connect(func(i: int) -> void: _show_tab(SUB_TABS[i][1]))
+	var storage := FlashUi.make("BtnStorage2")
+	if storage != null:
+		_tray.add_tab(storage, true)
 
 	_scroller = ItemScroller.create(650, 117, 92)
 	_scroller.position = Vector2(54, 74)
@@ -172,11 +166,43 @@ func _build_tray() -> void:
 	done.position = Vector2(695, 0)
 	done.pressed.connect(close)
 	_tray.add_child(done)
+	_tray.tab_selected.connect(_set_mode)
+	_tray.select(0)
+
+
+## Shop or Storage (the brown tab): swaps the sub-tabs under the tray.
+func _set_mode(index: int) -> void:
+	_storage = index == 1
+	_close_buy_box()
+	if _picker != null:
+		_picker.queue_free()
+		_picker = null
+	if _sub != null:
+		_sub.queue_free()
+	# Storage turns the tray brown (TabMain.BG_BROWN).
+	var chrome := FlashNine.make("UIBgBrownFrame" if _storage else "UIBgFrame", _tray.chrome.size)
+	_tray.chrome.queue_free()
+	_tray.chrome = chrome
+	_tray.add_child(chrome)
+	_tray.move_child(chrome, 0)
+	var tabs := STORAGE_SUB_TABS if _storage else SUB_TABS
+	_sub = TabTray.create_sub(708, 144)
+	_sub.position = Vector2(26, 58)
+	_tray.add_child(_sub)
+	_tray.move_child(_sub, 1)
+	for t: Array in tabs:
+		var icon := FlashUi.make(t[0])
+		if icon != null:
+			_sub.add_tab(icon)
+	_sub.tab_selected.connect(func(i: int) -> void: _show_tab(tabs[i][1]))
 	_sub.select(0)
 
 
 ## Selects a sub-tab by name ("wheels", "performance", ...).
 func select_tab(tab: String) -> void:
+	if tab == "storage":
+		_tray.select(1)
+		return
 	for i in SUB_TABS.size():
 		if SUB_TABS[i][1] == tab:
 			_sub.select(i)
@@ -250,22 +276,37 @@ func _tiles_for(tab: String) -> Array[Dictionary]:
 			for cat: int in [HEADLIGHTS, NEON]:
 				for pid: int in q.parts_for_car(car["car_id"], cat):
 					out.append(_part_tile(GameData.catalog.part(pid), car, "neon" if cat == NEON else "part"))
+		"storage":
+			# Stored parts that fit this car (EditCarPanel's storage filter).
+			for key: String in Backend.state().get("part_storage", {}):
+				var p: Dictionary = GameData.catalog.part(int(key))
+				if p.is_empty() or not q.parts_for_car(car["car_id"], p["category_id"]).has(p["id"]):
+					continue
+				out.append(_part_tile(p, car, STORAGE_KINDS.get(p["category_id"], "part")))
 	return out
+
+
+## Tile kinds (their pictures) by part category, for the Storage tab.
+const STORAGE_KINDS := {WHEELS: "wheel", TIRES: "tire", BODY_KITS: "body", WINGS: "body", HOODS: "body", NEON: "neon"}
 
 
 func _part_tile(p: Dictionary, car: Dictionary, kind: String) -> Dictionary:
 	var level: int = Backend.state()["player"]["level"]
 	var blue: bool = not p.get("can_buy_with_coins", true)
+	# A part you have in storage goes back on for free (price -1).
+	var stored: int = Backend.state().get("part_storage", {}).get(str(p.get("id", 0)), 0) if kind != "paint" else 0
 	return {"kind": kind, "id": p.get("id", 0), "part": p, "name": p.get("name", ""),
-		"price": p.get("blue_price", 0) if blue else p.get("price", 0), "blue": blue,
+		"price": -1 if stored > 0 else (p.get("blue_price", 0) if blue else p.get("price", 0)), "blue": blue,
 		"installed": kind != "paint" and car["parts"].get(str(p.get("category_id", 0)), 0) == p.get("id", 0),
-		"locked": "Level %d" % p["min_level"] if p.get("min_level", 0) > level else ""}
+		"locked": "Level %d" % p["min_level"] if p.get("min_level", 0) > level and stored == 0 else "", "count": stored}
 
 
 func _make_tile(t: Dictionary) -> Node2D:
 	var tile := StoreTile.create(_picture(t), t["price"], t["blue"], t["locked"])
 	if t["installed"]:
 		tile.set_installed()
+	if t.get("count", 0) > 0:
+		tile.set_quantity(t["count"])
 	tile.position.y = 5
 	tile.pressed.connect(_on_tile.bind(t))
 	return tile
