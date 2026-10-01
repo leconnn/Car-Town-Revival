@@ -52,6 +52,8 @@ static func _step(version: int, data: Dictionary) -> Dictionary:
 			return _v8_to_v9(data)
 		9:
 			return _v9_to_v10(data)
+		10:
+			return _v10_to_v11(data)
 		_:
 			return {}
 
@@ -120,4 +122,11 @@ static func _v8_to_v9(data: Dictionary) -> Dictionary:
 ## v10 added mystery boxes: unopened boxes in the garage, by item uid.
 static func _v9_to_v10(data: Dictionary) -> Dictionary:
 	data["mystery_boxes"] = {}
+	return data
+
+
+## v11 added car restoration: builds on work bays, the parts you hold, the
+## Junk Yard's daily part and townsfolk deliveries, and what you've restored.
+static func _v10_to_v11(data: Dictionary) -> Dictionary:
+	data["restoration"] = {"builds": {}, "inventory": {}, "last_pile_at": -1, "next_gift_at": -1, "restored": [], "count": 0}
 	return data

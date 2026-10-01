@@ -9,7 +9,7 @@ extends RefCounted
 const REQUIRED_FILES: Array[String] = [
 	"consts", "cars", "car_colors", "parts", "part_categories", "items",
 	"lands", "levels", "garage_value_tiers", "jobs", "task_mastery_levels",
-	"missions", "mission_steps", "locations", "consumables", "daily_rewards", "car_collections", "road_trips", "car_classes", "mystery_boxes",
+	"missions", "mission_steps", "locations", "consumables", "daily_rewards", "car_collections", "road_trips", "car_classes", "mystery_boxes", "car_builds", "car_build_parts",
 ]
 
 var consts: Dictionary = {}
@@ -38,6 +38,9 @@ var road_trips: Dictionary[int, Dictionary] = {}
 var car_classes: Dictionary[int, Dictionary] = {}
 ## Mystery boxes by level (1 = Bronze, 2 = Silver, 3 = Gold, ...).
 var mystery_boxes: Dictionary[int, Dictionary] = {}
+## Car builds (restorations among them) and the parts they need.
+var car_builds: Dictionary[int, Dictionary] = {}
+var car_build_parts: Dictionary[int, Dictionary] = {}
 ## Mission id -> its step definitions, in id order.
 var steps_by_mission: Dictionary[int, Array] = {}
 ## Car id -> {category id -> stock part id}.
@@ -129,6 +132,10 @@ func _index(raw: Dictionary) -> void:
 		car_classes[c["id"]] = c
 	for b: Dictionary in raw["mystery_boxes"]:
 		mystery_boxes[b["level"]] = b
+	for b: Dictionary in raw["car_builds"]:
+		car_builds[b["id"]] = b
+	for p: Dictionary in raw["car_build_parts"]:
+		car_build_parts[p["id"]] = p
 
 
 # --- Lookups ---------------------------------------------------------------

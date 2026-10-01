@@ -32,10 +32,17 @@ export function migrate(save: Dict): Dict | null {
     else if (v === 7) out = out; // v8: road trips live in car_tasks
     else if (v === 8) out = v8ToV9(out);
     else if (v === 9) out = v9ToV10(out);
+    else if (v === 10) out = v10ToV11(out);
     else return null;
     out.save_version = v + 1;
   }
   return out;
+}
+
+/** v11 added car restoration. */
+function v10ToV11(save: Dict): Dict {
+  save.restoration = { builds: {}, inventory: {}, last_pile_at: -1, next_gift_at: -1, restored: [], count: 0 };
+  return save;
 }
 
 /** v10 added mystery boxes. */

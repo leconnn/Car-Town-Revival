@@ -1,0 +1,17 @@
+[
+ {
+  "id": 1,
+  "blue_price": 1,
+  "name": "Pistons"
+ },
+ {
+  "id": 16,
+  "blue_price": 2,
+  "name": "Sunoco Fuel"
+ },
+ {
+  "id": 17,
+  "blue_price": 4,
+  "name": "Paint"
+ }
+]

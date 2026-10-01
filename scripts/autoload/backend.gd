@@ -207,6 +207,24 @@ func finish_car_task_now(car_uid: int) -> GameResult:
 func stop_car_task(car_uid: int) -> GameResult:
 	return await act("stop_car_task", [car_uid])
 
+func start_restoration(build_id: int, bay_uid: int) -> GameResult:
+	return await act("start_restoration", [build_id, bay_uid])
+
+func collect_junkyard_part() -> GameResult:
+	return await act("collect_junkyard_part", [])
+
+func buy_build_part(part_id: int) -> GameResult:
+	return await act("buy_build_part", [part_id])
+
+func install_build_part(bay_uid: int, part_id: int) -> GameResult:
+	return await act("install_build_part", [bay_uid, part_id])
+
+func finish_restoration(bay_uid: int) -> GameResult:
+	return await act("finish_restoration", [bay_uid])
+
+func abandon_restoration(bay_uid: int) -> GameResult:
+	return await act("abandon_restoration", [bay_uid])
+
 func buy_mystery_box(level: int, x: int, y: int, rot: int) -> GameResult:
 	return await act("buy_mystery_box", [level, x, y, rot])
 

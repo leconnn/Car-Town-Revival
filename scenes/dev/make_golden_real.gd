@@ -32,6 +32,11 @@ func _ready() -> void:
 		["mystery_box_spun", [11], t0 + 86400 * 8],
 		["mystery_box_respin", [11], t0 + 86400 * 8], ["mystery_box_spun", [11], t0 + 86400 * 8],
 		["mystery_box_claim", [11], t0 + 86400 * 8],
+		["take_car_off_bay", [3], t0 + 86400 * 9], ["start_restoration", [52, 1], t0 + 86400 * 9],
+		["collect_junkyard_part", [], t0 + 86400 * 9], ["tick", [], t0 + 86400 * 9 + 13 * 3600],
+		["buy_build_part", [17], t0 + 86400 * 9 + 13 * 3600], ["install_build_part", [1, 17], t0 + 86400 * 9 + 13 * 3600],
+		["install_build_part", [1, 1], t0 + 86400 * 9 + 13 * 3600], ["install_build_part", [1, 19], t0 + 86400 * 9 + 13 * 3600],
+		["finish_restoration", [1], t0 + 86400 * 9 + 13 * 3600],
 	]
 	var logic := GameLogic.new(GameData.catalog, GameLogic.new_save(GameData.catalog, "Real", t0))
 	var start := logic.save.duplicate(true)

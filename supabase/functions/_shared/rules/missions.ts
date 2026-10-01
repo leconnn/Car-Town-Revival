@@ -42,6 +42,15 @@ export class MissionTracker {
       case "BOUGHT_ITEM_CATEGORY":
         if (params.length === 0) return false;
         break;
+      case "FINISHED_ROAD_TRIP_WITH_ID":
+      case "FINISHED_ROAD_TRIP_CAR_FULL_WITH_ROADTRIP_ID": {
+        const hidden: number[] = this.catalog.tune("road_trips.hidden", []);
+        for (const p of params) if (hidden.includes(p) || !this.catalog.roadTrips.has(p)) return false;
+        break;
+      }
+      case "COMPLETED_CAR_BUILD_ID":
+        for (const p of params) if (![42, 43].includes(Math.trunc(this.catalog.carBuilds.get(p)?.task_id ?? 0))) return false;
+        break;
     }
     return true;
   }

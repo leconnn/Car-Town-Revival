@@ -91,7 +91,14 @@
       "WON_TOWN_RACE_AT_LOCATION",
       "WON_TOWN_RACE_WITHOUT_REDLINING_AT_LOCATION",
       "WON_TOWN_RACE_WITH_PERFECT_SHIFTS",
-      "WON_TOWN_RACE_AGAINST_FASTER_OPPONENT"
+      "WON_TOWN_RACE_AGAINST_FASTER_OPPONENT",
+      "FINISHED_ROAD_TRIP_WITH_CAR_ID",
+      "FINISHED_ROAD_TRIP_WITH_ID",
+      "FINISHED_ROAD_TRIP_CAR_FULL_WITH_ROADTRIP_ID",
+      "FINISHED_BEACH_ROAD_TRIP_WITH_CAR_ID",
+      "FINISHED_FULL_CAMPING_ROAD_TRIP_WITH_CAR_ID",
+      "COMPLETED_CAR_BUILD_ID",
+      "COMPLETED_CAR_RESTORATION_CAR_ID"
     ],
     "daily_count": 3
   },
@@ -187,5 +194,27 @@
   "mystery_boxes": {
     "_about": "Boxed cars sold in Buy Cars: place the box, spin, then claim the car or respin once. The original charged Blue Coins (Facebook credits); with currency \"coins\" a box costs its item's coin price and a respin the same share of it as the original's respin/box Blue Coin prices.",
     "currency": "coins"
+  },
+  "restoration": {
+    "_about": "Car restoration at the Junk Yard: restore a junker on a work bay by collecting its parts. The Junk Yard's piles give a free part every pile_hours; townsfolk send a needed part every gift_minutes while a restoration is under way (in the original, friends did); missing parts can be bought. The original priced parts in Blue Coins; with currency \"coins\" each Blue Coin is coins_per_blue.",
+    "currency": "coins",
+    "coins_per_blue": 2500,
+    "pile_hours": 24,
+    "gift_minutes": 240,
+    "junkyard_cars": 4,
+    "helper_names": [
+      "Dana",
+      "Marco",
+      "Kelly",
+      "Jules",
+      "Sam",
+      "Rita",
+      "Vince",
+      "Nina",
+      "Bea",
+      "Carl",
+      "Dot",
+      "Eddie"
+    ]
   }
 }

@@ -130,6 +130,18 @@ static func all() -> Dictionary:
 			["mystery_box_respin", [5], T0 + 90120],
 			["mystery_box_spun", [5], T0 + 90120],
 			["mystery_box_claim", [5], T0 + 90130],
+			# Restoration: a junker on a bay, the day's pile part, townsfolk
+			# deliveries, a bought part, then the car.
+			["start_restoration", [29, 1], T0 + 90200],
+			["start_restoration", [53, 1], T0 + 90200],
+			["collect_junkyard_part", [], T0 + 90210],
+			["collect_junkyard_part", [], T0 + 90220],
+			["tick", [], T0 + 90200 + 5 * 3600],
+			["buy_build_part", [1], T0 + 90200 + 5 * 3600],
+			["install_build_part", [1, 1], T0 + 90200 + 5 * 3600],
+			["install_build_part", [1, 1], T0 + 90200 + 5 * 3600],
+			["install_build_part", [1, 1], T0 + 90200 + 5 * 3600],
+			["finish_restoration", [1], T0 + 90200 + 5 * 3600],
 			["tick", [], T0 + 3600],
 			["accept_customer", [4, 1], T0 + 3600],
 			["start_job", [1, 13], T0 + 3600],

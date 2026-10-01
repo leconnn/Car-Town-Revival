@@ -38,11 +38,13 @@ func _ready() -> void:
 	static_ui_art = _read_manifest("static_ui")
 	mysterybox_art = _read_manifest("mysterybox")
 	title_art = _read_manifest("title")
-	# Only cars with a body in every view can be drawn everywhere.
+	# Only cars with a body (painted, or unpainted like the junkers) in every
+	# view can be drawn everywhere.
 	for key: String in car_art:
 		var views: Dictionary = car_art[key].get("views", {})
 		if ["front", "rear", "angle"].all(func(v: String) -> bool:
-				return views.get(v, {}).get("layers", {}).has("body")):
+				var layers: Dictionary = views.get(v, {}).get("layers", {})
+				return layers.has("body") or layers.has("body_np")):
 			catalog.art_car_ids[int(key)] = true
 
 

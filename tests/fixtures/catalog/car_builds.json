@@ -1,0 +1,66 @@
+[
+ {
+  "id": 52,
+  "task_id": 42,
+  "car_id": 2,
+  "primer_car_id": 4,
+  "number": 1,
+  "grease_required": 0,
+  "crew_required": 0,
+  "parts": [
+   {
+    "part_id": 1,
+    "quantity": 1
+   },
+   {
+    "part_id": 17,
+    "quantity": 2
+   }
+  ]
+ },
+ {
+  "id": 53,
+  "task_id": 42,
+  "car_id": 3,
+  "primer_car_id": 4,
+  "number": 1,
+  "grease_required": 0,
+  "crew_required": 0,
+  "parts": [
+   {
+    "part_id": 1,
+    "quantity": 2
+   }
+  ]
+ },
+ {
+  "id": 91,
+  "task_id": 43,
+  "car_id": 5,
+  "primer_car_id": 4,
+  "number": 1,
+  "grease_required": 0,
+  "crew_required": 0,
+  "parts": [
+   {
+    "part_id": 1,
+    "quantity": 1
+   }
+  ]
+ },
+ {
+  "id": 29,
+  "task_id": 36,
+  "car_id": 5,
+  "primer_car_id": 4,
+  "number": 18,
+  "grease_required": 25,
+  "crew_required": 5,
+  "parts": [
+   {
+    "part_id": 16,
+    "quantity": 4
+   }
+  ]
+ }
+]

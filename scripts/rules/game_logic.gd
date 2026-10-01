@@ -7,7 +7,7 @@ extends RefCounted
 ## or the UI. Every action takes [param now] (unix seconds) from the caller so
 ## timers can use a trusted clock.
 
-const CURRENT_SAVE_VERSION := 10
+const CURRENT_SAVE_VERSION := 11
 
 var catalog: Catalog
 var save: Dictionary
@@ -67,6 +67,7 @@ static func new_save(cat: Catalog, player_name: String, now: int) -> Dictionary:
 		"collections_done": [],
 		"docks": {"first_done": false, "last_claim": -1, "boat": {}},
 		"mystery_boxes": {},
+		"restoration": {"builds": {}, "inventory": {}, "last_pile_at": -1, "next_gift_at": -1, "restored": [], "count": 0},
 		"stats": {},
 	}
 	var logic := GameLogic.new(cat, s)
@@ -205,7 +206,7 @@ func max_workers() -> int:
 ## Workers busy on bay jobs and car tasks (one each, like the original's
 ## UserWorkerTasks).
 func busy_workers() -> int:
-	return save["jobs"].size() + save["car_tasks"].size()
+	return save["jobs"].size() + save["car_tasks"].size() + save["restoration"]["builds"].size()
 
 
 # --- Missions -------------------------------------------------------------------
@@ -943,6 +944,8 @@ func bay_occupant(bay_uid: int) -> Dictionary:
 	for c: Dictionary in save["customers"]:
 		if c.get("bay_uid", 0) == bay_uid:
 			return {"kind": "customer", "entry": c}
+	if save["restoration"]["builds"].has(str(bay_uid)):
+		return {"kind": "build", "entry": save["restoration"]["builds"][str(bay_uid)]}
 	return {}
 
 
@@ -1011,6 +1014,8 @@ func start_job(bay_uid: int, job_id: int, now: int) -> GameResult:
 	if def.is_empty() or not available_job_ids().has(job_id):
 		return GameResult.fail("Unknown job.")
 	var occ := bay_occupant(bay_uid)
+	if occ.get("kind", "") == "build":
+		return GameResult.fail("A car is being restored on that work bay.")
 	if occ.get("kind", "") == "customer" and occ["entry"].get("job_id", 0) not in [0, job_id]:
 		return GameResult.fail("This customer wants a %s." % catalog.job(occ["entry"]["job_id"]).get("name", "different job"))
 	if _player()["level"] < def["min_level"]:
@@ -1222,6 +1227,256 @@ func collect_car_task(car_uid: int, now: int) -> GameResult:
 	_bump_stat("jobs_collected")
 	_emit("COLLECTED_WORKBAY_TASK_ID", job_id, now, result)
 	return result
+
+
+# --- Car restoration --------------------------------------------------------------------
+# The Junk Yard (views/carrestoration): pick a junker and restore it on a work
+# bay by collecting its parts. One part a day turns up in the Junk Yard's
+# piles; townsfolk send needed parts over time (in the original, friends
+# did); the rest can be bought. Restore enough different cars and you're a
+# Master Mechanic, with harder builds of your own.
+
+const BUILD_RESTORATION := 42
+const BUILD_MASTER_MECHANIC := 43
+
+
+func _restoration() -> Dictionary:
+	return save["restoration"]
+
+
+## Different cars restored so far.
+func restorations_done() -> int:
+	return (_restoration()["restored"] as Array).size()
+
+
+func is_master_mechanic() -> bool:
+	return restorations_done() >= int(catalog.consts.get("restorations_to_master_mechanic", 10))
+
+
+## Builds you can start: restorations, and Master Mechanic builds once
+## you're one. Lowest level first.
+func restoration_build_ids() -> Array[int]:
+	var out: Array[int] = []
+	for id: int in catalog.car_builds:
+		var b: Dictionary = catalog.car_builds[id]
+		var task: int = b["task_id"]
+		if task != BUILD_RESTORATION and not (task == BUILD_MASTER_MECHANIC and is_master_mechanic()):
+			continue
+		if catalog.car(int(b["car_id"])).is_empty() or catalog.car(int(b["primer_car_id"])).is_empty():
+			continue
+		if not catalog.art_car_ids.is_empty() and not (catalog.art_car_ids.has(int(b["car_id"])) and catalog.art_car_ids.has(int(b["primer_car_id"]))):
+			continue
+		out.append(id)
+	out.sort_custom(func(a: int, b: int) -> bool:
+		var la: int = catalog.car(int(catalog.car_builds[a]["car_id"])).get("min_level", 0)
+		var lb: int = catalog.car(int(catalog.car_builds[b]["car_id"])).get("min_level", 0)
+		return la < lb if la != lb else a < b)
+	return out
+
+
+## The junkers waiting on the Junk Yard's spots: ones you haven't restored yet first.
+func junkyard_build_ids() -> Array[int]:
+	var fresh: Array[int] = []
+	var done: Array[int] = []
+	for id: int in restoration_build_ids():
+		if catalog.car_builds[id]["task_id"] != BUILD_RESTORATION:
+			continue
+		if (_restoration()["restored"] as Array).has(id):
+			done.append(id)
+		else:
+			fresh.append(id)
+	var out := fresh + done
+	return out.slice(0, int(catalog.tune("restoration.junkyard_cars", 4)))
+
+
+## The restoration on a work bay, or {}.
+func bay_build(bay_uid: int) -> Dictionary:
+	return _restoration()["builds"].get(str(bay_uid), {})
+
+
+## Parts a restoration still needs: {part_id: how many}.
+func build_parts_needed(bay_uid: int) -> Dictionary:
+	var build := bay_build(bay_uid)
+	var out := {}
+	if build.is_empty():
+		return out
+	for p: Dictionary in catalog.car_builds[int(build["build_id"])]["parts"]:
+		var have: int = int(build["parts"].get(str(p["part_id"]), 0))
+		if have < int(p["quantity"]):
+			out[int(p["part_id"])] = int(p["quantity"]) - have
+	return out
+
+
+## Parts still missing across every restoration, less what's in your
+## inventory, one entry per part (sorted, so picks are repeatable).
+func _parts_wanted() -> Array[int]:
+	var want := {}
+	for key: String in _restoration()["builds"]:
+		var needed := build_parts_needed(int(key))
+		for pid: int in needed:
+			want[pid] = int(want.get(pid, 0)) + int(needed[pid])
+	var out: Array[int] = []
+	for pid: int in want:
+		if int(want[pid]) > int(_restoration()["inventory"].get(str(pid), 0)):
+			out.append(pid)
+	out.sort()
+	return out
+
+
+func restoration_currency() -> String:
+	return "blue" if catalog.tune("restoration.currency", "coins") == "blue" else "coins"
+
+
+func build_part_price(part_id: int) -> int:
+	var blue := int(catalog.car_build_parts.get(part_id, {}).get("blue_price", 0))
+	if restoration_currency() == "blue":
+		return blue
+	return blue * int(catalog.tune("restoration.coins_per_blue", 2500))
+
+
+func _give_part(part_id: int, count: int = 1) -> void:
+	var inv: Dictionary = _restoration()["inventory"]
+	inv[str(part_id)] = int(inv.get(str(part_id), 0)) + count
+
+
+func start_restoration(build_id: int, bay_uid: int, now: int) -> GameResult:
+	if not restoration_build_ids().has(build_id):
+		return GameResult.fail("That car can't be restored.")
+	if not _is_bay(bay_uid):
+		return GameResult.fail("That isn't a work bay.")
+	if _bay_busy(bay_uid):
+		return GameResult.fail("That work bay is busy.")
+	var b: Dictionary = catalog.car_builds[build_id]
+	var lvl: int = catalog.car(int(b["car_id"])).get("min_level", 0)
+	if _player()["level"] < lvl:
+		return GameResult.fail("Requires level %d." % lvl)
+	if busy_workers() >= max_workers():
+		return GameResult.fail("All your workers are busy. Level up to hire more.")
+	_restoration()["builds"][str(bay_uid)] = {"build_id": build_id, "started_at": now, "parts": {}}
+	if int(_restoration()["next_gift_at"]) < 0:
+		_restoration()["next_gift_at"] = now + int(catalog.tune("restoration.gift_minutes", 240)) * 60
+	var result := GameResult.success()
+	_emit("STARTED_WORKBAY_TASK_ID", int(b["task_id"]), now, result)
+	return result
+
+
+## The day's free part from the Junk Yard's piles (the original hid it in
+## one of four; the pile you click is up to the screen).
+func collect_junkyard_part(now: int) -> GameResult:
+	var last := int(_restoration()["last_pile_at"])
+	var wait := int(catalog.tune("restoration.pile_hours", 24)) * 3600
+	if last >= 0 and now - last < wait:
+		return GameResult.fail("You've already found today's part. Come back tomorrow!")
+	var choices := _parts_wanted()
+	if choices.is_empty():
+		for id: int in restoration_build_ids():
+			for p: Dictionary in catalog.car_builds[id]["parts"]:
+				if not choices.has(int(p["part_id"])):
+					choices.append(int(p["part_id"]))
+		choices.sort()
+	if choices.is_empty():
+		return GameResult.fail("There's nothing in the piles today.")
+	var part_id: int = choices[_rng(0, choices.size() - 1)]
+	_give_part(part_id)
+	_restoration()["last_pile_at"] = now
+	return GameResult.success({"part_id": part_id})
+
+
+func buy_build_part(part_id: int, now: int) -> GameResult:
+	if not catalog.car_build_parts.has(part_id):
+		return GameResult.fail("Unknown part.")
+	var cost := build_part_price(part_id)
+	var key := restoration_currency()
+	if cost <= 0 or _player()[key] < cost:
+		return GameResult.fail("Not enough Blue Coins." if key == "blue" else "Not enough coins.")
+	_player()[key] -= cost
+	_give_part(part_id)
+	return GameResult.success({"part_id": part_id, "cost": cost})
+
+
+## Puts a part from your inventory into the car on [param bay_uid].
+func install_build_part(bay_uid: int, part_id: int) -> GameResult:
+	if bay_build(bay_uid).is_empty():
+		return GameResult.fail("There's no restoration on that work bay.")
+	if not build_parts_needed(bay_uid).has(part_id):
+		return GameResult.fail("This car doesn't need that part.")
+	var inv: Dictionary = _restoration()["inventory"]
+	var have := int(inv.get(str(part_id), 0))
+	if have <= 0:
+		return GameResult.fail("You don't have that part.")
+	if have == 1:
+		inv.erase(str(part_id))
+	else:
+		inv[str(part_id)] = have - 1
+	var parts: Dictionary = bay_build(bay_uid)["parts"]
+	parts[str(part_id)] = int(parts.get(str(part_id), 0)) + 1
+	return GameResult.success({"done": build_parts_needed(bay_uid).is_empty()})
+
+
+## Every part in: the restored car rolls off the work bay (SendRestorationCompleteRequest).
+func finish_restoration(bay_uid: int, now: int) -> GameResult:
+	var build := bay_build(bay_uid)
+	if build.is_empty():
+		return GameResult.fail("There's no restoration on that work bay.")
+	if not build_parts_needed(bay_uid).is_empty():
+		return GameResult.fail("It still needs parts.")
+	var build_id: int = build["build_id"]
+	var b: Dictionary = catalog.car_builds[build_id]
+	_restoration()["builds"].erase(str(bay_uid))
+	if _restoration()["builds"].is_empty():
+		_restoration()["next_gift_at"] = -1
+	var was_master := is_master_mechanic()
+	var restored: Array = _restoration()["restored"]
+	if not restored.has(build_id):
+		restored.append(build_id)
+	_restoration()["count"] = int(_restoration()["count"]) + 1
+	var car_id: int = b["car_id"]
+	var colors := catalog.colors_for_car(car_id)
+	var car := _add_car(car_id, colors[0]["id"] if not colors.is_empty() else 0)
+	var result := GameResult.success({"car_id": car_id, "uid": car["uid"], "build_id": build_id})
+	_bump_stat("restorations")
+	_emit("COLLECTED_WORKBAY_TASK_ID", int(b["task_id"]), now, result)
+	_emit("COMPLETED_CAR_BUILD_ID", build_id, now, result)
+	_emit("COMPLETED_CAR_RESTORATION_CAR_ID", car_id, now, result)
+	if not was_master and is_master_mechanic():
+		result.notices.append({"kind": "master_mechanic"})
+	_check_collections(result)
+	return result
+
+
+## Gives up on a restoration; its parts go back to your inventory.
+func abandon_restoration(bay_uid: int) -> GameResult:
+	var build := bay_build(bay_uid)
+	if build.is_empty():
+		return GameResult.fail("There's no restoration on that work bay.")
+	for key: String in build["parts"]:
+		_give_part(int(key), int(build["parts"][key]))
+	_restoration()["builds"].erase(str(bay_uid))
+	if _restoration()["builds"].is_empty():
+		_restoration()["next_gift_at"] = -1
+	return GameResult.success()
+
+
+## Townsfolk drop off parts your restorations still need, one every so often.
+func _restoration_gifts(now: int, result: GameResult) -> void:
+	var r := _restoration()
+	if r["builds"].is_empty() or int(r["next_gift_at"]) < 0:
+		return
+	var every: int = maxi(60, int(catalog.tune("restoration.gift_minutes", 240)) * 60)
+	var names: Array = catalog.tune("restoration.helper_names", ["A neighbor"])
+	var given := 0
+	while int(r["next_gift_at"]) <= now and given < 24:
+		var wanted := _parts_wanted()
+		if wanted.is_empty():
+			r["next_gift_at"] = now + every
+			return
+		var part_id: int = wanted[_rng(0, wanted.size() - 1)]
+		_give_part(part_id)
+		result.notices.append({"kind": "part_gift", "part_id": part_id, "name": str(names[_rng(0, names.size() - 1)])})
+		r["next_gift_at"] = int(r["next_gift_at"]) + every
+		given += 1
+	if int(r["next_gift_at"]) <= now:
+		r["next_gift_at"] = now + every
 
 
 # --- Mystery boxes ----------------------------------------------------------------------
@@ -1750,6 +2005,7 @@ func tick(now: int) -> GameResult:
 		result.data["arrived"] = result.data.get("arrived", 0) + 1
 	if pool.is_empty():
 		save["next_customer_at"] = now + interval
+	_restoration_gifts(now, result)
 	missions.refresh_daily(save, now, _dealer_ids)
 	return result
 

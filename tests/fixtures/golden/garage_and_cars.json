@@ -1,6 +1,6 @@
 {
  "start": {
-  "save_version": 10,
+  "save_version": 11,
   "created_at": 1000000,
   "updated_at": 1000000,
   "player": {
@@ -83,6 +83,14 @@
    "boat": {}
   },
   "mystery_boxes": {},
+  "restoration": {
+   "builds": {},
+   "inventory": {},
+   "last_pile_at": -1,
+   "next_gift_at": -1,
+   "restored": [],
+   "count": 0
+  },
   "stats": {}
  },
  "steps": [
@@ -104,7 +112,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -217,6 +225,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1
     }
@@ -237,7 +253,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -350,6 +366,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1
     }
@@ -370,7 +394,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -483,6 +507,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1
     }
@@ -514,7 +546,7 @@
     ]
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000010,
     "player": {
@@ -629,6 +661,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -652,7 +692,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -767,6 +807,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -788,7 +836,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -903,6 +951,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -926,7 +982,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -1042,6 +1098,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1065,7 +1129,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000021,
     "player": {
@@ -1183,6 +1247,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1206,7 +1278,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000022,
     "player": {
@@ -1322,6 +1394,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1342,7 +1422,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000023,
     "player": {
@@ -1459,6 +1539,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1482,7 +1570,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -1599,6 +1687,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1622,7 +1718,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -1739,6 +1835,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1759,7 +1863,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -1876,6 +1980,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1897,7 +2009,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -2014,6 +2126,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2035,7 +2155,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -2152,6 +2272,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2173,7 +2301,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -2290,6 +2418,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2315,7 +2451,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000050,
     "player": {
@@ -2439,6 +2575,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2462,7 +2606,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000050,
     "player": {
@@ -2586,6 +2730,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2608,7 +2760,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -2732,6 +2884,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2751,7 +2911,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -2870,6 +3030,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2894,7 +3062,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -3018,6 +3186,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3043,7 +3219,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3169,6 +3345,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3192,7 +3376,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3318,6 +3502,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3343,7 +3535,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3477,6 +3669,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3502,7 +3702,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3643,6 +3843,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3668,7 +3876,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3817,6 +4025,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3840,7 +4056,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3989,6 +4205,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4014,7 +4238,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -4170,6 +4394,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4195,7 +4427,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -4358,6 +4590,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4377,7 +4617,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000071,
     "player": {
@@ -4528,6 +4768,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4552,7 +4800,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000072,
     "player": {
@@ -4709,6 +4957,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4738,7 +4994,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000073,
     "player": {
@@ -4867,6 +5123,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4897,7 +5161,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000074,
     "player": {
@@ -5039,6 +5303,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5067,7 +5339,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000075,
     "player": {
@@ -5196,6 +5468,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5229,7 +5509,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000076,
     "player": {
@@ -5371,6 +5651,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5401,7 +5689,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000077,
     "player": {
@@ -5530,6 +5818,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5555,7 +5851,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000077,
     "player": {
@@ -5684,6 +5980,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5709,7 +6013,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000077,
     "player": {
@@ -5838,6 +6142,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5863,7 +6175,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000078,
     "player": {
@@ -5992,6 +6304,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6019,7 +6339,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000079,
     "player": {
@@ -6148,6 +6468,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6169,7 +6497,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000079,
     "player": {
@@ -6298,6 +6626,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6325,7 +6661,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1086479,
     "player": {
@@ -6454,6 +6790,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6489,7 +6833,7 @@
     ]
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1172879,
     "player": {
@@ -6618,6 +6962,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6645,7 +6997,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1432000,
     "player": {
@@ -6774,6 +7126,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6797,7 +7157,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1432000,
     "player": {
@@ -6926,6 +7286,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6952,7 +7320,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000090,
     "player": {
@@ -7081,6 +7449,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -7104,7 +7480,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000090,
     "player": {
@@ -7233,6 +7609,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -7258,7 +7642,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 10,
+    "save_version": 11,
     "created_at": 1000000,
     "updated_at": 1000100,
     "player": {
@@ -7365,6 +7749,14 @@
      "boat": {}
     },
     "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {},
+     "last_pile_at": -1,
+     "next_gift_at": -1,
+     "restored": [],
+     "count": 0
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,

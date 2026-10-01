@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 REQUIRED = ["consts", "cars", "car_colors", "parts", "part_categories", "items", "lands", "levels",
-            "garage_value_tiers", "jobs", "task_mastery_levels", "missions", "mission_steps", "locations", "consumables", "daily_rewards", "car_collections", "road_trips", "car_classes", "mystery_boxes"]
+            "garage_value_tiers", "jobs", "task_mastery_levels", "missions", "mission_steps", "locations", "consumables", "daily_rewards", "car_collections", "road_trips", "car_classes", "mystery_boxes", "car_builds", "car_build_parts"]
 
 
 def main() -> int:
@@ -28,10 +28,10 @@ def main() -> int:
     art = ROOT / "assets" / "ea" / "art" / "cars.json"
     art_ids = []
     if art.is_file():
-        # Same rule as GameData: a body layer in every view.
+        # Same rule as GameData: a body layer (painted or not) in every view.
         for k, v in json.loads(art.read_text(encoding="utf-8")).items():
             views = v.get("views", {})
-            if all("body" in views.get(n, {}).get("layers", {}) for n in ("front", "rear", "angle")):
+            if all(any(b in views.get(n, {}).get("layers", {}) for b in ("body", "body_np")) for n in ("front", "rear", "angle")):
                 art_ids.append(int(k))
         art_ids.sort()
     out = ROOT / "supabase" / "functions" / "_shared" / "catalog" / "data.ts"

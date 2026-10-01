@@ -55,6 +55,16 @@ func step_achievable(step: Dictionary, dealer_car_ids: Dictionary) -> bool:
 		"BOUGHT_ITEM_CATEGORY":
 			if params.is_empty():
 				return false
+		"FINISHED_ROAD_TRIP_WITH_ID", "FINISHED_ROAD_TRIP_CAR_FULL_WITH_ROADTRIP_ID":
+			var hidden: Array = catalog.tune("road_trips.hidden", [])
+			for p: int in params:
+				if hidden.has(p) or not catalog.road_trips.has(p):
+					return false
+		"COMPLETED_CAR_BUILD_ID":
+			# Only restorations are in; the other builds were licensed events.
+			for p: int in params:
+				if int(catalog.car_builds.get(p, {}).get("task_id", 0)) not in [42, 43]:
+					return false
 	return true
 
 

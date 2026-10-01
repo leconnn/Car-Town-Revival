@@ -155,6 +155,12 @@ def convert_consts(e: ET.Element) -> dict:
         "ert": "fuel_refill_seconds",
         # The Docks (DocksDataSet): searching costs this % of the boat's
         # price, searching again this %.
+        # Car builds and restoration: Blue Coins per elbow grease and crew
+        # member, crew needed, and restorations to become a Master Mechanic.
+        "cbegc": "build_grease_blue",
+        "cbccp": "build_crew_blue",
+        "cbcr": "build_crew_required",
+        "mme": "restorations_to_master_mechanic",
         "dckpc": "docks_search_percent",
         "dckpcr": "docks_search_again_percent",
     }
@@ -173,6 +179,18 @@ def convert(catalog_xml: str, ctx: Ctx) -> dict[str, object]:
     out: dict[str, object] = {}
 
     out["consts"] = convert_consts(sec["consts"])
+    # Car builds (CarBuildDataSet): what each build makes, from which primer
+    # car, on which work bay task, and the parts it needs; and the parts.
+    out["car_builds"] = [
+        {"id": i(c, "i"), "task_id": i(c, "wti"), "car_id": i(c, "ci"), "primer_car_id": i(c, "pci"),
+         "number": i(c, "n"), "grease_required": i(c, "reg"), "crew_required": i(c, "rc"),
+         "parts": [{"part_id": i(p, "i"), "quantity": i(p, "q")} for p in (c.find("ps") if c.find("ps") is not None else [])]}
+        for c in sec["cbs"]
+    ]
+    out["car_build_parts"] = [
+        {"id": i(c, "i"), "blue_price": i(c, "cp"), "name": ctx.text(c.get("n"))}
+        for c in sec["cbps"]
+    ]
     # Mystery boxes (MysteryBoxDataSet): a level per box, its garage item,
     # Blue Coin price and respin price, whether it was on sale, and the cars
     # it can hold. "ex" lists cars no box ever gives.

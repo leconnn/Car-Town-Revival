@@ -8,7 +8,7 @@ import {
 import { MissionTracker } from "./missions.ts";
 import { key, posmod, roundi, SimpleRng } from "./util.ts";
 
-export const CURRENT_SAVE_VERSION = 10;
+export const CURRENT_SAVE_VERSION = 11;
 
 export class GameResult {
   ok = true;
@@ -37,6 +37,8 @@ export class GameResult {
 const RE_PLATE = /^[A-Z0-9 ]+$/;
 /** Categories whose parts go into storage when taken off a car (UpdateUserCarCommand). */
 const STORED_PART_CATEGORIES = [1, 2, 4, 5, 6, 10];
+const BUILD_RESTORATION = 42;
+const BUILD_MASTER_MECHANIC = 43;
 const BOX_NEW = 0;
 const BOX_SPUN = 1;
 const BOX_RESPUN = 2;
@@ -102,6 +104,7 @@ export class GameLogic {
       collections_done: [],
       docks: { first_done: false, last_claim: -1, boat: {} },
       mystery_boxes: {},
+      restoration: { builds: {}, inventory: {}, last_pile_at: -1, next_gift_at: -1, restored: [], count: 0 },
       stats: {},
     };
     const logic = new GameLogic(cat, s);
@@ -211,7 +214,7 @@ export class GameLogic {
   maxWorkers(): number { return this.catalog.levelInfo(this.player.level).max_workers; }
 
   busyWorkers(): number {
-    return Object.keys(this.save.jobs).length + Object.keys(this.save.car_tasks).length;
+    return Object.keys(this.save.jobs).length + Object.keys(this.save.car_tasks).length + Object.keys(this.save.restoration.builds).length;
   }
 
   // --- Missions -------------------------------------------------------------------
@@ -810,6 +813,7 @@ export class GameLogic {
   bayOccupant(bayUid: number): Dict {
     for (const c of this.save.cars) if (c.bay_uid === bayUid) return { kind: "car", entry: c };
     for (const c of this.save.customers) if ((c.bay_uid ?? 0) === bayUid) return { kind: "customer", entry: c };
+    if (key(bayUid) in this.save.restoration.builds) return { kind: "build", entry: this.save.restoration.builds[key(bayUid)] };
     return {};
   }
 
@@ -881,6 +885,7 @@ export class GameLogic {
     const def = this.catalog.job(jobId);
     if (Object.keys(def).length === 0 || !this.available_job_ids().includes(jobId)) return GameResult.fail("Unknown job.");
     const occ = this.bayOccupant(bayUid);
+    if (occ.kind === "build") return GameResult.fail("A car is being restored on that work bay.");
     if (occ.kind === "customer" && ![0, jobId].includes(occ.entry.job_id ?? 0)) {
       return GameResult.fail(`This customer wants a ${this.catalog.job(occ.entry.job_id).name ?? "different job"}.`);
     }
@@ -1030,6 +1035,199 @@ export class GameLogic {
     const result = GameResult.success({ ends_at: endsAt });
     this.emit("STARTED_WORKBAY_TASK_ID", jobId, now, result);
     return result;
+  }
+
+  // --- Car restoration --------------------------------------------------------------------
+
+  private get resto(): Dict {
+    return this.save.restoration;
+  }
+
+  restorations_done(): number {
+    return this.resto.restored.length;
+  }
+
+  is_master_mechanic(): boolean {
+    return this.restorations_done() >= Math.trunc(this.catalog.consts.restorations_to_master_mechanic ?? 10);
+  }
+
+  restoration_build_ids(): number[] {
+    const out: number[] = [];
+    const master = this.is_master_mechanic();
+    for (const [id, b] of this.catalog.carBuilds) {
+      const task: number = b.task_id;
+      if (task !== BUILD_RESTORATION && !(task === BUILD_MASTER_MECHANIC && master)) continue;
+      if (Object.keys(this.catalog.car(Math.trunc(b.car_id))).length === 0 || Object.keys(this.catalog.car(Math.trunc(b.primer_car_id))).length === 0) continue;
+      if (this.catalog.artCarIds.size > 0 && !(this.catalog.artCarIds.has(Math.trunc(b.car_id)) && this.catalog.artCarIds.has(Math.trunc(b.primer_car_id)))) continue;
+      out.push(id);
+    }
+    out.sort((a, b) => {
+      const la: number = this.catalog.car(Math.trunc(this.catalog.carBuilds.get(a)!.car_id)).min_level ?? 0;
+      const lb: number = this.catalog.car(Math.trunc(this.catalog.carBuilds.get(b)!.car_id)).min_level ?? 0;
+      return la !== lb ? la - lb : a - b;
+    });
+    return out;
+  }
+
+  junkyard_build_ids(): number[] {
+    const fresh: number[] = [];
+    const done: number[] = [];
+    for (const id of this.restoration_build_ids()) {
+      if (this.catalog.carBuilds.get(id)!.task_id !== BUILD_RESTORATION) continue;
+      if (this.resto.restored.includes(id)) done.push(id);
+      else fresh.push(id);
+    }
+    return [...fresh, ...done].slice(0, Math.trunc(this.catalog.tune("restoration.junkyard_cars", 4)));
+  }
+
+  bay_build(bayUid: number): Dict {
+    return this.resto.builds[key(bayUid)] ?? {};
+  }
+
+  build_parts_needed(bayUid: number): Dict {
+    const build = this.bay_build(bayUid);
+    const out: Dict = {};
+    if (Object.keys(build).length === 0) return out;
+    for (const p of this.catalog.carBuilds.get(Math.trunc(build.build_id))!.parts) {
+      const have = Math.trunc(build.parts[key(p.part_id)] ?? 0);
+      if (have < Math.trunc(p.quantity)) out[p.part_id] = Math.trunc(p.quantity) - have;
+    }
+    return out;
+  }
+
+  private partsWanted(): number[] {
+    const want = new Map<number, number>();
+    for (const k of Object.keys(this.resto.builds)) {
+      const needed = this.build_parts_needed(Number(k));
+      for (const pid of Object.keys(needed)) want.set(Number(pid), (want.get(Number(pid)) ?? 0) + needed[pid]);
+    }
+    const out: number[] = [];
+    for (const [pid, n] of want) if (n > Math.trunc(this.resto.inventory[key(pid)] ?? 0)) out.push(pid);
+    out.sort((a, b) => a - b);
+    return out;
+  }
+
+  restoration_currency(): string {
+    return this.catalog.tune("restoration.currency", "coins") === "blue" ? "blue" : "coins";
+  }
+
+  build_part_price(partId: number): number {
+    const blue = Math.trunc(this.catalog.carBuildParts.get(partId)?.blue_price ?? 0);
+    if (this.restoration_currency() === "blue") return blue;
+    return blue * Math.trunc(this.catalog.tune("restoration.coins_per_blue", 2500));
+  }
+
+  private givePart(partId: number, count = 1): void {
+    this.resto.inventory[key(partId)] = Math.trunc(this.resto.inventory[key(partId)] ?? 0) + count;
+  }
+
+  start_restoration(buildId: number, bayUid: number, now: number): GameResult {
+    if (!this.restoration_build_ids().includes(buildId)) return GameResult.fail("That car can't be restored.");
+    if (!this.isBay(bayUid)) return GameResult.fail("That isn't a work bay.");
+    if (this.bayBusy(bayUid)) return GameResult.fail("That work bay is busy.");
+    const b = this.catalog.carBuilds.get(buildId)!;
+    const lvl: number = this.catalog.car(Math.trunc(b.car_id)).min_level ?? 0;
+    if (this.player.level < lvl) return GameResult.fail(`Requires level ${lvl}.`);
+    if (this.busyWorkers() >= this.maxWorkers()) return GameResult.fail("All your workers are busy. Level up to hire more.");
+    this.resto.builds[key(bayUid)] = { build_id: buildId, started_at: now, parts: {} };
+    if (Math.trunc(this.resto.next_gift_at) < 0) this.resto.next_gift_at = now + Math.trunc(this.catalog.tune("restoration.gift_minutes", 240)) * 60;
+    const result = GameResult.success();
+    this.emit("STARTED_WORKBAY_TASK_ID", Math.trunc(b.task_id), now, result);
+    return result;
+  }
+
+  collect_junkyard_part(now: number): GameResult {
+    const last = Math.trunc(this.resto.last_pile_at);
+    const wait = Math.trunc(this.catalog.tune("restoration.pile_hours", 24)) * 3600;
+    if (last >= 0 && now - last < wait) return GameResult.fail("You've already found today's part. Come back tomorrow!");
+    let choices = this.partsWanted();
+    if (choices.length === 0) {
+      for (const id of this.restoration_build_ids()) {
+        for (const p of this.catalog.carBuilds.get(id)!.parts) if (!choices.includes(Math.trunc(p.part_id))) choices.push(Math.trunc(p.part_id));
+      }
+      choices.sort((a, b) => a - b);
+    }
+    if (choices.length === 0) return GameResult.fail("There's nothing in the piles today.");
+    const partId = choices[this.rng(0, choices.length - 1)];
+    this.givePart(partId);
+    this.resto.last_pile_at = now;
+    return GameResult.success({ part_id: partId });
+  }
+
+  buy_build_part(partId: number, now: number): GameResult {
+    if (!this.catalog.carBuildParts.has(partId)) return GameResult.fail("Unknown part.");
+    const cost = this.build_part_price(partId);
+    const k = this.restoration_currency();
+    if (cost <= 0 || this.player[k] < cost) return GameResult.fail(k === "blue" ? "Not enough Blue Coins." : "Not enough coins.");
+    this.player[k] -= cost;
+    this.givePart(partId);
+    return GameResult.success({ part_id: partId, cost });
+  }
+
+  install_build_part(bayUid: number, partId: number): GameResult {
+    if (Object.keys(this.bay_build(bayUid)).length === 0) return GameResult.fail("There's no restoration on that work bay.");
+    if (!(partId in this.build_parts_needed(bayUid))) return GameResult.fail("This car doesn't need that part.");
+    const have = Math.trunc(this.resto.inventory[key(partId)] ?? 0);
+    if (have <= 0) return GameResult.fail("You don't have that part.");
+    if (have === 1) delete this.resto.inventory[key(partId)];
+    else this.resto.inventory[key(partId)] = have - 1;
+    const parts = this.bay_build(bayUid).parts;
+    parts[key(partId)] = Math.trunc(parts[key(partId)] ?? 0) + 1;
+    return GameResult.success({ done: Object.keys(this.build_parts_needed(bayUid)).length === 0 });
+  }
+
+  finish_restoration(bayUid: number, now: number): GameResult {
+    const build = this.bay_build(bayUid);
+    if (Object.keys(build).length === 0) return GameResult.fail("There's no restoration on that work bay.");
+    if (Object.keys(this.build_parts_needed(bayUid)).length > 0) return GameResult.fail("It still needs parts.");
+    const buildId: number = build.build_id;
+    const b = this.catalog.carBuilds.get(buildId)!;
+    delete this.resto.builds[key(bayUid)];
+    if (Object.keys(this.resto.builds).length === 0) this.resto.next_gift_at = -1;
+    const wasMaster = this.is_master_mechanic();
+    if (!this.resto.restored.includes(buildId)) this.resto.restored.push(buildId);
+    this.resto.count = Math.trunc(this.resto.count) + 1;
+    const carId: number = b.car_id;
+    const colors = this.catalog.colorsForCar(carId);
+    const car = this.addCar(carId, colors.length ? colors[0].id : 0);
+    const result = GameResult.success({ car_id: carId, uid: car.uid, build_id: buildId });
+    this.bumpStat("restorations");
+    this.emit("COLLECTED_WORKBAY_TASK_ID", Math.trunc(b.task_id), now, result);
+    this.emit("COMPLETED_CAR_BUILD_ID", buildId, now, result);
+    this.emit("COMPLETED_CAR_RESTORATION_CAR_ID", carId, now, result);
+    if (!wasMaster && this.is_master_mechanic()) result.notices.push({ kind: "master_mechanic" });
+    this.checkCollections(result);
+    return result;
+  }
+
+  abandon_restoration(bayUid: number): GameResult {
+    const build = this.bay_build(bayUid);
+    if (Object.keys(build).length === 0) return GameResult.fail("There's no restoration on that work bay.");
+    for (const k of Object.keys(build.parts)) this.givePart(Number(k), Math.trunc(build.parts[k]));
+    delete this.resto.builds[key(bayUid)];
+    if (Object.keys(this.resto.builds).length === 0) this.resto.next_gift_at = -1;
+    return GameResult.success();
+  }
+
+  private restorationGifts(now: number, result: GameResult): void {
+    const r = this.resto;
+    if (Object.keys(r.builds).length === 0 || Math.trunc(r.next_gift_at) < 0) return;
+    const every = Math.max(60, Math.trunc(this.catalog.tune("restoration.gift_minutes", 240)) * 60);
+    const names: string[] = this.catalog.tune("restoration.helper_names", ["A neighbor"]);
+    let given = 0;
+    while (Math.trunc(r.next_gift_at) <= now && given < 24) {
+      const wanted = this.partsWanted();
+      if (wanted.length === 0) {
+        r.next_gift_at = now + every;
+        return;
+      }
+      const partId = wanted[this.rng(0, wanted.length - 1)];
+      this.givePart(partId);
+      result.notices.push({ kind: "part_gift", part_id: partId, name: String(names[this.rng(0, names.length - 1)]) });
+      r.next_gift_at = Math.trunc(r.next_gift_at) + every;
+      given += 1;
+    }
+    if (Math.trunc(r.next_gift_at) <= now) r.next_gift_at = now + every;
   }
 
   // --- Mystery boxes ----------------------------------------------------------------------
@@ -1445,6 +1643,7 @@ export class GameLogic {
       result.data.arrived = (result.data.arrived ?? 0) + 1;
     }
     if (pool.length === 0) this.save.next_customer_at = now + interval;
+    this.restorationGifts(now, result);
     this.missions.refreshDaily(this.save, now, this.dealerIds);
     return result;
   }
