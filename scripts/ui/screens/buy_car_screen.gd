@@ -7,6 +7,8 @@ extends StageUi
 ## box, search box and a scroller of every car for sale.
 
 signal closed
+## The Mystery Box was bought: place a box of [param level] in the garage.
+signal mystery_box_requested(level: int)
 
 ## Where the tray starts (GameBase.PLAY_HEIGHT).
 const PLAY_HEIGHT := 467.0
@@ -19,6 +21,24 @@ const SMALL_LABEL := Color8(0x51, 0x5F, 0x72)
 const XP_COLOR := Color8(0x5C, 0x6E, 0x82)
 const WARNING_COLOR := Color8(0xAE, 0x00, 0x00)
 const PERFORMANCE_COLOR := Color8(0x55, 0xA5, 0xE0)
+## In the car list, the Mystery Box tile (BuyCarPanel put it first).
+const MYSTERY_TILE := -1
+## MysteryBoxItem colours, by box level, for the level picker.
+const BOX_COLORS := {
+	1: Color8(0xCC, 0x99, 0x33), 2: Color8(0xCC, 0xCC, 0xCC), 3: Color8(0xFF, 0xCC, 0x33), 4: Color8(0x33, 0x36, 0x34),
+	5: Color8(0xFF, 0x00, 0x00), 6: Color8(0x00, 0xFF, 0xFF), 7: Color8(0x00, 0x00, 0xFF), 8: Color8(0x66, 0xCC, 0xFF),
+	9: Color8(0xB2, 0x22, 0x22), 10: Color8(0x66, 0xCC, 0x33), 11: Color8(0x00, 0x00, 0xFF),
+}
+const BOX_DESCRIPTIONS := {
+	1: "There's a surprise car inside this box! Take a peek!",
+	2: "This box contains a powerful surprise car! What could it be?",
+	3: "A higher-end surprise car awaits you in this box! Buy one and claim your surprise car!",
+	4: "Every spin gives you a chance to win a high-end LIMITED EDITION car! Spin the wheel and be amazed!",
+	5: "Every spin gives you a chance to win a super fast set of wheels!",
+	9: "Every spin gives you a chance to win a Ferrari!",
+	10: "Every spin gives you a chance to win a Lamborghini!",
+	11: "Every spin gives you a chance to WIN an American Muscle Car!",
+}
 const SORTS: Array[Array] = [
 	["Added: New to Old", "new"], ["Model Name: A-Z", "model"], ["Manufacturer Name: A-Z", "mfg"],
 	["Price: Low to High", "pricelow"], ["Price: High to Low", "pricehigh"], ["Level Lock: 1-100", "levellock"],
@@ -35,6 +55,7 @@ var _sort: FlashComboBox
 var _search: LineEdit
 var _ids: Array[int] = []
 var _selected := 0
+var _box_level := 0
 var _color_id := 0
 
 
@@ -146,6 +167,7 @@ func _fill_list() -> void:
 	for id: int in Backend.query().dealer_car_ids():
 		if query == "" or GameData.car_name(id).to_lower().contains(query):
 			_ids.append(id)
+	var with_box := query == "" or "mystery box".contains(query)
 	var cars := GameData.catalog
 	var sort: String = SORTS[_sort.index][1] if _sort != null else "new"
 	_ids.sort_custom(func(a: int, b: int) -> bool:
@@ -163,11 +185,15 @@ func _fill_list() -> void:
 			"levellock":
 				return ca["min_level"] < cb["min_level"]
 		return ca["date_added"] > cb["date_added"] if ca["date_added"] != cb["date_added"] else a > b)
+	if with_box and not box_levels().is_empty():
+		_ids.push_front(MYSTERY_TILE)
 	_scroller.set_items(_ids.size(), _make_tile)
 
 
 func _make_tile(i: int) -> Node2D:
 	var id := _ids[i]
+	if id == MYSTERY_TILE:
+		return _box_tile()
 	var c: Dictionary = GameData.catalog.car(id)
 	var p: Dictionary = Backend.state()["player"]
 	var locked: bool = c["min_level"] > p["level"]
@@ -192,6 +218,7 @@ static func _first_color(car_id: int) -> int:
 
 func show_car(car_id: int, color_id: int = -1) -> void:
 	_selected = car_id
+	_box_level = 0
 	_color_id = _first_color(car_id) if color_id < 0 else color_id
 	if _select_a_car != null:
 		_select_a_car.visible = false
@@ -278,6 +305,97 @@ func show_car(car_id: int, color_id: int = -1) -> void:
 		_buy_layer.add_child(_price(c["blue_price"], true, buy_blue.position.x))
 
 
+# --- The Mystery Box -----------------------------------------------------------------
+
+## Box levels on sale that the game can draw.
+static func box_levels() -> Array[int]:
+	var out: Array[int] = []
+	for level: int in Backend.query().mystery_box_levels():
+		var item_id := int(GameData.catalog.mystery_boxes[level]["item_id"])
+		if GameData.item_art.has(str(item_id)) and GameData.mysterybox_art.has("angle_%d" % level):
+			out.append(level)
+	return out
+
+
+## MysteryBoxStoreItem: the cheapest box, with its price.
+func _box_tile() -> Node2D:
+	var levels := box_levels()
+	var level: int = levels[0]
+	var pic := Node2D.new()
+	var art := MysteryBoxPopups.art_fitted("angle_%d" % level, Vector2(78, 60))
+	if art != null:
+		pic.add_child(art)
+	var blue := Backend.query().mystery_box_currency() == "blue"
+	var tile := StoreTile.create(pic, Backend.query().mystery_box_price(level), blue, "", false, false, false)
+	tile.pressed.connect(show_mystery_box.bind(level))
+	return tile
+
+
+## The box on the halo, what it might hold, the level picker and Buy
+## (BuyCar.handlePreviewMysteryCarBox).
+func show_mystery_box(level: int) -> void:
+	_box_level = level
+	_selected = 0
+	if _select_a_car != null:
+		_select_a_car.visible = false
+	for layer: Node2D in [_details, _buy_layer]:
+		for c in layer.get_children():
+			c.queue_free()
+	var q := Backend.query()
+	var p: Dictionary = Backend.state()["player"]
+	var art := MysteryBoxPopups.art_fitted("angle_%d" % level, Vector2(330, 230))
+	if art != null:
+		art.position = Vector2(200, 300)
+		_details.add_child(art)
+	var make := FlashUi.styled_label("It Could Be Anything!" if level != 4 else "It Could Be Any Limited Edition Car!",
+		"casualA01", 24, Color.WHITE, GLOW, 10)
+	make.position = Vector2(436, 61)
+	_details.add_child(make)
+	var title := FlashUi.styled_label(MysteryBoxPopups.box_name(level), "casualA01", 40, Color.WHITE, GLOW, 12)
+	title.position = Vector2(431, 92)
+	var tw := title.get_minimum_size().x
+	if tw > 320:
+		title.scale = Vector2(320 / tw, 320 / tw)
+	_details.add_child(title)
+	var desc := FlashUi.styled_label(BOX_DESCRIPTIONS.get(level, "There's a surprise car inside this box!"), "casualA01", 16, XP_COLOR)
+	desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	desc.custom_minimum_size = Vector2(300, 0)
+	desc.size = Vector2(300, 0)
+	desc.position = Vector2(437, 150)
+	_details.add_child(desc)
+	# The level picker: a swatch per box on sale.
+	var levels := box_levels()
+	var picker_label := FlashUi.styled_label("%d Reward Levels:" % levels.size(), "sansA03", 12, SMALL_LABEL)
+	picker_label.position = Vector2(437, 240)
+	_details.add_child(picker_label)
+	var swatches := Node2D.new()
+	swatches.position = Vector2(431, 260)
+	_details.add_child(swatches)
+	var x := 0.0
+	for l: int in levels:
+		var bubble := _swatch(BOX_COLORS.get(l, Color.WHITE))
+		var btn := FlashButton.wrap_node(bubble)
+		btn.position.x = x
+		if l == level:
+			btn.set_base_scale(1.15, 1.2)
+		btn.pressed.connect(show_mystery_box.bind(l))
+		swatches.add_child(btn)
+		x += bubble.local_bounds().size.x + 4
+	var respin := FlashUi.styled_label("Respin once for a chance at something better.", "casualA01", 14, XP_COLOR)
+	respin.position = Vector2(437, 305)
+	_details.add_child(respin)
+	var blue := q.mystery_box_currency() == "blue"
+	var price := q.mystery_box_price(level)
+	var buy := EllipseButton.create("Buy", EllipseButton.GREEN)
+	buy.position = Vector2(660 + buy.size().x / 2.0, PLAY_HEIGHT)
+	buy.set_disabled(price > (p["blue"] if blue else p["coins"]))
+	buy.pressed.connect(func() -> void:
+		mystery_box_requested.emit(level)
+		close())
+	_buy_layer.add_child(buy)
+	_buy_layer.add_child(_price(price, blue, buy.position.x))
+
+
 ## UIColorPickerBubble with the colour drawn in its 37 x 31 ellipse.
 func _swatch(color: Color) -> FlashSymbol:
 	var bubble := FlashUi.make("UIColorPickerBubble")
@@ -338,7 +456,11 @@ func _buy(use_blue: bool) -> void:
 
 
 func _on_state_changed() -> void:
-	if _selected != 0 and is_inside_tree():
+	if not is_inside_tree():
+		return
+	if _box_level != 0:
+		show_mystery_box(_box_level)
+	elif _selected != 0:
 		show_car(_selected, _color_id)
 
 

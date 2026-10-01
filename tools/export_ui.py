@@ -85,6 +85,8 @@ LIBS: dict[str, str] = {
     "docks": "static/docks/docks2.swf",
     "docksmanifest": "static/docks/shippingManifestPopup.swf",
     "tonymanhole": "static/docks/TonyInManHole.swf",
+    "mbslot": "static/mysterybox/MysteryBoxSlotMachine.swf",
+    "mbclaim": "static/mysterybox/MysteryBoxClaimOrRespinPopup.swf",
 }
 
 PLACE_TAGS = ("PlaceObject2Tag", "PlaceObject3Tag", "PlaceObjectTag")

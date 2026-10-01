@@ -452,6 +452,18 @@ def export_static_ui(ids: set[str] | None, limit: int | None) -> None:
     write_manifest("static_ui", {k: fr[0] for k, fr in batch.run().items() if fr})
 
 
+def export_mysterybox(ids: set[str] | None, limit: int | None) -> None:
+    """Mystery box art loaded as whole movies: the slot machine's backdrop per
+    box (MysteryBoxBG_<level>), the claim popup's (MysteryBoxClaimBG_<level>)
+    and the boxed car in Buy Cars (cars/mysterybox/angle_<level>)."""
+    batch = Batch("mysterybox", 500)
+    sources = sorted((ROOT / "alt" / "static" / "mysterybox").glob("MysteryBox*BG_*.swf"))
+    sources += sorted((ROOT / "alt" / "data" / "6" / "cars" / "mysterybox").glob("angle_*.swf"))
+    for p in pick_ids(sources, None, limit):
+        batch.add(p.stem, p.read_bytes(), OUT / "mysterybox" / p.stem)
+    write_manifest("mysterybox", {k: fr[0] for k, fr in batch.run().items() if fr})
+
+
 def export_title(ids: set[str] | None, limit: int | None) -> None:
     """The original loading screen's art (preloader.swf) for the title
     screen: the Car Town logo (vector, drawn at 3x) and the yellow sunburst
@@ -493,18 +505,25 @@ def export_audio(ids: set[str] | None, limit: int | None) -> None:
         shutil.copyfile(mp3, audio / "music" / mp3.name)
     stage = STAGE / "sounds"
     shutil.rmtree(stage, ignore_errors=True)
-    subprocess.run(
-        ["java", "-jar", str(FFDEC), "-format", "sound:mp3_wav", "-export", "sound", str(stage), str(ROOT / "alt" / "CarTownMain.swf")],
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False,
-    )
+    # The main client's sounds, plus ones loaded with a feature's art (the
+    # mystery box slot machine's).
+    for swf in [ROOT / "alt" / "CarTownMain.swf", ROOT / "alt" / "static" / "mysterybox" / "MysteryBoxSlotMachine.swf"]:
+        subprocess.run(
+            ["java", "-jar", str(FFDEC), "-format", "sound:mp3_wav", "-export", "sound", str(stage), str(swf)],
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False,
+        )
     count = 0
     for p in stage.glob("*.*"):
         # "<charId>_swcassets.sound.ClickSound01.mp3" -> "ClickSound01.mp3"
         name = p.stem.split(".")[-1]
+        # Classes without a package keep the id: "1_SlotReveal" -> "SlotReveal".
+        head, _, rest = name.partition("_")
+        if head.isdigit() and rest:
+            name = rest
         shutil.copyfile(p, audio / "sfx" / f"{name}{p.suffix}")
         count += 1
     shutil.rmtree(stage, ignore_errors=True)
-    print(f"  audio: 2 music loops, {count} sound effects")
+    print(f"  audio: music loops, {count} sound effects")
 
 
 def export_missions(ids: set[str] | None, limit: int | None) -> None:
@@ -521,7 +540,7 @@ def export_missions(ids: set[str] | None, limit: int | None) -> None:
 
 GROUPS = {
     "items": export_items, "posters": export_posters, "cars": export_cars, "wheels": export_wheels,
-    "main": export_main, "town": export_town, "missions": export_missions, "static_ui": export_static_ui, "title": export_title, "audio": export_audio,
+    "main": export_main, "town": export_town, "missions": export_missions, "static_ui": export_static_ui, "mysterybox": export_mysterybox, "title": export_title, "audio": export_audio,
 }
 
 

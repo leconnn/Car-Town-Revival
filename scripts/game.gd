@@ -136,7 +136,7 @@ func _on_hud_action(name: String) -> void:
 		leave_location()
 		go_home()
 	match name:
-		"dealer": open_screen(BuyCarScreen.new())
+		"dealer": open_dealer()
 		"shop": set_edit_mode(true)
 		"edit": set_edit_mode(not edit_mode)
 		"town": _open_gps()
@@ -209,12 +209,14 @@ func _on_object_clicked(kind: String, uid: int) -> void:
 		"customer":
 			_open_customer(uid)
 		"showroom":
-			open_screen(BuyCarScreen.new())
+			open_dealer()
 		"bay":
 			await _bay_clicked(uid)
 		"item":
 			var entry := _item_entry(uid)
-			if GameData.catalog.item(entry.get("item_id", 0)).get("category", 0) == GarageGrid.CAT_WORK_BAY:
+			if Backend.state()["mystery_boxes"].has(str(uid)):
+				_open_mystery_box(uid)
+			elif GameData.catalog.item(entry.get("item_id", 0)).get("category", 0) == GarageGrid.CAT_WORK_BAY:
 				await _bay_clicked(uid)
 
 
@@ -239,6 +241,66 @@ func _open_customer(uid: int) -> void:
 		var r: GameResult = await Backend.accept_customer(uid, bay)
 		if r.ok:
 			await Backend.start_job(bay, cust["job_id"]))
+
+
+## A mystery box in the garage: spin the wheel if it hasn't been, then
+## Claim Car or Respin (HandleMysteryBoxFloorObjLiveClickCommand).
+func _open_mystery_box(uid: int) -> void:
+	var box: Dictionary = Backend.state()["mystery_boxes"].get(str(uid), {})
+	if box.is_empty():
+		return
+	if int(box["spin"]) == GameLogic.BOX_NEW or int(box["spin"]) == GameLogic.BOX_RESPUN:
+		var slot := MysteryBoxPopups.open_spin(get_tree(), uid)
+		if slot != null:
+			slot.spun.connect(_open_mystery_box.bind(uid))
+		return
+	MysteryBoxPopups.open_claim(get_tree(), uid, _claim_mystery_box.bind(uid), func() -> void:
+		var r: GameResult = await Backend.mystery_box_respin(uid)
+		if not r.ok:
+			toasts.show_message(r.error, true)
+			Sound.play("ActionDeniedSound")
+			return
+		_open_mystery_box(uid))
+
+
+## ShowMysteryBoxCarRevealCommand: the box bursts and the car is there.
+func _claim_mystery_box(uid: int) -> void:
+	var r: GameResult = await Backend.mystery_box_claim(uid)
+	if not r.ok:
+		toasts.show_message(r.error, true)
+		return
+	Sound.play("SuccessSound2")
+	var at: Variant = garage.callout_position(int(r.data["uid"]))
+	if at != null:
+		var burst := FlashUi.make("MysteryBoxRevealExplosion")
+		if burst != null:
+			burst.position = at
+			burst.scale = Vector2(1.3, 1.3)
+			garage.effects_layer().add_child(burst)
+			burst.play(30.0, false)
+			get_tree().create_timer(2.0).timeout.connect(burst.queue_free)
+		CollectMoney.spawn(garage.effects_layer(), at, 0, r.data.get("xp", 0))
+	toasts.show_message("You got a %s!" % GameData.car_name(int(r.data["car_id"])))
+
+
+## Buy Cars, with the Mystery Box going back to the garage to be placed.
+func open_dealer() -> BuyCarScreen:
+	var screen := BuyCarScreen.new()
+	open_screen(screen)
+	screen.mystery_box_requested.connect(place_mystery_box)
+	return screen
+
+
+## Bought in Buy Cars: put the box down in the garage, pay, and spin.
+func place_mystery_box(level: int) -> void:
+	var item_id: int = GameData.catalog.mystery_boxes[level]["item_id"]
+	_start_placement("item", {"item_id": item_id}, 0, "", func(tile: Vector2i, rot: int) -> void:
+		var r: GameResult = await Backend.buy_mystery_box(level, tile.x, tile.y, rot)
+		if not r.ok:
+			toasts.show_message(r.error, true)
+			Sound.play("ActionDeniedSound")
+			return
+		_open_mystery_box(int(r.data["uid"])))
 
 
 ## The Docks: a place in town of its own, with the bottom bar (and its
@@ -330,7 +392,7 @@ func _open_gps() -> void:
 		go_home())
 	gps.buy_cars_pressed.connect(func() -> void:
 		popup.close()
-		open_screen(BuyCarScreen.new()))
+		open_dealer())
 
 
 ## A car waiting to race was clicked: its info, then which of your cars.
@@ -789,6 +851,27 @@ func _dev_open() -> void:
 				Backend._query_dirty = true
 				open_docks()
 				(_screen as DocksScreen)._on_tony_clicked()
+			"mysterybox":
+				var screen := open_dealer()
+				await get_tree().process_frame
+				screen.show_mystery_box(2)
+			"mysteryspin":
+				var spot := GarageGrid.build(GameData.catalog, Backend.state()).find_free(Vector2i(4, 3))
+				var r: GameResult = await Backend.buy_mystery_box(1, spot.x, spot.y, 0)
+				if r.ok:
+					_open_mystery_box(int(r.data["uid"]))
+					await get_tree().create_timer(0.4).timeout
+					var slot := get_tree().current_scene.find_children("*", "MysteryBoxPopups", true, false)
+					if not slot.is_empty():
+						(slot[0] as MysteryBoxPopups)._on_start()
+						await get_tree().create_timer(1.0).timeout
+						(slot[0] as MysteryBoxPopups)._on_stop()
+			"mysteryclaim":
+				var spot := GarageGrid.build(GameData.catalog, Backend.state()).find_free(Vector2i(4, 3))
+				var r: GameResult = await Backend.buy_mystery_box(1, spot.x, spot.y, 0)
+				if r.ok:
+					await Backend.mystery_box_spun(int(r.data["uid"]))
+					_open_mystery_box(int(r.data["uid"]))
 			"dockswish":
 				Backend.state()["docks"]["first_done"] = true
 				Backend._query_dirty = true

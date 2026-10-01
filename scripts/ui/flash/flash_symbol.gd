@@ -115,6 +115,10 @@ func _build() -> void:
 		if typeof(ct) == TYPE_ARRAY:
 			node.modulate = Color(ct[0], ct[1], ct[2], ct[3])
 		if layer.has("blend"):
+			# Alpha and erase (11, 12) only cut the layer's transparency, as
+			# hit zones do: nothing of their own is drawn.
+			if int(layer["blend"]) >= 11:
+				node.visible = false
 			node.material = _blend_material(int(layer["blend"]))
 		else:
 			node.use_parent_material = true
