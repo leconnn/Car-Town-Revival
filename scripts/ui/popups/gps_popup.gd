@@ -211,7 +211,8 @@ func _location_button(loc_id: int) -> Node2D:
 ## "" if the place can be visited, else why not.
 func _locked_reason(loc_id: int) -> String:
 	var loc: Dictionary = GameData.catalog.locations[loc_id]
-	if not Backend.query().town_location_ids().has(loc_id) or not LocationView.has_scene(loc_id):
+	var has_screen := LocationView.has_scene(loc_id) or loc_id == JunkyardScreen.LOCATION_ID
+	if not Backend.query().town_location_ids().has(loc_id) or not has_screen:
 		return "later"
 	if loc.get("min_level", 0) > Backend.state()["player"]["level"]:
 		return "level"

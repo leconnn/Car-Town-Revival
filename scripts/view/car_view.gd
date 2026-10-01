@@ -205,7 +205,10 @@ func _build(all_coords: Dictionary) -> void:
 	var hood_acc := _part_asset(CAT_HOOD_ACCESSORY)
 
 	_add_part("bodykit_under_%d" % body_kit, body_dy)
-	var strip_draws := _draw_wheels(size_scale, tire, is_angle)
+	# Junkers waiting to be restored have their wheels drawn into the body.
+	var strip_draws: Array[Callable] = []
+	if not GameData.is_primer_car(int(car.get("car_id", 0))):
+		strip_draws = _draw_wheels(size_scale, tire, is_angle)
 	_add_part("body", body_dy)
 	_add_part("bodykit_%d" % body_kit, body_dy)
 	if not (reversed and _add_part("body_np_f", body_dy)):

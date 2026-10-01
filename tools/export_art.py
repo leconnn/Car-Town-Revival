@@ -464,6 +464,26 @@ def export_mysterybox(ids: set[str] | None, limit: int | None) -> None:
     write_manifest("mysterybox", {k: fr[0] for k, fr in batch.run().items() if fr})
 
 
+def export_restoration(ids: set[str] | None, limit: int | None) -> None:
+    """Car restoration art loaded as whole movies: the build part icons
+    (carbuild/parts/part_<id>), the Junk Yard's two mechanics (first frame;
+    they're animated) and the construction popup's backdrop."""
+    batch = Batch("restoration", 400)
+    sources = sorted((ROOT / "alt" / "static" / "carbuild" / "parts").glob("part_*.swf"))
+    resto = ROOT / "alt" / "static" / "carrestoration"
+    sources += [resto / n for n in ("JunkyardNPC.swf", "JunkyardNPC-mastermechanic.swf", "carrestorationConstructionBG.swf",
+                                    "carrestorationCarLiftAngle.swf")]
+    for p in pick_ids([s for s in sources if s.is_file()], None, limit):
+        batch.add(p.stem, p.read_bytes(), OUT / "restoration" / p.stem)
+    frames = batch.run()
+    # Keep only the first frame of animated ones.
+    for key, fr in frames.items():
+        for extra in fr[1:]:
+            if extra.get("file"):
+                (OUT / extra["file"]).unlink(missing_ok=True)
+    write_manifest("restoration", {k: fr[0] for k, fr in frames.items() if fr})
+
+
 def export_title(ids: set[str] | None, limit: int | None) -> None:
     """The original loading screen's art (preloader.swf) for the title
     screen: the Car Town logo (vector, drawn at 3x) and the yellow sunburst
@@ -540,7 +560,7 @@ def export_missions(ids: set[str] | None, limit: int | None) -> None:
 
 GROUPS = {
     "items": export_items, "posters": export_posters, "cars": export_cars, "wheels": export_wheels,
-    "main": export_main, "town": export_town, "missions": export_missions, "static_ui": export_static_ui, "mysterybox": export_mysterybox, "title": export_title, "audio": export_audio,
+    "main": export_main, "town": export_town, "missions": export_missions, "static_ui": export_static_ui, "mysterybox": export_mysterybox, "restoration": export_restoration, "title": export_title, "audio": export_audio,
 }
 
 

@@ -18,6 +18,7 @@ var poster_art: Dictionary = {}
 ## UI art the original loaded at runtime from static/ui ("static_ui").
 var static_ui_art: Dictionary = {}
 var mysterybox_art: Dictionary = {}
+var restoration_art: Dictionary = {}
 ## The original loading screen's logo and background ("title").
 var title_art: Dictionary = {}
 
@@ -37,6 +38,7 @@ func _ready() -> void:
 	poster_art = _read_manifest("posters")
 	static_ui_art = _read_manifest("static_ui")
 	mysterybox_art = _read_manifest("mysterybox")
+	restoration_art = _read_manifest("restoration")
 	title_art = _read_manifest("title")
 	# Only cars with a body (painted, or unpainted like the junkers) in every
 	# view can be drawn everywhere.
@@ -46,6 +48,17 @@ func _ready() -> void:
 				var layers: Dictionary = views.get(v, {}).get("layers", {})
 				return layers.has("body") or layers.has("body_np")):
 			catalog.art_car_ids[int(key)] = true
+
+
+## Cars that are a restoration's starting junker (a car build's primer car).
+func is_primer_car(car_id: int) -> bool:
+	if _primer_ids.is_empty():
+		for b: Dictionary in catalog.car_builds.values():
+			_primer_ids[int(b.get("primer_car_id", 0))] = true
+	return _primer_ids.has(car_id)
+
+
+var _primer_ids: Dictionary[int, bool] = {}
 
 
 func is_loaded() -> bool:

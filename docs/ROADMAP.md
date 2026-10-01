@@ -122,7 +122,7 @@ Build order: **single-player v1 → LAN → online → feature updates**. Each p
 5. Avatar shop
 6. ~~Docks~~ (done: Fat Tony's boats of retired limited cars, crates, search again, the special boat after a claim, asking for a particular car; priced in coins by default since the original charged real money. The dealer no longer sells retired limited cars, as in the original. Still to do: mystery cars in crates, the water ripple effect)
 7. ~~Mystery boxes~~ (done: sold first in Buy Cars with a level picker, placed in the garage like a car, the slot machine, claim or respin once; coin prices by default). Stray cars wait for friends: the finder only shares one and a friend adopts it, so it needs LAN/online friends
-8. Car restoration (Junk Yard)
+8. ~~Car restoration (Junk Yard)~~ (done: the Junk Yard in the GPS with its piles, junkers and mechanics; restore on a work bay from the daily pile part, townsfolk deliveries and bought parts; Master Mechanic builds after 10)
 9. Car builds
 10. Race a friend, pro racing (High Stakes)
 11. Car show voting

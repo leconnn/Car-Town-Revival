@@ -35,9 +35,14 @@ static func save() -> void:
 
 
 static func apply() -> void:
-	var mode := DisplayServer.WINDOW_MODE_FULLSCREEN if fullscreen else DisplayServer.WINDOW_MODE_WINDOWED
-	if DisplayServer.window_get_mode() != mode:
-		DisplayServer.window_set_mode(mode)
+	# Out of fullscreen the window fills the screen (maximized); a window the
+	# player has resized or restored themselves is left alone.
+	var current := DisplayServer.window_get_mode()
+	if fullscreen:
+		if current != DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	elif current == DisplayServer.WINDOW_MODE_FULLSCREEN or current == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 	_set_bus("Music", music_volume)
 	_set_bus("SFX", sfx_volume)
 

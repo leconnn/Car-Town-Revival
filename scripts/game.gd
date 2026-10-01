@@ -48,6 +48,7 @@ func _ready() -> void:
 	notices = RewardPopups.new()
 	_ui.add_child(notices)
 	Backend.notice.connect(notices.push)
+	Backend.notice.connect(_on_small_notice)
 	Backend.action_failed.connect(func(msg: String) -> void: toasts.show_message(msg, true))
 	Backend.session_ended.connect(_on_session_ended)
 	Lan.garage_received.connect(_on_garage_received)
@@ -303,6 +304,40 @@ func place_mystery_box(level: int) -> void:
 		_open_mystery_box(int(r.data["uid"])))
 
 
+## Notices that only need a toast.
+func _on_small_notice(n: Dictionary) -> void:
+	match n.get("kind", ""):
+		"part_gift":
+			toasts.show_message("%s dropped off %s for your restoration!" % [n["name"], RestorationPopups.part_name(int(n["part_id"]))])
+
+
+## The Junk Yard: another place in town with its own screen.
+func open_junkyard() -> void:
+	leave_location()
+	go_home()
+	var yard := JunkyardScreen.new()
+	open_screen(yard)
+	hud.set_screen_mode(false)
+	hud.set_location("Junk Yard", false)
+	yard.restore_requested.connect(_start_restoration)
+
+
+## Puts a junker on a free work bay to be restored.
+func _start_restoration(build_id: int) -> void:
+	var bay := _free_bay()
+	if bay == 0:
+		toasts.show_message("Restoring a car needs an empty work bay. Buy another one in Edit Garage!", true)
+		Sound.play("ActionDeniedSound")
+		return
+	var r: GameResult = await Backend.start_restoration(build_id, bay)
+	if not r.ok:
+		toasts.show_message(r.error, true)
+		Sound.play("ActionDeniedSound")
+		return
+	Sound.play("SuccessSound1")
+	toasts.show_message("The junker is on your work bay. Collect its parts to restore it!")
+
+
 ## The Docks: a place in town of its own, with the bottom bar (and its
 ## GPS to get home) still showing.
 func open_docks() -> void:
@@ -384,7 +419,9 @@ func _open_gps() -> void:
 	gps.location_chosen.connect(func(loc_id: int) -> void:
 		popup.close()
 		var r: GameResult = await Backend.visit_location(loc_id)
-		if r.ok:
+		if r.ok and loc_id == JunkyardScreen.LOCATION_ID:
+			open_junkyard()
+		elif r.ok:
 			show_location(loc_id))
 	gps.home_pressed.connect(func() -> void:
 		popup.close()
@@ -453,7 +490,7 @@ func show_location(loc_id: int) -> void:
 
 ## Back to the garage (the GPS's My Garage button).
 func leave_location() -> void:
-	if _screen is DocksScreen:
+	if _screen is DocksScreen or _screen is JunkyardScreen:
 		_screen.queue_free()
 		hud.set_location("My Garage", true)
 	if not location_view.visible:
@@ -480,6 +517,9 @@ func _free_bay() -> int:
 
 
 func _bay_clicked(bay_uid: int) -> void:
+	if not Backend.query().bay_build(bay_uid).is_empty():
+		RestorationPopups.open_construction(get_tree(), bay_uid, func() -> void: pass)
+		return
 	var job: Dictionary = Backend.state()["jobs"].get(str(bay_uid), {})
 	if not job.is_empty() and Backend.now() >= job["ends_at"]:
 		var at: Variant = garage.callout_position(bay_uid)
@@ -791,7 +831,7 @@ func _on_session_ended(reason: String) -> void:
 
 ## True while in town or in someone else's garage.
 func is_away() -> bool:
-	return location_view.visible or not garage.visiting.is_empty() or _screen is DocksScreen
+	return location_view.visible or not garage.visiting.is_empty() or _screen is DocksScreen or _screen is JunkyardScreen
 
 
 func _on_garage_received(_player_id: String, player_state: Dictionary) -> void:
@@ -836,6 +876,12 @@ func _dev_open() -> void:
 			"collections": CollectionPopups.open_list(get_tree())
 			"roadtrip": _open_road_trip(Backend.state()["cars"][0]["uid"])
 			"docks": open_docks()
+			"junkyard": open_junkyard()
+			"restore":
+				var resto_bay := _free_bay()
+				await Backend.start_restoration(52, resto_bay)
+				await Backend.collect_junkyard_part()
+				_bay_clicked(resto_bay)
 			"docksmanifest":
 				open_docks()
 				(_screen as DocksScreen)._bring_boat(1, 0)

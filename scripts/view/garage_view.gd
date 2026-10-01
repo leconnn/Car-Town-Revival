@@ -249,6 +249,15 @@ func _build_objects(s: Dictionary) -> void:
 		entries.append(_wall_entry("wall", w, GarageGrid.wall_length(GameData.catalog.item(w["item_id"])), 1))
 	for p: Dictionary in s["garage"].get("wall_items", []):
 		entries.append(_wall_entry("wall_item", p, GarageGrid.wall_object_length(GameData.catalog.item(p["item_id"])), 2))
+	# A junker being restored sits on its lift.
+	for bay_uid: int in bays:
+		var build: Dictionary = s.get("restoration", {}).get("builds", {}).get(str(bay_uid), {})
+		if build.is_empty() or _bay_has_car(s, bay_uid):
+			continue
+		var b: Dictionary = GameData.catalog.car_builds.get(int(build["build_id"]), {})
+		var junker := CarView.stock_entry(int(b.get("primer_car_id", 0)), 0)
+		junker["uid"] = bay_uid
+		entries.append(_on_bay_entry("bay", junker, bays[bay_uid], car_size))
 	# A job on an empty lift has its own random car to work on.
 	for bay_uid: int in bays:
 		var job: Dictionary = s["jobs"].get(str(bay_uid), {})

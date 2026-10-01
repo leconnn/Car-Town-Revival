@@ -52,6 +52,8 @@ FFDEC = ROOT / "_reference" / "tools" / "ffdec" / "ffdec-cli.jar"
 STAGE = ROOT / "_reference" / "ui_stage"
 OUT = ROOT / "assets" / "ea" / "ui"
 HALF = 900  # px each side of the origin
+# Libraries with bigger art: the Junk Yard is a whole scrolling scene.
+HALF_BY_LIB = {"junkyard": 3200}
 MAX_FRAMES = 100
 # Classes that aren't UI (handled by other exporters or not needed).
 SKIP_PREFIXES = ("swcassets.bmd.", "swcassets.sound.", "swcassets.tire.", "swcassets.car.")
@@ -87,6 +89,18 @@ LIBS: dict[str, str] = {
     "tonymanhole": "static/docks/TonyInManHole.swf",
     "mbslot": "static/mysterybox/MysteryBoxSlotMachine.swf",
     "mbclaim": "static/mysterybox/MysteryBoxClaimOrRespinPopup.swf",
+    "junkyard": "static/carrestoration/junkYard_v2.swf",
+    "crassets": "static/carrestoration/CarRestorationUIAssets.swf",
+    "crlist": "static/carrestoration/carRestorationCarListPopupContent_v2.swf",
+    "crrestore": "static/carrestoration/carRestorationRestorePopupContent_v2.swf",
+    "crdone": "static/carrestoration/carRestorationRestorationCompletePopupContent_v3.swf",
+    "crpiles": "static/carrestoration/pilePopups.swf",
+    "crbar": "static/carrestoration/carRestorationProgressBar.swf",
+    "crconstruct": "static/carrestoration/carrestorationConstructionBG.swf",
+    "crlift": "static/carrestoration/carrestorationCarLiftAngle.swf",
+    "mmdone": "static/carrestoration/masterMechanicAchievedPopup.swf",
+    "mmlist": "static/carrestoration/masterMechanicCarListPopup.swf",
+    "mminfo": "static/carrestoration/masterMechanicInfoPopup.swf",
 }
 
 PLACE_TAGS = ("PlaceObject2Tag", "PlaceObject3Tag", "PlaceObjectTag")
@@ -332,7 +346,8 @@ def process(lib: str, swf: Path, db: dict) -> None:
     ET.SubElement(tags, "item", {"type": "EndTag", "forceWriteAsLong": "false"})
     root.set("frameCount", str(max(1, len(order))))
     rect = root.find("displayRect")
-    for k, v in (("Xmin", -HALF), ("Xmax", HALF), ("Ymin", -HALF), ("Ymax", HALF)):
+    half = HALF_BY_LIB.get(lib, HALF)
+    for k, v in (("Xmin", -half), ("Xmax", half), ("Ymin", -half), ("Ymax", half)):
         rect.set(k, str(v * 20))
     rect.set("nbits", "17")
     tree.write(work / "render.xml", encoding="utf-8", xml_declaration=True)
@@ -350,7 +365,7 @@ def process(lib: str, swf: Path, db: dict) -> None:
         if bbox is None:
             continue
         img.crop(bbox).save(OUT / "layers" / f"{lk}.png", optimize=True)
-        db["layers"][lk] = {"file": f"layers/{lk}.png", "o": [HALF - bbox[0], HALF - bbox[1]]}
+        db["layers"][lk] = {"file": f"layers/{lk}.png", "o": [half - bbox[0], half - bbox[1]]}
 
     ffdec("-format", "font:ttf", "-export", "font", str(work / "fonts"), str(swf))
     (OUT / "fonts").mkdir(parents=True, exist_ok=True)
