@@ -30,10 +30,17 @@ export function migrate(save: Dict): Dict | null {
     else if (v === 5) out = v5ToV6(out);
     else if (v === 6) out = v6ToV7(out);
     else if (v === 7) out = out; // v8: road trips live in car_tasks
+    else if (v === 8) out = v8ToV9(out);
     else return null;
     out.save_version = v + 1;
   }
   return out;
+}
+
+/** v9 added the Docks. */
+function v8ToV9(save: Dict): Dict {
+  save.docks = { first_done: false, last_claim: -1, boat: {} };
+  return save;
 }
 
 /** v7 added car collections (which sets have been paid). */

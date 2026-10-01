@@ -151,11 +151,17 @@ def convert_consts(e: ET.Element) -> dict:
         "rlmix": "race_prize_min_xp",
         "rlmax": "race_prize_max_xp",
         "ert": "fuel_refill_seconds",
+        # The Docks (DocksDataSet): searching costs this % of the boat's
+        # price, searching again this %.
+        "dckpc": "docks_search_percent",
+        "dckpcr": "docks_search_again_percent",
     }
     out: dict = {"raw": dict(e.attrib)}
     for k, name in known.items():
         if k in e.attrib:
             out[name] = f(e, k)
+    # Cars the Docks never brings in.
+    out["docks_excluded_cars"] = [int(x) for x in e.get("dckce", "").split(",") if x.strip()]
     return out
 
 

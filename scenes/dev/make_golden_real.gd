@@ -23,6 +23,10 @@ func _ready() -> void:
 		["claim_daily_reward", [], t0 + 86400 * 5 + 8000], ["expand_land", [false], t0 + 86400 * 3], ["tick", [], t0 + 86400 * 3],
 		["start_road_trip", [4, 1], t0 + 86400 * 5 + 9000], ["start_road_trip", [1, 2], t0 + 86400 * 5 + 9000],
 		["collect_car_task", [4], t0 + 86400 * 6 + 9000], ["collect_car_task", [1], t0 + 86400 * 6 + 9000],
+		["docks_manifest", [1, 0], t0 + 86400 * 7], ["docks_search", [], t0 + 86400 * 7], ["docks_open_crate", [4], t0 + 86400 * 7],
+		["docks_claim", [], t0 + 86400 * 7], ["docks_manifest", [2, 0], t0 + 86400 * 7 + 60], ["docks_search", [], t0 + 86400 * 7 + 60],
+		["docks_open_crate", [1], t0 + 86400 * 7 + 60], ["docks_search_again", [], t0 + 86400 * 7 + 60], ["docks_open_crate", [7], t0 + 86400 * 7 + 60],
+		["docks_claim", [], t0 + 86400 * 7 + 60],
 	]
 	var logic := GameLogic.new(GameData.catalog, GameLogic.new_save(GameData.catalog, "Real", t0))
 	var start := logic.save.duplicate(true)

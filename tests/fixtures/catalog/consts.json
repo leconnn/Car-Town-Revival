@@ -17,5 +17,10 @@
  "race_prize_min_xp": 2,
  "race_prize_max_xp": 10,
  "fuel_refill_seconds": 560,
- "race_start_xp": 1
+ "race_start_xp": 1,
+ "docks_search_percent": 60,
+ "docks_search_again_percent": 20,
+ "docks_excluded_cars": [
+  16
+ ]
 }

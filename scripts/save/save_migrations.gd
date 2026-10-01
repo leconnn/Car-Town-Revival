@@ -48,6 +48,8 @@ static func _step(version: int, data: Dictionary) -> Dictionary:
 			return _v6_to_v7(data)
 		7:
 			return _v7_to_v8(data)
+		8:
+			return _v8_to_v9(data)
 		_:
 			return {}
 
@@ -103,4 +105,11 @@ static func _v6_to_v7(data: Dictionary) -> Dictionary:
 ## v8 added road trips. They live in "car_tasks" like other car jobs, with
 ## a destination and passengers, so there's nothing to change.
 static func _v7_to_v8(data: Dictionary) -> Dictionary:
+	return data
+
+
+## v9 added the Docks: whether Tony's free first search is used, the last
+## claim (for the special boat) and the boat being searched.
+static func _v8_to_v9(data: Dictionary) -> Dictionary:
+	data["docks"] = {"first_done": false, "last_claim": -1, "boat": {}}
 	return data

@@ -8,7 +8,7 @@ import {
 import { MissionTracker } from "./missions.ts";
 import { key, posmod, roundi, SimpleRng } from "./util.ts";
 
-export const CURRENT_SAVE_VERSION = 8;
+export const CURRENT_SAVE_VERSION = 9;
 
 export class GameResult {
   ok = true;
@@ -37,6 +37,15 @@ export class GameResult {
 const RE_PLATE = /^[A-Z0-9 ]+$/;
 /** Categories whose parts go into storage when taken off a car (UpdateUserCarCommand). */
 const STORED_PART_CATEGORIES = [1, 2, 4, 5, 6, 10];
+const DOCK_CRATES = 8;
+const CRATE_CLOSED = 0;
+const CRATE_OPEN = 1;
+const CRATE_PASSED = 2;
+
+function percentUp(amount: number, percent: number): number {
+  return Math.trunc((amount * percent + 99) / 100);
+}
+
 /** WorkerTask.TASKID_ROADTRIP. */
 const ROAD_TRIP_JOB = 34;
 
@@ -87,6 +96,7 @@ export class GameLogic {
       race: {},
       daily_reward: { last_day: -1, streak: 0 },
       collections_done: [],
+      docks: { first_done: false, last_claim: -1, boat: {} },
       stats: {},
     };
     const logic = new GameLogic(cat, s);
@@ -248,9 +258,11 @@ export class GameLogic {
     const minPrice: number = this.catalog.tune("dealer.min_price", 100);
     const retired: boolean = this.catalog.tune("dealer.include_retired_cars", false);
     const needArt: boolean = this.catalog.tune("dealer.require_art", true);
+    const limited: boolean = this.catalog.tune("dealer.include_retired_limited_cars", false);
     const result: number[] = [];
     for (const [id, c] of this.catalog.cars) {
       if (c.price < minPrice) continue;
+      if (!limited && c.limited && Math.trunc(c.date_last_available ?? 0) > 0) continue;
       if (!(c.purchasable || c.always_purchasable || retired)) continue;
       if (needArt && this.catalog.artCarIds.size > 0 && !this.catalog.artCarIds.has(id)) continue;
       result.push(id);
@@ -1009,6 +1021,143 @@ export class GameLogic {
     this.bumpStat("jobs_started");
     const result = GameResult.success({ ends_at: endsAt });
     this.emit("STARTED_WORKBAY_TASK_ID", jobId, now, result);
+    return result;
+  }
+
+  // --- The Docks ---------------------------------------------------------------------------
+
+  docks_pool(boatId: number, now: number): number[] {
+    const excluded: number[] = this.catalog.consts.docks_excluded_cars ?? [];
+    const minBlue: number = boatId === 2 ? this.catalog.tune("docks.special_min_blue", 40) : 0;
+    const out: number[] = [];
+    for (const [id, c] of this.catalog.cars) {
+      if (!c.purchasable || !c.limited) continue;
+      if (this.catalog.artCarIds.size > 0 && !this.catalog.artCarIds.has(id)) continue;
+      const last: number = c.date_last_available ?? 0;
+      if (last <= 0 || last >= now || excluded.includes(id) || Math.trunc(c.blue_price ?? 0) < minBlue) continue;
+      out.push(id);
+    }
+    out.sort((a, b) => a - b);
+    return out;
+  }
+
+  docks_special_boat(now: number): boolean {
+    const last: number = this.save.docks.last_claim;
+    return last >= 0 && now - last < Math.trunc(this.catalog.tune("docks.special_boat_hours", 24)) * 3600;
+  }
+
+  docks_search_price(): number {
+    const d = this.save.docks;
+    if (!d.first_done) return 0;
+    return percentUp(Math.trunc(d.boat.price ?? 0), Math.trunc(this.catalog.consts.docks_search_percent ?? 60));
+  }
+
+  docks_currency(): string {
+    return this.catalog.tune("docks.currency", "coins") === "blue" ? "blue" : "coins";
+  }
+
+  private docksPriceField(): string {
+    return this.docks_currency() === "blue" ? "blue_price" : "price";
+  }
+
+  private docksPay(cost: number): string {
+    const key = this.docks_currency();
+    if (this.player[key] < cost) return key === "blue" ? "Not enough Blue Coins." : "Not enough coins.";
+    this.player[key] -= cost;
+    return "";
+  }
+
+  docks_search_again_price(): number {
+    return percentUp(Math.trunc(this.save.docks.boat.price ?? 0), Math.trunc(this.catalog.consts.docks_search_again_percent ?? 20));
+  }
+
+  docks_manifest(boatId: number, wantedCarId: number, now: number): GameResult {
+    const d = this.save.docks;
+    if (d.boat.active) return GameResult.fail("Finish searching this boat first.");
+    if (boatId !== 1 && boatId !== 2) return GameResult.fail("There's no such boat.");
+    if (boatId === 2 && !this.docks_special_boat(now)) return GameResult.fail("Tony's special boat isn't in.");
+    const pool = this.docks_pool(boatId, now);
+    if (wantedCarId > 0) {
+      if (!this.docks_pool(1, now).includes(wantedCarId)) return GameResult.fail("Tony can't get that car.");
+      const at = pool.indexOf(wantedCarId);
+      if (at >= 0) pool.splice(at, 1);
+    }
+    const need = DOCK_CRATES - (wantedCarId > 0 ? 1 : 0);
+    if (pool.length < need) return GameResult.fail("No boats are in today.");
+    for (let i = 0; i < need; i++) {
+      const j = this.rng(i, pool.length - 1);
+      const t = pool[i];
+      pool[i] = pool[j];
+      pool[j] = t;
+    }
+    const cars = pool.slice(0, need);
+    if (wantedCarId > 0) cars.unshift(wantedCarId);
+    const field = this.docksPriceField();
+    let total = 0;
+    for (const id of cars) total += Math.trunc(this.catalog.car(id)[field] ?? 0);
+    let price = roundi(Math.trunc((total + DOCK_CRATES / 2) / DOCK_CRATES) * Number(this.catalog.tune("docks.price_multiplier", 1.0)));
+    if (wantedCarId > 0) price = Math.trunc(this.catalog.car(wantedCarId)[field] ?? 0);
+    const crates = [...cars];
+    for (let i = crates.length - 1; i > 0; i--) {
+      const j = this.rng(0, i);
+      const t = crates[i];
+      crates[i] = crates[j];
+      crates[j] = t;
+    }
+    const states = new Array(DOCK_CRATES).fill(CRATE_CLOSED);
+    d.boat = { id: boatId, cars, crates, states, price, wanted: wantedCarId, active: false };
+    return GameResult.success({ cars, price: this.docks_search_price() });
+  }
+
+  docks_search(now: number): GameResult {
+    const boat = this.save.docks.boat;
+    if (Object.keys(boat).length === 0) return GameResult.fail("There's no boat in.");
+    if (boat.active) return GameResult.fail("You're already searching this boat.");
+    const cost = this.docks_search_price();
+    const pay = this.docksPay(cost);
+    if (pay) return GameResult.fail(pay);
+    boat.active = true;
+    this.bumpStat("docks_searches");
+    return GameResult.success({ cost });
+  }
+
+  docks_open_crate(index: number, now: number): GameResult {
+    const boat = this.save.docks.boat;
+    if (!boat.active) return GameResult.fail("Search the boat first.");
+    if (index < 0 || index >= DOCK_CRATES) return GameResult.fail("There's no such crate.");
+    if (boat.states.indexOf(CRATE_OPEN) >= 0) return GameResult.fail("Claim this car or search again first.");
+    if (boat.states[index] !== CRATE_CLOSED) return GameResult.fail("That crate's already open.");
+    boat.states[index] = CRATE_OPEN;
+    const carId: number = boat.crates[index];
+    return GameResult.success({ index, car_id: carId, wanted: carId === boat.wanted });
+  }
+
+  docks_search_again(now: number): GameResult {
+    const boat = this.save.docks.boat;
+    const open = boat.active ? boat.states.indexOf(CRATE_OPEN) : -1;
+    if (open < 0) return GameResult.fail("Open a crate first.");
+    if (!boat.states.includes(CRATE_CLOSED)) return GameResult.fail("That was the last crate.");
+    const cost = this.docks_search_again_price();
+    const pay = this.docksPay(cost);
+    if (pay) return GameResult.fail(pay);
+    boat.states[open] = CRATE_PASSED;
+    return GameResult.success({ cost });
+  }
+
+  docks_claim(now: number): GameResult {
+    const d = this.save.docks;
+    const boat = d.boat;
+    const open = boat.active ? boat.states.indexOf(CRATE_OPEN) : -1;
+    if (open < 0) return GameResult.fail("Open a crate first.");
+    const carId: number = boat.crates[open];
+    const colors = this.catalog.colorsForCar(carId);
+    const car = this.addCar(carId, colors.length ? colors[0].id : 0);
+    d.boat = {};
+    d.first_done = true;
+    d.last_claim = now;
+    this.bumpStat("docks_claims");
+    const result = GameResult.success({ car_id: carId, uid: car.uid });
+    this.checkCollections(result);
     return result;
   }
 

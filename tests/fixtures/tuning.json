@@ -24,7 +24,8 @@
   "dealer": {
     "min_price": 100,
     "include_retired_cars": false,
-    "require_art": true
+    "require_art": true,
+    "include_retired_limited_cars": false
   },
   "garage": {
     "max_land_id": 2,
@@ -153,5 +154,12 @@
     "hidden": [
       7
     ]
+  },
+  "docks": {
+    "_about": "Fat Tony's boats bring 8 retired limited cars in 8 crates. A boat's price is the average price of its cars (in the Docks' currency) times price_multiplier; searching costs the catalog's % of it and searching again a smaller %. The first search is free. The original charged Facebook credits; currency is \"coins\" or \"blue\". The special boat (Ship 2) sails for special_boat_hours after each claim and carries cars worth at least special_min_blue Blue Coins.",
+    "currency": "blue",
+    "price_multiplier": 1.0,
+    "special_min_blue": 20,
+    "special_boat_hours": 24
   }
 }

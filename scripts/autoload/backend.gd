@@ -207,6 +207,21 @@ func finish_car_task_now(car_uid: int) -> GameResult:
 func stop_car_task(car_uid: int) -> GameResult:
 	return await act("stop_car_task", [car_uid])
 
+func docks_manifest(boat_id: int, wanted_car_id: int) -> GameResult:
+	return await act("docks_manifest", [boat_id, wanted_car_id])
+
+func docks_search() -> GameResult:
+	return await act("docks_search", [])
+
+func docks_open_crate(index: int) -> GameResult:
+	return await act("docks_open_crate", [index])
+
+func docks_search_again() -> GameResult:
+	return await act("docks_search_again", [])
+
+func docks_claim() -> GameResult:
+	return await act("docks_claim", [])
+
 func start_road_trip(car_uid: int, trip_id: int) -> GameResult:
 	return await act("start_road_trip", [car_uid, trip_id])
 

@@ -7,7 +7,7 @@ extends RefCounted
 ## or the UI. Every action takes [param now] (unix seconds) from the caller so
 ## timers can use a trusted clock.
 
-const CURRENT_SAVE_VERSION := 8
+const CURRENT_SAVE_VERSION := 9
 
 var catalog: Catalog
 var save: Dictionary
@@ -65,6 +65,7 @@ static func new_save(cat: Catalog, player_name: String, now: int) -> Dictionary:
 		"race": {},
 		"daily_reward": {"last_day": -1, "streak": 0},
 		"collections_done": [],
+		"docks": {"first_done": false, "last_claim": -1, "boat": {}},
 		"stats": {},
 	}
 	var logic := GameLogic.new(cat, s)
@@ -260,10 +261,15 @@ func dealer_car_ids() -> Array[int]:
 	var min_price: int = catalog.tune("dealer.min_price", 100)
 	var retired: bool = catalog.tune("dealer.include_retired_cars", false)
 	var need_art: bool = catalog.tune("dealer.require_art", true)
+	var limited: bool = catalog.tune("dealer.include_retired_limited_cars", false)
 	var result: Array[int] = []
 	for id: int in catalog.cars:
 		var c: Dictionary = catalog.cars[id]
 		if c["price"] < min_price:
+			continue
+		# Limited cars were only for sale for a while (every window has long
+		# passed); after that they came in at the Docks.
+		if not limited and c.get("limited", false) and int(c.get("date_last_available", 0)) > 0:
 			continue
 		if not (c["purchasable"] or c["always_purchasable"] or retired):
 			continue
@@ -1208,6 +1214,202 @@ func collect_car_task(car_uid: int, now: int) -> GameResult:
 	var result := _pay_job(job_id)
 	_bump_stat("jobs_collected")
 	_emit("COLLECTED_WORKBAY_TASK_ID", job_id, now, result)
+	return result
+
+
+# --- The Docks ---------------------------------------------------------------------------
+# Fat Tony's boats (integrations/docks): a manifest of 8 retired limited cars
+# in 8 crates. Pay to search the boat, open a crate, then claim its car or pay
+# a little to search again (that crate is passed over). The first search is
+# on Tony. After a claim his special boat, with pricier cars, sails for a day.
+# You can also ask for a particular car: it's on the next boat, somewhere.
+
+const DOCK_CRATES := 8
+## Crate states (DockCrateObj.claimState).
+const CRATE_CLOSED := 0
+const CRATE_OPEN := 1
+const CRATE_PASSED := 2
+
+
+## Cars a boat can bring, by id: retired limited cars the game can draw
+## (the dealer doesn't sell these; see dealer_car_ids).
+## Boat 2 (the special boat) only brings the pricier ones.
+func docks_pool(boat_id: int, now: int) -> Array[int]:
+	var excluded: Array = catalog.consts.get("docks_excluded_cars", [])
+	var min_blue: int = catalog.tune("docks.special_min_blue", 40) if boat_id == 2 else 0
+	var out: Array[int] = []
+	for id: int in catalog.cars:
+		var c: Dictionary = catalog.cars[id]
+		if not c.get("purchasable", false) or not c.get("limited", false):
+			continue
+		if not catalog.art_car_ids.is_empty() and not catalog.art_car_ids.has(id):
+			continue
+		var last: int = c.get("date_last_available", 0)
+		if last <= 0 or last >= now or excluded.has(id) or int(c.get("blue_price", 0)) < min_blue:
+			continue
+		out.append(id)
+	out.sort()
+	return out
+
+
+## Whether the special boat is in: for a while after each claim.
+func docks_special_boat(now: int) -> bool:
+	var last: int = save["docks"]["last_claim"]
+	return last >= 0 and now - last < int(catalog.tune("docks.special_boat_hours", 24)) * 3600
+
+
+## What searching the pending boat costs (free the first time).
+func docks_search_price() -> int:
+	var d: Dictionary = save["docks"]
+	if not d["first_done"]:
+		return 0
+	return _percent_up(int(d["boat"].get("price", 0)), int(catalog.consts.get("docks_search_percent", 60)))
+
+
+## What passing over the open crate to search again costs.
+func docks_search_again_price() -> int:
+	return _percent_up(int(save["docks"]["boat"].get("price", 0)), int(catalog.consts.get("docks_search_again_percent", 20)))
+
+
+## The Docks charged Facebook credits; here it's coins (or Blue Coins, by
+## tuning), priced off the cars' prices in that currency.
+func docks_currency() -> String:
+	return "blue" if catalog.tune("docks.currency", "coins") == "blue" else "coins"
+
+
+func _docks_price_field() -> String:
+	return "blue_price" if docks_currency() == "blue" else "price"
+
+
+## Takes [param cost] in the Docks' currency; returns an error, or "".
+func _docks_pay(cost: int) -> String:
+	var key := docks_currency()
+	if _player()[key] < cost:
+		return "Not enough Blue Coins." if key == "blue" else "Not enough coins."
+	_player()[key] -= cost
+	return ""
+
+
+func _percent_up(amount: int, percent: int) -> int:
+	return (amount * percent + 99) / 100
+
+
+## Brings a boat in: 8 cars from the pool, or, with [param wanted_car_id],
+## that car and 7 others. The manifest waits until it's searched.
+func docks_manifest(boat_id: int, wanted_car_id: int, now: int) -> GameResult:
+	var d: Dictionary = save["docks"]
+	if d["boat"].get("active", false):
+		return GameResult.fail("Finish searching this boat first.")
+	if boat_id != 1 and boat_id != 2:
+		return GameResult.fail("There's no such boat.")
+	if boat_id == 2 and not docks_special_boat(now):
+		return GameResult.fail("Tony's special boat isn't in.")
+	var pool := docks_pool(boat_id, now)
+	if wanted_car_id > 0:
+		if not docks_pool(1, now).has(wanted_car_id):
+			return GameResult.fail("Tony can't get that car.")
+		pool.erase(wanted_car_id)
+	var need := DOCK_CRATES - (1 if wanted_car_id > 0 else 0)
+	if pool.size() < need:
+		return GameResult.fail("No boats are in today.")
+	# A partial Fisher-Yates shuffle picks the cars.
+	for i in need:
+		var j := _rng(i, pool.size() - 1)
+		var t := pool[i]
+		pool[i] = pool[j]
+		pool[j] = t
+	var cars: Array[int] = pool.slice(0, need)
+	if wanted_car_id > 0:
+		cars.insert(0, wanted_car_id)
+	var field := _docks_price_field()
+	var total := 0
+	for id: int in cars:
+		total += int(catalog.car(id).get(field, 0))
+	var price: int = roundi((total + DOCK_CRATES / 2) / DOCK_CRATES * float(catalog.tune("docks.price_multiplier", 1.0)))
+	if wanted_car_id > 0:
+		price = int(catalog.car(wanted_car_id).get(field, 0))
+	var crates: Array[int] = cars.duplicate()
+	for i in range(crates.size() - 1, 0, -1):
+		var j := _rng(0, i)
+		var t := crates[i]
+		crates[i] = crates[j]
+		crates[j] = t
+	var states: Array[int] = []
+	states.resize(DOCK_CRATES)
+	states.fill(CRATE_CLOSED)
+	d["boat"] = {"id": boat_id, "cars": cars, "crates": crates, "states": states, "price": price,
+		"wanted": wanted_car_id, "active": false}
+	return GameResult.success({"cars": cars, "price": docks_search_price()})
+
+
+## Pays for the pending boat and starts the search.
+func docks_search(now: int) -> GameResult:
+	var boat: Dictionary = save["docks"]["boat"]
+	if boat.is_empty():
+		return GameResult.fail("There's no boat in.")
+	if boat["active"]:
+		return GameResult.fail("You're already searching this boat.")
+	var cost := docks_search_price()
+	var pay := _docks_pay(cost)
+	if not pay.is_empty():
+		return GameResult.fail(pay)
+	boat["active"] = true
+	_bump_stat("docks_searches")
+	return GameResult.success({"cost": cost})
+
+
+func _open_crate_index(boat: Dictionary) -> int:
+	return (boat["states"] as Array).find(CRATE_OPEN)
+
+
+## Opens a crate: shows the car inside.
+func docks_open_crate(index: int, now: int) -> GameResult:
+	var boat: Dictionary = save["docks"]["boat"]
+	if not boat.get("active", false):
+		return GameResult.fail("Search the boat first.")
+	if index < 0 or index >= DOCK_CRATES:
+		return GameResult.fail("There's no such crate.")
+	if _open_crate_index(boat) >= 0:
+		return GameResult.fail("Claim this car or search again first.")
+	if boat["states"][index] != CRATE_CLOSED:
+		return GameResult.fail("That crate's already open.")
+	boat["states"][index] = CRATE_OPEN
+	var car_id: int = boat["crates"][index]
+	return GameResult.success({"index": index, "car_id": car_id, "wanted": car_id == boat["wanted"]})
+
+
+## Passes over the open crate's car to open another.
+func docks_search_again(now: int) -> GameResult:
+	var boat: Dictionary = save["docks"]["boat"]
+	var open := _open_crate_index(boat) if boat.get("active", false) else -1
+	if open < 0:
+		return GameResult.fail("Open a crate first.")
+	if not (boat["states"] as Array).has(CRATE_CLOSED):
+		return GameResult.fail("That was the last crate.")
+	var cost := docks_search_again_price()
+	var pay := _docks_pay(cost)
+	if not pay.is_empty():
+		return GameResult.fail(pay)
+	boat["states"][open] = CRATE_PASSED
+	return GameResult.success({"cost": cost})
+
+
+## Takes the open crate's car home. The boat sails.
+func docks_claim(now: int) -> GameResult:
+	var d: Dictionary = save["docks"]
+	var boat: Dictionary = d["boat"]
+	var open := _open_crate_index(boat) if boat.get("active", false) else -1
+	if open < 0:
+		return GameResult.fail("Open a crate first.")
+	var car_id: int = boat["crates"][open]
+	var colors := catalog.colors_for_car(car_id)
+	var car := _add_car(car_id, colors[0]["id"] if not colors.is_empty() else 0)
+	d["boat"] = {}
+	d["first_done"] = true
+	d["last_claim"] = now
+	_bump_stat("docks_claims")
+	var result := GameResult.success({"car_id": car_id, "uid": car["uid"]})
+	_check_collections(result)
 	return result
 
 

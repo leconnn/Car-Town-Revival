@@ -1,6 +1,6 @@
 {
  "start": {
-  "save_version": 8,
+  "save_version": 9,
   "created_at": 1000000,
   "updated_at": 1000000,
   "player": {
@@ -77,6 +77,11 @@
    "streak": 0
   },
   "collections_done": [],
+  "docks": {
+   "first_done": false,
+   "last_claim": -1,
+   "boat": {}
+  },
   "stats": {}
  },
  "steps": [
@@ -93,7 +98,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -187,6 +192,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {}
    }
   },
@@ -204,7 +214,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -298,6 +308,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {}
    }
   },
@@ -328,7 +343,7 @@
     ]
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -430,6 +445,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 1
     }
@@ -448,7 +468,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -550,6 +570,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 1
     }
@@ -571,7 +596,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000300,
     "player": {
@@ -673,6 +698,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 1,
      "jobs_collected": 1
@@ -695,7 +725,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000300,
     "player": {
@@ -803,6 +833,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 2,
      "jobs_collected": 1
@@ -843,7 +878,7 @@
     ]
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000600,
     "player": {
@@ -943,6 +978,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 2,
      "jobs_collected": 2
@@ -965,7 +1005,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000600,
     "player": {
@@ -1071,6 +1111,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 3,
      "jobs_collected": 2
@@ -1102,7 +1147,7 @@
     ]
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1202,6 +1247,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 3,
      "jobs_collected": 3
@@ -1224,7 +1274,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1330,6 +1380,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1349,7 +1404,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000710,
     "player": {
@@ -1449,6 +1504,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1468,7 +1528,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000710,
     "player": {
@@ -1568,6 +1628,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1589,7 +1654,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1689,6 +1754,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1709,7 +1779,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1809,6 +1879,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1831,7 +1906,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1937,6 +2012,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 3
@@ -1956,7 +2036,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -2062,6 +2142,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 3
@@ -2081,7 +2166,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -2187,6 +2272,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 3
@@ -2209,7 +2299,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1001000,
     "player": {
@@ -2310,6 +2400,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 4
@@ -2332,7 +2427,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1001000,
     "player": {
@@ -2439,6 +2534,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 6,
      "jobs_collected": 4
@@ -2470,7 +2570,7 @@
     ]
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1001100,
     "player": {
@@ -2571,6 +2671,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 6,
      "jobs_collected": 5
@@ -2593,7 +2698,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1001100,
     "player": {
@@ -2700,6 +2805,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5
@@ -2719,7 +2829,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1001110,
     "player": {
@@ -2820,6 +2930,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5
@@ -2840,7 +2955,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1001110,
     "player": {
@@ -2941,6 +3056,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5
@@ -2961,7 +3081,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1001110,
     "player": {
@@ -3062,6 +3182,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5
@@ -3084,7 +3209,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1001120,
     "player": {
@@ -3198,6 +3323,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 5
@@ -3232,7 +3362,7 @@
     ]
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1087520,
     "player": {
@@ -3331,10 +3461,3075 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
      "road_trips": 1
+    }
+   }
+  },
+  {
+   "action": "docks_search",
+   "args": [],
+   "now": 1090000,
+   "result": {
+    "ok": false,
+    "error": "There's no boat in.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1087520,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 4,
+    "rng": 796544202,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1
+    }
+   }
+  },
+  {
+   "action": "docks_manifest",
+   "args": [
+    2,
+    0
+   ],
+   "now": 1090000,
+   "result": {
+    "ok": false,
+    "error": "Tony's special boat isn't in.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1087520,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 4,
+    "rng": 796544202,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1
+    }
+   }
+  },
+  {
+   "action": "docks_manifest",
+   "args": [
+    1,
+    0
+   ],
+   "now": 1090000,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "cars": [
+      10,
+      13,
+      14,
+      17,
+      20,
+      12,
+      11,
+      18
+     ],
+     "price": 0
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090000,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 4,
+    "rng": 150585509,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {
+      "id": 1,
+      "cars": [
+       10,
+       13,
+       14,
+       17,
+       20,
+       12,
+       11,
+       18
+      ],
+      "crates": [
+       11,
+       10,
+       17,
+       20,
+       12,
+       14,
+       18,
+       13
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 54,
+      "wanted": 0,
+      "active": false
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1
+    }
+   }
+  },
+  {
+   "action": "docks_open_crate",
+   "args": [
+    0
+   ],
+   "now": 1090000,
+   "result": {
+    "ok": false,
+    "error": "Search the boat first.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090000,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 4,
+    "rng": 150585509,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {
+      "id": 1,
+      "cars": [
+       10,
+       13,
+       14,
+       17,
+       20,
+       12,
+       11,
+       18
+      ],
+      "crates": [
+       11,
+       10,
+       17,
+       20,
+       12,
+       14,
+       18,
+       13
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 54,
+      "wanted": 0,
+      "active": false
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1
+    }
+   }
+  },
+  {
+   "action": "docks_search",
+   "args": [],
+   "now": 1090000,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "cost": 0
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090000,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 4,
+    "rng": 150585509,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {
+      "id": 1,
+      "cars": [
+       10,
+       13,
+       14,
+       17,
+       20,
+       12,
+       11,
+       18
+      ],
+      "crates": [
+       11,
+       10,
+       17,
+       20,
+       12,
+       14,
+       18,
+       13
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 54,
+      "wanted": 0,
+      "active": true
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1
+    }
+   }
+  },
+  {
+   "action": "docks_open_crate",
+   "args": [
+    2
+   ],
+   "now": 1090010,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "index": 2,
+     "car_id": 17,
+     "wanted": false
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090010,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 4,
+    "rng": 150585509,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {
+      "id": 1,
+      "cars": [
+       10,
+       13,
+       14,
+       17,
+       20,
+       12,
+       11,
+       18
+      ],
+      "crates": [
+       11,
+       10,
+       17,
+       20,
+       12,
+       14,
+       18,
+       13
+      ],
+      "states": [
+       0,
+       0,
+       1,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 54,
+      "wanted": 0,
+      "active": true
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1
+    }
+   }
+  },
+  {
+   "action": "docks_open_crate",
+   "args": [
+    3
+   ],
+   "now": 1090010,
+   "result": {
+    "ok": false,
+    "error": "Claim this car or search again first.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090010,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 4,
+    "rng": 150585509,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {
+      "id": 1,
+      "cars": [
+       10,
+       13,
+       14,
+       17,
+       20,
+       12,
+       11,
+       18
+      ],
+      "crates": [
+       11,
+       10,
+       17,
+       20,
+       12,
+       14,
+       18,
+       13
+      ],
+      "states": [
+       0,
+       0,
+       1,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 54,
+      "wanted": 0,
+      "active": true
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1
+    }
+   }
+  },
+  {
+   "action": "docks_claim",
+   "args": [],
+   "now": 1090020,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "car_id": 17,
+     "uid": 4
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090020,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 5,
+    "rng": 150585509,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {}
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1
+    }
+   }
+  },
+  {
+   "action": "docks_manifest",
+   "args": [
+    2,
+    0
+   ],
+   "now": 1090030,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "cars": [
+      15,
+      17,
+      14,
+      13,
+      12,
+      11,
+      18,
+      20
+     ],
+     "price": 36
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090030,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 5,
+    "rng": 1319855820,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 2,
+      "cars": [
+       15,
+       17,
+       14,
+       13,
+       12,
+       11,
+       18,
+       20
+      ],
+      "crates": [
+       17,
+       18,
+       11,
+       12,
+       20,
+       14,
+       13,
+       15
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 0,
+      "active": false
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1
+    }
+   }
+  },
+  {
+   "action": "docks_search",
+   "args": [],
+   "now": 1090030,
+   "result": {
+    "ok": false,
+    "error": "Not enough Blue Coins.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090030,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 5,
+    "rng": 1319855820,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 2,
+      "cars": [
+       15,
+       17,
+       14,
+       13,
+       12,
+       11,
+       18,
+       20
+      ],
+      "crates": [
+       17,
+       18,
+       11,
+       12,
+       20,
+       14,
+       13,
+       15
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 0,
+      "active": false
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1
+    }
+   }
+  },
+  {
+   "action": "docks_open_crate",
+   "args": [
+    5
+   ],
+   "now": 1090040,
+   "result": {
+    "ok": false,
+    "error": "Search the boat first.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090030,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 5,
+    "rng": 1319855820,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 2,
+      "cars": [
+       15,
+       17,
+       14,
+       13,
+       12,
+       11,
+       18,
+       20
+      ],
+      "crates": [
+       17,
+       18,
+       11,
+       12,
+       20,
+       14,
+       13,
+       15
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 0,
+      "active": false
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1
+    }
+   }
+  },
+  {
+   "action": "docks_search_again",
+   "args": [],
+   "now": 1090050,
+   "result": {
+    "ok": false,
+    "error": "Open a crate first.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090030,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 5,
+    "rng": 1319855820,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 2,
+      "cars": [
+       15,
+       17,
+       14,
+       13,
+       12,
+       11,
+       18,
+       20
+      ],
+      "crates": [
+       17,
+       18,
+       11,
+       12,
+       20,
+       14,
+       13,
+       15
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 0,
+      "active": false
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1
+    }
+   }
+  },
+  {
+   "action": "docks_open_crate",
+   "args": [
+    5
+   ],
+   "now": 1090050,
+   "result": {
+    "ok": false,
+    "error": "Search the boat first.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090030,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 5,
+    "rng": 1319855820,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 2,
+      "cars": [
+       15,
+       17,
+       14,
+       13,
+       12,
+       11,
+       18,
+       20
+      ],
+      "crates": [
+       17,
+       18,
+       11,
+       12,
+       20,
+       14,
+       13,
+       15
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 0,
+      "active": false
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1
+    }
+   }
+  },
+  {
+   "action": "docks_open_crate",
+   "args": [
+    6
+   ],
+   "now": 1090060,
+   "result": {
+    "ok": false,
+    "error": "Search the boat first.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090030,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 5,
+    "rng": 1319855820,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 2,
+      "cars": [
+       15,
+       17,
+       14,
+       13,
+       12,
+       11,
+       18,
+       20
+      ],
+      "crates": [
+       17,
+       18,
+       11,
+       12,
+       20,
+       14,
+       13,
+       15
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 0,
+      "active": false
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1
+    }
+   }
+  },
+  {
+   "action": "docks_claim",
+   "args": [],
+   "now": 1090070,
+   "result": {
+    "ok": false,
+    "error": "Open a crate first.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090030,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 5,
+    "rng": 1319855820,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 2,
+      "cars": [
+       15,
+       17,
+       14,
+       13,
+       12,
+       11,
+       18,
+       20
+      ],
+      "crates": [
+       17,
+       18,
+       11,
+       12,
+       20,
+       14,
+       13,
+       15
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 0,
+      "active": false
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1
+    }
+   }
+  },
+  {
+   "action": "docks_manifest",
+   "args": [
+    1,
+    16
+   ],
+   "now": 1090080,
+   "result": {
+    "ok": false,
+    "error": "Tony can't get that car.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090030,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 5,
+    "rng": 1319855820,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 2,
+      "cars": [
+       15,
+       17,
+       14,
+       13,
+       12,
+       11,
+       18,
+       20
+      ],
+      "crates": [
+       17,
+       18,
+       11,
+       12,
+       20,
+       14,
+       13,
+       15
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 0,
+      "active": false
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1
+    }
+   }
+  },
+  {
+   "action": "docks_manifest",
+   "args": [
+    1,
+    15
+   ],
+   "now": 1090080,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "cars": [
+      15,
+      12,
+      11,
+      18,
+      14,
+      10,
+      17,
+      13
+     ],
+     "price": 36
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090080,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 5,
+    "rng": 908666062,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1
+    }
+   }
+  },
+  {
+   "action": "docks_search",
+   "args": [],
+   "now": 1090090,
+   "result": {
+    "ok": false,
+    "error": "Not enough Blue Coins.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1090080,
+    "player": {
+     "name": "Tester",
+     "coins": 15855,
+     "blue": 6,
+     "xp": 155,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1000000
+    },
+    "next_uid": 5,
+    "rng": 908666062,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1000120,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": []
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   },
@@ -3351,7 +6546,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -3363,8 +6558,8 @@
      "fuel": 10,
      "fuel_at": 1003600
     },
-    "next_uid": 6,
-    "rng": 2076472068,
+    "next_uid": 7,
+    "rng": 1454238440,
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
@@ -3403,6 +6598,28 @@
       "y": 3,
       "rot": 0,
       "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
      }
     ],
     "storage": {},
@@ -3423,17 +6640,17 @@
       "job_id": 4
      },
      {
-      "uid": 4,
-      "car_id": 1,
-      "color_id": 2,
+      "uid": 5,
+      "car_id": 5,
+      "color_id": 4,
       "arrived_at": 1000120,
       "bay_uid": 0,
       "job_id": 4
      },
      {
-      "uid": 5,
-      "car_id": 1,
-      "color_id": 2,
+      "uid": 6,
+      "car_id": 2,
+      "color_id": 3,
       "arrived_at": 1000240,
       "bay_uid": 0,
       "job_id": 4
@@ -3466,10 +6683,52 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
-     "road_trips": 1
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   },
@@ -3481,13 +6740,13 @@
    ],
    "now": 1003600,
    "result": {
-    "ok": true,
-    "error": "",
+    "ok": false,
+    "error": "That customer isn't waiting.",
     "data": {},
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -3499,8 +6758,8 @@
      "fuel": 10,
      "fuel_at": 1003600
     },
-    "next_uid": 6,
-    "rng": 2076472068,
+    "next_uid": 7,
+    "rng": 1454238440,
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
@@ -3539,6 +6798,28 @@
       "y": 3,
       "rot": 0,
       "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
      }
     ],
     "storage": {},
@@ -3559,17 +6840,17 @@
       "job_id": 4
      },
      {
-      "uid": 4,
-      "car_id": 1,
-      "color_id": 2,
+      "uid": 5,
+      "car_id": 5,
+      "color_id": 4,
       "arrived_at": 1000120,
-      "bay_uid": 1,
+      "bay_uid": 0,
       "job_id": 4
      },
      {
-      "uid": 5,
-      "car_id": 1,
-      "color_id": 2,
+      "uid": 6,
+      "car_id": 2,
+      "color_id": 3,
       "arrived_at": 1000240,
       "bay_uid": 0,
       "job_id": 4
@@ -3602,11 +6883,52 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
      "road_trips": 1,
-     "customers_accepted": 1
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   },
@@ -3618,147 +6940,10 @@
    ],
    "now": 1003600,
    "result": {
-    "ok": false,
-    "error": "This customer wants a Job 4.",
-    "data": {},
-    "notices": []
-   },
-   "save": {
-    "save_version": 8,
-    "created_at": 1000000,
-    "updated_at": 1003600,
-    "player": {
-     "name": "Tester",
-     "coins": 15855,
-     "blue": 6,
-     "xp": 155,
-     "level": 3,
-     "fuel": 10,
-     "fuel_at": 1003600
-    },
-    "next_uid": 6,
-    "rng": 2076472068,
-    "garage": {
-     "land_id": 1,
-     "floor_item_id": 292,
-     "floor_tiles": {},
-     "items": [
-      {
-       "uid": 1,
-       "item_id": 156,
-       "x": 0,
-       "y": 0,
-       "rot": 0
-      }
-     ],
-     "walls": [],
-     "wall_items": []
-    },
-    "cars": [
-     {
-      "uid": 2,
-      "car_id": 1,
-      "color_id": 1,
-      "paint": 16711680,
-      "parts": {
-       "1": 11
-      },
-      "upgrades": [
-       0,
-       0,
-       0,
-       0
-      ],
-      "ride_height": 0,
-      "plate": "",
-      "placed": true,
-      "x": 4,
-      "y": 3,
-      "rot": 0,
-      "bay_uid": 0
-     }
-    ],
-    "storage": {},
-    "part_storage": {},
-    "jobs": {},
-    "car_tasks": {},
-    "job_mastery": {
-     "4": 3,
-     "3": 2
-    },
-    "customers": [
-     {
-      "uid": 3,
-      "car_id": 2,
-      "color_id": 3,
-      "arrived_at": 1000000,
-      "bay_uid": 0,
-      "job_id": 4
-     },
-     {
-      "uid": 4,
-      "car_id": 1,
-      "color_id": 2,
-      "arrived_at": 1000120,
-      "bay_uid": 1,
-      "job_id": 4
-     },
-     {
-      "uid": 5,
-      "car_id": 1,
-      "color_id": 2,
-      "arrived_at": 1000240,
-      "bay_uid": 0,
-      "job_id": 4
-     }
-    ],
-    "next_customer_at": 1003720,
-    "missions": {
-     "progress": {},
-     "completed": [
-      1
-     ],
-     "daily": {
-      "day": 11,
-      "ids": [
-       5,
-       7,
-       4
-      ],
-      "done": []
-     }
-    },
-    "tutorial": {
-     "step": 0,
-     "done": false
-    },
-    "visited_locations": [],
-    "race": {},
-    "daily_reward": {
-     "last_day": -1,
-     "streak": 0
-    },
-    "collections_done": [],
-    "stats": {
-     "jobs_started": 8,
-     "jobs_collected": 6,
-     "road_trips": 1,
-     "customers_accepted": 1
-    }
-   }
-  },
-  {
-   "action": "start_job",
-   "args": [
-    1,
-    4
-   ],
-   "now": 1003600,
-   "result": {
     "ok": true,
     "error": "",
     "data": {
-     "ends_at": 1003900
+     "ends_at": 1005400
     },
     "notices": [
      {
@@ -3774,7 +6959,7 @@
     ]
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
@@ -3786,8 +6971,8 @@
      "fuel": 10,
      "fuel_at": 1003600
     },
-    "next_uid": 6,
-    "rng": 2076472068,
+    "next_uid": 7,
+    "rng": 2001797030,
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
@@ -3826,15 +7011,39 @@
       "y": 3,
       "rot": 0,
       "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
      }
     ],
     "storage": {},
     "part_storage": {},
     "jobs": {
      "1": {
-      "job_id": 4,
+      "job_id": 13,
       "started_at": 1003600,
-      "ends_at": 1003900
+      "ends_at": 1005400,
+      "car_id": 1,
+      "color_id": 2
      }
     },
     "car_tasks": {},
@@ -3852,17 +7061,17 @@
       "job_id": 4
      },
      {
-      "uid": 4,
-      "car_id": 1,
-      "color_id": 2,
+      "uid": 5,
+      "car_id": 5,
+      "color_id": 4,
       "arrived_at": 1000120,
-      "bay_uid": 1,
+      "bay_uid": 0,
       "job_id": 4
      },
      {
-      "uid": 5,
-      "car_id": 1,
-      "color_id": 2,
+      "uid": 6,
+      "car_id": 2,
+      "color_id": 3,
       "arrived_at": 1000240,
       "bay_uid": 0,
       "job_id": 4
@@ -3897,44 +7106,83 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 6,
      "road_trips": 1,
-     "customers_accepted": 1
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   },
   {
-   "action": "collect_job",
+   "action": "start_job",
    "args": [
-    1
+    1,
+    4
    ],
-   "now": 1005400,
+   "now": 1003600,
    "result": {
-    "ok": true,
-    "error": "",
-    "data": {
-     "coins": 40,
-     "xp": 12
-    },
+    "ok": false,
+    "error": "That work bay is already busy.",
+    "data": {},
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
-    "updated_at": 1005400,
+    "updated_at": 1003600,
     "player": {
      "name": "Tester",
-     "coins": 15985,
+     "coins": 15945,
      "blue": 7,
-     "xp": 177,
+     "xp": 165,
      "level": 3,
      "fuel": 10,
      "fuel_at": 1003600
     },
-    "next_uid": 6,
-    "rng": 2076472068,
+    "next_uid": 7,
+    "rng": 2001797030,
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
@@ -3973,14 +7221,44 @@
       "y": 3,
       "rot": 0,
       "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
      }
     ],
     "storage": {},
     "part_storage": {},
-    "jobs": {},
+    "jobs": {
+     "1": {
+      "job_id": 13,
+      "started_at": 1003600,
+      "ends_at": 1005400,
+      "car_id": 1,
+      "color_id": 2
+     }
+    },
     "car_tasks": {},
     "job_mastery": {
-     "4": 4,
+     "4": 3,
      "3": 2
     },
     "customers": [
@@ -3994,8 +7272,16 @@
      },
      {
       "uid": 5,
-      "car_id": 1,
-      "color_id": 2,
+      "car_id": 5,
+      "color_id": 4,
+      "arrived_at": 1000120,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 6,
+      "car_id": 2,
+      "color_id": 3,
       "arrived_at": 1000240,
       "bay_uid": 0,
       "job_id": 4
@@ -4030,11 +7316,257 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
+    "stats": {
+     "jobs_started": 9,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1
+    }
+   }
+  },
+  {
+   "action": "collect_job",
+   "args": [
+    1
+   ],
+   "now": 1005400,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "coins": 125,
+     "xp": 20
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 9,
+    "created_at": 1000000,
+    "updated_at": 1005400,
+    "player": {
+     "name": "Tester",
+     "coins": 16070,
+     "blue": 7,
+     "xp": 185,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1003600
+    },
+    "next_uid": 7,
+    "rng": 2001797030,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2,
+     "13": 1
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 5,
+      "car_id": 5,
+      "color_id": 4,
+      "arrived_at": 1000120,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 6,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000240,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1003720,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 11,
+      "ids": [
+       5,
+       7,
+       4
+      ],
+      "done": [
+       4
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
      "road_trips": 1,
-     "customers_accepted": 1
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   },
@@ -4051,20 +7583,20 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
      "name": "Tester",
-     "coins": 15985,
+     "coins": 16070,
      "blue": 7,
-     "xp": 177,
+     "xp": 185,
      "level": 3,
      "fuel": 10,
      "fuel_at": 1003600
     },
-    "next_uid": 6,
-    "rng": 2076472068,
+    "next_uid": 7,
+    "rng": 2001797030,
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
@@ -4103,6 +7635,28 @@
       "y": 3,
       "rot": 0,
       "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
      }
     ],
     "storage": {},
@@ -4110,8 +7664,9 @@
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
-     "4": 4,
-     "3": 2
+     "4": 3,
+     "3": 2,
+     "13": 1
     },
     "customers": [
      {
@@ -4119,6 +7674,14 @@
       "car_id": 2,
       "color_id": 3,
       "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 6,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000240,
       "bay_uid": 0,
       "job_id": 4
      }
@@ -4152,11 +7715,52 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
      "road_trips": 1,
-     "customers_accepted": 1
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   },
@@ -4176,20 +7780,20 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
      "name": "Tester",
-     "coins": 15975,
+     "coins": 16060,
      "blue": 7,
-     "xp": 177,
+     "xp": 185,
      "level": 3,
      "fuel": 10,
      "fuel_at": 1003600
     },
-    "next_uid": 6,
-    "rng": 354921250,
+    "next_uid": 7,
+    "rng": 283823508,
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
@@ -4228,6 +7832,28 @@
       "y": 3,
       "rot": 0,
       "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
      }
     ],
     "storage": {},
@@ -4237,14 +7863,15 @@
       "job_id": 4,
       "started_at": 1005400,
       "ends_at": 1005700,
-      "car_id": 2,
-      "color_id": 3
+      "car_id": 5,
+      "color_id": 4
      }
     },
     "car_tasks": {},
     "job_mastery": {
-     "4": 4,
-     "3": 2
+     "4": 3,
+     "3": 2,
+     "13": 1
     },
     "customers": [
      {
@@ -4252,6 +7879,14 @@
       "car_id": 2,
       "color_id": 3,
       "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 6,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000240,
       "bay_uid": 0,
       "job_id": 4
      }
@@ -4285,11 +7920,52 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 7,
      "road_trips": 1,
-     "customers_accepted": 1
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   },
@@ -4309,20 +7985,20 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1005700,
     "player": {
      "name": "Tester",
-     "coins": 16015,
+     "coins": 16100,
      "blue": 7,
-     "xp": 189,
+     "xp": 197,
      "level": 3,
      "fuel": 10,
      "fuel_at": 1003600
     },
-    "next_uid": 6,
-    "rng": 354921250,
+    "next_uid": 7,
+    "rng": 283823508,
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
@@ -4361,6 +8037,28 @@
       "y": 3,
       "rot": 0,
       "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
      }
     ],
     "storage": {},
@@ -4368,8 +8066,9 @@
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
-     "4": 5,
-     "3": 2
+     "4": 4,
+     "3": 2,
+     "13": 1
     },
     "customers": [
      {
@@ -4377,6 +8076,14 @@
       "car_id": 2,
       "color_id": 3,
       "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 6,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000240,
       "bay_uid": 0,
       "job_id": 4
      }
@@ -4410,11 +8117,52 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
      "road_trips": 1,
-     "customers_accepted": 1
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   },
@@ -4432,7 +8180,7 @@
     "ok": true,
     "error": "",
     "data": {
-     "cars": 1,
+     "cars": 2,
      "items": 0,
      "bays": 0,
      "walls": 0,
@@ -4441,20 +8189,20 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1086400,
     "player": {
      "name": "Tester",
-     "coins": 16015,
+     "coins": 16100,
      "blue": 7,
-     "xp": 189,
+     "xp": 197,
      "level": 3,
      "fuel": 10,
      "fuel_at": 1003600
     },
-    "next_uid": 6,
-    "rng": 354921250,
+    "next_uid": 7,
+    "rng": 283823508,
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
@@ -4493,6 +8241,28 @@
       "y": 3,
       "rot": 0,
       "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": false,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
      }
     ],
     "storage": {},
@@ -4500,8 +8270,9 @@
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
-     "4": 5,
-     "3": 2
+     "4": 4,
+     "3": 2,
+     "13": 1
     },
     "customers": [
      {
@@ -4509,6 +8280,14 @@
       "car_id": 2,
       "color_id": 3,
       "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 6,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000240,
       "bay_uid": 0,
       "job_id": 4
      }
@@ -4542,11 +8321,52 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
      "road_trips": 1,
-     "customers_accepted": 1
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   },
@@ -4558,25 +8378,25 @@
     "ok": true,
     "error": "",
     "data": {
-     "arrived": 2
+     "arrived": 1
     },
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
      "name": "Tester",
-     "coins": 16015,
+     "coins": 16100,
      "blue": 7,
-     "xp": 189,
+     "xp": 197,
      "level": 3,
      "fuel": 10,
      "fuel_at": 1172800
     },
     "next_uid": 8,
-    "rng": 1746214556,
+    "rng": 1833185667,
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
@@ -4615,6 +8435,28 @@
       "y": 3,
       "rot": 0,
       "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": false,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
      }
     ],
     "storage": {},
@@ -4622,8 +8464,9 @@
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
-     "4": 5,
-     "3": 2
+     "4": 4,
+     "3": 2,
+     "13": 1
     },
     "customers": [
      {
@@ -4636,17 +8479,17 @@
      },
      {
       "uid": 6,
-      "car_id": 5,
-      "color_id": 4,
-      "arrived_at": 1003720,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000240,
       "bay_uid": 0,
       "job_id": 4
      },
      {
       "uid": 7,
-      "car_id": 1,
-      "color_id": 1,
-      "arrived_at": 1003840,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1003720,
       "bay_uid": 0,
       "job_id": 4
      }
@@ -4678,11 +8521,52 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
      "road_trips": 1,
-     "customers_accepted": 1
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   },
@@ -4698,6 +8582,13 @@
     "data": {},
     "notices": [
      {
+      "kind": "level_up",
+      "level": 4,
+      "title": "L4",
+      "coins": 1000,
+      "blue": 1
+     },
+     {
       "kind": "mission_complete",
       "mission_id": 5,
       "title": "Mission 5",
@@ -4710,20 +8601,20 @@
     ]
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
      "name": "Tester",
-     "coins": 16115,
-     "blue": 7,
-     "xp": 199,
-     "level": 3,
+     "coins": 17200,
+     "blue": 8,
+     "xp": 207,
+     "level": 4,
      "fuel": 10,
      "fuel_at": 1172800
     },
     "next_uid": 8,
-    "rng": 1746214556,
+    "rng": 1833185667,
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
@@ -4762,6 +8653,28 @@
       "y": 3,
       "rot": 0,
       "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": false,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
      }
     ],
     "storage": {},
@@ -4769,8 +8682,9 @@
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
-     "4": 5,
-     "3": 2
+     "4": 4,
+     "3": 2,
+     "13": 1
     },
     "customers": [
      {
@@ -4783,17 +8697,17 @@
      },
      {
       "uid": 6,
-      "car_id": 5,
-      "color_id": 4,
-      "arrived_at": 1003720,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000240,
       "bay_uid": 0,
       "job_id": 4
      },
      {
       "uid": 7,
-      "car_id": 1,
-      "color_id": 1,
-      "arrived_at": 1003840,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1003720,
       "bay_uid": 0,
       "job_id": 4
      }
@@ -4829,11 +8743,52 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
      "road_trips": 1,
-     "customers_accepted": 1
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   },
@@ -4850,20 +8805,20 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
      "name": "Tester",
-     "coins": 16115,
-     "blue": 7,
-     "xp": 199,
-     "level": 3,
+     "coins": 17200,
+     "blue": 8,
+     "xp": 207,
+     "level": 4,
      "fuel": 10,
      "fuel_at": 1172800
     },
     "next_uid": 8,
-    "rng": 1746214556,
+    "rng": 1833185667,
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
@@ -4902,6 +8857,28 @@
       "y": 3,
       "rot": 0,
       "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": false,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
      }
     ],
     "storage": {},
@@ -4909,8 +8886,9 @@
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
-     "4": 5,
-     "3": 2
+     "4": 4,
+     "3": 2,
+     "13": 1
     },
     "customers": [
      {
@@ -4923,17 +8901,17 @@
      },
      {
       "uid": 6,
-      "car_id": 5,
-      "color_id": 4,
-      "arrived_at": 1003720,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000240,
       "bay_uid": 0,
       "job_id": 4
      },
      {
       "uid": 7,
-      "car_id": 1,
-      "color_id": 1,
-      "arrived_at": 1003840,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1003720,
       "bay_uid": 0,
       "job_id": 4
      }
@@ -4969,11 +8947,52 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
      "road_trips": 1,
-     "customers_accepted": 1
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   },
@@ -4988,20 +9007,20 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
      "name": "Tester",
-     "coins": 16115,
-     "blue": 7,
-     "xp": 199,
-     "level": 3,
+     "coins": 17200,
+     "blue": 8,
+     "xp": 207,
+     "level": 4,
      "fuel": 10,
      "fuel_at": 1172800
     },
     "next_uid": 8,
-    "rng": 1746214556,
+    "rng": 1833185667,
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
@@ -5040,6 +9059,28 @@
       "y": 3,
       "rot": 0,
       "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": false,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
      }
     ],
     "storage": {},
@@ -5047,8 +9088,9 @@
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
-     "4": 5,
-     "3": 2
+     "4": 4,
+     "3": 2,
+     "13": 1
     },
     "customers": [
      {
@@ -5061,17 +9103,17 @@
      },
      {
       "uid": 6,
-      "car_id": 5,
-      "color_id": 4,
-      "arrived_at": 1003720,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000240,
       "bay_uid": 0,
       "job_id": 4
      },
      {
       "uid": 7,
-      "car_id": 1,
-      "color_id": 1,
-      "arrived_at": 1003840,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1003720,
       "bay_uid": 0,
       "job_id": 4
      }
@@ -5107,11 +9149,52 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
      "road_trips": 1,
-     "customers_accepted": 1
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   },
@@ -5129,20 +9212,20 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
      "name": "Tester",
-     "coins": 16115,
-     "blue": 7,
-     "xp": 199,
-     "level": 3,
+     "coins": 17200,
+     "blue": 8,
+     "xp": 207,
+     "level": 4,
      "fuel": 10,
      "fuel_at": 1172800
     },
     "next_uid": 8,
-    "rng": 1746214556,
+    "rng": 1833185667,
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
@@ -5181,6 +9264,28 @@
       "y": 3,
       "rot": 0,
       "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": false,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
      }
     ],
     "storage": {},
@@ -5188,8 +9293,9 @@
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
-     "4": 5,
-     "3": 2
+     "4": 4,
+     "3": 2,
+     "13": 1
     },
     "customers": [
      {
@@ -5202,17 +9308,17 @@
      },
      {
       "uid": 6,
-      "car_id": 5,
-      "color_id": 4,
-      "arrived_at": 1003720,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000240,
       "bay_uid": 0,
       "job_id": 4
      },
      {
       "uid": 7,
-      "car_id": 1,
-      "color_id": 1,
-      "arrived_at": 1003840,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1003720,
       "bay_uid": 0,
       "job_id": 4
      }
@@ -5248,11 +9354,52 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
      "road_trips": 1,
-     "customers_accepted": 1
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   },
@@ -5269,20 +9416,20 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
      "name": "New Name",
-     "coins": 16115,
-     "blue": 7,
-     "xp": 199,
-     "level": 3,
+     "coins": 17200,
+     "blue": 8,
+     "xp": 207,
+     "level": 4,
      "fuel": 10,
      "fuel_at": 1172800
     },
     "next_uid": 8,
-    "rng": 1746214556,
+    "rng": 1833185667,
     "garage": {
      "land_id": 1,
      "floor_item_id": 292,
@@ -5321,6 +9468,28 @@
       "y": 3,
       "rot": 0,
       "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": false,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
      }
     ],
     "storage": {},
@@ -5328,8 +9497,9 @@
     "jobs": {},
     "car_tasks": {},
     "job_mastery": {
-     "4": 5,
-     "3": 2
+     "4": 4,
+     "3": 2,
+     "13": 1
     },
     "customers": [
      {
@@ -5342,17 +9512,17 @@
      },
      {
       "uid": 6,
-      "car_id": 5,
-      "color_id": 4,
-      "arrived_at": 1003720,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000240,
       "bay_uid": 0,
       "job_id": 4
      },
      {
       "uid": 7,
-      "car_id": 1,
-      "color_id": 1,
-      "arrived_at": 1003840,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1003720,
       "bay_uid": 0,
       "job_id": 4
      }
@@ -5388,11 +9558,52 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
      "road_trips": 1,
-     "customers_accepted": 1
+     "docks_searches": 1,
+     "docks_claims": 1
     }
    }
   }

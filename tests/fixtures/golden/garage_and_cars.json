@@ -1,6 +1,6 @@
 {
  "start": {
-  "save_version": 8,
+  "save_version": 9,
   "created_at": 1000000,
   "updated_at": 1000000,
   "player": {
@@ -77,6 +77,11 @@
    "streak": 0
   },
   "collections_done": [],
+  "docks": {
+   "first_done": false,
+   "last_claim": -1,
+   "boat": {}
+  },
   "stats": {}
  },
  "steps": [
@@ -98,7 +103,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -205,6 +210,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1
     }
@@ -225,7 +235,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -332,6 +342,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1
     }
@@ -352,7 +367,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -459,6 +474,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1
     }
@@ -490,7 +510,7 @@
     ]
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000010,
     "player": {
@@ -599,6 +619,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -622,7 +647,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -731,6 +756,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -752,7 +782,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -861,6 +891,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -884,7 +919,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -994,6 +1029,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1017,7 +1057,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000021,
     "player": {
@@ -1129,6 +1169,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1152,7 +1197,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000022,
     "player": {
@@ -1262,6 +1307,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1282,7 +1332,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000023,
     "player": {
@@ -1393,6 +1443,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1416,7 +1471,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -1527,6 +1582,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1550,7 +1610,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -1661,6 +1721,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1681,7 +1746,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -1792,6 +1857,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1813,7 +1883,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -1924,6 +1994,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1945,7 +2020,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -2056,6 +2131,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2077,7 +2157,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -2188,6 +2268,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2213,7 +2298,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000050,
     "player": {
@@ -2331,6 +2416,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2354,7 +2444,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000050,
     "player": {
@@ -2472,6 +2562,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2494,7 +2589,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -2612,6 +2707,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2631,7 +2731,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -2744,6 +2844,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2768,7 +2873,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -2886,6 +2991,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2911,7 +3021,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3031,6 +3141,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3054,7 +3169,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3174,6 +3289,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3199,7 +3319,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3327,6 +3447,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3352,7 +3477,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3487,6 +3612,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3512,7 +3642,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3655,6 +3785,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3678,7 +3813,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3821,6 +3956,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3846,7 +3986,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3996,6 +4136,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4021,7 +4166,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -4178,6 +4323,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4197,7 +4347,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000071,
     "player": {
@@ -4342,6 +4492,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4366,7 +4521,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000072,
     "player": {
@@ -4517,6 +4672,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4546,7 +4706,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000073,
     "player": {
@@ -4669,6 +4829,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4699,7 +4864,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000074,
     "player": {
@@ -4835,6 +5000,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -4863,7 +5033,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000075,
     "player": {
@@ -4986,6 +5156,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5019,7 +5194,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000076,
     "player": {
@@ -5155,6 +5330,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5185,7 +5365,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000077,
     "player": {
@@ -5308,6 +5488,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5333,7 +5518,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000077,
     "player": {
@@ -5456,6 +5641,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5481,7 +5671,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000077,
     "player": {
@@ -5604,6 +5794,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5629,7 +5824,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000078,
     "player": {
@@ -5752,6 +5947,11 @@
      "streak": 0
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5779,7 +5979,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000079,
     "player": {
@@ -5902,6 +6102,11 @@
      "streak": 1
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5923,7 +6128,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000079,
     "player": {
@@ -6046,6 +6251,11 @@
      "streak": 1
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6073,7 +6283,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1086479,
     "player": {
@@ -6196,6 +6406,11 @@
      "streak": 2
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6231,7 +6446,7 @@
     ]
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1172879,
     "player": {
@@ -6354,6 +6569,11 @@
      "streak": 3
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6381,7 +6601,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1432000,
     "player": {
@@ -6504,6 +6724,11 @@
      "streak": 1
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6527,7 +6752,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1432000,
     "player": {
@@ -6650,6 +6875,11 @@
      "streak": 1
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6676,7 +6906,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000090,
     "player": {
@@ -6799,6 +7029,11 @@
      "streak": 1
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6822,7 +7057,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000090,
     "player": {
@@ -6945,6 +7180,11 @@
      "streak": 1
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6970,7 +7210,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 8,
+    "save_version": 9,
     "created_at": 1000000,
     "updated_at": 1000100,
     "player": {
@@ -7071,6 +7311,11 @@
      "streak": 1
     },
     "collections_done": [],
+    "docks": {
+     "first_done": false,
+     "last_claim": -1,
+     "boat": {}
+    },
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
