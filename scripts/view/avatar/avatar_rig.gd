@@ -61,6 +61,29 @@ static func available() -> bool:
 	return ResourceLoader.exists(MODEL_PATH)
 
 
+## Whether an avatar item can be worn by a 3D worker (and drawn in 2D):
+## clothes need their texture, hair, hats and heads their own mesh.
+static func has_3d(item_id: int) -> bool:
+	if not GameData.avatar_art.has("%d_l" % item_id):
+		return false
+	var t := int(GameData.catalog.avatar_item(item_id).get("type", 0))
+	var elements: Dictionary = load_settings().get("elements", {})
+	match t:
+		8:
+			return ResourceLoader.exists(TEXTURE_DIR + "shirt_%d.jpg" % item_id)
+		9:
+			return ResourceLoader.exists(TEXTURE_DIR + "pants_%d.jpg" % item_id)
+		12:
+			return ResourceLoader.exists(TEXTURE_DIR + "skirt_%d.jpg" % item_id)
+		5:
+			return elements.has("hair_%d" % item_id)
+		7:
+			return elements.has("hat_%d" % item_id) or item_id == AvatarPortrait.NO_HAT
+		11:
+			return elements.has("face_%d" % item_id)
+	return true
+
+
 func setup(look: Dictionary) -> void:
 	outfit = look
 	if _model == null:
@@ -98,8 +121,10 @@ func _setting(part: String) -> int:
 func _dress() -> void:
 	var skin: Dictionary = AvatarColors.SKIN[mini(AvatarPortrait.digit(_setting("head"), 10000), AvatarColors.SKIN.size() - 1)]
 	var hair_tone: Dictionary = AvatarColors.HAIR[mini(AvatarPortrait.digit(_setting("hair"), 10000), AvatarColors.HAIR.size() - 1)]
-	var top := _id("top")
+	var top := _id("top") if _image("shirt_%d" % _id("top")) != null else 53
 	var bottom := _id("bottom")
+	if _image(("skirt_%d" if _is_skirt(bottom) else "pants_%d") % bottom) == null:
+		bottom = 57
 	var skirt := _is_skirt(bottom)
 	var body := Image.create(ATLAS_SIZE, ATLAS_SIZE, false, Image.FORMAT_RGBA8)
 	body.fill(Color.WHITE)
@@ -120,8 +145,9 @@ func _dress() -> void:
 		_show("hat_%d" % hat, _material(_texture("hat_%d" % hat)))
 		var alt := int(GameData.catalog.avatar_item(_id("hair")).get("raw", {}).get("ai", "1"))
 		_show("hairhat_%d" % maxi(1, alt), _material(_texture("hairhat_%d" % maxi(1, alt), hair_tone)))
-	elif _mesh("hair_%d" % _id("hair")) != null:
-		_show("hair_%d" % _id("hair"), _material(_texture("hair_%d" % _id("hair"), hair_tone)))
+	else:
+		var hair := _id("hair") if _mesh("hair_%d" % _id("hair")) != null else 33
+		_show("hair_%d" % hair, _material(_texture("hair_%d" % hair, hair_tone)))
 	var head := "face_%d" % _id("head")
 	if _mesh(head) == null:
 		head = "face_68"

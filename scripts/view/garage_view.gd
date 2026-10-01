@@ -37,6 +37,7 @@ var visiting: Dictionary = {}
 
 var _floor_layer: Node2D
 var _object_layer: Node2D
+var _crew: WorkerCrew
 var _town_front_layer: Node2D
 var _overlay_layer: Node2D
 ## Short-lived effects (collected money) that outlive rebuilds.
@@ -95,7 +96,9 @@ func rebuild() -> void:
 	land_size = Vector2i(land.get("size_x", 10), land.get("size_y", 10))
 	for layer in [_floor_layer, _object_layer, _town_front_layer, _overlay_layer]:
 		for c in layer.get_children():
-			c.queue_free()
+			# Workers walk about and outlive rebuilds.
+			if not c.has_meta("actor"):
+				c.queue_free()
 	_pickables.clear()
 	_job_bubbles.clear()
 	_rotate_btn = null
@@ -106,9 +109,41 @@ func rebuild() -> void:
 	if _grid_on:
 		_build_grid()
 	_build_objects(s)
+	if _crew == null:
+		_crew = WorkerCrew.new(self)
+		add_child(_crew)
+	_crew.refresh()
 
 
 ## Screen position where a floor object at tile (h, v) is anchored.
+## Something that moves about the floor (a worker), drawn in depth order
+## with the cars and items.
+func add_actor(node: Node2D) -> void:
+	node.set_meta("actor", true)
+	node.set_meta("depth", 0)
+	_object_layer.add_child(node)
+
+
+## Puts an actor where it belongs in the drawing order for [param depth]
+## (Iso.depth units), among the objects being built this frame too.
+func sort_actor(node: Node2D, depth: int) -> void:
+	if node.get_parent() != _object_layer:
+		return
+	node.set_meta("depth", depth)
+	var index := 0
+	for c in _object_layer.get_children():
+		if c == node or c.is_queued_for_deletion():
+			continue
+		if int(c.get_meta("depth", -1)) > depth:
+			break
+		index += 1
+	var current := node.get_index()
+	if index > current:
+		index -= 1
+	if index != current:
+		_object_layer.move_child(node, index)
+
+
 static func object_position(h: int, v: int) -> Vector2:
 	return Iso.to_screen(h + 0.5, v + 0.5) + Vector2(-35, -17.5)
 
@@ -271,6 +306,7 @@ func _build_objects(s: Dictionary) -> void:
 	var seen: Dictionary = {}
 	for e: Dictionary in entries:
 		var node := _make_node(e)
+		node.set_meta("depth", _depth(e))
 		_object_layer.add_child(node)
 		if e["kind"] == "customer" and e["entry"].get("bay_uid", 0) == 0:
 			seen[e["entry"]["uid"]] = true
