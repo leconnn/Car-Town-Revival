@@ -1227,7 +1227,10 @@ func road_trip_ids(car_uid: int) -> Array[int]:
 	var out: Array[int] = []
 	if car.is_empty() or not car_task_ids(car_uid).has(ROAD_TRIP_JOB):
 		return out
+	var hidden: Array = catalog.tune("road_trips.hidden", [])
 	for id: int in catalog.road_trips:
+		if hidden.has(id):
+			continue
 		var t: Dictionary = catalog.road_trips[id]
 		var only: int = t.get("specific_car_id", 0)
 		if only == 0 or only == car["car_id"]:

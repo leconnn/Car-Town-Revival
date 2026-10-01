@@ -133,7 +133,7 @@
     "fallback_coins": 250
   },
   "road_trips": {
-    "_about": "Offline, passengers are townsfolk who hop in during the trip (the original's were friends).",
+    "_about": "Offline, passengers are townsfolk who hop in during the trip (the original's were friends). Sponsored destinations (Nitto) are held back like the other licensed content.",
     "passenger_chance_percent": 70,
     "join_window_percent": 80,
     "passenger_names": [
@@ -149,6 +149,9 @@
       "Carl",
       "Dot",
       "Eddie"
+    ],
+    "hidden": [
+      7
     ]
   }
 }

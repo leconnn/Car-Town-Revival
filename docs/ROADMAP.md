@@ -117,7 +117,7 @@ Build order: **single-player v1 → LAN → online → feature updates**. Each p
    - Fuel: level-based tank, timed refill (lighter than the original), and 1 fuel per race. Race rewards come with a daily race limit.
    - This unlocks about 16 more missions.
 2. ~~Daily rewards~~ (done: a prize per day of the login streak, both rule copies, the original popup), ~~car collections~~ (done: own every car in a set for coins, XP and a plaque; the list is in the Glove Box button)
-3. Road trips (NPC passengers offline, real passengers LAN/online)
+3. ~~Road trips~~ (done offline: pick a destination, townsfolk hop in during the day, pay per passenger by car class plus a full-car bonus; the Nitto trip is held back with the licensed content. Still to do: the full-screen trip view with the map and seats, and real passengers in LAN/online)
 4. Glove box: mail, gifting, stats
 5. Avatar shop
 6. Docks

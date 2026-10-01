@@ -1016,7 +1016,9 @@ export class GameLogic {
     const car = this.get_car(carUid);
     const out: number[] = [];
     if (!car || !this.car_task_ids(carUid).includes(ROAD_TRIP_JOB)) return out;
+    const hidden: number[] = this.catalog.tune("road_trips.hidden", []);
     for (const [id, t] of this.catalog.roadTrips) {
+      if (hidden.includes(id)) continue;
       const only: number = t.specific_car_id ?? 0;
       if (only === 0 || only === car.car_id) out.push(id);
     }

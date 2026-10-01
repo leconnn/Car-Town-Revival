@@ -253,12 +253,24 @@ func _open_car_options(car_uid: int) -> void:
 	content.sell_pressed.connect(func() -> void:
 		_ask_sell_car(car_uid, func() -> void: popup.close()))
 	content.start_task.connect(func(job_id: int) -> void:
+		if job_id == GameLogic.ROAD_TRIP_JOB:
+			popup.close()
+			_open_road_trip(car_uid)
+			return
 		var r: GameResult = await Backend.start_car_task(car_uid, job_id)
 		if r.ok:
 			popup.close())
 	content.stop_task.connect(func() -> void:
 		popup.close()
 		await Backend.stop_car_task(car_uid))
+
+
+## Where should the road trip go?
+func _open_road_trip(car_uid: int) -> void:
+	var picker := RoadTripPopups.open_destinations(get_tree(), car_uid)
+	popup_opened.emit("road_trip", picker)
+	picker.destination_chosen.connect(func(trip_id: int) -> void:
+		await Backend.start_road_trip(car_uid, trip_id))
 
 
 ## A car out on a car task: collect it when it's back, else Work in Progress.
@@ -268,7 +280,10 @@ func _car_task_clicked(car_uid: int) -> void:
 		return
 	if Backend.now() >= task["ends_at"]:
 		var at: Variant = garage.callout_position(car_uid)
-		_show_collected(at, await Backend.collect_car_task(car_uid))
+		var done: GameResult = await Backend.collect_car_task(car_uid)
+		_show_collected(at, done)
+		if done.ok and task.has("road_trip"):
+			RoadTripPopups.open_complete(get_tree(), done)
 		return
 	var w := WorkPopup.open_car(get_tree(), car_uid)
 	if w == null:
@@ -744,6 +759,9 @@ func _dev_open() -> void:
 			"bay": _open_work_bay(bay)
 			"credits": MenuPopup.open_credits(get_tree())
 			"collections": CollectionPopups.open_list(get_tree())
+			"roadtrip": _open_road_trip(Backend.state()["cars"][0]["uid"])
+			"roadtripdone": RoadTripPopups.open_complete(get_tree(), GameResult.success({"road_trip": 2,
+				"passengers": 4, "seats": 4, "coins": 4020, "xp": 140, "full": true}))
 			"collection_done":
 				notices.push({"kind": "collection_complete", "collection_id": 1, "name": "90s Tuner Cars", "coins": 4500, "xp": 450, "plaque_id": 622})
 			"daily", "daily3":

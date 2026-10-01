@@ -32,12 +32,13 @@ static func open(tree: SceneTree, bay: int) -> WorkPopup:
 ## Opens the popup for the car task [param car_uid] is out on, or null.
 static func open_car(tree: SceneTree, car_uid: int) -> WorkPopup:
 	var job: Dictionary = Backend.state()["car_tasks"].get(str(car_uid), {})
-	return null if job.is_empty() else _open(tree, job, Backend.query().car_task_finish_price(car_uid, Backend.now()))
+	return null if job.is_empty() else _open(tree, job, Backend.query().car_task_finish_price(car_uid, Backend.now()), car_uid)
 
 
-static func _open(tree: SceneTree, job: Dictionary, price: int) -> WorkPopup:
+static func _open(tree: SceneTree, job: Dictionary, price: int, car_uid: int = 0) -> WorkPopup:
 	var w := WorkPopup.new()
 	w._job = job
+	w._car_uid = car_uid
 	w._price = price
 	w._build()
 	var finish := FrameButton.with_content(w._credit_label(price), w._credit_size, FrameButton.LIGHT_BLUE)
@@ -51,6 +52,7 @@ static func _open(tree: SceneTree, job: Dictionary, price: int) -> WorkPopup:
 
 
 var _finish_button: FrameButton
+var _car_uid := 0
 var _credit_size := Vector2.ZERO
 
 
@@ -62,6 +64,10 @@ func close() -> void:
 func _build() -> void:
 	var def: Dictionary = GameData.catalog.job(_job["job_id"])
 	var payout: Dictionary = Backend.query().job_payout(_job["job_id"])
+	if _job.has("road_trip"):
+		# A road trip pays for whoever has joined so far.
+		var q := Backend.query()
+		payout = q.road_trip_pay(q.get_car(_car_uid)["car_id"], _job["road_trip"], q.road_trip_passengers(_job, Backend.now()))
 	_content = FlashUi.make("FinishJobNowPopupContent")
 	if _content == null:
 		return
