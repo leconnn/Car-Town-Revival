@@ -1,0 +1,26 @@
+[
+ {
+  "level": 1,
+  "item_id": 1001,
+  "blue_price": 5,
+  "respin_blue": 1,
+  "available": true,
+  "car_ids": [
+   1,
+   2,
+   4,
+   5,
+   3
+  ]
+ },
+ {
+  "level": 2,
+  "item_id": 1002,
+  "blue_price": 10,
+  "respin_blue": 2,
+  "available": false,
+  "car_ids": [
+   5
+  ]
+ }
+]

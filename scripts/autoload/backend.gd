@@ -207,6 +207,18 @@ func finish_car_task_now(car_uid: int) -> GameResult:
 func stop_car_task(car_uid: int) -> GameResult:
 	return await act("stop_car_task", [car_uid])
 
+func buy_mystery_box(level: int, x: int, y: int, rot: int) -> GameResult:
+	return await act("buy_mystery_box", [level, x, y, rot])
+
+func mystery_box_spun(uid: int) -> GameResult:
+	return await act("mystery_box_spun", [uid])
+
+func mystery_box_respin(uid: int) -> GameResult:
+	return await act("mystery_box_respin", [uid])
+
+func mystery_box_claim(uid: int) -> GameResult:
+	return await act("mystery_box_claim", [uid])
+
 func docks_manifest(boat_id: int, wanted_car_id: int) -> GameResult:
 	return await act("docks_manifest", [boat_id, wanted_car_id])
 

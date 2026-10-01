@@ -1,0 +1,151 @@
+{
+ "save_version": 9,
+ "created_at": 1000000,
+ "updated_at": 1000500,
+ "player": {
+  "name": "Old Save",
+  "coins": 5200,
+  "blue": 3,
+  "xp": 120,
+  "level": 3,
+  "fuel": 10,
+  "fuel_at": 1000000
+ },
+ "next_uid": 6,
+ "rng": 424242,
+ "garage": {
+  "land_id": 1,
+  "floor_item_id": 292,
+  "items": [
+   {
+    "uid": 1,
+    "item_id": 156,
+    "x": 0,
+    "y": 0,
+    "rot": 0
+   },
+   {
+    "uid": 4,
+    "item_id": 900,
+    "x": 9,
+    "y": 9,
+    "rot": 1
+   }
+  ],
+  "wall_items": [],
+  "floor_tiles": {},
+  "walls": []
+ },
+ "cars": [
+  {
+   "uid": 2,
+   "car_id": 1,
+   "color_id": 2,
+   "parts": {
+    "1": 12
+   },
+   "ride_height": 0,
+   "plate": "OLD",
+   "placed": true,
+   "x": 0,
+   "y": 0,
+   "rot": 0,
+   "bay_uid": 1,
+   "upgrades": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "uid": 5,
+   "car_id": 5,
+   "color_id": 4,
+   "parts": {
+    "1": 51
+   },
+   "ride_height": 2,
+   "plate": "",
+   "placed": true,
+   "x": 5,
+   "y": 5,
+   "rot": 1,
+   "bay_uid": 0,
+   "upgrades": [
+    0,
+    0,
+    0,
+    0
+   ]
+  }
+ ],
+ "storage": {
+  "901": 1
+ },
+ "jobs": {
+  "1": {
+   "job_id": 13,
+   "started_at": 1000100,
+   "ends_at": 1001900
+  }
+ },
+ "job_mastery": {
+  "4": 5,
+  "13": 1
+ },
+ "customers": [
+  {
+   "uid": 3,
+   "car_id": 2,
+   "color_id": 3,
+   "arrived_at": 1000000,
+   "bay_uid": 0
+  }
+ ],
+ "next_customer_at": 1000120,
+ "missions": {
+  "progress": {
+   "1": {
+    "1": 1
+   }
+  },
+  "completed": [
+   6
+  ],
+  "daily": {
+   "day": 11,
+   "ids": [
+    4,
+    5,
+    7
+   ],
+   "done": [
+    4
+   ]
+  }
+ },
+ "tutorial": {
+  "step": 3,
+  "done": false
+ },
+ "visited_locations": [
+  9
+ ],
+ "stats": {
+  "jobs_collected": 6
+ },
+ "car_tasks": {},
+ "part_storage": {},
+ "race": {},
+ "daily_reward": {
+  "last_day": -1,
+  "streak": 0
+ },
+ "collections_done": [],
+ "docks": {
+  "first_done": false,
+  "last_claim": -1,
+  "boat": {}
+ }
+}

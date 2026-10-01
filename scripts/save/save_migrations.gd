@@ -50,6 +50,8 @@ static func _step(version: int, data: Dictionary) -> Dictionary:
 			return _v7_to_v8(data)
 		8:
 			return _v8_to_v9(data)
+		9:
+			return _v9_to_v10(data)
 		_:
 			return {}
 
@@ -112,4 +114,10 @@ static func _v7_to_v8(data: Dictionary) -> Dictionary:
 ## claim (for the special boat) and the boat being searched.
 static func _v8_to_v9(data: Dictionary) -> Dictionary:
 	data["docks"] = {"first_done": false, "last_claim": -1, "boat": {}}
+	return data
+
+
+## v10 added mystery boxes: unopened boxes in the garage, by item uid.
+static func _v9_to_v10(data: Dictionary) -> Dictionary:
+	data["mystery_boxes"] = {}
 	return data

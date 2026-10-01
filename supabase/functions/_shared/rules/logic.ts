@@ -8,7 +8,7 @@ import {
 import { MissionTracker } from "./missions.ts";
 import { key, posmod, roundi, SimpleRng } from "./util.ts";
 
-export const CURRENT_SAVE_VERSION = 9;
+export const CURRENT_SAVE_VERSION = 10;
 
 export class GameResult {
   ok = true;
@@ -37,6 +37,10 @@ export class GameResult {
 const RE_PLATE = /^[A-Z0-9 ]+$/;
 /** Categories whose parts go into storage when taken off a car (UpdateUserCarCommand). */
 const STORED_PART_CATEGORIES = [1, 2, 4, 5, 6, 10];
+const BOX_NEW = 0;
+const BOX_SPUN = 1;
+const BOX_RESPUN = 2;
+const BOX_SPUN_AGAIN = 3;
 const DOCK_CRATES = 8;
 const CRATE_CLOSED = 0;
 const CRATE_OPEN = 1;
@@ -97,6 +101,7 @@ export class GameLogic {
       daily_reward: { last_day: -1, streak: 0 },
       collections_done: [],
       docks: { first_done: false, last_claim: -1, boat: {} },
+      mystery_boxes: {},
       stats: {},
     };
     const logic = new GameLogic(cat, s);
@@ -571,6 +576,7 @@ export class GameLogic {
       return GameResult.success();
     }
     if (this.bayBusy(uid)) return GameResult.fail("Clear the work bay before storing it.");
+    if (this.box(uid)) return GameResult.fail("Open the mystery box first.");
     this.save.garage.items.splice(this.save.garage.items.indexOf(entry), 1);
     this.storeItemId(entry.item_id);
     return GameResult.success();
@@ -609,6 +615,7 @@ export class GameLogic {
       const isBay = this.isBay(entry.uid);
       if ((isBay && !bays) || (!isBay && !items)) continue;
       if (isBay && this.bayBusy(entry.uid)) continue;
+      if (this.box(entry.uid)) continue;
       this.save.garage.items.splice(this.save.garage.items.indexOf(entry), 1);
       this.storeItemId(entry.item_id);
       if (isBay) stored.bays += 1;
@@ -640,6 +647,7 @@ export class GameLogic {
       return GameResult.success({ coins: wallRefund });
     }
     if (this.bayBusy(uid)) return GameResult.fail("Clear the work bay before selling it.");
+    if (this.box(uid)) return GameResult.fail("Open the mystery box first.");
     const fraction: number = this.catalog.tune("economy.item_resell_fraction", 0.5);
     const refund = Math.floor((this.catalog.item(entry.item_id).price ?? 0) * fraction);
     this.save.garage.items.splice(this.save.garage.items.indexOf(entry), 1);
@@ -1021,6 +1029,125 @@ export class GameLogic {
     this.bumpStat("jobs_started");
     const result = GameResult.success({ ends_at: endsAt });
     this.emit("STARTED_WORKBAY_TASK_ID", jobId, now, result);
+    return result;
+  }
+
+  // --- Mystery boxes ----------------------------------------------------------------------
+
+  mystery_box_levels(): number[] {
+    const out: number[] = [];
+    for (const [level, b] of this.catalog.mysteryBoxes) {
+      if (b.available && Object.keys(this.catalog.item(Math.trunc(b.item_id))).length > 0 && this.mystery_pool(level).length > 0) out.push(level);
+    }
+    out.sort((a, b) => {
+      const pa = this.mystery_box_price(a), pb = this.mystery_box_price(b);
+      return pa !== pb ? pa - pb : a - b;
+    });
+    return out;
+  }
+
+  mystery_pool(level: number): number[] {
+    const excluded: number[] = this.catalog.consts.mystery_excluded_cars ?? [];
+    const out: number[] = [];
+    for (const id of this.catalog.mysteryBoxes.get(level)?.car_ids ?? []) {
+      const carId = Math.trunc(id);
+      if (out.includes(carId) || excluded.includes(carId) || Object.keys(this.catalog.car(carId)).length === 0) continue;
+      if (this.catalog.artCarIds.size > 0 && !this.catalog.artCarIds.has(carId)) continue;
+      out.push(carId);
+    }
+    out.sort((a, b) => a - b);
+    return out;
+  }
+
+  mystery_box_currency(): string {
+    return this.catalog.tune("mystery_boxes.currency", "coins") === "blue" ? "blue" : "coins";
+  }
+
+  mystery_box_price(level: number): number {
+    const b: Dict = this.catalog.mysteryBoxes.get(level) ?? {};
+    if (this.mystery_box_currency() === "blue") return Math.trunc(b.blue_price ?? 0);
+    return Math.trunc(this.catalog.item(Math.trunc(b.item_id ?? 0)).price ?? 0);
+  }
+
+  mystery_box_respin_price(level: number): number {
+    const b: Dict = this.catalog.mysteryBoxes.get(level) ?? {};
+    const respin = Math.trunc(b.respin_blue ?? 0);
+    if (this.mystery_box_currency() === "blue") return respin;
+    const blue = Math.max(1, Math.trunc(b.blue_price ?? 1));
+    return Math.trunc((this.mystery_box_price(level) * respin + blue - 1) / blue);
+  }
+
+  private boxPay(cost: number): string {
+    const k = this.mystery_box_currency();
+    if (this.player[k] < cost) return k === "blue" ? "Not enough Blue Coins." : "Not enough coins.";
+    this.player[k] -= cost;
+    return "";
+  }
+
+  private boxPick(level: number, notThis: number): number {
+    const pool = this.mystery_pool(level);
+    if (pool.length > 1) {
+      const at = pool.indexOf(notThis);
+      if (at >= 0) pool.splice(at, 1);
+    }
+    return pool[this.rng(0, pool.length - 1)];
+  }
+
+  buy_mystery_box(level: number, x: number, y: number, rot: number, now: number): GameResult {
+    if (!this.mystery_box_levels().includes(level)) return GameResult.fail("That mystery box isn't for sale.");
+    const itemId: number = this.catalog.mysteryBoxes.get(level)!.item_id;
+    let err = this.fitError("floor", itemId, x, y, rot);
+    if (err) return GameResult.fail(err);
+    err = this.boxPay(this.mystery_box_price(level));
+    if (err) return GameResult.fail(err);
+    const entry = this.place("floor", itemId, x, y, rot);
+    const carId = this.boxPick(level, 0);
+    this.save.mystery_boxes[key(entry.uid)] = { level, car_id: carId, spin: BOX_NEW };
+    this.bumpStat("mystery_boxes");
+    return GameResult.success({ uid: entry.uid, car_id: carId });
+  }
+
+  private box(uid: number): Dict | undefined {
+    return this.save.mystery_boxes[key(uid)];
+  }
+
+  mystery_box_spun(uid: number): GameResult {
+    const box = this.box(uid);
+    if (!box) return GameResult.fail("That's not a mystery box.");
+    if (box.spin === BOX_NEW || box.spin === BOX_RESPUN) box.spin = Math.trunc(box.spin) + 1;
+    return GameResult.success({ car_id: box.car_id, spin: box.spin });
+  }
+
+  mystery_box_respin(uid: number, now: number): GameResult {
+    const box = this.box(uid);
+    if (!box) return GameResult.fail("That's not a mystery box.");
+    if (box.spin !== BOX_SPUN) return GameResult.fail("This box can't be spun again.");
+    const err = this.boxPay(this.mystery_box_respin_price(Math.trunc(box.level)));
+    if (err) return GameResult.fail(err);
+    box.car_id = this.boxPick(Math.trunc(box.level), Math.trunc(box.car_id));
+    box.spin = BOX_RESPUN;
+    return GameResult.success({ car_id: box.car_id });
+  }
+
+  mystery_box_claim(uid: number, now: number): GameResult {
+    const box = this.box(uid);
+    if (!box) return GameResult.fail("That's not a mystery box.");
+    if (box.spin !== BOX_SPUN && box.spin !== BOX_SPUN_AGAIN) return GameResult.fail("Spin the wheel first.");
+    const entry = this.findItem(uid);
+    if (entry) this.save.garage.items.splice(this.save.garage.items.indexOf(entry), 1);
+    delete this.save.mystery_boxes[key(uid)];
+    const carId: number = box.car_id;
+    const colors = this.catalog.colorsForCar(carId);
+    const car = this.addCar(carId, colors.length ? colors[0].id : 0);
+    if (entry) {
+      car.placed = true;
+      car.x = entry.x;
+      car.y = entry.y;
+      car.rot = entry.rot;
+    }
+    const result = GameResult.success({ car_id: carId, uid: car.uid });
+    this.addRewards(0, 0, Math.trunc(this.catalog.car(carId).xp ?? 0), result);
+    this.checkCollections(result);
     return result;
   }
 

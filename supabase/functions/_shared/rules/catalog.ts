@@ -9,7 +9,7 @@ export const DEFAULT_PAINT = 0xcc2222;
 export const REQUIRED_FILES = [
   "consts", "cars", "car_colors", "parts", "part_categories", "items",
   "lands", "levels", "garage_value_tiers", "jobs", "task_mastery_levels",
-  "missions", "mission_steps", "locations", "consumables", "daily_rewards", "car_collections", "road_trips", "car_classes",
+  "missions", "mission_steps", "locations", "consumables", "daily_rewards", "car_collections", "road_trips", "car_classes", "mystery_boxes",
 ];
 
 export class Catalog {
@@ -33,6 +33,7 @@ export class Catalog {
   carCollections = new Map<number, Dict>();
   roadTrips = new Map<number, Dict>();
   carClasses = new Map<number, Dict>();
+  mysteryBoxes = new Map<number, Dict>();
   stepsByMission = new Map<number, Dict[]>();
   stockParts = new Map<number, Map<number, number>>();
   /** Car ids with exported art. Empty means unknown (no filtering). */
@@ -73,6 +74,7 @@ export class Catalog {
     for (const x of raw.car_collections ?? []) c.carCollections.set(x.id, x);
     for (const x of raw.road_trips ?? []) c.roadTrips.set(x.id, x);
     for (const x of raw.car_classes ?? []) c.carClasses.set(x.id, x);
+    for (const x of raw.mystery_boxes ?? []) c.mysteryBoxes.set(x.level, x);
     return c;
   }
 

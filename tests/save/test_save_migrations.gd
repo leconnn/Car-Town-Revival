@@ -113,3 +113,12 @@ func test_v8_to_v9_adds_the_docks() -> void:
 	assert_int(out["save_version"]).is_equal(GameLogic.CURRENT_SAVE_VERSION)
 	assert_that(out["docks"]).is_equal({"first_done": false, "last_claim": -1, "boat": {}})
 	assert_bool(GameLogic.new(TestEnv.catalog(), out).tick(TestEnv.NOW).ok).is_true()
+
+
+func test_v9_to_v10_adds_mystery_boxes() -> void:
+	var raw: Variant = JsonUtil.read_file("res://tests/fixtures/saves/v9.json")
+	assert_int(raw["save_version"]).is_equal(9)
+	var out := SaveMigrations.migrate(raw)
+	assert_int(out["save_version"]).is_equal(GameLogic.CURRENT_SAVE_VERSION)
+	assert_that(out["mystery_boxes"]).is_equal({})
+	assert_bool(GameLogic.new(TestEnv.catalog(), out).tick(TestEnv.NOW).ok).is_true()

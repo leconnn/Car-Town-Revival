@@ -22,5 +22,8 @@
  "docks_search_again_percent": 20,
  "docks_excluded_cars": [
   16
+ ],
+ "mystery_excluded_cars": [
+  3
  ]
 }

@@ -7,7 +7,7 @@ extends RefCounted
 ## or the UI. Every action takes [param now] (unix seconds) from the caller so
 ## timers can use a trusted clock.
 
-const CURRENT_SAVE_VERSION := 9
+const CURRENT_SAVE_VERSION := 10
 
 var catalog: Catalog
 var save: Dictionary
@@ -66,6 +66,7 @@ static func new_save(cat: Catalog, player_name: String, now: int) -> Dictionary:
 		"daily_reward": {"last_day": -1, "streak": 0},
 		"collections_done": [],
 		"docks": {"first_done": false, "last_claim": -1, "boat": {}},
+		"mystery_boxes": {},
 		"stats": {},
 	}
 	var logic := GameLogic.new(cat, s)
@@ -672,6 +673,8 @@ func store_item(uid: int) -> GameResult:
 		return GameResult.success()
 	if _bay_busy(uid):
 		return GameResult.fail("Clear the work bay before storing it.")
+	if not _box(uid).is_empty():
+		return GameResult.fail("Open the mystery box first.")
 	save["garage"]["items"].erase(entry)
 	_store_item(entry["item_id"])
 	return GameResult.success()
@@ -710,6 +713,8 @@ func clear_floor(cars: bool, items: bool, bays: bool, walls: bool, floors: bool)
 			continue
 		if is_bay and _bay_busy(entry["uid"]):
 			continue
+		if not _box(entry["uid"]).is_empty():
+			continue
 		save["garage"]["items"].erase(entry)
 		_store_item(entry["item_id"])
 		stored["bays" if is_bay else "items"] += 1
@@ -744,6 +749,8 @@ func sell_item(uid: int) -> GameResult:
 		return GameResult.success({"coins": wall_refund})
 	if _bay_busy(uid):
 		return GameResult.fail("Clear the work bay before selling it.")
+	if not _box(uid).is_empty():
+		return GameResult.fail("Open the mystery box first.")
 	var fraction: float = catalog.tune("economy.item_resell_fraction", 0.5)
 	var refund: int = floori(catalog.item(entry["item_id"]).get("price", 0) * fraction)
 	save["garage"]["items"].erase(entry)
@@ -1214,6 +1221,155 @@ func collect_car_task(car_uid: int, now: int) -> GameResult:
 	var result := _pay_job(job_id)
 	_bump_stat("jobs_collected")
 	_emit("COLLECTED_WORKBAY_TASK_ID", job_id, now, result)
+	return result
+
+
+# --- Mystery boxes ----------------------------------------------------------------------
+# A boxed car (views/mysterybox): buy a box in Buy Cars and put it in the
+# garage like a car. Clicking it spins the wheel to show what's inside; then
+# claim the car (it takes the box's spot) or pay to respin, once. The car is
+# picked when the box is bought, from the box's list.
+
+## Spin states (MysteryBoxUserTransaction.spinID): bought, spun, respun,
+## spun again.
+const BOX_NEW := 0
+const BOX_SPUN := 1
+const BOX_RESPUN := 2
+const BOX_SPUN_AGAIN := 3
+
+
+## Box levels on sale, cheapest first.
+func mystery_box_levels() -> Array[int]:
+	var out: Array[int] = []
+	for level: int in catalog.mystery_boxes:
+		var b: Dictionary = catalog.mystery_boxes[level]
+		if b.get("available", false) and not catalog.item(int(b["item_id"])).is_empty() and not mystery_pool(level).is_empty():
+			out.append(level)
+	out.sort_custom(func(a: int, b: int) -> bool:
+		var pa := mystery_box_price(a)
+		var pb := mystery_box_price(b)
+		return pa < pb if pa != pb else a < b)
+	return out
+
+
+## Cars a box can hold, by id.
+func mystery_pool(level: int) -> Array[int]:
+	var excluded: Array = catalog.consts.get("mystery_excluded_cars", [])
+	var out: Array[int] = []
+	for id: Variant in catalog.mystery_boxes.get(level, {}).get("car_ids", []):
+		var car_id := int(id)
+		if out.has(car_id) or excluded.has(car_id) or catalog.car(car_id).is_empty():
+			continue
+		if not catalog.art_car_ids.is_empty() and not catalog.art_car_ids.has(car_id):
+			continue
+		out.append(car_id)
+	out.sort()
+	return out
+
+
+func mystery_box_currency() -> String:
+	return "blue" if catalog.tune("mystery_boxes.currency", "coins") == "blue" else "coins"
+
+
+func mystery_box_price(level: int) -> int:
+	var b: Dictionary = catalog.mystery_boxes.get(level, {})
+	if mystery_box_currency() == "blue":
+		return int(b.get("blue_price", 0))
+	return int(catalog.item(int(b.get("item_id", 0))).get("price", 0))
+
+
+func mystery_box_respin_price(level: int) -> int:
+	var b: Dictionary = catalog.mystery_boxes.get(level, {})
+	var respin := int(b.get("respin_blue", 0))
+	if mystery_box_currency() == "blue":
+		return respin
+	var blue := maxi(1, int(b.get("blue_price", 1)))
+	return (mystery_box_price(level) * respin + blue - 1) / blue
+
+
+func _box_pay(cost: int) -> String:
+	var key := mystery_box_currency()
+	if _player()[key] < cost:
+		return "Not enough Blue Coins." if key == "blue" else "Not enough coins."
+	_player()[key] -= cost
+	return ""
+
+
+## A car from the box's list, not [param not_this] if there's another.
+func _box_pick(level: int, not_this: int) -> int:
+	var pool := mystery_pool(level)
+	if pool.size() > 1:
+		pool.erase(not_this)
+	return pool[_rng(0, pool.size() - 1)]
+
+
+func buy_mystery_box(level: int, x: int, y: int, rot: int, now: int) -> GameResult:
+	if not mystery_box_levels().has(level):
+		return GameResult.fail("That mystery box isn't for sale.")
+	var item_id: int = catalog.mystery_boxes[level]["item_id"]
+	var err := _fit_error("floor", item_id, x, y, rot)
+	if err != "":
+		return GameResult.fail(err)
+	err = _box_pay(mystery_box_price(level))
+	if err != "":
+		return GameResult.fail(err)
+	var entry := _place("floor", item_id, x, y, rot)
+	var car_id := _box_pick(level, 0)
+	save["mystery_boxes"][str(entry["uid"])] = {"level": level, "car_id": car_id, "spin": BOX_NEW}
+	_bump_stat("mystery_boxes")
+	return GameResult.success({"uid": entry["uid"], "car_id": car_id})
+
+
+func _box(uid: int) -> Dictionary:
+	return save["mystery_boxes"].get(str(uid), {})
+
+
+## The wheel has stopped (UpdateMysteryBoxSpinStateRequest).
+func mystery_box_spun(uid: int) -> GameResult:
+	var box := _box(uid)
+	if box.is_empty():
+		return GameResult.fail("That's not a mystery box.")
+	if box["spin"] == BOX_NEW or box["spin"] == BOX_RESPUN:
+		box["spin"] = int(box["spin"]) + 1
+	return GameResult.success({"car_id": box["car_id"], "spin": box["spin"]})
+
+
+## Pays for another spin: a different car from the same box. Once only.
+func mystery_box_respin(uid: int, now: int) -> GameResult:
+	var box := _box(uid)
+	if box.is_empty():
+		return GameResult.fail("That's not a mystery box.")
+	if box["spin"] != BOX_SPUN:
+		return GameResult.fail("This box can't be spun again.")
+	var err := _box_pay(mystery_box_respin_price(int(box["level"])))
+	if err != "":
+		return GameResult.fail(err)
+	box["car_id"] = _box_pick(int(box["level"]), int(box["car_id"]))
+	box["spin"] = BOX_RESPUN
+	return GameResult.success({"car_id": box["car_id"]})
+
+
+## Opens the box: the car takes its spot in the garage.
+func mystery_box_claim(uid: int, now: int) -> GameResult:
+	var box := _box(uid)
+	if box.is_empty():
+		return GameResult.fail("That's not a mystery box.")
+	if box["spin"] != BOX_SPUN and box["spin"] != BOX_SPUN_AGAIN:
+		return GameResult.fail("Spin the wheel first.")
+	var entry := _find_item(uid)
+	save["garage"]["items"].erase(entry)
+	save["mystery_boxes"].erase(str(uid))
+	var car_id: int = box["car_id"]
+	var colors := catalog.colors_for_car(car_id)
+	var car := _add_car(car_id, colors[0]["id"] if not colors.is_empty() else 0)
+	if not entry.is_empty():
+		car["placed"] = true
+		car["x"] = entry["x"]
+		car["y"] = entry["y"]
+		car["rot"] = entry["rot"]
+	var result := GameResult.success({"car_id": car_id, "uid": car["uid"]})
+	add_rewards(0, 0, int(catalog.car(car_id).get("xp", 0)), result)
+	_check_collections(result)
 	return result
 
 

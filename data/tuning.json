@@ -183,5 +183,9 @@
     "price_multiplier": 1.0,
     "special_min_blue": 40,
     "special_boat_hours": 24
+  },
+  "mystery_boxes": {
+    "_about": "Boxed cars sold in Buy Cars: place the box, spin, then claim the car or respin once. The original charged Blue Coins (Facebook credits); with currency \"coins\" a box costs its item's coin price and a respin the same share of it as the original's respin/box Blue Coin prices.",
+    "currency": "coins"
   }
 }

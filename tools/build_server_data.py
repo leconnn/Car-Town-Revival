@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 REQUIRED = ["consts", "cars", "car_colors", "parts", "part_categories", "items", "lands", "levels",
-            "garage_value_tiers", "jobs", "task_mastery_levels", "missions", "mission_steps", "locations", "consumables", "daily_rewards", "car_collections", "road_trips", "car_classes"]
+            "garage_value_tiers", "jobs", "task_mastery_levels", "missions", "mission_steps", "locations", "consumables", "daily_rewards", "car_collections", "road_trips", "car_classes", "mystery_boxes"]
 
 
 def main() -> int:

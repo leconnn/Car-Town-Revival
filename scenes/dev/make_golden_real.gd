@@ -27,6 +27,11 @@ func _ready() -> void:
 		["docks_claim", [], t0 + 86400 * 7], ["docks_manifest", [2, 0], t0 + 86400 * 7 + 60], ["docks_search", [], t0 + 86400 * 7 + 60],
 		["docks_open_crate", [1], t0 + 86400 * 7 + 60], ["docks_search_again", [], t0 + 86400 * 7 + 60], ["docks_open_crate", [7], t0 + 86400 * 7 + 60],
 		["docks_claim", [], t0 + 86400 * 7 + 60],
+		["clear_floor", [true, false, false, false, false], t0 + 86400 * 8],
+		["buy_mystery_box", [1, 0, 6, 0], t0 + 86400 * 8],
+		["mystery_box_spun", [11], t0 + 86400 * 8],
+		["mystery_box_respin", [11], t0 + 86400 * 8], ["mystery_box_spun", [11], t0 + 86400 * 8],
+		["mystery_box_claim", [11], t0 + 86400 * 8],
 	]
 	var logic := GameLogic.new(GameData.catalog, GameLogic.new_save(GameData.catalog, "Real", t0))
 	var start := logic.save.duplicate(true)

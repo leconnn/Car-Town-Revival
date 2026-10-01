@@ -31,10 +31,17 @@ export function migrate(save: Dict): Dict | null {
     else if (v === 6) out = v6ToV7(out);
     else if (v === 7) out = out; // v8: road trips live in car_tasks
     else if (v === 8) out = v8ToV9(out);
+    else if (v === 9) out = v9ToV10(out);
     else return null;
     out.save_version = v + 1;
   }
   return out;
+}
+
+/** v10 added mystery boxes. */
+function v9ToV10(save: Dict): Dict {
+  save.mystery_boxes = {};
+  return save;
 }
 
 /** v9 added the Docks. */

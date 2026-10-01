@@ -173,6 +173,17 @@ def convert(catalog_xml: str, ctx: Ctx) -> dict[str, object]:
     out: dict[str, object] = {}
 
     out["consts"] = convert_consts(sec["consts"])
+    # Mystery boxes (MysteryBoxDataSet): a level per box, its garage item,
+    # Blue Coin price and respin price, whether it was on sale, and the cars
+    # it can hold. "ex" lists cars no box ever gives.
+    myss = sec.get("myss")
+    out["consts"]["mystery_excluded_cars"] = [int(x) for x in (myss.get("ex", "") if myss is not None else "").split(",") if x.strip()]
+    out["mystery_boxes"] = [
+        {"level": i(c, "id"), "item_id": i(c, "itid"), "blue_price": i(c, "cp"), "respin_blue": i(c, "rsp"),
+         "available": c.get("a") == "1",
+         "car_ids": [int(x) for x in c.get("cids", "").split(",") if x.strip()]}
+        for c in (myss if myss is not None else [])
+    ]
 
     out["car_classes"] = [
         {
