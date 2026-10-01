@@ -15,6 +15,7 @@ String tables are merged in order; the first one that has an ID wins.
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import re
 import sys
@@ -62,7 +63,8 @@ class Ctx:
         if t is None:
             self.missing.add(sid)
             return ""
-        return TAG_RE.sub("", t).strip() if strip_markup else t
+        # Strings are HTML-ish: drop the tags and decode entities (&reg; etc.).
+        return html.unescape(TAG_RE.sub("", t)).strip() if strip_markup else t
 
 
 def i(e: ET.Element, key: str, default: int = 0) -> int:
@@ -190,8 +192,8 @@ def convert(catalog_xml: str, ctx: Ctx) -> dict[str, object]:
         d = {
             "id": i(c, "id"),
             "year": i(c, "y"),
-            "make": c.get("m", ""),
-            "model": c.get("md", ""),
+            "make": html.unescape(c.get("m", "")),
+            "model": html.unescape(c.get("md", "")),
             "description": ctx.text(c.get("d")) if (c.get("d") or "").isdigit() else (c.get("d") or ""),
             "score": i(c, "s"),
             "class_id": i(c, "cl"),

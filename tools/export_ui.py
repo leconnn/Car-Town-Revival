@@ -26,7 +26,8 @@ symbols.json layout:
                         "color": "#rrggbb", "align": 0-3, "html": str, "text": str, "multiline", "wrap"}},
    "layers": {key: {"file", "o": [x, y]}}}
   layer = {"layer": key} | {"char": "lib:id", "name": str, "m": [a, b, c, d, tx, ty], "ct": [8] | null,
-                            "f": [{"type", "color": "#rrggbbaa", "blur", "strength", "distance", "inner"}]?}
+                            "f": [{"type", "color": "#rrggbbaa", "blur", "strength", "distance", "inner"}]?,
+                            "blend": int?}  (SWF blend mode: 3 multiply, 4 screen, 8 add, 9 subtract)
 
 Usage: python tools/export_ui.py [--only main,missions]
 """
@@ -81,6 +82,9 @@ LIBS: dict[str, str] = {
     "clearfloor": "static/gamepopups/ClearGarageFloorPopup.swf",
     "newui": "static/gamepopups/NewUIPopup.swf",
     "features": "static/gamepopups/TutorialFeaturesPopup.swf",
+    "docks": "static/docks/docks2.swf",
+    "docksmanifest": "static/docks/shippingManifestPopup.swf",
+    "tonymanhole": "static/docks/TonyInManHole.swf",
 }
 
 PLACE_TAGS = ("PlaceObject2Tag", "PlaceObject3Tag", "PlaceObjectTag")
@@ -155,6 +159,8 @@ def simulate(sprite: ET.Element) -> tuple[list[dict[int, dict]], dict[str, int]]
             filters = filters_of(tag.find("surfaceFilterList"))
             if filters:
                 entry["f"] = filters
+            if tag.get("placeFlagHasBlendMode") == "true":
+                entry["blend"] = int(tag.get("blendMode", "0"))
             if tag.get("placeFlagHasClipDepth") == "true":
                 entry["clip"] = int(tag.get("clipDepth"))
             entry.setdefault("m", [1, 0, 0, 1, 0, 0])
@@ -248,6 +254,8 @@ def process(lib: str, swf: Path, db: dict) -> None:
                     part = {"char": key(p["char"]), "name": p.get("name", ""), "m": p["m"], "ct": p.get("ct")}
                     if p.get("f"):
                         part["f"] = p["f"]
+                    if p.get("blend", 0) > 2:
+                        part["blend"] = p["blend"]
                     layers.append(part)
                     if p["char"] in sprites:
                         todo.append(p["char"])

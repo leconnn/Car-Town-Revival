@@ -90,6 +90,8 @@ func _build() -> void:
 			s.texture = tex["texture"]
 			s.centered = false
 			s.offset = -tex["o"]
+			# Picks up a blend mode set on this symbol (or an ancestor).
+			s.use_parent_material = true
 			add_child(s)
 			continue
 		var child_info := FlashUi.char_info(layer["char"])
@@ -112,6 +114,10 @@ func _build() -> void:
 		var ct: Variant = layer.get("ct")
 		if typeof(ct) == TYPE_ARRAY:
 			node.modulate = Color(ct[0], ct[1], ct[2], ct[3])
+		if layer.has("blend"):
+			node.material = _blend_material(int(layer["blend"]))
+		else:
+			node.use_parent_material = true
 		var inst: String = layer.get("name", "")
 		if inst != "":
 			node.name = inst
@@ -119,6 +125,20 @@ func _build() -> void:
 		add_child(node)
 	for path: String in _mods:
 		_apply_mod(path)
+
+
+## Flash blend modes. Godot has no screen blend; adding is close for the
+## light-on-black art that uses it (wakes, glows).
+static func _blend_material(mode: int) -> CanvasItemMaterial:
+	var mat := CanvasItemMaterial.new()
+	match mode:
+		3:
+			mat.blend_mode = CanvasItemMaterial.BLEND_MODE_MUL
+		4, 5, 8:
+			mat.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+		9:
+			mat.blend_mode = CanvasItemMaterial.BLEND_MODE_SUB
+	return mat
 
 
 ## A named part, e.g. part("needle") or part("moneyGainsSprite/moneyGainsField").

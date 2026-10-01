@@ -144,7 +144,7 @@ func _on_hud_action(name: String) -> void:
 		"fuel": FuelStorePopup.open(get_tree())
 		"menu": MenuPopup.open(get_tree())
 		"glovebox": CollectionPopups.open_list(get_tree())
-		"docks": toasts.show_message("That arrives in a later update.")
+		"docks": open_docks()
 		"zoom_in": _zoom_step(1)
 		"zoom_out": _zoom_step(-1)
 		"fullscreen":
@@ -239,6 +239,16 @@ func _open_customer(uid: int) -> void:
 		var r: GameResult = await Backend.accept_customer(uid, bay)
 		if r.ok:
 			await Backend.start_job(bay, cust["job_id"]))
+
+
+## The Docks: a place in town of its own, with the bottom bar (and its
+## GPS to get home) still showing.
+func open_docks() -> void:
+	leave_location()
+	go_home()
+	open_screen(DocksScreen.new())
+	hud.set_screen_mode(false)
+	hud.set_location("The Docks", false)
 
 
 ## The original CarOptions popup: customize, sell, or send the car out on a job.
@@ -381,6 +391,9 @@ func show_location(loc_id: int) -> void:
 
 ## Back to the garage (the GPS's My Garage button).
 func leave_location() -> void:
+	if _screen is DocksScreen:
+		_screen.queue_free()
+		hud.set_location("My Garage", true)
 	if not location_view.visible:
 		return
 	location_view.visible = false
@@ -716,7 +729,7 @@ func _on_session_ended(reason: String) -> void:
 
 ## True while in town or in someone else's garage.
 func is_away() -> bool:
-	return location_view.visible or not garage.visiting.is_empty()
+	return location_view.visible or not garage.visiting.is_empty() or _screen is DocksScreen
 
 
 func _on_garage_received(_player_id: String, player_state: Dictionary) -> void:
@@ -760,6 +773,27 @@ func _dev_open() -> void:
 			"credits": MenuPopup.open_credits(get_tree())
 			"collections": CollectionPopups.open_list(get_tree())
 			"roadtrip": _open_road_trip(Backend.state()["cars"][0]["uid"])
+			"docks": open_docks()
+			"docksmanifest":
+				open_docks()
+				(_screen as DocksScreen)._bring_boat(1, 0)
+			"dockscrate":
+				await Backend.docks_manifest(1, 0)
+				await Backend.docks_search()
+				open_docks()
+				await get_tree().create_timer(0.5).timeout
+				(_screen as DocksScreen)._open_crate(2)
+			"docksships":
+				Backend.state()["docks"]["first_done"] = true
+				Backend.state()["docks"]["last_claim"] = Backend.now()
+				Backend._query_dirty = true
+				open_docks()
+				(_screen as DocksScreen)._on_tony_clicked()
+			"dockswish":
+				Backend.state()["docks"]["first_done"] = true
+				Backend._query_dirty = true
+				open_docks()
+				(_screen as DocksScreen)._ask_for_car()
 			"roadtripdone": RoadTripPopups.open_complete(get_tree(), GameResult.success({"road_trip": 2,
 				"passengers": 4, "seats": 4, "coins": 4020, "xp": 140, "full": true}))
 			"collection_done":

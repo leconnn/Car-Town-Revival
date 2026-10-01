@@ -120,7 +120,7 @@ Build order: **single-player v1 → LAN → online → feature updates**. Each p
 3. ~~Road trips~~ (done offline: pick a destination, townsfolk hop in during the day, pay per passenger by car class plus a full-car bonus; the Nitto trip is held back with the licensed content. Still to do: the full-screen trip view with the map and seats, and real passengers in LAN/online)
 4. Glove box: mail, gifting, stats
 5. Avatar shop
-6. Docks
+6. ~~Docks~~ (done: Fat Tony's boats of retired limited cars, crates, search again, the special boat after a claim, asking for a particular car; priced in coins by default since the original charged real money. The dealer no longer sells retired limited cars, as in the original. Still to do: mystery cars in crates, the water ripple effect)
 7. Mystery boxes, stray cars
 8. Car restoration (Junk Yard)
 9. Car builds

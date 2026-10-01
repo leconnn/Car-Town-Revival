@@ -20,6 +20,7 @@ var content: Node2D
 var _stage: StageUi
 var _body: Node2D
 var _fixed_size := Vector2.ZERO
+var _bare := false
 
 
 static func open(tree: SceneTree, node: Node2D, show_close: bool = true, red_frame: bool = false,
@@ -27,6 +28,15 @@ static func open(tree: SceneTree, node: Node2D, show_close: bool = true, red_fra
 	var p := FlashPopup.new()
 	p._fixed_size = fixed_size
 	return _add(p, tree, node, [OFFSET, OFFSET, OFFSET, OFFSET], buttons, show_close, red_frame, true)
+
+
+## Content whose art is its own frame (PopupDefaultDecorator alone): no
+## UIBgFrame behind it, just the dimmed screen and an optional close button.
+## Sized and centred by the content's drawn bounds.
+static func open_bare(tree: SceneTree, node: Node2D, show_close: bool = true) -> FlashPopup:
+	var p := FlashPopup.new()
+	p._bare = true
+	return _add(p, tree, node, [0, 0, 0, 0], [], show_close, false, false)
 
 
 ## [param pad] is [top, right, bottom, left] like the original decorator.
@@ -68,8 +78,9 @@ func _build(pad: Array, buttons: Array, show_close: bool, red_frame: bool, legac
 	if _fixed_size.y > 0:
 		size.y = _fixed_size.y
 		top = 0
-	var frame := FlashNine.make("UIBgRedFrame" if red_frame else "UIBgFrame", size)
-	_body.add_child(frame)
+	if not _bare:
+		var frame := FlashNine.make("UIBgRedFrame" if red_frame else "UIBgFrame", size)
+		_body.add_child(frame)
 	# The legacy popup put the content's origin at (20, 20) whatever its
 	# bounds (so e.g. a job icon at y -30 pokes out of the frame); the newer
 	# decorators align the content's bounds with the padding.
