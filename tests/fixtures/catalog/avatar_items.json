@@ -493,5 +493,38 @@
    "g": "3",
    "n": "12878"
   }
+ },
+ {
+  "id": 164,
+  "type": 8,
+  "group_id": 0,
+  "name": "Birthday Cupcake Shirt",
+  "price": 500,
+  "blue_price": 0,
+  "can_buy_with_coins": true,
+  "can_buy_with_blue": false,
+  "min_level": 0,
+  "min_garage_value_tier": 0,
+  "purchasable": true,
+  "always_purchasable": false,
+  "limited": false,
+  "xp": 0,
+  "sort": 0,
+  "date_added": 0,
+  "raw": {
+   "id": "164",
+   "t": "8",
+   "gid": "0",
+   "p": "500",
+   "cp": "0",
+   "cm": "1",
+   "cc": "0",
+   "ip": "1",
+   "il": "0",
+   "cs": "1",
+   "ai": "0",
+   "g": "3",
+   "n": "19111"
+  }
  }
 ]

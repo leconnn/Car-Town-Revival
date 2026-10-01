@@ -207,6 +207,12 @@ func finish_car_task_now(car_uid: int) -> GameResult:
 func stop_car_task(car_uid: int) -> GameResult:
 	return await act("stop_car_task", [car_uid])
 
+func buy_avatar_item(item_id: int, use_blue: bool) -> GameResult:
+	return await act("buy_avatar_item", [item_id, use_blue])
+
+func set_avatar_part(slot: int, item_id: int, setting: int) -> GameResult:
+	return await act("set_avatar_part", [slot, item_id, setting])
+
 func start_restoration(build_id: int, bay_uid: int) -> GameResult:
 	return await act("start_restoration", [build_id, bay_uid])
 

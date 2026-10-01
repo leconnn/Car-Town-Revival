@@ -1,6 +1,6 @@
 {
  "start": {
-  "save_version": 11,
+  "save_version": 12,
   "created_at": 1000000,
   "updated_at": 1000000,
   "player": {
@@ -91,6 +91,30 @@
    "restored": [],
    "count": 0
   },
+  "avatar": {
+   "head": 68,
+   "eyes": 1,
+   "mouth": 12,
+   "brows": 20,
+   "facial_hair": 0,
+   "hair": 33,
+   "misc": 0,
+   "hat": 0,
+   "top": 53,
+   "bottom": 57,
+   "nose": 60,
+   "settings": {
+    "head": 20000,
+    "eyes": 5425,
+    "mouth": 5300,
+    "brows": 7226,
+    "facial_hair": 0,
+    "hair": 0,
+    "misc": 0,
+    "nose": 6200
+   }
+  },
+  "avatar_owned": [],
   "stats": {}
  },
  "steps": [
@@ -107,7 +131,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -215,6 +239,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {}
    }
   },
@@ -232,7 +280,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -340,6 +388,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {}
    }
   },
@@ -370,7 +442,7 @@
     ]
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -486,6 +558,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 1
     }
@@ -504,7 +600,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -620,6 +716,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 1
     }
@@ -641,7 +761,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000300,
     "player": {
@@ -757,6 +877,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 1,
      "jobs_collected": 1
@@ -779,7 +923,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000300,
     "player": {
@@ -901,6 +1045,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 2,
      "jobs_collected": 1
@@ -941,7 +1109,7 @@
     ]
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000600,
     "player": {
@@ -1055,6 +1223,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 2,
      "jobs_collected": 2
@@ -1077,7 +1269,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000600,
     "player": {
@@ -1197,6 +1389,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 3,
      "jobs_collected": 2
@@ -1228,7 +1444,7 @@
     ]
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1342,6 +1558,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 3,
      "jobs_collected": 3
@@ -1364,7 +1604,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1484,6 +1724,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1503,7 +1767,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000710,
     "player": {
@@ -1617,6 +1881,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1636,7 +1924,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000710,
     "player": {
@@ -1750,6 +2038,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1771,7 +2083,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -1885,6 +2197,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -1905,7 +2241,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -2019,6 +2355,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 4,
      "jobs_collected": 3
@@ -2041,7 +2401,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -2161,6 +2521,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 3
@@ -2180,7 +2564,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -2300,6 +2684,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 3
@@ -2319,7 +2727,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000700,
     "player": {
@@ -2439,6 +2847,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 3
@@ -2461,7 +2893,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1001000,
     "player": {
@@ -2576,6 +3008,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 5,
      "jobs_collected": 4
@@ -2598,7 +3054,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1001000,
     "player": {
@@ -2719,6 +3175,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 6,
      "jobs_collected": 4
@@ -2750,7 +3230,7 @@
     ]
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1001100,
     "player": {
@@ -2865,6 +3345,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 6,
      "jobs_collected": 5
@@ -2887,7 +3391,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1001100,
     "player": {
@@ -3008,6 +3512,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5
@@ -3027,7 +3555,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1001110,
     "player": {
@@ -3142,6 +3670,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5
@@ -3162,7 +3714,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1001110,
     "player": {
@@ -3277,6 +3829,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5
@@ -3297,7 +3873,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1001110,
     "player": {
@@ -3412,6 +3988,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 7,
      "jobs_collected": 5
@@ -3434,7 +4034,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1001120,
     "player": {
@@ -3562,6 +4162,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 5
@@ -3596,7 +4220,7 @@
     ]
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1087520,
     "player": {
@@ -3709,6 +4333,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -3727,7 +4375,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1087520,
     "player": {
@@ -3840,6 +4488,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -3861,7 +4533,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1087520,
     "player": {
@@ -3974,6 +4646,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -4007,7 +4703,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090000,
     "player": {
@@ -4155,6 +4851,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -4175,7 +4895,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090000,
     "player": {
@@ -4323,6 +5043,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -4343,7 +5087,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090000,
     "player": {
@@ -4491,6 +5235,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -4516,7 +5284,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090010,
     "player": {
@@ -4664,6 +5432,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -4685,7 +5477,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090010,
     "player": {
@@ -4833,6 +5625,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -4855,7 +5671,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090020,
     "player": {
@@ -4990,6 +5806,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -5025,7 +5865,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090030,
     "player": {
@@ -5195,6 +6035,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -5215,7 +6079,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090030,
     "player": {
@@ -5385,6 +6249,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -5407,7 +6295,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090030,
     "player": {
@@ -5577,6 +6465,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -5597,7 +6509,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090030,
     "player": {
@@ -5767,6 +6679,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -5789,7 +6725,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090030,
     "player": {
@@ -5959,6 +6895,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -5981,7 +6941,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090030,
     "player": {
@@ -6151,6 +7111,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -6171,7 +7155,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090030,
     "player": {
@@ -6341,6 +7325,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -6364,7 +7372,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090030,
     "player": {
@@ -6534,6 +7542,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -6569,7 +7601,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090080,
     "player": {
@@ -6739,6 +7771,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -6759,7 +7815,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090080,
     "player": {
@@ -6929,6 +7985,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -6954,7 +8034,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090080,
     "player": {
@@ -7124,6 +8204,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -7149,7 +8253,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090080,
     "player": {
@@ -7319,6 +8423,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -7347,7 +8475,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090100,
     "player": {
@@ -7530,6 +8658,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -7553,7 +8705,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090100,
     "player": {
@@ -7736,6 +8888,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -7762,7 +8938,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090110,
     "player": {
@@ -7945,6 +9121,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -7970,7 +9170,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090120,
     "player": {
@@ -8153,6 +9353,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -8179,7 +9403,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090120,
     "player": {
@@ -8362,6 +9586,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -8388,7 +9636,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090130,
     "player": {
@@ -8580,6 +9828,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -8604,7 +9876,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090130,
     "player": {
@@ -8796,6 +10068,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -8831,7 +10127,7 @@
     ]
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090200,
     "player": {
@@ -9031,6 +10327,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -9054,7 +10374,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090210,
     "player": {
@@ -9256,6 +10576,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -9277,7 +10621,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1090210,
     "player": {
@@ -9479,6 +10823,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -9508,7 +10876,7 @@
     ]
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1108200,
     "player": {
@@ -9726,6 +11094,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -9752,7 +11144,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1108200,
     "player": {
@@ -9970,6 +11362,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -9996,7 +11412,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1108200,
     "player": {
@@ -10216,6 +11632,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -10242,7 +11682,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1108200,
     "player": {
@@ -10462,6 +11902,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -10486,7 +11950,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1108200,
     "player": {
@@ -10706,6 +12170,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -10733,7 +12221,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1108200,
     "player": {
@@ -10967,6 +12455,2310 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1,
+     "mystery_boxes": 1,
+     "restorations": 1
+    }
+   }
+  },
+  {
+   "action": "set_avatar_part",
+   "args": [
+    8,
+    54,
+    0
+   ],
+   "now": 1110000,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 12,
+    "created_at": 1000000,
+    "updated_at": 1110000,
+    "player": {
+     "name": "Tester",
+     "coins": 8655,
+     "blue": 7,
+     "xp": 175,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1108200
+    },
+    "next_uid": 10,
+    "rng": 1393872957,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 6,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 0,
+      "y": 5,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 9,
+      "car_id": 3,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {},
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 6,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 7,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000120,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 8,
+      "car_id": 1,
+      "color_id": 2,
+      "arrived_at": 1000240,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1108320,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": [
+       4
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
+    "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {
+      "1": 1
+     },
+     "last_pile_at": 1090210,
+     "next_gift_at": -1,
+     "restored": [
+      53
+     ],
+     "count": 1
+    },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 54,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1,
+     "mystery_boxes": 1,
+     "restorations": 1
+    }
+   }
+  },
+  {
+   "action": "set_avatar_part",
+   "args": [
+    11,
+    68,
+    40000
+   ],
+   "now": 1110000,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 12,
+    "created_at": 1000000,
+    "updated_at": 1110000,
+    "player": {
+     "name": "Tester",
+     "coins": 8655,
+     "blue": 7,
+     "xp": 175,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1108200
+    },
+    "next_uid": 10,
+    "rng": 1393872957,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 6,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 0,
+      "y": 5,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 9,
+      "car_id": 3,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {},
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 6,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 7,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000120,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 8,
+      "car_id": 1,
+      "color_id": 2,
+      "arrived_at": 1000240,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1108320,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": [
+       4
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
+    "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {
+      "1": 1
+     },
+     "last_pile_at": 1090210,
+     "next_gift_at": -1,
+     "restored": [
+      53
+     ],
+     "count": 1
+    },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 54,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1,
+     "mystery_boxes": 1,
+     "restorations": 1
+    }
+   }
+  },
+  {
+   "action": "set_avatar_part",
+   "args": [
+    11,
+    68,
+    90000
+   ],
+   "now": 1110000,
+   "result": {
+    "ok": false,
+    "error": "Bad colour.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 12,
+    "created_at": 1000000,
+    "updated_at": 1110000,
+    "player": {
+     "name": "Tester",
+     "coins": 8655,
+     "blue": 7,
+     "xp": 175,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1108200
+    },
+    "next_uid": 10,
+    "rng": 1393872957,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 6,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 0,
+      "y": 5,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 9,
+      "car_id": 3,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {},
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 6,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 7,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000120,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 8,
+      "car_id": 1,
+      "color_id": 2,
+      "arrived_at": 1000240,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1108320,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": [
+       4
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
+    "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {
+      "1": 1
+     },
+     "last_pile_at": 1090210,
+     "next_gift_at": -1,
+     "restored": [
+      53
+     ],
+     "count": 1
+    },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 54,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1,
+     "mystery_boxes": 1,
+     "restorations": 1
+    }
+   }
+  },
+  {
+   "action": "set_avatar_part",
+   "args": [
+    8,
+    164,
+    0
+   ],
+   "now": 1110000,
+   "result": {
+    "ok": false,
+    "error": "Buy it first.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 12,
+    "created_at": 1000000,
+    "updated_at": 1110000,
+    "player": {
+     "name": "Tester",
+     "coins": 8655,
+     "blue": 7,
+     "xp": 175,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1108200
+    },
+    "next_uid": 10,
+    "rng": 1393872957,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 6,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 0,
+      "y": 5,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 9,
+      "car_id": 3,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {},
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 6,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 7,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000120,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 8,
+      "car_id": 1,
+      "color_id": 2,
+      "arrived_at": 1000240,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1108320,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": [
+       4
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
+    "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {
+      "1": 1
+     },
+     "last_pile_at": 1090210,
+     "next_gift_at": -1,
+     "restored": [
+      53
+     ],
+     "count": 1
+    },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 54,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1,
+     "mystery_boxes": 1,
+     "restorations": 1
+    }
+   }
+  },
+  {
+   "action": "buy_avatar_item",
+   "args": [
+    164,
+    false
+   ],
+   "now": 1110000,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {
+     "item_id": 164
+    },
+    "notices": []
+   },
+   "save": {
+    "save_version": 12,
+    "created_at": 1000000,
+    "updated_at": 1110000,
+    "player": {
+     "name": "Tester",
+     "coins": 8155,
+     "blue": 7,
+     "xp": 175,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1108200
+    },
+    "next_uid": 10,
+    "rng": 1393872957,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 6,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 0,
+      "y": 5,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 9,
+      "car_id": 3,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {},
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 6,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 7,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000120,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 8,
+      "car_id": 1,
+      "color_id": 2,
+      "arrived_at": 1000240,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1108320,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": [
+       4
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
+    "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {
+      "1": 1
+     },
+     "last_pile_at": 1090210,
+     "next_gift_at": -1,
+     "restored": [
+      53
+     ],
+     "count": 1
+    },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 54,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1,
+     "mystery_boxes": 1,
+     "restorations": 1
+    }
+   }
+  },
+  {
+   "action": "buy_avatar_item",
+   "args": [
+    120,
+    false
+   ],
+   "now": 1110000,
+   "result": {
+    "ok": false,
+    "error": "That isn't for sale.",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 12,
+    "created_at": 1000000,
+    "updated_at": 1110000,
+    "player": {
+     "name": "Tester",
+     "coins": 8155,
+     "blue": 7,
+     "xp": 175,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1108200
+    },
+    "next_uid": 10,
+    "rng": 1393872957,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 6,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 0,
+      "y": 5,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 9,
+      "car_id": 3,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {},
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 6,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 7,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000120,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 8,
+      "car_id": 1,
+      "color_id": 2,
+      "arrived_at": 1000240,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1108320,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": [
+       4
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
+    "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {
+      "1": 1
+     },
+     "last_pile_at": 1090210,
+     "next_gift_at": -1,
+     "restored": [
+      53
+     ],
+     "count": 1
+    },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 54,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1,
+     "mystery_boxes": 1,
+     "restorations": 1
+    }
+   }
+  },
+  {
+   "action": "set_avatar_part",
+   "args": [
+    8,
+    164,
+    0
+   ],
+   "now": 1110000,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 12,
+    "created_at": 1000000,
+    "updated_at": 1110000,
+    "player": {
+     "name": "Tester",
+     "coins": 8155,
+     "blue": 7,
+     "xp": 175,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1108200
+    },
+    "next_uid": 10,
+    "rng": 1393872957,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 6,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 0,
+      "y": 5,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 9,
+      "car_id": 3,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {},
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 6,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 7,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000120,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 8,
+      "car_id": 1,
+      "color_id": 2,
+      "arrived_at": 1000240,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1108320,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": [
+       4
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
+    "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {
+      "1": 1
+     },
+     "last_pile_at": 1090210,
+     "next_gift_at": -1,
+     "restored": [
+      53
+     ],
+     "count": 1
+    },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
+    "stats": {
+     "jobs_started": 8,
+     "jobs_collected": 6,
+     "road_trips": 1,
+     "docks_searches": 1,
+     "docks_claims": 1,
+     "mystery_boxes": 1,
+     "restorations": 1
+    }
+   }
+  },
+  {
+   "action": "set_avatar_part",
+   "args": [
+    7,
+    0,
+    0
+   ],
+   "now": 1110000,
+   "result": {
+    "ok": true,
+    "error": "",
+    "data": {},
+    "notices": []
+   },
+   "save": {
+    "save_version": 12,
+    "created_at": 1000000,
+    "updated_at": 1110000,
+    "player": {
+     "name": "Tester",
+     "coins": 8155,
+     "blue": 7,
+     "xp": 175,
+     "level": 3,
+     "fuel": 10,
+     "fuel_at": 1108200
+    },
+    "next_uid": 10,
+    "rng": 1393872957,
+    "garage": {
+     "land_id": 1,
+     "floor_item_id": 292,
+     "floor_tiles": {},
+     "items": [
+      {
+       "uid": 1,
+       "item_id": 156,
+       "x": 0,
+       "y": 0,
+       "rot": 0
+      }
+     ],
+     "walls": [],
+     "wall_items": []
+    },
+    "cars": [
+     {
+      "uid": 2,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 3,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 4,
+      "car_id": 17,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {
+       "1": 21
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 0,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 6,
+      "car_id": 1,
+      "color_id": 1,
+      "paint": 16711680,
+      "parts": {
+       "1": 11
+      },
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 0,
+      "y": 5,
+      "rot": 0,
+      "bay_uid": 0
+     },
+     {
+      "uid": 9,
+      "car_id": 3,
+      "color_id": 0,
+      "paint": 13378082,
+      "parts": {},
+      "upgrades": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "ride_height": 0,
+      "plate": "",
+      "placed": true,
+      "x": 4,
+      "y": 6,
+      "rot": 0,
+      "bay_uid": 0
+     }
+    ],
+    "storage": {},
+    "part_storage": {},
+    "jobs": {},
+    "car_tasks": {},
+    "job_mastery": {
+     "4": 3,
+     "3": 2
+    },
+    "customers": [
+     {
+      "uid": 3,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000000,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 7,
+      "car_id": 2,
+      "color_id": 3,
+      "arrived_at": 1000120,
+      "bay_uid": 0,
+      "job_id": 4
+     },
+     {
+      "uid": 8,
+      "car_id": 1,
+      "color_id": 2,
+      "arrived_at": 1000240,
+      "bay_uid": 0,
+      "job_id": 4
+     }
+    ],
+    "next_customer_at": 1108320,
+    "missions": {
+     "progress": {},
+     "completed": [
+      1
+     ],
+     "daily": {
+      "day": 12,
+      "ids": [
+       7,
+       4,
+       5
+      ],
+      "done": [
+       4
+      ]
+     }
+    },
+    "tutorial": {
+     "step": 0,
+     "done": false
+    },
+    "visited_locations": [],
+    "race": {},
+    "daily_reward": {
+     "last_day": -1,
+     "streak": 0
+    },
+    "collections_done": [],
+    "docks": {
+     "first_done": true,
+     "last_claim": 1090020,
+     "boat": {
+      "id": 1,
+      "cars": [
+       15,
+       12,
+       11,
+       18,
+       14,
+       10,
+       17,
+       13
+      ],
+      "crates": [
+       13,
+       10,
+       17,
+       12,
+       14,
+       11,
+       15,
+       18
+      ],
+      "states": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "price": 60,
+      "wanted": 15,
+      "active": false
+     }
+    },
+    "mystery_boxes": {},
+    "restoration": {
+     "builds": {},
+     "inventory": {
+      "1": 1
+     },
+     "last_pile_at": 1090210,
+     "next_gift_at": -1,
+     "restored": [
+      53
+     ],
+     "count": 1
+    },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -10989,12 +14781,12 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
      "name": "Tester",
-     "coins": 8655,
+     "coins": 8155,
      "blue": 7,
      "xp": 175,
      "level": 3,
@@ -11221,6 +15013,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -11246,12 +15064,12 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
      "name": "Tester",
-     "coins": 8655,
+     "coins": 8155,
      "blue": 7,
      "xp": 175,
      "level": 3,
@@ -11478,6 +15296,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 8,
      "jobs_collected": 6,
@@ -11516,12 +15360,12 @@
     ]
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
      "name": "Tester",
-     "coins": 8745,
+     "coins": 8245,
      "blue": 8,
      "xp": 185,
      "level": 3,
@@ -11758,6 +15602,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 6,
@@ -11783,12 +15653,12 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1003600,
     "player": {
      "name": "Tester",
-     "coins": 8745,
+     "coins": 8245,
      "blue": 8,
      "xp": 185,
      "level": 3,
@@ -12025,6 +15895,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 6,
@@ -12060,12 +15956,12 @@
     ]
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
      "name": "Tester",
-     "coins": 9870,
+     "coins": 9370,
      "blue": 9,
      "xp": 205,
      "level": 4,
@@ -12295,6 +16191,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -12319,12 +16241,12 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
      "name": "Tester",
-     "coins": 9870,
+     "coins": 9370,
      "blue": 9,
      "xp": 205,
      "level": 4,
@@ -12554,6 +16476,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 9,
      "jobs_collected": 7,
@@ -12581,12 +16529,12 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1005400,
     "player": {
      "name": "Tester",
-     "coins": 9860,
+     "coins": 9360,
      "blue": 9,
      "xp": 205,
      "level": 4,
@@ -12824,6 +16772,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 7,
@@ -12851,12 +16825,12 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1005700,
     "player": {
      "name": "Tester",
-     "coins": 9900,
+     "coins": 9400,
      "blue": 9,
      "xp": 217,
      "level": 4,
@@ -13086,6 +17060,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
@@ -13120,12 +17120,12 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1086400,
     "player": {
      "name": "Tester",
-     "coins": 9900,
+     "coins": 9400,
      "blue": 9,
      "xp": 217,
      "level": 4,
@@ -13355,6 +17355,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
@@ -13377,12 +17403,12 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
      "name": "Tester",
-     "coins": 9900,
+     "coins": 9400,
      "blue": 9,
      "xp": 217,
      "level": 4,
@@ -13610,6 +17636,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
@@ -13645,12 +17697,12 @@
     ]
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
      "name": "Tester",
-     "coins": 10000,
+     "coins": 9500,
      "blue": 9,
      "xp": 227,
      "level": 4,
@@ -13882,6 +17934,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
@@ -13906,12 +17984,12 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
      "name": "Tester",
-     "coins": 10000,
+     "coins": 9500,
      "blue": 9,
      "xp": 227,
      "level": 4,
@@ -14143,6 +18221,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
@@ -14165,12 +18269,12 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
      "name": "Tester",
-     "coins": 10000,
+     "coins": 9500,
      "blue": 9,
      "xp": 227,
      "level": 4,
@@ -14402,6 +18506,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
@@ -14427,12 +18557,12 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
      "name": "Tester",
-     "coins": 10000,
+     "coins": 9500,
      "blue": 9,
      "xp": 227,
      "level": 4,
@@ -14664,6 +18794,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,
@@ -14688,12 +18844,12 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1172800,
     "player": {
      "name": "New Name",
-     "coins": 10000,
+     "coins": 9500,
      "blue": 9,
      "xp": 227,
      "level": 4,
@@ -14925,6 +19081,32 @@
      ],
      "count": 1
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 164,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 40000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [
+     164
+    ],
     "stats": {
      "jobs_started": 10,
      "jobs_collected": 8,

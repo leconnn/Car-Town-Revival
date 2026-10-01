@@ -8,7 +8,7 @@ import {
 import { MissionTracker } from "./missions.ts";
 import { key, posmod, roundi, SimpleRng } from "./util.ts";
 
-export const CURRENT_SAVE_VERSION = 11;
+export const CURRENT_SAVE_VERSION = 12;
 
 export class GameResult {
   ok = true;
@@ -37,6 +37,14 @@ export class GameResult {
 const RE_PLATE = /^[A-Z0-9 ]+$/;
 /** Categories whose parts go into storage when taken off a car (UpdateUserCarCommand). */
 const STORED_PART_CATEGORIES = [1, 2, 4, 5, 6, 10];
+const AVATAR_SLOTS: Record<number, string> = { 1: "eyes", 2: "mouth", 3: "brows", 4: "facial_hair", 5: "hair", 6: "misc", 7: "hat", 8: "top", 9: "bottom", 10: "nose", 11: "head", 12: "bottom" };
+const AVATAR_OPTIONAL = [4, 6, 7];
+const AVATAR_COLORS: Record<number, number> = { 11: 8, 5: 8, 4: 8, 3: 8, 1: 9 };
+
+export function defaultAvatar(): Dict {
+  return {"head": 68, "eyes": 1, "mouth": 12, "brows": 20, "facial_hair": 0, "hair": 33, "misc": 0, "hat": 0, "top": 53, "bottom": 57, "nose": 60, "settings": {"head": 20000, "eyes": 5425, "mouth": 5300, "brows": 7226, "facial_hair": 0, "hair": 0, "misc": 0, "nose": 6200}};
+}
+
 const BUILD_RESTORATION = 42;
 const BUILD_MASTER_MECHANIC = 43;
 const BOX_NEW = 0;
@@ -105,6 +113,8 @@ export class GameLogic {
       docks: { first_done: false, last_claim: -1, boat: {} },
       mystery_boxes: {},
       restoration: { builds: {}, inventory: {}, last_pile_at: -1, next_gift_at: -1, restored: [], count: 0 },
+      avatar: defaultAvatar(),
+      avatar_owned: [],
       stats: {},
     };
     const logic = new GameLogic(cat, s);
@@ -1035,6 +1045,49 @@ export class GameLogic {
     const result = GameResult.success({ ends_at: endsAt });
     this.emit("STARTED_WORKBAY_TASK_ID", jobId, now, result);
     return result;
+  }
+
+  // --- Avatar -----------------------------------------------------------------------------
+
+  avatar_item_owned(itemId: number): boolean {
+    const it = this.catalog.avatarItems.get(itemId);
+    if (!it) return false;
+    if (Math.trunc(it.price ?? 0) === 0 && Math.trunc(it.blue_price ?? 0) === 0) return true;
+    return this.save.avatar_owned.includes(itemId);
+  }
+
+  buy_avatar_item(itemId: number, useBlue: boolean, now: number): GameResult {
+    const it = this.catalog.avatarItems.get(itemId);
+    if (!it || !(it.purchasable || it.always_purchasable)) return GameResult.fail("That isn't for sale.");
+    if (this.avatar_item_owned(itemId)) return GameResult.fail("You already have that.");
+    let err = this.levelOk(it);
+    if (err) return GameResult.fail(err);
+    err = this.charge(it, useBlue);
+    if (err) return GameResult.fail(err);
+    this.save.avatar_owned.push(itemId);
+    const result = GameResult.success({ item_id: itemId });
+    this.addRewards(0, 0, Math.trunc(it.xp ?? 0), result);
+    return result;
+  }
+
+  set_avatar_part(slot: number, itemId: number, setting: number): GameResult {
+    const key = AVATAR_SLOTS[slot];
+    if (key === undefined) return GameResult.fail("Unknown avatar part.");
+    if (itemId === 0) {
+      if (!AVATAR_OPTIONAL.includes(slot)) return GameResult.fail("That can't be left off.");
+    } else {
+      const it = this.catalog.avatarItems.get(itemId);
+      const t = Math.trunc(it?.type ?? 0);
+      if (!it || (t !== slot && !(key === "bottom" && [9, 12].includes(t)))) return GameResult.fail("That doesn't go there.");
+      if (!this.avatar_item_owned(itemId)) return GameResult.fail("Buy it first.");
+    }
+    if (setting < 0 || setting > 99999) return GameResult.fail("Bad setting.");
+    const colors = AVATAR_COLORS[slot] ?? 10;
+    if (Math.trunc(setting / 10000) % 10 >= colors) return GameResult.fail("Bad colour.");
+    const a = this.save.avatar;
+    a[key] = itemId;
+    if (key in a.settings || setting !== 0) a.settings[key] = setting;
+    return GameResult.success();
   }
 
   // --- Car restoration --------------------------------------------------------------------

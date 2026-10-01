@@ -37,6 +37,8 @@ func _ready() -> void:
 		["buy_build_part", [17], t0 + 86400 * 9 + 13 * 3600], ["install_build_part", [1, 17], t0 + 86400 * 9 + 13 * 3600],
 		["install_build_part", [1, 1], t0 + 86400 * 9 + 13 * 3600], ["install_build_part", [1, 19], t0 + 86400 * 9 + 13 * 3600],
 		["finish_restoration", [1], t0 + 86400 * 9 + 13 * 3600],
+		["set_avatar_part", [5, 44, 30000], t0 + 86400 * 10], ["set_avatar_part", [12, 74, 0], t0 + 86400 * 10],
+		["buy_avatar_item", [164, false], t0 + 86400 * 10], ["set_avatar_part", [8, 164, 0], t0 + 86400 * 10],
 	]
 	var logic := GameLogic.new(GameData.catalog, GameLogic.new_save(GameData.catalog, "Real", t0))
 	var start := logic.save.duplicate(true)

@@ -132,3 +132,13 @@ func test_v10_to_v11_adds_restoration() -> void:
 	assert_that(out["restoration"]["builds"]).is_equal({})
 	assert_int(out["restoration"]["next_gift_at"]).is_equal(-1)
 	assert_bool(GameLogic.new(TestEnv.catalog(), out).tick(TestEnv.NOW).ok).is_true()
+
+
+func test_v11_to_v12_adds_the_avatar() -> void:
+	var raw: Variant = JsonUtil.read_file("res://tests/fixtures/saves/v11.json")
+	assert_int(raw["save_version"]).is_equal(11)
+	var out := SaveMigrations.migrate(raw)
+	assert_int(out["save_version"]).is_equal(GameLogic.CURRENT_SAVE_VERSION)
+	assert_that(out["avatar"]).is_equal(GameLogic.default_avatar())
+	assert_that(out["avatar_owned"]).is_equal([])
+	assert_bool(GameLogic.new(TestEnv.catalog(), out).tick(TestEnv.NOW).ok).is_true()

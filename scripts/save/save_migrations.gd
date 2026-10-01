@@ -54,6 +54,8 @@ static func _step(version: int, data: Dictionary) -> Dictionary:
 			return _v9_to_v10(data)
 		10:
 			return _v10_to_v11(data)
+		11:
+			return _v11_to_v12(data)
 		_:
 			return {}
 
@@ -129,4 +131,12 @@ static func _v9_to_v10(data: Dictionary) -> Dictionary:
 ## Junk Yard's daily part and townsfolk deliveries, and what you've restored.
 static func _v10_to_v11(data: Dictionary) -> Dictionary:
 	data["restoration"] = {"builds": {}, "inventory": {}, "last_pile_at": -1, "next_gift_at": -1, "restored": [], "count": 0}
+	return data
+
+
+## v12 added your avatar (the first worker wears it) and the avatar pieces
+## you've bought.
+static func _v11_to_v12(data: Dictionary) -> Dictionary:
+	data["avatar"] = GameLogic.default_avatar()
+	data["avatar_owned"] = []
 	return data

@@ -1,6 +1,6 @@
 {
  "start": {
-  "save_version": 11,
+  "save_version": 12,
   "created_at": 1000000,
   "updated_at": 1000000,
   "player": {
@@ -91,6 +91,30 @@
    "restored": [],
    "count": 0
   },
+  "avatar": {
+   "head": 68,
+   "eyes": 1,
+   "mouth": 12,
+   "brows": 20,
+   "facial_hair": 0,
+   "hair": 33,
+   "misc": 0,
+   "hat": 0,
+   "top": 53,
+   "bottom": 57,
+   "nose": 60,
+   "settings": {
+    "head": 20000,
+    "eyes": 5425,
+    "mouth": 5300,
+    "brows": 7226,
+    "facial_hair": 0,
+    "hair": 0,
+    "misc": 0,
+    "nose": 6200
+   }
+  },
+  "avatar_owned": [],
   "stats": {}
  },
  "steps": [
@@ -112,7 +136,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -233,6 +257,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1
     }
@@ -253,7 +301,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -374,6 +422,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1
     }
@@ -394,7 +466,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000000,
     "player": {
@@ -515,6 +587,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1
     }
@@ -546,7 +642,7 @@
     ]
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000010,
     "player": {
@@ -669,6 +765,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -692,7 +812,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -815,6 +935,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -836,7 +980,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -959,6 +1103,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -982,7 +1150,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000020,
     "player": {
@@ -1106,6 +1274,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1129,7 +1321,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000021,
     "player": {
@@ -1255,6 +1447,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1278,7 +1494,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000022,
     "player": {
@@ -1402,6 +1618,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1422,7 +1662,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000023,
     "player": {
@@ -1547,6 +1787,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1570,7 +1834,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -1695,6 +1959,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1718,7 +2006,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -1843,6 +2131,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -1863,7 +2175,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000030,
     "player": {
@@ -1988,6 +2300,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2009,7 +2345,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -2134,6 +2470,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2155,7 +2515,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -2280,6 +2640,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2301,7 +2685,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000040,
     "player": {
@@ -2426,6 +2810,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2451,7 +2859,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000050,
     "player": {
@@ -2583,6 +2991,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2606,7 +3038,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000050,
     "player": {
@@ -2738,6 +3170,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2760,7 +3216,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -2892,6 +3348,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -2911,7 +3391,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -3038,6 +3518,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3062,7 +3566,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000060,
     "player": {
@@ -3194,6 +3698,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3219,7 +3747,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3353,6 +3881,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3376,7 +3928,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3510,6 +4062,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3535,7 +4111,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3677,6 +4253,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3702,7 +4302,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -3851,6 +4451,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -3876,7 +4500,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -4033,6 +4657,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4056,7 +4704,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -4213,6 +4861,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4238,7 +4910,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -4402,6 +5074,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4427,7 +5123,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000070,
     "player": {
@@ -4598,6 +5294,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4617,7 +5337,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000071,
     "player": {
@@ -4776,6 +5496,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4800,7 +5544,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000072,
     "player": {
@@ -4965,6 +5709,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -4994,7 +5762,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000073,
     "player": {
@@ -5131,6 +5899,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1
@@ -5161,7 +5953,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000074,
     "player": {
@@ -5311,6 +6103,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5339,7 +6155,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000075,
     "player": {
@@ -5476,6 +6292,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5509,7 +6349,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000076,
     "player": {
@@ -5659,6 +6499,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5689,7 +6553,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000077,
     "player": {
@@ -5826,6 +6690,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -5851,7 +6739,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000077,
     "player": {
@@ -5988,6 +6876,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6013,7 +6925,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000077,
     "player": {
@@ -6150,6 +7062,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6175,7 +7111,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000078,
     "player": {
@@ -6312,6 +7248,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6339,7 +7299,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000079,
     "player": {
@@ -6476,6 +7436,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6497,7 +7481,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000079,
     "player": {
@@ -6634,6 +7618,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6661,7 +7669,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1086479,
     "player": {
@@ -6798,6 +7806,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6833,7 +7865,7 @@
     ]
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1172879,
     "player": {
@@ -6970,6 +8002,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -6997,7 +8053,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1432000,
     "player": {
@@ -7134,6 +8190,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -7157,7 +8237,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1432000,
     "player": {
@@ -7294,6 +8374,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -7320,7 +8424,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000090,
     "player": {
@@ -7457,6 +8561,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -7480,7 +8608,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000090,
     "player": {
@@ -7617,6 +8745,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,
@@ -7642,7 +8794,7 @@
     "notices": []
    },
    "save": {
-    "save_version": 11,
+    "save_version": 12,
     "created_at": 1000000,
     "updated_at": 1000100,
     "player": {
@@ -7757,6 +8909,30 @@
      "restored": [],
      "count": 0
     },
+    "avatar": {
+     "head": 68,
+     "eyes": 1,
+     "mouth": 12,
+     "brows": 20,
+     "facial_hair": 0,
+     "hair": 33,
+     "misc": 0,
+     "hat": 0,
+     "top": 53,
+     "bottom": 57,
+     "nose": 60,
+     "settings": {
+      "head": 20000,
+      "eyes": 5425,
+      "mouth": 5300,
+      "brows": 7226,
+      "facial_hair": 0,
+      "hair": 0,
+      "misc": 0,
+      "nose": 6200
+     }
+    },
+    "avatar_owned": [],
     "stats": {
      "cars_bought": 1,
      "cars_painted": 1,

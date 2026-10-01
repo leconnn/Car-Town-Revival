@@ -7,7 +7,7 @@ extends RefCounted
 ## or the UI. Every action takes [param now] (unix seconds) from the caller so
 ## timers can use a trusted clock.
 
-const CURRENT_SAVE_VERSION := 11
+const CURRENT_SAVE_VERSION := 12
 
 var catalog: Catalog
 var save: Dictionary
@@ -68,6 +68,8 @@ static func new_save(cat: Catalog, player_name: String, now: int) -> Dictionary:
 		"docks": {"first_done": false, "last_claim": -1, "boat": {}},
 		"mystery_boxes": {},
 		"restoration": {"builds": {}, "inventory": {}, "last_pile_at": -1, "next_gift_at": -1, "restored": [], "count": 0},
+		"avatar": default_avatar(),
+		"avatar_owned": [],
 		"stats": {},
 	}
 	var logic := GameLogic.new(cat, s)
@@ -1227,6 +1229,81 @@ func collect_car_task(car_uid: int, now: int) -> GameResult:
 	_bump_stat("jobs_collected")
 	_emit("COLLECTED_WORKBAY_TASK_ID", job_id, now, result)
 	return result
+
+
+# --- Avatar -----------------------------------------------------------------------------
+# Your look (EditAvatar): a piece per slot (AvatarData categories) and each
+# piece's setting digits (colour, position, scale, distance, rotation). Free
+# pieces are always yours; the rest are bought once.
+
+## AvatarData category -> outfit key. Pants and skirts share "bottom".
+const AVATAR_SLOTS := {1: "eyes", 2: "mouth", 3: "brows", 4: "facial_hair", 5: "hair", 6: "misc", 7: "hat",
+	8: "top", 9: "bottom", 10: "nose", 11: "head", 12: "bottom"}
+## Slots that can be left empty (0).
+const AVATAR_OPTIONAL: Array[int] = [4, 6, 7]
+## How many colours each slot's colour digit can pick (skin, hair, eyes).
+const AVATAR_COLORS := {11: 8, 5: 8, 4: 8, 3: 8, 1: 9}
+
+
+static func default_avatar() -> Dictionary:
+	return DEFAULT_AVATAR.duplicate(true)
+
+
+const DEFAULT_AVATAR := {"head": 68, "eyes": 1, "mouth": 12, "brows": 20, "facial_hair": 0, "hair": 33, "misc": 0, "hat": 0, "top": 53, "bottom": 57, "nose": 60, "settings": {"head": 20000, "eyes": 5425, "mouth": 5300, "brows": 7226, "facial_hair": 0, "hair": 0, "misc": 0, "nose": 6200}}
+
+
+func avatar_item_owned(item_id: int) -> bool:
+	var it := catalog.avatar_item(item_id)
+	if it.is_empty():
+		return false
+	if int(it.get("price", 0)) == 0 and int(it.get("blue_price", 0)) == 0:
+		return true
+	return (save["avatar_owned"] as Array).has(item_id)
+
+
+func buy_avatar_item(item_id: int, use_blue: bool, now: int) -> GameResult:
+	var it := catalog.avatar_item(item_id)
+	if it.is_empty() or not (it.get("purchasable", false) or it.get("always_purchasable", false)):
+		return GameResult.fail("That isn't for sale.")
+	if avatar_item_owned(item_id):
+		return GameResult.fail("You already have that.")
+	var err := _level_ok(it)
+	if err != "":
+		return GameResult.fail(err)
+	err = _charge(it, use_blue)
+	if err != "":
+		return GameResult.fail(err)
+	save["avatar_owned"].append(item_id)
+	var result := GameResult.success({"item_id": item_id})
+	add_rewards(0, 0, int(it.get("xp", 0)), result)
+	return result
+
+
+## Puts on a piece (or takes it off with 0) and sets its setting digits.
+func set_avatar_part(slot: int, item_id: int, setting: int) -> GameResult:
+	if not AVATAR_SLOTS.has(slot):
+		return GameResult.fail("Unknown avatar part.")
+	var key: String = AVATAR_SLOTS[slot]
+	if item_id == 0:
+		if not AVATAR_OPTIONAL.has(slot):
+			return GameResult.fail("That can't be left off.")
+	else:
+		var it := catalog.avatar_item(item_id)
+		var t := int(it.get("type", 0))
+		if it.is_empty() or (t != slot and not (key == "bottom" and t in [9, 12])):
+			return GameResult.fail("That doesn't go there.")
+		if not avatar_item_owned(item_id):
+			return GameResult.fail("Buy it first.")
+	if setting < 0 or setting > 99999:
+		return GameResult.fail("Bad setting.")
+	var colors := int(AVATAR_COLORS.get(slot, 10))
+	if (setting / 10000) % 10 >= colors:
+		return GameResult.fail("Bad colour.")
+	var a: Dictionary = save["avatar"]
+	a[key] = item_id
+	if a["settings"].has(key) or setting != 0:
+		a["settings"][key] = setting
+	return GameResult.success()
 
 
 # --- Car restoration --------------------------------------------------------------------

@@ -38,6 +38,8 @@ const ACTIONS: Dictionary[String, Dictionary] = {
 	"collect_car_task": {"args": [TYPE_INT], "now": true},
 	"finish_car_task_now": {"args": [TYPE_INT], "now": true},
 	"stop_car_task": {"args": [TYPE_INT], "now": false},
+	"buy_avatar_item": {"args": [TYPE_INT, TYPE_BOOL], "now": true},
+	"set_avatar_part": {"args": [TYPE_INT, TYPE_INT, TYPE_INT], "now": false},
 	"start_restoration": {"args": [TYPE_INT, TYPE_INT], "now": true},
 	"collect_junkyard_part": {"args": [], "now": true},
 	"buy_build_part": {"args": [TYPE_INT], "now": true},
