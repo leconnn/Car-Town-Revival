@@ -9,7 +9,7 @@ extends RefCounted
 const REQUIRED_FILES: Array[String] = [
 	"consts", "cars", "car_colors", "parts", "part_categories", "items",
 	"lands", "levels", "garage_value_tiers", "jobs", "task_mastery_levels",
-	"missions", "mission_steps", "locations", "consumables", "daily_rewards", "car_collections", "road_trips", "car_classes", "mystery_boxes", "car_builds", "car_build_parts",
+	"missions", "mission_steps", "locations", "consumables", "daily_rewards", "car_collections", "road_trips", "car_classes", "mystery_boxes", "car_builds", "car_build_parts", "avatar_items",
 ]
 
 var consts: Dictionary = {}
@@ -41,6 +41,8 @@ var mystery_boxes: Dictionary[int, Dictionary] = {}
 ## Car builds (restorations among them) and the parts they need.
 var car_builds: Dictionary[int, Dictionary] = {}
 var car_build_parts: Dictionary[int, Dictionary] = {}
+## Avatar clothes and features, by id (type is the AvatarData category).
+var avatar_items: Dictionary[int, Dictionary] = {}
 ## Mission id -> its step definitions, in id order.
 var steps_by_mission: Dictionary[int, Array] = {}
 ## Car id -> {category id -> stock part id}.
@@ -136,6 +138,8 @@ func _index(raw: Dictionary) -> void:
 		car_builds[b["id"]] = b
 	for p: Dictionary in raw["car_build_parts"]:
 		car_build_parts[p["id"]] = p
+	for a: Dictionary in raw["avatar_items"]:
+		avatar_items[a["id"]] = a
 
 
 # --- Lookups ---------------------------------------------------------------
@@ -216,3 +220,7 @@ func tune(path: String, default: Variant = null) -> Variant:
 			return default
 		node = node[key]
 	return node
+
+
+func avatar_item(id: int) -> Dictionary:
+	return avatar_items.get(id, {})

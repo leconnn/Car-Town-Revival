@@ -877,6 +877,19 @@ func _dev_open() -> void:
 			"roadtrip": _open_road_trip(Backend.state()["cars"][0]["uid"])
 			"docks": open_docks()
 			"junkyard": open_junkyard()
+			"workers":
+				var anims := ["idle", "walk", "fix", "wash", "examine", "dance1"]
+				var looks: Array = [AvatarPortrait.DEFAULT_OUTFIT,
+					{"head": 70, "eyes": 4, "mouth": 15, "brows": 25, "hair": 44, "top": 81, "bottom": 74, "nose": 63, "hat": 0,
+						"settings": {"head": 30000, "hair": 30000, "eyes": 5425, "mouth": 5300, "brows": 7226, "nose": 6200}},
+					{"head": 71, "eyes": 6, "mouth": 17, "brows": 22, "facial_hair": 31, "hair": 36, "top": 54, "bottom": 59,
+						"nose": 61, "hat": 50, "settings": {"head": 50000, "hair": 60000, "eyes": 7254, "mouth": 6600, "brows": 4226, "nose": 3800}}]
+				for i in 6:
+					var w := WorkerView.create(looks[i % 3])
+					w.position = garage.center_screen_position() + Vector2(-250 + i * 100, 40 + (i % 2) * 60)
+					w.face(-30.0 + i * 45.0)
+					w.play(anims[i])
+					garage.effects_layer().add_child(w)
 			"portraits":
 				var layer := CanvasLayer.new()
 				layer.layer = 20
