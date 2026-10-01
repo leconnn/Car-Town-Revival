@@ -877,6 +877,22 @@ func _dev_open() -> void:
 			"roadtrip": _open_road_trip(Backend.state()["cars"][0]["uid"])
 			"docks": open_docks()
 			"junkyard": open_junkyard()
+			"portraits":
+				var layer := CanvasLayer.new()
+				layer.layer = 20
+				add_child(layer)
+				var looks: Array = [AvatarPortrait.DEFAULT_OUTFIT,
+					{"head": 70, "eyes": 4, "mouth": 15, "brows": 25, "hair": 44, "top": 81, "bottom": 74, "nose": 63, "hat": 0,
+						"settings": {"head": 30000, "hair": 30000, "eyes": 5425, "mouth": 5300, "brows": 7226, "nose": 6200}},
+					{"head": 71, "eyes": 6, "mouth": 17, "brows": 22, "facial_hair": 31, "hair": 36, "top": 54, "bottom": 59,
+						"nose": 61, "hat": 50, "settings": {"head": 50000, "hair": 60000, "eyes": 7254, "mouth": 6600, "brows": 4226, "nose": 3800}}]
+				for i in looks.size():
+					var p := AvatarPortrait.create(looks[i])
+					p.position = Vector2(300 + i * 350, 330)
+					layer.add_child(p)
+					var f := AvatarPortrait.create(looks[i], true)
+					f.position = Vector2(300 + i * 350, 720)
+					layer.add_child(f)
 			"restore":
 				var resto_bay := _free_bay()
 				await Backend.start_restoration(52, resto_bay)

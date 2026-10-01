@@ -19,6 +19,7 @@ var poster_art: Dictionary = {}
 var static_ui_art: Dictionary = {}
 var mysterybox_art: Dictionary = {}
 var restoration_art: Dictionary = {}
+var avatar_art: Dictionary = {}
 ## The original loading screen's logo and background ("title").
 var title_art: Dictionary = {}
 
@@ -39,6 +40,7 @@ func _ready() -> void:
 	static_ui_art = _read_manifest("static_ui")
 	mysterybox_art = _read_manifest("mysterybox")
 	restoration_art = _read_manifest("restoration")
+	avatar_art = _read_manifest("avatar")
 	title_art = _read_manifest("title")
 	# Only cars with a body (painted, or unpainted like the junkers) in every
 	# view can be drawn everywhere.

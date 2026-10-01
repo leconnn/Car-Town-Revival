@@ -484,6 +484,56 @@ def export_restoration(ids: set[str] | None, limit: int | None) -> None:
     write_manifest("restoration", {k: fr[0] for k, fr in frames.items() if fr})
 
 
+def export_avatar(ids: set[str] | None, limit: int | None) -> None:
+    """Avatars. The 2D pieces from data/6/avatar (<id>_l.swf on the portrait,
+    <id>_s.swf store icons, <id>_lb.swf hair backs), and the 3D worker: the
+    Collada model and settings map embedded in CarTownMain.swf plus the
+    textures in data/6/avatar/assets3d."""
+    src = ROOT / "alt" / "data" / "6" / "avatar"
+    batch = Batch("avatar", 300)
+    for p in pick_ids(sorted(src.glob("*.swf")), None, limit):
+        batch.add(p.stem, p.read_bytes(), OUT / "avatar" / p.stem)
+    frames = batch.run()
+    for key, fr in frames.items():
+        for extra in fr[1:]:
+            if extra.get("file"):
+                (OUT / extra["file"]).unlink(missing_ok=True)
+    write_manifest("avatar", {k: fr[0] for k, fr in frames.items() if fr})
+    three_d = ROOT / "assets" / "ea" / "avatar3d"
+    three_d.mkdir(parents=True, exist_ok=True)
+    for jpg in (src / "assets3d").glob("*.jpg"):
+        shutil.copyfile(jpg, three_d / jpg.name)
+    stage = STAGE / "avatar3d"
+    shutil.rmtree(stage, ignore_errors=True)
+    classes = ("com.ciestudios.garage.components.avatar.AvatarGenerator__Animated,"
+               "com.ciestudios.garage.components.avatar.AvatarGenerator__AvatarSettingsMap,"
+               "com.ciestudios.garage.components.avatar.assets.EyesAsset__irisBytes")
+    subprocess.run(["java", "-jar", str(FFDEC), "-selectclass", classes, "-export", "binaryData", str(stage),
+                    str(ROOT / "alt" / "CarTownMain.swf")], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+    for b in stage.glob("*.bin"):
+        if b.name.endswith("__Animated.bin"):
+            shutil.copyfile(b, three_d / "avatar.dae")
+        elif b.name.endswith("__AvatarSettingsMap.bin"):
+            shutil.copyfile(b, three_d / "avatar_settings.xml")
+        elif b.name.endswith("__irisBytes.bin"):
+            shutil.copyfile(b, three_d / "iris.bin")
+    # The iris (EyesAsset__irisBytes): a clip with a frame per eye colour.
+    iris_swf = three_d / "iris.bin"
+    if iris_swf.is_file():
+        work = stage / "iris"
+        work.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(iris_swf, work / "iris.swf")
+        subprocess.run(["java", "-jar", str(FFDEC), "-format", "sprite:png", "-export", "sprite", str(work / "out"),
+                        str(work / "iris.swf")], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+        for frame in (work / "out").glob("*/*.png"):
+            img = Image.open(frame).convert("RGBA")
+            box = img.getchannel("A").getbbox()
+            if box:
+                img.crop(box).save(OUT / "avatar" / f"iris_{int(frame.stem) - 1}.png")
+    shutil.rmtree(stage, ignore_errors=True)
+    print("  avatar3d: model, settings and textures")
+
+
 def export_title(ids: set[str] | None, limit: int | None) -> None:
     """The original loading screen's art (preloader.swf) for the title
     screen: the Car Town logo (vector, drawn at 3x) and the yellow sunburst
@@ -560,7 +610,7 @@ def export_missions(ids: set[str] | None, limit: int | None) -> None:
 
 GROUPS = {
     "items": export_items, "posters": export_posters, "cars": export_cars, "wheels": export_wheels,
-    "main": export_main, "town": export_town, "missions": export_missions, "static_ui": export_static_ui, "mysterybox": export_mysterybox, "restoration": export_restoration, "title": export_title, "audio": export_audio,
+    "main": export_main, "town": export_town, "missions": export_missions, "static_ui": export_static_ui, "mysterybox": export_mysterybox, "restoration": export_restoration, "avatar": export_avatar, "title": export_title, "audio": export_audio,
 }
 
 
